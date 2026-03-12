@@ -1,0 +1,57 @@
+/* Custom scrollbar for sidebar elements */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #e2e8f0;
+    border-radius: 20px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #cbd5e1;
+}
+
+/* Map specific tweaks */
+.leaflet-control-zoom {
+    border: none !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    margin-bottom: 2rem !important; /* give space on mobile */
+    margin-right: 1rem !important;
+}
+@media (min-width: 768px) {
+    .leaflet-control-zoom {
+        margin-bottom: 1rem !important;
+    }
+}
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    color: #475569 !important;
+    background-color: white !important;
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+    font-size: 18px !important;
+}
+.leaflet-control-zoom-in:hover, .leaflet-control-zoom-out:hover {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+}
+
+/* Override default leaflet styling for a cleaner look */
+.leaflet-container {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #f1f5f9;
+}
+
+/* Optional custom popups if used */
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+.leaflet-popup-content {
+    margin: 0;
+}
