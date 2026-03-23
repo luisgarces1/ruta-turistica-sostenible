@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Ruta Turística Sostenible - Mapa Interactivo</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            500: '#14b8a6', // Teal
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            900: '#134e4a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for category container */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Original Footer Styles */
+        .footer {
+            position: relative;
+            color: #fff;
+            background: linear-gradient(180deg, #0b6cc9, #0a5fb8 45%, #084e9f);
+            padding: 120px 0 46px;
+            overflow: hidden;
+            margin-top: 18px;
+            font-family: Inter, system-ui, -apple-system, sans-serif;
+        }
+
+        .footer::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 110px;
+            background: #f8fafc;
+            /* match body bg */
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160'%3E%3Cpath fill='black' d='M0,64 C240,140 480,20 720,64 C960,108 1200,96 1440,48 L1440,0 L0,0 Z'/%3E%3C/svg%3E") center / cover no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160'%3E%3Cpath fill='black' d='M0,64 C240,140 480,20 720,64 C960,108 1200,96 1440,48 L1440,0 L0,0 Z'/%3E%3C/svg%3E") center / cover no-repeat;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr 1.2fr 1.1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer h4 {
+            margin: 0 0 12px;
+            font-size: 14px;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            opacity: .95;
+            font-weight: 700;
+        }
+
+        .footer p,
+        .footer a {
+            margin: 0;
+            color: rgba(255, 255, 255, .92);
+            font-size: 14px;
+            line-height: 1.55;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .stack {
+            display: grid;
+            gap: 10px;
+        }
+
+        .footer .icon-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        .footer .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .35);
+            background: rgba(255, 255, 255, .10);
+            display: grid;
+            place-items: center;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 900;
+            font-size: 18px;
+            line-height: 1;
+            transition: transform .15s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .footer .icon-btn:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, .18);
+            border-color: rgba(255, 255, 255, .55);
+            text-decoration: none;
+        }
+
+        .footer .icon-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer .pill-actions {
+            display: grid;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .footer .pillFooter i {
+            font-size: 16px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            flex: 0 0 18px;
+        }
+
+        .footer .pillFooter {
+            height: 44px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .28);
+            background: rgba(255, 255, 255, .10);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 16px;
+            font-weight: 800;
+            width: max-content;
+            max-width: 100%;
+        }
+
+        .footer .pillFooter:hover {
+            background: rgba(255, 255, 255, .2);
+            text-decoration: none;
+        }
+
+        .footer .footerBrand {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer .footerBrand__logo {
+            height: 54px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        @media (max-width: 980px) {
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer .footerBrand__logo {
+                height: 46px;
+            }
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col relative">
+
+    <!-- Header section - Updated to match Ruta Costera branding -->
+    <header class="bg-[#004a99] text-white py-3 shadow-lg relative z-[110]">
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[150] hidden md:hidden transition-opacity"></div>
+        
+        <!-- Mobile Menu Sidebar -->
+        <div id="mobile-menu" class="fixed top-0 left-0 h-full w-[280px] bg-white text-gray-800 z-[160] -translate-x-full md:hidden transition-transform duration-300 shadow-2xl overflow-y-auto">
+            <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-[#004a99] text-white">
+                <span class="font-bold uppercase tracking-widest text-sm">Menú</span>
+                <button id="close-menu" class="p-2 hover:bg-white/10 rounded-lg">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="py-4">
+                <a href="#" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Mapa Interactivo
+                </a>
+                <a href="#" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
+                    <i class="fa-solid fa-route"></i>
+                    Rutas Sugeridas
+                </a>
+                
+                <div class="mt-4 px-6 py-2">
+                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Conexiones</span>
+                </div>
+                
+                <a href="https://www.visitcartagena.com.co/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-medium">
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                        <i class="fa-solid fa-umbrella-beach text-xs"></i>
+                    </div>
+                    Visita Cartagena
+                </a>
+                
+                <a href="https://www.rutacostera.co/conoce-la-ruta/#sitios-turisticos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-medium">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
+                        <i class="fa-solid fa-route text-xs"></i>
+                    </div>
+                    Sitios de interés
+                </a>
+                
+                <a href="https://barranquilla.gov.co/descubre/recorridos-por-barranquilla" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-medium">
+                    <div class="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center text-teal-600">
+                        <i class="fa-solid fa-city text-xs"></i>
+                    </div>
+                    Visita Barranquilla
+                </a>
+            </div>
+            
+            <div class="mt-auto p-6 border-t border-gray-100">
+                <img alt="Ruta Costera" class="h-10 opacity-50 grayscale hover:grayscale-0 transition-all" src="https://res.cloudinary.com/doj2ayyy9/image/upload/RUTA-COSTERA-logotipo-blanco-sobre-azul-RGB_zxhs9l.svg" />
+            </div>
+        </div>
+
+        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <!-- Hamburger Button -->
+                <button id="open-menu" class="md:hidden p-2 -ml-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-lg md:text-3xl font-black uppercase tracking-tight">Ruta Turística</h1>
+            </div>
+
+            <div class="flex items-center gap-4 md:gap-8">
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="#" id="mapa-link" class="text-[13px] font-extrabold tracking-widest hover:text-blue-200 transition-colors">MAPA</a>
+                    <a href="#" id="rutas-link" class="text-[13px] font-extrabold tracking-widest hover:text-blue-200 transition-colors">RUTAS</a>
+                    <!-- Dropdown for CONEXIONES -->
+                    <div class="relative group h-full flex items-center">
+                        <button class="text-[13px] font-extrabold tracking-widest hover:text-blue-200 transition-colors flex items-center gap-1 uppercase">
+                            CONEXIONES
+                            <svg class="w-3 h-3 group-hover:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-0 pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[120]">
+                            <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden py-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <a href="https://www.visitcartagena.com.co/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-blue-50 transition-colors group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
+                                        <i class="fa-solid fa-umbrella-beach text-xs"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-gray-900 font-bold text-xs uppercase tracking-tight">Visita Cartagena</span>
+                                        <span class="text-[10px] text-gray-400 font-medium">Turismo Oficial Bolívar</span>
+                                    </div>
+                                </a>
+
+                                <a href="https://www.rutacostera.co/conoce-la-ruta/#sitios-turisticos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-emerald-50 transition-colors group/item border-y border-gray-50">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover/item:bg-emerald-600 group-hover/item:text-white transition-colors">
+                                        <i class="fa-solid fa-route text-xs"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-gray-900 font-bold text-xs uppercase tracking-tight">Sitios de interés</span>
+                                        <span class="text-[10px] text-gray-400 font-medium">Conoce la Ruta Costera</span>
+                                    </div>
+                                </a>
+
+                                <a href="https://barranquilla.gov.co/descubre/recorridos-por-barranquilla" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-teal-50 transition-colors group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center text-teal-600 group-hover/item:bg-teal-600 group-hover/item:text-white transition-colors">
+                                        <i class="fa-solid fa-city text-xs"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-gray-900 font-bold text-xs uppercase tracking-tight">Visita Barranquilla</span>
+                                        <span class="text-[10px] text-gray-400 font-medium">Experiencias en el Atlántico</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Vertical Separator -->
+                <div class="h-8 w-[1px] bg-white/30 hidden md:block"></div>
+
+                <div class="flex items-center">
+                    <img alt="Ruta Costera | ISA Vías" class="h-10 md:h-14 w-auto"
+                        src="https://res.cloudinary.com/doj2ayyy9/image/upload/RUTA-COSTERA-logotipo-blanco-sobre-azul-RGB_zxhs9l.svg" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Area -->
+    <main class="flex-1 bg-gray-50 py-6 px-4 sm:px-6 lg:px-8 overflow-y-auto">
+        <div class="max-w-7xl mx-auto space-y-6">
+            
+            <!-- Top Map Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- Sidebar / Filters Card -->
+                <aside class="lg:col-span-4 bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-[600px] border border-gray-100">
+                    <div class="px-6 py-5 border-b border-gray-50 bg-white">
+                        <h3 class="text-xl font-bold text-[#004a99]">Puntos de Interés</h3>
+                        <p class="text-xs text-gray-400 mt-1">Explora nuestra ruta turística</p>
+                    </div>
+                    <div class="p-4 flex-1 overflow-y-auto hide-scrollbar bg-white" id="filter-container">
+                        <!-- Filters and items injected via JS -->
+                    </div>
+                </aside>
+
+                <!-- Map Card -->
+                <section class="lg:col-span-8 bg-white rounded-2xl shadow-lg overflow-hidden h-[600px] relative border border-gray-100">
+                    <div id="map" class="w-full h-full z-0"></div>
+                    <!-- Side Panel / Details Popup -->
+                    <div id="side-panel" class="absolute z-40 top-auto bottom-0 inset-x-0 md:inset-auto md:top-4 md:bottom-4 md:right-4 md:w-[420px] bg-white rounded-t-3xl md:rounded-2xl shadow-2xl transform translate-y-full md:translate-y-0 md:translate-x-[120%] transition-transform duration-[400ms] ease-out flex flex-col h-[85%] md:h-auto pointer-events-auto border border-white/50">
+                        <!-- Content injected via JS -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Carousel Section Card -->
+            <section class="bg-white rounded-2xl shadow-lg p-2 overflow-hidden border border-gray-100">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="assets/images/puntos/Puente del viaducto el Gran Manglar.jpg" alt="Viaducto el Gran Manglar">
+                            <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">Viaducto el Gran Manglar</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/puntos/Foto principal para la pagina G.M.jpg" alt="Gran Malecón">
+                            <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">Gran Malecón</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/puntos/Foto principal para la pagina M.T..png" alt="Volcán del Totumo">
+                            <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">Volcán del Totumo</div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next !w-10 !h-10 !bg-white/20 !rounded-full !after:text-sm hover:!bg-white/40 transition-colors"></div>
+                    <div class="swiper-button-prev !w-10 !h-10 !bg-white/20 !rounded-full !after:text-sm hover:!bg-white/40 transition-colors"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer Original Ruta Costera -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="footer__grid">
+                <div class="stack">
+                    <div aria-label="Ruta Costera | ISA Vías" class="footerBrand">
+                        <img alt="Ruta Costera | ISA Vías" class="footerBrand__logo"
+                            src="https://res.cloudinary.com/doj2ayyy9/image/upload/RUTA-COSTERA-logotipo-blanco-sobre-azul-RGB_zxhs9l.svg" />
+                    </div>
+                    <div class="pill-actions">
+                        <a class="pillFooter" href="https://www.rutacostera.co/proveedores/" rel="noopener"
+                            target="_blank">
+                            <i aria-hidden="true" class="fas fa-truck"></i>
+                            <span>Proveedores</span>
+                        </a>
+                        <a class="pillFooter" href="https://www.rutacostera.co/quienes-somos/linea-etica/"
+                            rel="noopener" target="_blank">
+                            <i aria-hidden="true" class="fas fa-shield-alt"></i>
+                            <span>Línea Ética</span>
+                        </a>
+                        <a class="pillFooter" href="https://www.rutacostera.co/comunidad/notificaciones-por-aviso/"
+                            rel="noopener" target="_blank">
+                            <i aria-hidden="true" class="fas fa-bell"></i>
+                            <span>Notificaciones por aviso</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="stack">
+                    <h4>Sede administrativa</h4>
+                    <p>Carrera 24 No. 1A – 24 Oficina 1702<br />
+                        Edificio BC Empresarial, Puerto Colombia<br />
+                        Tel: 321 973 8494
+                    </p>
+                    <div style="height:8px"></div>
+                    <h4>Oficina de atención al usuario</h4>
+                    <p>Área de Servicio Juan Mina – K25+200<br />
+                        Circunvalar de la Prosperidad<br />
+                        Tel: 321 226 5650
+                    </p>
+                </div>
+                <div class="stack">
+                    <h4>Atención a emergencias</h4>
+                    <p>📞 311 480 3629</p>
+                    <p>📞 018000 977330</p>
+                    <div style="height:10px"></div>
+                    <h4>Más sobre nosotros</h4>
+                    <div class="stack" style="gap:8px">
+                        <a href="https://www.rutacostera.co/peajes/" rel="noopener" target="_blank">• Peajes</a>
+                        <a href="https://www.rutacostera.co/conoce-la-ruta/" rel="noopener" target="_blank">• Mapa de la
+                            ruta</a>
+                        <a href="https://www.rutacostera.co/trabaja-con-nosotros/" rel="noopener" target="_blank">•
+                            Trabaja con nosotros</a>
+                        <a href="https://www.rutacostera.co/quienes-somos/isa/" rel="noopener" target="_blank">• Sobre
+                            ISA</a>
+                        <a href="https://www.rutacostera.co/contacto/" rel="noopener" target="_blank">• Contáctanos</a>
+                    </div>
+                </div>
+                <div class="stack">
+                    <h4>Redes sociales</h4>
+                    <div aria-label="Redes sociales y navegación" class="icon-links">
+                        <a aria-label="X" class="icon-btn" href="https://x.com/RutaCostera_" rel="noopener"
+                            target="_blank" title="X">
+                            <i aria-hidden="true" class="fab fa-twitter"></i>
+                        </a>
+                        <a aria-label="Instagram" class="icon-btn" href="https://www.instagram.com/rutacostera_/"
+                            rel="noopener" target="_blank" title="Instagram">
+                            <i aria-hidden="true" class="fab fa-instagram"></i>
+                        </a>
+                        <a aria-label="Facebook" class="icon-btn" href="https://www.facebook.com/RutaCosteraCaba/"
+                            rel="noopener" target="_blank" title="Facebook">
+                            <i aria-hidden="true" class="fab fa-facebook-f"></i>
+                        </a>
+                        <a aria-label="LinkedIn" class="icon-btn"
+                            href="https://www.linkedin.com/company/ruta-costera-isa/" rel="noopener" target="_blank"
+                            title="LinkedIn">
+                            <i aria-hidden="true" class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a aria-label="YouTube" class="icon-btn" href="https://www.youtube.com/@rutacostera_"
+                            rel="noopener" target="_blank" title="YouTube">
+                            <i aria-hidden="true" class="fab fa-youtube"></i>
+                        </a>
+                        <a aria-label="Waze" class="icon-btn"
+                            href="https://www.waze.com/es-419/live-map/directions?navigate=yes&amp;utm_campaign=waze_website&amp;utm_source=waze_website&amp;utm_medium=lm_share_location&amp;to=ll.10.96550269%2C-75.00443191"
+                            rel="noopener" target="_blank" title="Waze">
+                            <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- App JS -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/itinerary.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        // Init Swiper
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            autoplay: { delay: 4000, disableOnInteraction: false },
+        });
+
+        // Mobile Menu Logic
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function toggleMenu(show) {
+            if (show) {
+                mobileMenu.classList.remove('-translate-x-full');
+                mobileMenuOverlay.classList.remove('hidden');
+                setTimeout(() => mobileMenuOverlay.classList.add('opacity-100'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('-translate-x-full');
+                mobileMenuOverlay.classList.remove('opacity-100');
+                setTimeout(() => mobileMenuOverlay.classList.add('hidden'), 300);
+                document.body.style.overflow = '';
+            }
+        }
+
+        openMenuBtn.addEventListener('click', () => toggleMenu(true));
+        closeMenuBtn.addEventListener('click', () => toggleMenu(false));
+        mobileMenuOverlay.addEventListener('click', () => toggleMenu(false));
+    </script>
+</body>
+
+</html>
