@@ -220,11 +220,11 @@
             </div>
             
             <div class="py-4">
-                <a href="#" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
+                <a href="#" id="mobile-mapa-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
                     <i class="fa-solid fa-map-location-dot"></i>
                     Mapa Interactivo
                 </a>
-                <a href="#" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
+                <a href="#" id="mobile-rutas-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
                     <i class="fa-solid fa-route"></i>
                     Rutas Sugeridas
                 </a>
@@ -521,6 +521,21 @@
         openMenuBtn.addEventListener('click', () => toggleMenu(true));
         closeMenuBtn.addEventListener('click', () => toggleMenu(false));
         mobileMenuOverlay.addEventListener('click', () => toggleMenu(false));
+
+        // Mobile Links Logic
+        document.getElementById('mobile-mapa-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('mobile-rutas-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu(false);
+            if (window.itineraryPlanner) {
+                window.itineraryPlanner.open();
+            }
+        });
     </script>
 </body>
 
