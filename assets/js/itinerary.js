@@ -32,14 +32,14 @@ const ItineraryPlanner = {
             </button>
 
             <div class="max-w-xl w-full space-y-6 py-6 transition-all">
-                <div id="step-1" class="space-y-6 animate-fade-in">
+                <div id="step-1" class="space-y-6 animate-fade-in w-full px-4">
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Desde dónde inicias?</h2>
                     <p class="text-blue-100/80 text-sm font-medium">Punto de partida para optimizar el recorrido</p>
-                    <div class="flex justify-center gap-4">
-                        <button class="city-tag px-6 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-lg uppercase tracking-widest bg-white text-[#004a99]" data-value="Cartagena">
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button class="city-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-base uppercase tracking-widest bg-white text-[#004a99] min-w-[140px]" data-value="Cartagena">
                             Cartagena
                         </button>
-                        <button class="city-tag px-6 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-lg uppercase tracking-widest" data-value="Barranquilla">
+                        <button class="city-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-base uppercase tracking-widest min-w-[140px]" data-value="Barranquilla">
                             Barranquilla
                         </button>
                     </div>
