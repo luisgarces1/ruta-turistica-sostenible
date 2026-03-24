@@ -98,6 +98,14 @@ const ItineraryPlanner = {
         });
     },
 
+    open() {
+        const overlay = document.getElementById('itinerary-overlay');
+        if (overlay) {
+            overlay.classList.remove('translate-y-full');
+            this.resetForm();
+        }
+    },
+
     addEventListeners() {
         const routesBtn = document.getElementById('rutas-link');
         const mapaBtn = document.getElementById('mapa-link');
@@ -111,8 +119,7 @@ const ItineraryPlanner = {
 
         routesBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            overlay.classList.remove('translate-y-full');
-            this.resetForm();
+            this.open();
         });
 
         closeBtn.addEventListener('click', () => {
