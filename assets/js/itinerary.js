@@ -24,7 +24,7 @@ const ItineraryPlanner = {
         const overlay = document.createElement('div');
         overlay.id = 'itinerary-overlay';
         overlay.className = 'fixed inset-0 z-[200] transform translate-y-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center p-6 text-white text-center sm:overflow-y-auto bg-cover bg-center bg-no-repeat';
-        overlay.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/puntos/Puente del viaducto el Gran Manglar.jpg")';
+        overlay.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp")';
         
         overlay.innerHTML = `
             <button id="close-itinerary" class="absolute top-8 right-8 text-white hover:scale-110 transition-transform">
