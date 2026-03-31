@@ -147,3 +147,19 @@ h2, .font-heading {
 .swiper-pagination-bullet-active {
     background: #004a99;
 }
+
+/* Skeleton Loader & Progressive Reveal */
+@keyframes skeleton-shimmer {
+    0% { background-color: #f1f5f9; }
+    50% { background-color: #e2e8f0; }
+    100% { background-color: #f1f5f9; }
+}
+
+.skeleton {
+    animation: skeleton-shimmer 2s infinite ease-in-out;
+}
+
+.img-loaded {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
