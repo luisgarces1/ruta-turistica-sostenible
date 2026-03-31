@@ -257,7 +257,16 @@ window.openGoogleMaps = function(lat, lng) {
     window.open(url, '_blank');
 }
 
+// 7. Performance Optimizer: Preload first 10 images
+function preloadImages() {
+    mockData.slice(0, 10).forEach(item => {
+        const img = new Image();
+        img.src = item.image;
+    });
+}
+
 // Init Base Render
 renderFilters();
 renderMarkers();
 filterMarkers();
+preloadImages();
