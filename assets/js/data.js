@@ -11,7 +11,7 @@ const mockData = [
   {
     id: 1, category: "naturaleza", title: "Volcán del Totumo.", 
     description: "El Volcán del Totumo no es solo un destino; es un ritual de bienestar y una maravilla geológica única en el Caribe. Famoso por sus baños de lodo medicinal, este cono volcánico de aproximadamente 15 metros invita a los visitantes a flotar en una densidad natural que relaja el cuerpo y rejuvenece la piel. Es una experiencia sensorial inigualable, rodeada de la serenidad de la ciénaga y la calidez de la comunidad local.", 
-    lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.jpg", 
+    lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp", 
     location: "Santa Catalina., Bolivar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.", 
     tags: ["Relax en la playa", "Experiencias sensoriales", "Comida autóctona"]
   },
