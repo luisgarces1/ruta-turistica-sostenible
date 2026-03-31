@@ -172,7 +172,7 @@ const mockData = [
   {
     id: 24, category: "naturaleza", title: "Ecoparque Ciénaga de Mallorquín.", 
     description: "Un imponente pulmón verde dedicado a la recuperación ecológica y el avistamiento de aves. Sus pasarelas de madera sobre el agua permiten adentrarse en el ecosistema de manglar sin perturbar la vida silvestre. Es un santuario de biodiversidad que invita a la desconexión urbana y al aprendizaje sobre la importancia de los humedales costeros en la protección ambiental de Barranquilla.", 
-    lat: 11.028, lng: -74.778, image: "assets/images/puntos/foto-principal-para-la-pagina-e.c.webp", 
+    lat: 11.028, lng: -74.778, image: "assets/images/puntos/ecoparque-mallorquin.webp", 
     location: "Barranquilla.", hours: "6:00 a.m - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
