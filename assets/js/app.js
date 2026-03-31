@@ -174,11 +174,14 @@ function openSidePanel(data) {
                     <div class="glass-card rounded-2xl p-4 text-[14px] md:text-base text-gray-700 leading-relaxed font-medium">
                         ${data.description}
                     </div>
-                    <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-2 text-[#004a99] font-black text-xs hover:scale-105 transition-transform mt-1 w-fit uppercase tracking-wider">
-                        <div class="w-8 h-8 rounded-full bg-[#004a99]/10 flex items-center justify-center">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>
+                    <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-3 text-[#004a99] font-black text-xs hover:scale-102 active:scale-95 transition-all mt-1 w-full md:w-fit py-3 px-4 glass-card rounded-2xl uppercase tracking-widest group">
+                        <div class="w-10 h-10 rounded-xl bg-[#004a99] text-white flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-[360deg] transition-transform duration-700">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>
                         </div>
-                        Escuchar narración
+                        <span class="flex flex-col items-start translate-y-[-1px]">
+                            <span class="opacity-40 text-[9px] mb-[-2px]">Audioguía</span>
+                            Escuchar narración
+                        </span>
                     </button>
                 </div>
 
