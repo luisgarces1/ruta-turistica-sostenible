@@ -11,7 +11,7 @@ const mockData = [
   {
     id: 1, category: "naturaleza", title: "Volcán del Totumo.", 
     description: "El Volcán del Totumo no es solo un destino; es un ritual de bienestar y una maravilla geológica única en el Caribe. Famoso por sus baños de lodo medicinal, este cono volcánico de aproximadamente 15 metros invita a los visitantes a flotar en una densidad natural que relaja el cuerpo y rejuvenece la piel. Es una experiencia sensorial inigualable, rodeada de la serenidad de la ciénaga y la calidez de la comunidad local.", 
-    lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografa-a-para-la-pagina-vt.webp", 
+    lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.jpg", 
     location: "Santa Catalina., Bolivar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.", 
     tags: ["Relax en la playa", "Experiencias sensoriales", "Comida autóctona"]
   },
@@ -81,21 +81,21 @@ const mockData = [
   {
     id: 11, category: "naturaleza", title: "Playa de Santa Verónica.", 
     description: "Un oasis que combina la tranquilidad del mar con la calidez local. Famosa por sus restaurantes frente al océano que ofrecen el mejor pescado frito de la zona, Santa Verónica es perfecta para quienes buscan un ambiente familiar y relajado. Sus vientos constantes también la hacen atractiva para quienes desean iniciarse en los deportes de viento en un entorno amigable.", 
-    lat: 10.88038, lng: -75.08297, image: "assets/images/puntos/fotografa-a-para-la-pagina-p.s.webp", 
+    lat: 10.88038, lng: -75.08297, image: "assets/images/puntos/fotografia-para-la-pagina-p.s.webp", 
     location: "Juan de Acosta.", hours: "7:00 a.m. - 9:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona", "Vistas panorámicas"]
   },
   {
     id: 12, category: "otros", title: "Salinas del Rey.", 
     description: "El referente mundial del Atlántico para el kitesurf. Salinas del Rey es un escenario natural privilegiado donde el viento y las olas dictan el ritmo. Atrae a deportistas de todo el mundo gracias a sus condiciones excepcionales, ofreciendo un espectáculo de velas de colores sobre el mar rosado. Es un punto de encuentro internacional que posiciona al departamento en el mapa del turismo deportivo de élite.", 
-    lat: 10.871944, lng: -75.095556, image: "assets/images/puntos/fotografa-a-para-la-pagina-d.n.webp", 
+    lat: 10.871944, lng: -75.095556, image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp", 
     location: "Juan de Acosta.", hours: "9:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Deportes náuticos", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 13, category: "cultura", title: "Festival del Millo.", 
     description: "Una de las fiestas más emblemáticas del Atlántico que celebra la herencia agrícola del municipio de Juan de Acosta. La música de flauta de millo y los bailes tradicionales se toman las calles, creando un ambiente de alegría contagiosa. Es la oportunidad perfecta para saborear productos derivados de este grano y sumergirse en la esencia del folclor costeño en su estado más genuino.", 
-    lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/fotografa-a-para-la-pagina-f.m.webp", 
+    lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp", 
     location: "Juan de Acosta.", hours: "Anual.", price: "Gratuito.", 
     tags: ["Comida autóctona", "Artesanías", "Experiencias sensoriales"]
   },
@@ -151,7 +151,7 @@ const mockData = [
   {
     id: 21, category: "cultura", title: "Ventana de Campeones.", 
     description: "El monumento 'Aleta de Tiburón' rinde un vibrante homenaje al Junior de Barranquilla y a la pasión deportiva de la ciudad. Ubicado en la rotonda de la Vía 40, su estructura de cristal y acero brilla con los colores del equipo, convirtiéndose en un altar para los hinchas y un símbolo de la identidad festiva y futbolera que caracteriza a la Puerta de Oro de Colombia.", 
-    lat: 10.998319, lng: -74.772767, image: "assets/images/puntos/aleta-de-tibura-n.webp", 
+    lat: 10.998319, lng: -74.772767, image: "assets/images/puntos/aleta-de-tiburon.webp", 
     location: "Barranquilla.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
@@ -228,7 +228,7 @@ const mockData = [
   {
     id: 32, category: "otros", title: "Aeropuerto Internacional Rafael Núñez.", 
     description: "Ubicado en el corazón de Cartagena, el Aeropuerto Internacional Rafael Núñez es mucho más que una terminal aérea; es el punto donde comienza la magia para millones de viajeros cada año. Se destaca por su ubicación privilegiada, a solo minutos del Centro Histórico y la zona turística, facilitando una transición inmediata hacia la historia y el mar. Su diseño eficiente y su conectividad internacional lo consolidan como un motor fundamental del turismo sostenible en la región.", 
-    lat: 10.446314, lng: -75.516453, image: "assets/images/puntos/aeropuerto-internacional-rafael-na-a-ez.webp", 
+    lat: 10.446314, lng: -75.516453, image: "assets/images/puntos/aeropuerto-internacional-rafael-nunez.webp", 
     location: "Cartagena., Bolívar.", hours: "Abierto todo el tiempo.", price: "N/A.", 
     tags: ["Artesanías"]
   },
@@ -256,7 +256,7 @@ const mockData = [
   {
     id: 36, category: "naturaleza", title: "Ciénaga de la Virgen.", 
     description: "Uno de los tesoros hídricos de Cartagena y un ecosistema estratégico para la biodiversidad local. Hogar de manglares y numerosas especies de aves migratorias, la ciénaga es un destino ideal para el ecoturismo y la observación de aves. Paseos en barca guiados por pescadores locales permiten conocer la importancia de la conservación mientras se disfruta de un paisaje natural que abraza la zona norte de la ciudad.", 
-    lat: 10.460533, lng: -75.494847, image: "assets/images/puntos/cia-naga-de-la-virgen.webp", 
+    lat: 10.460533, lng: -75.494847, image: "assets/images/puntos/cienaga-de-la-virgen.webp", 
     location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
