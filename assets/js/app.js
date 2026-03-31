@@ -31,20 +31,25 @@ const sidePanel = document.getElementById('side-panel');
 function renderFilters() {
     categories.forEach(cat => {
         const btn = document.createElement('button');
-        btn.className = `filter-btn w-full text-left px-3 py-2.5 rounded-xl transition-all duration-300 flex items-center justify-between border group ${cat.id === 'todas'
-            ? 'bg-brand-50 border-brand-200 shadow-sm'
-            : 'bg-white border-transparent hover:bg-gray-50'
+        btn.className = `filter-btn w-full text-left px-4 py-3 rounded-2xl transition-all duration-500 flex items-center justify-between border group ${cat.id === 'todas'
+            ? 'glass-card border-brand-200/50 shadow-md translate-x-1'
+            : 'bg-white/50 border-transparent hover:bg-white hover:shadow-sm'
             }`;
         btn.dataset.category = cat.id;
 
         btn.innerHTML = `
-            <div class="flex items-center gap-3">
-                <span class="flex items-center justify-center w-8 h-8 rounded-full ${cat.color} text-white text-sm shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">${cat.icon}</span>
-                <span class="font-medium text-[14px] ${cat.id === 'todas' ? 'text-brand-900' : 'text-gray-600 group-hover:text-gray-900'}">${cat.label}</span>
+            <div class="flex items-center gap-4">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl ${cat.color} text-white text-base shadow-lg shadow-${cat.color.split('-')[1]}-500/20 group-hover:scale-110 transition-transform duration-500">${cat.icon}</span>
+                <div class="flex flex-col">
+                    <span class="font-bold text-[14px] ${cat.id === 'todas' ? 'text-brand-900' : 'text-gray-600 group-hover:text-gray-900'}">${cat.label}</span>
+                    <span class="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Explorar sitios</span>
+                </div>
             </div>
-            <svg class="w-5 h-5 transition-opacity duration-300 check-icon ${cat.id === 'todas' ? 'opacity-100 text-brand-500' : 'opacity-0 text-gray-400'}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-            </svg>
+            <div class="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${cat.id === 'todas' ? 'bg-brand-500 text-white' : 'bg-gray-100 text-transparent'}">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
         `;
 
         btn.addEventListener('click', () => {
@@ -61,22 +66,22 @@ function renderFilters() {
 function updateFilterUI() {
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => {
-        const checkIcon = btn.querySelector('.check-icon');
-        const textSpan = btn.querySelector('span.font-medium');
+        const checkCircle = btn.lastElementChild;
+        const textSpan = btn.querySelector('span.font-bold');
         if (btn.dataset.category === currentActiveFilter) {
-            btn.classList.add('bg-brand-50', 'border-brand-200', 'shadow-sm');
-            btn.classList.remove('bg-white', 'border-transparent');
+            btn.classList.add('glass-card', 'border-brand-200/50', 'shadow-md', 'translate-x-1');
+            btn.classList.remove('bg-white/50', 'border-transparent');
             textSpan.classList.add('text-brand-900');
             textSpan.classList.remove('text-gray-600', 'group-hover:text-gray-900');
-            checkIcon.classList.remove('opacity-0', 'text-gray-400');
-            checkIcon.classList.add('opacity-100', 'text-brand-500');
+            checkCircle.classList.remove('bg-gray-100', 'text-transparent');
+            checkCircle.classList.add('bg-brand-500', 'text-white');
         } else {
-            btn.classList.remove('bg-brand-50', 'border-brand-200', 'shadow-sm');
-            btn.classList.add('bg-white', 'border-transparent');
+            btn.classList.remove('glass-card', 'border-brand-200/50', 'shadow-md', 'translate-x-1');
+            btn.classList.add('bg-white/50', 'border-transparent');
             textSpan.classList.remove('text-brand-900');
             textSpan.classList.add('text-gray-600', 'group-hover:text-gray-900');
-            checkIcon.classList.remove('opacity-100', 'text-brand-500');
-            checkIcon.classList.add('opacity-0', 'text-gray-400');
+            checkCircle.classList.add('bg-gray-100', 'text-transparent');
+            checkCircle.classList.remove('bg-brand-500', 'text-white');
         }
     });
 }
@@ -138,75 +143,65 @@ function openSidePanel(data) {
     const categoryData = categories.find(c => c.id === data.category);
 
     sidePanel.innerHTML = `
-        <!-- Image Header -->
-        <div class="relative h-48 md:h-56 w-full shrink-0">
-            <img src="${data.image}" onerror="this.src='https://images.unsplash.com/photo-1543884877-a8eb0bf1775f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover rounded-t-3xl md:rounded-t-2xl" alt="${data.title}">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:rounded-t-2xl rounded-t-3xl"></div>
+        <!-- Image Header with Float Effect -->
+        <div class="relative h-56 md:h-64 w-full shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-2xl p-4">
+            <div class="animate-float w-full h-full">
+                <img src="${data.image}" onerror="this.src='https://images.unsplash.com/photo-1543884877-a8eb0bf1775f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover rounded-2xl shadow-xl border-4 border-white/40" alt="${data.title}">
+            </div>
             
-            <button onclick="closeSidePanel()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/90 focus:bg-white backdrop-blur-md p-2 rounded-full text-white hover:text-gray-800 transition-all shadow-md group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+            
+            <button onclick="closeSidePanel()" class="absolute top-6 right-6 bg-white/30 hover:bg-white/90 focus:bg-white backdrop-blur-md p-2.5 rounded-full text-white hover:text-gray-900 transition-all shadow-lg border border-white/30 z-[60] group">
                 <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <div class="absolute bottom-4 left-5">
-                <span class="px-3 py-1.5 ${categoryData?.color || 'bg-gray-800'} text-white text-[11px] font-bold uppercase tracking-widest rounded-full shadow-lg border border-white/20 backdrop-blur-sm flex items-center gap-1.5 w-fit">
+            <div class="absolute bottom-8 left-8 z-[50]">
+                <span class="px-4 py-2 ${categoryData?.color || 'bg-gray-800'} text-white text-[10px] font-black uppercase tracking-[0.1em] rounded-full shadow-2xl border border-white/40 backdrop-blur-md flex items-center gap-2 w-fit">
                     ${categoryData?.icon || ''} ${categoryData?.label || 'Categoría'}
                 </span>
             </div>
         </div>
 
-            <!-- Content Body (Scrollable part) -->
-            <div class="px-6 md:px-8 py-5 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-4">
-                <h2 class="text-2xl md:text-[28px] font-black leading-tight text-gray-900">${data.title}</h2>
-                
-                <div class="mt-1">
-                    <p class="flex items-start text-sm md:text-base text-brand-600 font-medium">
-                        <svg class="w-5 h-5 mr-1.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        <span>${data.location}</span>
-                    </p>
+            <!-- Content Body with Glass Effect -->
+            <div class="px-6 md:px-8 py-2 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-5">
+                <div class="space-y-1">
+                    <p class="text-hierarchy-subtitle">${data.location.split(',')[0]} / ${data.category.toUpperCase()}</p>
+                    <h2 class="text-hierarchy-title">${data.title}</h2>
                 </div>
-
-                <div class="flex flex-col gap-2">
-                    <p class="text-[14px] md:text-base text-justify text-gray-700 leading-relaxed font-medium">
+                
+                <div class="flex flex-col gap-3">
+                    <div class="glass-card rounded-2xl p-4 text-[14px] md:text-base text-gray-700 leading-relaxed font-medium">
                         ${data.description}
-                    </p>
-                    <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-2 text-[#004a99] font-bold text-xs hover:underline mt-1 w-fit">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
-                        ESCUCHAR DESCRIPCIÓN
+                    </div>
+                    <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-2 text-[#004a99] font-black text-xs hover:scale-105 transition-transform mt-1 w-fit uppercase tracking-wider">
+                        <div class="w-8 h-8 rounded-full bg-[#004a99]/10 flex items-center justify-center">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>
+                        </div>
+                        Escuchar narración
                     </button>
                 </div>
 
-                <div class="bg-gray-50/80 rounded-2xl p-4 mt-2 border border-gray-100 flex flex-col gap-4 shrink-0">
-                    <div class="flex items-center gap-3">
-                        <div class="p-2.5 bg-white rounded-xl shadow-sm text-brand-500 border border-gray-50 shrink-0">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                        <div>
-                            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wide">Horario de atención</p>
-                            <p class="text-[14px] font-semibold text-gray-800">${data.hours}</p>
-                        </div>
+                <div class="grid grid-cols-2 gap-3 mt-1">
+                    <div class="glass-card rounded-2xl p-4 border border-white/30 flex flex-col gap-1">
+                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-wider">Atención</p>
+                        <p class="text-[13px] font-bold text-gray-800">${data.hours}</p>
                     </div>
-                    
-                    <div class="flex items-center gap-3">
-                        <div class="p-2.5 bg-white rounded-xl shadow-sm text-brand-500 border border-gray-50 shrink-0">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                        <div>
-                            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wide">Tarifa / Ingreso</p>
-                            <p class="text-[14px] font-semibold text-gray-800">${data.price}</p>
-                        </div>
+                    <div class="glass-card rounded-2xl p-4 border border-white/30 flex flex-col gap-1">
+                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-wider">Ingreso</p>
+                        <p class="text-[13px] font-bold text-gray-800">${data.price}</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Footer con Boton Fijo (No scrollable) -->
-            <div class="px-6 md:px-8 pb-6 md:pb-8 pt-4 bg-white/50 backdrop-blur-2xl border-t border-gray-100 shrink-0">
-                <button onclick="openGoogleMaps(${data.lat}, ${data.lng})" class="w-full h-14 flex items-center justify-center bg-gradient-to-r from-brand-600 to-teal-500 hover:from-brand-700 hover:to-teal-600 text-white font-bold text-lg rounded-xl transition-all shadow-lg shadow-brand-500/25 transform hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden group">
-                    <span class="relative z-10 flex items-center gap-2">
-                        Ver Cómo Llegar
-                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <!-- Footer with Institutional Color Button -->
+            <div class="px-6 md:px-8 pb-8 md:pb-10 pt-4 shrink-0">
+                <button onclick="openGoogleMaps(${data.lat}, ${data.lng})" class="w-full h-16 flex items-center justify-center btn-primary-glow text-white font-black text-lg rounded-2xl relative overflow-hidden group">
+                    <span class="relative z-10 flex items-center gap-3 uppercase tracking-tighter">
+                        Ver ruta en mapa
+                        <i class="fa-solid fa-arrow-right-long group-hover:translate-x-2 transition-transform"></i>
                     </span>
-                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none"></div>
                 </button>
             </div>
     `;

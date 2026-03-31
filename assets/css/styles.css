@@ -13,6 +13,75 @@
     background-color: #cbd5e1;
 }
 
+/* Glassmorphism Design System */
+:root {
+    --brand-blue: #004a99;
+    --brand-teal: #14b8a6;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border-left: 1px solid var(--glass-border);
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Typography & Hierarchy */
+h2, .font-heading {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.text-hierarchy-title {
+    font-weight: 900;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    color: #0f172a;
+}
+
+.text-hierarchy-subtitle {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-blue);
+    opacity: 0.8;
+}
+
+/* Button Refinements */
+.btn-primary-glow {
+    background: linear-gradient(135deg, #004a99 0%, #002d5d 100%);
+    box-shadow: 0 10px 25px -5px rgba(0, 74, 153, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary-glow:hover {
+    box-shadow: 0 15px 35px -5px rgba(0, 74, 153, 0.6);
+    transform: translateY(-4px);
+}
+
 /* Map specific tweaks */
 .leaflet-control-zoom {
     border: none !important;
