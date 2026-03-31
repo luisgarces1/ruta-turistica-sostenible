@@ -143,16 +143,12 @@ function openSidePanel(data) {
     const categoryData = categories.find(c => c.id === data.category);
 
     sidePanel.innerHTML = `
-        <!-- Image Header with Float Effect & Skeleton -->
+        <!-- Image Header (Static for max speed) -->
         <div class="relative h-56 md:h-64 w-full shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-2xl p-4">
-            <div class="animate-float w-full h-full skeleton rounded-2xl relative">
-                <img src="${data.image}" 
-                     loading="lazy"
-                     onload="this.parentElement.classList.remove('skeleton')"
-                     onerror="this.src='https://images.unsplash.com/photo-1543884877-a8eb0bf1775f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.parentElement.classList.remove('skeleton')" 
-                     class="w-full h-full object-cover rounded-2xl shadow-xl border-4 border-white/40" 
-                     alt="${data.title}">
-            </div>
+            <img src="${data.image}" 
+                 onerror="this.src='https://images.unsplash.com/photo-1543884877-a8eb0bf1775f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" 
+                 class="w-full h-full object-cover rounded-2xl shadow-xl border-4 border-white/40" 
+                 alt="${data.title}">
             
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
             

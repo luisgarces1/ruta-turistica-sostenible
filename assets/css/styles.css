@@ -37,17 +37,6 @@
     border-left: 1px solid var(--glass-border);
 }
 
-/* Animations */
-@keyframes float-high-end {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-}
-
-.animate-float {
-    animation: float-high-end 3s ease-in-out infinite;
-    will-change: transform;
-}
-
 /* Typography & Hierarchy */
 h2, .font-heading {
     font-family: 'Inter', sans-serif;
@@ -141,19 +130,4 @@ h2, .font-heading {
 }
 .swiper-pagination-bullet-active {
     background: #004a99;
-}
-
-/* Skeleton Loader & Progressive Reveal */
-@keyframes skeleton-shimmer {
-    0% { background-color: #f1f5f9; }
-    50% { background-color: #e2e8f0; }
-    100% { background-color: #f1f5f9; }
-}
-
-.skeleton {
-    animation: skeleton-shimmer 2s infinite ease-in-out;
-}
-
-.img-loaded {
-    opacity: 1 !important;
 }
