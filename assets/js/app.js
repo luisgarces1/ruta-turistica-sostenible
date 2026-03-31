@@ -148,9 +148,9 @@ function openSidePanel(data) {
             <div class="animate-float w-full h-full skeleton rounded-2xl relative">
                 <img src="${data.image}" 
                      loading="lazy"
-                     onload="this.classList.add('img-loaded'); this.parentElement.classList.remove('skeleton')"
-                     onerror="this.src='https://images.unsplash.com/photo-1543884877-a8eb0bf1775f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.classList.add('img-loaded'); this.parentElement.classList.remove('skeleton')" 
-                     class="w-full h-full object-cover rounded-2xl shadow-xl border-4 border-white/40 opacity-0 transform scale-95 transition-all duration-700 ease-out" 
+                     onload="this.parentElement.classList.remove('skeleton')"
+                     onerror="this.src='https://images.unsplash.com/photo-1543884877-a8eb0bf1775f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.parentElement.classList.remove('skeleton')" 
+                     class="w-full h-full object-cover rounded-2xl shadow-xl border-4 border-white/40" 
                      alt="${data.title}">
             </div>
             
