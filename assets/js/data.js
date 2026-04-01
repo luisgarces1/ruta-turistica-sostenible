@@ -165,7 +165,7 @@ const mockData = [
   {
     id: 23, category: "otros", title: "Playas de Puerto Mocho.", 
     description: "El destino de playa de Barranquilla que se está transformando en un paraíso de turismo sostenible. Ubicado cerca de la desembocadura de Bocas de Ceniza, Puerto Mocho ofrece el encuentro único entre el río y el mar. Con su nuevo sistema de transporte en tren turístico y zonas de servicios renovadas, promete ser el balneario urbano por excelencia para disfrutar de la brisa marina sin salir de la ciudad.", 
-    lat: 11.045556, lng: -74.828889, image: "assets/images/puntos/mocho.avif", 
+    lat: 11.045556, lng: -74.828889, image: "assets/images/puntos/mocho.webp", 
     location: "Barranquilla.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas", "Deportes náuticos"]
   },
