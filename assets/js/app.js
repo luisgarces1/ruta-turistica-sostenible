@@ -220,6 +220,8 @@ function openSidePanel(data) {
 window.closeSidePanel = function () {
     // Slide out
     sidePanel.classList.add('translate-y-full', 'md:translate-x-[120%]');
+    // Reset view to show all markers
+    filterMarkers();
 }
 
 // Ensure panel is closed at start
