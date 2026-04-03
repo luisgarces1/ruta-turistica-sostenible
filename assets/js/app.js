@@ -222,20 +222,49 @@ window.closeSidePanel = function () {
     sidePanel.classList.add('translate-y-full', 'md:translate-x-[120%]');
     // Reset view to show all markers
     filterMarkers();
+    // Stop any ongoing narration
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+    }
 }
 
 // Ensure panel is closed at start
 closeSidePanel();
 
-// 5. Accessibility Logic (TTS)
+// 5. Accessibility Logic (TTS) - Voice Selection
+let selectedVoice = null;
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    // Prefer high-quality voices (Google or Microsoft) for Spanish
+    selectedVoice = voices.find(v => v.lang.includes('es') && (v.name.includes('Google') || v.name.includes('Natural'))) 
+                 || voices.find(v => v.lang.includes('es'))
+                 || voices[0];
+}
+
+// Voices are loaded asynchronously in some browsers
+if ('speechSynthesis' in window) {
+    loadVoices();
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = loadVoices;
+    }
+}
+
 window.speakDescription = function(text) {
     if ('speechSynthesis' in window) {
-        // Cancel any ongoing speech
-        window.speechSynthesis.cancel();
-        
+        // If it's already speaking, stop it (toggle behavior)
+        if (window.speechSynthesis.speaking) {
+            window.speechSynthesis.cancel();
+            return;
+        }
+
         const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Ensure we have a voice loaded
+        if (!selectedVoice) loadVoices();
+        if (selectedVoice) utterance.voice = selectedVoice;
+        
         utterance.lang = 'es-ES';
-        utterance.rate = 1;
+        utterance.rate = 0.95; // Slightly slower for more natural flow
         utterance.pitch = 1;
         
         window.speechSynthesis.speak(utterance);
