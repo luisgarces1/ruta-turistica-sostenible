@@ -167,28 +167,26 @@ function openSidePanel(data) {
         </div>
 
             <!-- Content Body with Glass Effect -->
-            <div class="px-6 md:px-8 py-2 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-5">
+            <div class="px-6 md:px-8 py-6 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-6">
+                <!-- 1. Title Section -->
                 <div class="space-y-1">
                     <p class="text-hierarchy-subtitle">${data.location.split(',')[0]} / ${data.category.toUpperCase()}</p>
                     <h2 class="text-hierarchy-title">${data.title}</h2>
                 </div>
-                
-                <div class="flex flex-col gap-3">
-                    <div class="glass-card rounded-2xl p-4 text-[14px] md:text-base text-gray-700 leading-relaxed font-medium">
-                        ${data.description}
-                    </div>
-                    <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-3 text-[#004a99] font-black text-xs hover:scale-102 active:scale-95 transition-all mt-1 w-full md:w-fit py-3 px-4 glass-card rounded-2xl uppercase tracking-widest group">
-                        <div class="w-10 h-10 rounded-xl bg-[#004a99] text-white flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-[360deg] transition-transform duration-700">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>
-                        </div>
-                        <span class="flex flex-col items-start translate-y-[-1px]">
-                            <span class="opacity-40 text-[9px] mb-[-2px]">Audioguía</span>
-                            Escuchar narración
-                        </span>
-                    </button>
-                </div>
 
-                <div class="grid grid-cols-2 gap-3 mt-1">
+                <!-- 2. Audioguide Button -->
+                <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-3 text-[#004a99] font-black text-xs hover:scale-102 active:scale-95 transition-all w-full md:w-fit py-3 px-4 glass-card rounded-2xl uppercase tracking-widest group">
+                    <div class="w-10 h-10 rounded-xl bg-[#004a99] text-white flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-[360deg] transition-transform duration-700">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>
+                    </div>
+                    <span class="flex flex-col items-start translate-y-[-1px]">
+                        <span class="opacity-40 text-[9px] mb-[-2px]">Audioguía</span>
+                        Escuchar narración
+                    </span>
+                </button>
+
+                <!-- 3. Information Grid -->
+                <div class="grid grid-cols-2 gap-3">
                     <div class="glass-card rounded-2xl p-4 border border-white/30 flex flex-col gap-1">
                         <p class="text-[10px] text-gray-400 font-black uppercase tracking-wider">Atención</p>
                         <p class="text-[13px] font-bold text-gray-800">${data.hours}</p>
@@ -198,17 +196,20 @@ function openSidePanel(data) {
                         <p class="text-[13px] font-bold text-gray-800">${data.price}</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Footer with Institutional Color Button -->
-            <div class="px-6 md:px-8 pb-8 md:pb-10 pt-4 shrink-0">
-                <button onclick="openGoogleMaps(${data.lat}, ${data.lng})" class="w-full h-16 flex items-center justify-center btn-primary-glow text-white font-black text-lg rounded-2xl relative overflow-hidden group">
+                <!-- 4. Google Maps Button (Now inside scrollable content) -->
+                <button onclick="openGoogleMaps(${data.lat}, ${data.lng})" class="w-full h-16 flex items-center justify-center btn-primary-glow text-white font-black text-lg rounded-2xl relative overflow-hidden group shrink-0">
                     <span class="relative z-10 flex items-center gap-3 uppercase tracking-tighter">
                         Ver ruta en mapa
                         <i class="fa-solid fa-arrow-right-long group-hover:translate-x-2 transition-transform"></i>
                     </span>
                     <div class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none"></div>
                 </button>
+
+                <!-- 5. Description -->
+                <div class="glass-card rounded-2xl p-5 text-[14px] md:text-base text-gray-700 leading-relaxed font-medium">
+                    ${data.description}
+                </div>
             </div>
     `;
 
