@@ -527,6 +527,9 @@
             e.preventDefault();
             toggleMenu(false);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.ItineraryPlanner) {
+                window.ItineraryPlanner.resetToMainMap();
+            }
         });
 
         document.getElementById('mobile-rutas-link').addEventListener('click', (e) => {
