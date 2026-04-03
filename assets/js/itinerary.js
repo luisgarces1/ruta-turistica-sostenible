@@ -198,7 +198,11 @@ const ItineraryPlanner = {
     },
 
     resetToMainMap() {
-        if (this.routePolyline) map.removeLayer(this.routePolyline);
+        if (this.routePolyline) {
+            map.removeLayer(this.routePolyline);
+            this.routePolyline = null;
+        }
+        this.fullItinerary = null;
         currentActiveFilter = 'todas';
         const filterContainer = document.getElementById('filter-container');
         filterContainer.innerHTML = '';

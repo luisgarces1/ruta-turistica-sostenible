@@ -124,6 +124,12 @@ function renderMarkers() {
 }
 
 function filterMarkers() {
+    // If we are in Itinerary Mode, let ItineraryPlanner handle it
+    if (window.ItineraryPlanner && window.ItineraryPlanner.fullItinerary) {
+        window.ItineraryPlanner.updateMapForDay(window.ItineraryPlanner.currentDayView);
+        return;
+    }
+
     allMarkers.forEach(marker => {
         if (currentActiveFilter === 'todas' || marker.itemData.category === currentActiveFilter) {
             if (!markerGroup.hasLayer(marker)) markerGroup.addLayer(marker);
