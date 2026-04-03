@@ -1,7 +1,9 @@
 // Init Leaflet Map
 const map = L.map('map', {
     zoomControl: false, // Customizing zoom position
-    minZoom: 8 // Prevent zooming out worldwide
+    minZoom: 8, // Prevent zooming out worldwide
+    scrollWheelZoom: false, // Prevent zoom during page scrolling
+    tap: false // Recommended for modern touch devices
 }).setView([11.0, -74.8], 9);
 
 // Fix blank tile issue if Flex layout renders slightly after DOM
