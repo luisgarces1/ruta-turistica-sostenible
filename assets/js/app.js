@@ -144,7 +144,7 @@ function openSidePanel(data) {
 
     sidePanel.innerHTML = `
         <!-- Image Header (Fast Reveal + Skeleton) -->
-        <div class="relative h-56 md:h-64 w-full shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-2xl p-4 skeleton">
+        <div class="relative h-36 md:h-48 w-full shrink overflow-hidden rounded-t-3xl md:rounded-t-2xl p-3 skeleton min-h-[140px]">
             <img src="${data.image}" 
                  loading="eager"
                  onload="this.classList.add('img-fade-in'); this.parentElement.classList.remove('skeleton')"
@@ -154,60 +154,60 @@ function openSidePanel(data) {
             
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
             
-            <button onclick="closeSidePanel()" class="absolute top-6 right-6 bg-white/30 hover:bg-white/90 focus:bg-white backdrop-blur-md p-2.5 rounded-full text-white hover:text-gray-900 transition-all shadow-lg border border-white/30 z-[60] group">
-                <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button onclick="closeSidePanel()" class="absolute top-5 right-5 bg-white/30 hover:bg-white/90 focus:bg-white backdrop-blur-md p-2 rounded-full text-white hover:text-gray-900 transition-all shadow-lg border border-white/30 z-[60] group">
+                <svg class="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <div class="absolute bottom-8 left-8 z-[50]">
-                <span class="px-4 py-2 ${categoryData?.color || 'bg-gray-800'} text-white text-[10px] font-black uppercase tracking-[0.1em] rounded-full shadow-2xl border border-white/40 backdrop-blur-md flex items-center gap-2 w-fit">
+            <div class="absolute bottom-6 left-6 z-[50]">
+                <span class="px-3 py-1.5 ${categoryData?.color || 'bg-gray-800'} text-white text-[9px] font-black uppercase tracking-[0.1em] rounded-full shadow-2xl border border-white/40 backdrop-blur-md flex items-center gap-2 w-fit">
                     ${categoryData?.icon || ''} ${categoryData?.label || 'Categoría'}
                 </span>
             </div>
         </div>
 
             <!-- Content Body with Glass Effect -->
-            <div class="px-6 md:px-8 py-6 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-6">
+            <div class="px-5 md:px-6 py-4 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-4">
                 <!-- 1. Title Section -->
-                <div class="space-y-1">
-                    <p class="text-hierarchy-subtitle">${data.location.split(',')[0]} / ${data.category.toUpperCase()}</p>
-                    <h2 class="text-hierarchy-title">${data.title}</h2>
+                <div class="space-y-0">
+                    <p class="text-hierarchy-subtitle text-[9px] mb-[-2px]">${data.location.split(',')[0]} / ${data.category.toUpperCase()}</p>
+                    <h2 class="text-hierarchy-title text-lg md:text-xl leading-tight">${data.title}</h2>
                 </div>
 
                 <!-- 2. Audioguide Button -->
-                <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-3 text-[#004a99] font-black text-xs hover:scale-102 active:scale-95 transition-all w-full md:w-fit py-3 px-4 glass-card rounded-2xl uppercase tracking-widest group">
-                    <div class="w-10 h-10 rounded-xl bg-[#004a99] text-white flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-[360deg] transition-transform duration-700">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>
+                <button onclick="speakDescription('${data.description.replace(/'/g, "\\'")}')" class="flex items-center gap-2.5 text-[#004a99] font-black text-[10px] hover:scale-102 active:scale-95 transition-all w-full md:w-fit py-1.5 px-3 glass-card rounded-xl uppercase tracking-widest group">
+                    <div class="w-7 h-7 rounded-lg bg-[#004a99] text-white flex items-center justify-center shadow-lg shadow-blue-900/20 group-hover:rotate-[360deg] transition-transform duration-700">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" /></svg>
                     </div>
                     <span class="flex flex-col items-start translate-y-[-1px]">
-                        <span class="opacity-40 text-[9px] mb-[-2px]">Audioguía</span>
+                        <span class="opacity-40 text-[7px] mb-[-2px]">Audioguía</span>
                         Escuchar narración
                     </span>
                 </button>
 
                 <!-- 3. Information Grid -->
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="glass-card rounded-2xl p-4 border border-white/30 flex flex-col gap-1">
-                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-wider">Atención</p>
-                        <p class="text-[13px] font-bold text-gray-800">${data.hours}</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="glass-card rounded-xl p-3 border border-white/30 flex flex-col gap-0.5">
+                        <p class="text-[9px] text-gray-400 font-black uppercase tracking-wider">Atención</p>
+                        <p class="text-[12px] font-bold text-gray-800">${data.hours}</p>
                     </div>
-                    <div class="glass-card rounded-2xl p-4 border border-white/30 flex flex-col gap-1">
-                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-wider">Ingreso</p>
-                        <p class="text-[13px] font-bold text-gray-800">${data.price}</p>
+                    <div class="glass-card rounded-xl p-3 border border-white/30 flex flex-col gap-0.5">
+                        <p class="text-[9px] text-gray-400 font-black uppercase tracking-wider">Ingreso</p>
+                        <p class="text-[12px] font-bold text-gray-800">${data.price}</p>
                     </div>
                 </div>
 
-                <!-- 4. Google Maps Button (Now inside scrollable content) -->
-                <button onclick="openGoogleMaps(${data.lat}, ${data.lng})" class="w-full h-16 flex items-center justify-center btn-primary-glow text-white font-black text-lg rounded-2xl relative overflow-hidden group shrink-0">
-                    <span class="relative z-10 flex items-center gap-3 uppercase tracking-tighter">
+                <!-- 4. Google Maps Button -->
+                <button onclick="openGoogleMaps(${data.lat}, ${data.lng})" class="w-full h-12 flex items-center justify-center btn-primary-glow text-white font-black text-base rounded-xl relative overflow-hidden group shrink-0">
+                    <span class="relative z-10 flex items-center gap-2 uppercase tracking-tighter">
                         Ver ruta en mapa
-                        <i class="fa-solid fa-arrow-right-long group-hover:translate-x-2 transition-transform"></i>
+                        <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
                     </span>
                     <div class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none"></div>
                 </button>
 
                 <!-- 5. Description -->
-                <div class="glass-card rounded-2xl p-5 text-[14px] md:text-base text-gray-700 leading-relaxed font-medium">
+                <div class="glass-card rounded-xl p-3 text-[12px] md:text-[13px] text-gray-700 leading-tight font-medium italic">
                     ${data.description}
                 </div>
             </div>
