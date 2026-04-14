@@ -51,8 +51,8 @@ const ItineraryPlanner = {
                 <div id="step-2" class="space-y-6 hidden animate-fade-in">
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Qué te interesa?</h2>
                     <div class="flex flex-wrap justify-center gap-2">
-                        ${['Avistamiento de aves', 'Deportes náuticos', 'Comida autóctona', 'Relax en la playa', 'Artesanías', 'Experiencias sensoriales', 'Vistas panorámicas'].map(interest => `
-                            <button class="interest-tag px-4 py-2 rounded-full border border-white/20 hover:border-white hover:bg-white/10 transition-all font-bold text-sm" data-value="${interest}">${interest}</button>
+                        ${categories.filter(c => c.id !== 'todas' && c.id !== 'otros').map(cat => `
+                            <button class="interest-tag px-4 py-2 rounded-full border border-white/20 hover:border-white hover:bg-white/10 transition-all font-bold text-sm" data-value="${cat.id}">${cat.label}</button>
                         `).join('')}
                     </div>
                     <div class="pt-4 flex justify-center gap-3">
@@ -232,7 +232,7 @@ const ItineraryPlanner = {
             if (item.category === 'eventos' && item.title.includes('Fiestas novembrinas')) {
                 if (this.startDate.getMonth() !== 10) return false;
             }
-            return item.tags && Array.from(this.selectedInterests).some(i => item.tags.includes(i));
+            return this.selectedInterests.has(item.category);
         });
 
         if (filtered.length === 0) { alert('Sin coincidencias.'); return; }
