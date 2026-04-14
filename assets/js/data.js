@@ -1,9 +1,12 @@
 // assets/js/data.js con descripciones largas restauradas
 const categories = [
   { id: "todas", label: "Ver Todos", icon: "📍", color: "bg-slate-800" },
-  { id: "naturaleza", label: "Naturaleza y Rural", icon: "🌿", color: "bg-emerald-500" },
-  { id: "eventos", label: "Fiestas y Eventos", icon: "🎉", color: "bg-fuchsia-500" },
-  { id: "cultura", label: "Cultura e Historia", icon: "🏛️", color: "bg-purple-500" },
+  { id: "naturaleza", label: "Turismo de Naturaleza", icon: "🌿", color: "bg-emerald-500" },
+  { id: "eventos", label: "Festivales y Eventos", icon: "🎉", color: "bg-fuchsia-500" },
+  { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
+  { id: "nauticos", label: "Deportes Náuticos", icon: "🌊", color: "bg-sky-500" },
+  { id: "gastronomia", label: "Placeres Gastronómicos", icon: "🥘", color: "bg-orange-500" },
+  { id: "infraestructura", label: "Infraestructura del Corredor", icon: "🛣️", color: "bg-blue-600" },
   { id: "otros", label: "Otros Servicios", icon: "🛍️", color: "bg-indigo-400" }
 ];
 
@@ -51,7 +54,7 @@ const mockData = [
     tags: ["Vistas panorámicas", "Artesanías", "Comida autóctona"]
   },
   {
-    id: 7, category: "otros", title: "Centro gastronómico Muelle 1888.", 
+    id: 7, category: "gastronomia", title: "Centro gastronómico Muelle 1888.", 
     description: "El Muelle 1888 en Puerto Colombia es un espacio ideal que combina la mejor oferta culinaria con una arquitectura que rinde homenaje a la herencia inmigrante. Aquí, los sabores locales e internacionales se encuentran en un ambiente sofisticado y acogedor frente al mar. Es la parada obligatoria para los amantes del buen comer que buscan una experiencia cosmopolita con sabor a Caribe.", 
     lat: 10.989444, lng: -74.958611, image: "assets/images/puntos/foto-principal-m.1888.webp", 
     location: "Puerto Colombia.", hours: "Variable.", price: "Gratuito.", 
@@ -86,7 +89,7 @@ const mockData = [
     tags: ["Relax en la playa", "Comida autóctona", "Vistas panorámicas"]
   },
   {
-    id: 12, category: "otros", title: "Salinas del Rey.", 
+    id: 12, category: "nauticos", title: "Salinas del Rey.", 
     description: "El referente mundial del Atlántico para el kitesurf. Salinas del Rey es un escenario natural privilegiado donde el viento y las olas dictan el ritmo. Atrae a deportistas de todo el mundo gracias a sus condiciones excepcionales, ofreciendo un espectáculo de velas de colores sobre el mar rosado. Es un punto de encuentro internacional que posiciona al departamento en el mapa del turismo deportivo de élite.", 
     lat: 10.871944, lng: -75.095556, image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp", 
     location: "Juan de Acosta.", hours: "9:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
@@ -100,7 +103,7 @@ const mockData = [
     tags: ["Comida autóctona", "Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 14, category: "otros", title: "Parador El Sombrero Vueltiao.", 
+    id: 14, category: "gastronomia", title: "Parador El Sombrero Vueltiao.", 
     description: "Inspirado en el emblemático símbolo nacional, este parador es una obra de arte arquitectónica ubicada estratégicamente en la carretera. Más que una parada, es un homenaje a las artesanías de la región donde se puede degustar comida típica y comprar recuerdos auténticos. Su diseño gigante en forma de sombrero es el fondo perfecto para la foto que certifica tu paso por el corazón del Caribe.", 
     lat: 10.8805, lng: -75.0711, image: "assets/images/puntos/foto-principal-s.v.webp", 
     location: "Juan de Acosta.", hours: "Variable.", price: "Gratuito.", 
@@ -163,7 +166,7 @@ const mockData = [
     tags: ["Vistas panorámicas", "Comida autóctona", "Relax en la playa"]
   },
   {
-    id: 23, category: "otros", title: "Playas de Puerto Mocho.", 
+    id: 23, category: "nauticos", title: "Playas de Puerto Mocho.", 
     description: "El destino de playa de Barranquilla que se está transformando en un paraíso de turismo sostenible. Ubicado cerca de la desembocadura de Bocas de Ceniza, Puerto Mocho ofrece el encuentro único entre el río y el mar. Con su nuevo sistema de transporte en tren turístico y zonas de servicios renovadas, promete ser el balneario urbano por excelencia para disfrutar de la brisa marina sin salir de la ciudad.", 
     lat: 11.045556, lng: -74.828889, image: "assets/images/puntos/mocho.webp", 
     location: "Barranquilla.", hours: "Variable.", price: "Gratuito.", 
