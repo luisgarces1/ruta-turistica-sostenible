@@ -1,6 +1,8 @@
 // assets/js/data.js con descripciones largas restauradas
 const categories = [
   { id: "todas", label: "Ver Todos", icon: "📍", color: "bg-slate-800" },
+    { id: "playas", label: "Playas y Costas", icon: "🏖️", color: "bg-cyan-500" },
+  { id: "ecoturismo", label: "Parques y Reservas", icon: "🏞️", color: "bg-green-600" },
   { id: "naturaleza", label: "Turismo de Naturaleza", icon: "🌿", color: "bg-emerald-500" },
   { id: "eventos", label: "Festivales y Eventos", icon: "🎉", color: "bg-fuchsia-500" },
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
@@ -12,21 +14,21 @@ const categories = [
 
 const mockData = [
   {
-    id: 1, category: "naturaleza", title: "Volcán del Totumo.", 
+    id: 1, category: "ecoturismo", title: "Volcán del Totumo.", 
     description: "El Volcán del Totumo no es solo un destino; es un ritual de bienestar y una maravilla geológica única en el Caribe. Famoso por sus baños de lodo medicinal, este cono volcánico de aproximadamente 15 metros invita a los visitantes a flotar en una densidad natural que relaja el cuerpo y rejuvenece la piel. Es una experiencia sensorial inigualable, rodeada de la serenidad de la ciénaga y la calidez de la comunidad local.", 
     lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp", 
     location: "Santa Catalina., Bolivar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.", 
     tags: ["Relax en la playa", "Experiencias sensoriales", "Comida autóctona"]
   },
   {
-    id: 2, category: "naturaleza", title: "Playas de Loma Arena.", 
+    id: 2, category: "playas", title: "Playas de Loma Arena.", 
     description: "Estas playas son un secreto guardado para quienes buscan desconexión total. Con sus extensas franjas de arena dorada y un oleaje que invita a la contemplación, Loma Arena es el lugar ideal para disfrutar de puestas de sol cinematográficas. Su ambiente tranquilo lo convierte en un punto estratégico para el turismo de descanso, lejos del bullicio urbano, donde el sonido del mar es el único protagonista.", 
     lat: 10.731697, lng: -75.272444, image: "assets/images/puntos/foto-principal-l.a.webp", 
     location: "Santa Catalina., Bolivar.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
-    id: 3, category: "naturaleza", title: "Playas de Punta Astilleros.", 
+    id: 3, category: "playas", title: "Playas de Punta Astilleros.", 
     description: "Punta Astilleros es el refugio de carácter rural donde el campo se encuentra con el océano. Sus playas vírgenes y su entorno natural preservado ofrecen una experiencia auténtica de paz. Es el destino predilecto para caminatas ecológicas por la orilla y para aquellos que desean conocer la vida costera en su estado más puro y sencillo, bajo la sombra de palmeras y la brisa constante del Atlántico.", 
     lat: 10.795, lng: -75.224444, image: "assets/images/puntos/foto-principal-pa.webp", 
     location: "Piojó., Atlántico.", hours: "9:00 a.m. - Final del día.", price: "Gratuito.", 
@@ -75,14 +77,14 @@ const mockData = [
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 10, category: "naturaleza", title: "Playas de Puerto Colombia.", 
+    id: 10, category: "playas", title: "Playas de Puerto Colombia.", 
     description: "Destacan por el azul del océano y su proximidad a monumentos históricos. Son playas vibrantes, llenas de vida y cultura, donde se puede disfrutar de la gastronomía típica en los quioscos locales mientras se contempla el muelle. Ideales para un día de sol relajado con el toque histórico que solo Puerto Colombia puede ofrecer.", 
     lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.p.webp", 
     location: "Puerto Colombia.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
-    id: 11, category: "naturaleza", title: "Playa de Santa Verónica.", 
+    id: 11, category: "playas", title: "Playa de Santa Verónica.", 
     description: "Un oasis que combina la tranquilidad del mar con la calidez local. Famosa por sus restaurantes frente al océano que ofrecen el mejor pescado frito de la zona, Santa Verónica es perfecta para quienes buscan un ambiente familiar y relajado. Sus vientos constantes también la hacen atractiva para quienes desean iniciarse en los deportes de viento en un entorno amigable.", 
     lat: 10.88038, lng: -75.08297, image: "assets/images/puntos/fotografia-para-la-pagina-p.s.webp", 
     location: "Juan de Acosta.", hours: "7:00 a.m. - 9:00 p.m.", price: "Gratuito.", 
@@ -110,7 +112,7 @@ const mockData = [
     tags: ["Artesanías", "Comida autóctona", "Vistas panorámicas"]
   },
   {
-    id: 15, category: "naturaleza", title: "Playa de Puerto Velero.", 
+    id: 15, category: "playas", title: "Playa de Puerto Velero.", 
     description: "Un destino de paz absoluta y aguas tranquilas gracias a su formación natural de ensenada. Es el lugar predilecto para el aprendizaje de la vela y otros deportes náuticos. Con sus cabañas sobre el agua y restaurantes especializados, ofrece una experiencia de confort y naturaleza ideal para parejas y buscadores de exclusividad en un entorno marítimo protegido.", 
     lat: 10.947222, lng: -75.036944, image: "assets/images/puntos/foto-principal-para-la-pagina-p.v.webp", 
     location: "Tubará.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
@@ -124,14 +126,14 @@ const mockData = [
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 17, category: "naturaleza", title: "Mariposario Butterfly Caribe.", 
+    id: 17, category: "ecoturismo", title: "Mariposario Butterfly Caribe.", 
     description: "Celebra la diversidad y la metamorfosis en este santuario dedicado a las mariposas. Ubicado en medio de la exuberante vegetación de Galapa, permite a los visitantes interactuar con cientos de especies en un jardín controlado que educa sobre la importancia de los polinizadores. Una experiencia mágica y educativa que conecta a niños y adultos con la delicada belleza de la naturaleza tropical.", 
     lat: 10.875833, lng: -74.930833, image: "assets/images/puntos/foto-principal-m.a.webp", 
     location: "Galapa.", hours: "9:30 a.m. - 2:30 p.m.", price: "Adultos: $25.000.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
-    id: 18, category: "naturaleza", title: "Parque Biotemático Megua.", 
+    id: 18, category: "ecoturismo", title: "Parque Biotemático Megua.", 
     description: "Una aula viva de 32 hectáreas dedicada a la educación ambiental y la conservación. Con senderos ecológicos, granjas interactivas y zonas de preservación, Megua es el pulmón alternativo donde se aprende sobre el cuidado de la tierra mientras se disfruta del aire puro. Ideal para grupos escolares y familias que desean una jornada de inmersión en el campo y contacto directo con animales y plantas nativas.", 
     lat: 10.848611, lng: -74.896667, image: "assets/images/puntos/foto-principal-b.m.webp", 
     location: "Galapa.", hours: "9:00 a.m. - 5:00 p.m.", price: "Adultos: $22.000.", 
@@ -173,35 +175,35 @@ const mockData = [
     tags: ["Relax en la playa", "Vistas panorámicas", "Deportes náuticos"]
   },
   {
-    id: 24, category: "naturaleza", title: "Ecoparque Ciénaga de Mallorquín.", 
+    id: 24, category: "ecoturismo", title: "Ecoparque Ciénaga de Mallorquín.", 
     description: "Un imponente pulmón verde dedicado a la recuperación ecológica y el avistamiento de aves. Sus pasarelas de madera sobre el agua permiten adentrarse en el ecosistema de manglar sin perturbar la vida silvestre. Es un santuario de biodiversidad que invita a la desconexión urbana y al aprendizaje sobre la importancia de los humedales costeros en la protección ambiental de Barranquilla.", 
     lat: 11.028, lng: -74.778, image: "assets/images/puntos/ecoparque-mallorquin.webp", 
     location: "Barranquilla.", hours: "6:00 a.m - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
-    id: 25, category: "naturaleza", title: "Salinas de Galerazamba.", 
+    id: 25, category: "ecoturismo", title: "Salinas de Galerazamba.", 
     description: "El famoso 'Mar rosado' de Colombia es un espectáculo visual que ocurre gracias a la alta concentración de sal y una microalga específica. Visitar las salinas es adentrarse en un paisaje surrealista donde el agua adquiere tonalidades intensas de rosa y rojo. Además de su valor fotográfico, es un sitio cargado de historia minera y un motor económico vital para la comunidad de Galerazamba en Santa Catalina.", 
     lat: 10.794167, lng: -75.253333, image: "assets/images/puntos/foto-principal-s.g.webp", 
     location: "Santa Catalina.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 26, category: "naturaleza", title: "Playas del Country.", 
+    id: 26, category: "playas", title: "Playas del Country.", 
     description: "Ofrecen un ambiente relajado y exclusivo muy cerca de las zonas residenciales de Puerto Colombia. Son ideales por sus servicios de alta calidad y su oleaje moderado para practicar deportes náuticos suaves. Es la playa elegida por quienes buscan comodidad, buenos restaurantes y un ambiente social vibrante, perfecta para disfrutar de un día de sol con todas las facilidades a la mano.", 
     lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.s.webp", 
     location: "Puerto Colombia.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
-    id: 27, category: "naturaleza", title: "Playa de Caño Dulce.", 
+    id: 27, category: "playas", title: "Playa de Caño Dulce.", 
     description: "Caracterizada por su ambiente sereno e ideal para familias con niños debido a su poca profundidad y olas suaves. Caño Dulce es un refugio de descanso total donde se puede disfrutar de un baño de mar prolongado y saborear la tradicional comida de mar en los restaurantes que bordean la costa. Su entorno natural conservado la hacen una joya escondida para el descanso absoluto.", 
     lat: 10.939722, lng: -75.027778, image: "assets/images/puntos/foto-principal-para-la-pagina-c.d.webp", 
     location: "Tubará.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona"]
   },
   {
-    id: 28, category: "naturaleza", title: "Parque Mirador Tubará.", 
+    id: 28, category: "ecoturismo", title: "Parque Mirador Tubará.", 
     description: "Donde la tierra y el cielo se abrazan. Este mirador ubicado en lo más alto de Tubará ofrece una vista de 360 grados que permite ver el Mar Caribe y las montañas circundantes. Sus coloridas esculturas y escalinatas invitan a capturar la esencia de un pueblo de raíces Mokaná. Es el punto ideal para sentir la fuerza del viento y apreciar la majestuosidad geográfica del departamento del Atlántico.", 
     lat: 10.871111, lng: -74.974444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.t..webp", 
     location: "Tubará.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
@@ -243,7 +245,7 @@ const mockData = [
     tags: ["Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
-    id: 34, category: "naturaleza", title: "Manzanillo del Mar.", 
+    id: 34, category: "playas", title: "Manzanillo del Mar.", 
     description: "Playa serena y auténtica que conserva el encanto de una comunidad de pescadores. Ubicada en la zona norte de Cartagena, ofrece un ambiente más privado y tranquilo que los balnearios tradicionales. Es el lugar perfecto para disfrutar de la comida típica frente al mar, realizar largas caminatas por la costa o simplemente contemplar el horizonte en un entorno de paz absoluta, siendo un modelo de equilibrio entre turismo y vida local.", 
     lat: 10.515992, lng: -75.499278, image: "assets/images/puntos/manzanillo-del-mar.webp", 
     location: "Cartagena.", hours: "Variable.", price: "Gratuito.", 
@@ -257,14 +259,14 @@ const mockData = [
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 36, category: "naturaleza", title: "Ciénaga de la Virgen.", 
+    id: 36, category: "ecoturismo", title: "Ciénaga de la Virgen.", 
     description: "Uno de los tesoros hídricos de Cartagena y un ecosistema estratégico para la biodiversidad local. Hogar de manglares y numerosas especies de aves migratorias, la ciénaga es un destino ideal para el ecoturismo y la observación de aves. Paseos en barca guiados por pescadores locales permiten conocer la importancia de la conservación mientras se disfruta de un paisaje natural que abraza la zona norte de la ciudad.", 
     lat: 10.460533, lng: -75.494847, image: "assets/images/puntos/cienaga-de-la-virgen.webp", 
     location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
-    id: 37, category: "naturaleza", title: "Playa de la Boquilla.", 
+    id: 37, category: "playas", title: "Playa de la Boquilla.", 
     description: "El corazón afrodescendiente de la costa cartagenera donde el mar se disfruta entre manglares y tambores. La Boquilla es famosa por sus recorridos en canoa por los túneles de manglar y su excepcional oferta gastronómica. Es un destino que combina la playa con la cultura viva, invitando a los turistas a participar en talleres de danza o pesca, viviendo una experiencia humana y natural profundamente auténtica.", 
     lat: 10.4621, lng: -75.504458, image: "assets/images/puntos/playa-de-la-boquilla.webp", 
     location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
@@ -278,7 +280,7 @@ const mockData = [
     tags: ["Comida autóctona", "Artesanías"]
   },
   {
-    id: 39, category: "naturaleza", title: "Ciénaga del Totumo.", 
+    id: 39, category: "ecoturismo", title: "Ciénaga del Totumo.", 
     description: "Humedal estratégico famoso por colindar con el Volcán del Totumo, ofreciendo un ecosistema de agua dulce ideal para la observación de fauna y flora. Sus aguas reflejan el cielo y los manglares, creando un entorno de paz inmensa. Es el complemento perfecto para el baño de lodo, permitiendo paseos en lancha para apreciar la inmensidad del paisaje hídrico y la vida de los pescadores artesanales que cuidan de este santuario natural.", 
     lat: 10.738397, lng: -75.260689, image: "assets/images/puntos/cienaga-totumo.webp", 
     location: "Santa Catalina.", hours: "Abierto.", price: "Gratuito.", 
@@ -292,7 +294,7 @@ const mockData = [
     tags: ["Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
   },
   {
-    id: 41, category: "naturaleza", title: "Calvaduria Ecoturismo y Camping - Asociación agroecológica Nueva Generación de Piojó.", 
+    id: 41, category: "ecoturismo", title: "Calvaduria Ecoturismo y Camping - Asociación agroecológica Nueva Generación de Piojó.", 
     description: "Calvaduría Ecoturismo y Camping invita a descubrir el Atlántico más natural y fresco. En este espacio donde el agroturismo, el camping y los pozos naturales se entrelazan, cada experiencia se convierte en una oportunidad para reconectarse con la tierra y con uno mismo. Entre montañas suaves, aire puro y la hospitalidad rural, este lugar celebra la armonía entre naturaleza y comunidad, recordando que cada visita deja una huella positiva en el entorno.", 
     lat: 10.751, lng: -75.109, image: "assets/images/puntos/Calvaduria Ecoturismo y Camping.webp", 
     location: "Piojó, Atlántico.", hours: "Abierto todo el tiempo.", price: "Pasa día: adultos:$15.000 mil cop. Niños: $7.000 mil cop.", 
@@ -376,14 +378,14 @@ const mockData = [
     tags: ["Zonas verdes","áreas de esparcimiento","juegos para niños."]
   },
   {
-    id: 53, category: "naturaleza", title: "Parque Lineal de Crespo.", 
+    id: 53, category: "ecoturismo", title: "Parque Lineal de Crespo.", 
     description: "El Parque Lineal de Crespo es la respuesta de Cartagena al avance del Caribe. Diseñado para frenar la erosión costera y adaptarse al cambio climático, es hoy un corredor verde que reconcilia la ciudad con el mar. Un espacio donde el futuro sostenible camina de la mano de la naturaleza.", 
     lat: 10.439, lng: -75.522, image: "assets/images/puntos/Parque Lineal de Crespo.webp", 
     location: "Cartagena, Bolivar.", hours: "", price: "", 
     tags: []
   },
   {
-    id: 54, category: "naturaleza", title: "Playa Marbella.", 
+    id: 54, category: "playas", title: "Playa Marbella.", 
     description: "Marbella es el secreto urbano de Cartagena: una franja de arena protegida por espolones que desafían las corrientes del caribe. Sus aguas son refugio para quienes buscan una experiencia auténtica lejos del bullicio. Un rincón donde la ciudad y el mar se encuentran en perfecta armonía.", 
     lat: 10.434, lng: -75.529, image: "assets/images/puntos/Playa Marbella.webp", 
     location: "Cartagena, Bolivar.", hours: "", price: "", 
