@@ -6,8 +6,8 @@ const categories = [
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
   { id: "nauticos", label: "Deportes Náuticos", icon: "🌊", color: "bg-sky-500" },
   { id: "gastronomia", label: "Placeres Gastronómicos", icon: "🥘", color: "bg-orange-500" },
-  { id: "infraestructura", label: "Infraestructura del Corredor", icon: "🛣️", color: "bg-blue-600" },
-  { id: "otros", label: "Otros Servicios", icon: "🛍️", color: "bg-indigo-400" }
+  { id: "infraestructura", label: "Infraestructura del Corredor Vial", icon: "🛣️", color: "bg-blue-600" },
+  { id: "otros", label: "Aeropuertos", icon: "✈️", color: "bg-indigo-400" }
 ];
 
 const mockData = [
@@ -283,5 +283,166 @@ const mockData = [
     lat: 10.738397, lng: -75.260689, image: "assets/images/puntos/cienaga-totumo.webp", 
     location: "Santa Catalina.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Vistas panorámicas"]
+  },
+  {
+    id: 40, category: "eventos", title: "Festival de la Palma Amarga. ", 
+    description: "El Festival de la Palma Amarga es un tributo vivo al ingenio de las comunidades de Piojó y su armonía con el entorno natural. Celebra el legado de los artesanos y tejedores que transforman la fibra de la palma en piezas únicas y techos que cuentan historias de la cultura. Es una ventana a los saberes ancestrales que han definido la identidad del Caribe. La música de viento y las muestras artesanales, invitan a valorar la importancia de preservar nuestras materias primas y los oficios que dan vida al territorio.", 
+    lat: 10.75, lng: -75.108, image: "assets/images/puntos/Festival de la Palma Amarga.webp", 
+    location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
+    tags: ["Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
+  },
+  {
+    id: 41, category: "naturaleza", title: "Calvaduria Ecoturismo y Camping - Asociación agroecológica Nueva Generación de Piojó.", 
+    description: "Calvaduría Ecoturismo y Camping invita a descubrir el Atlántico más natural y fresco. En este espacio donde el agroturismo, el camping y los pozos naturales se entrelazan, cada experiencia se convierte en una oportunidad para reconectarse con la tierra y con uno mismo. Entre montañas suaves, aire puro y la hospitalidad rural, este lugar celebra la armonía entre naturaleza y comunidad, recordando que cada visita deja una huella positiva en el entorno.", 
+    lat: 10.751, lng: -75.109, image: "assets/images/puntos/Calvaduria Ecoturismo y Camping.webp", 
+    location: "Piojó, Atlántico.", hours: "Abierto todo el tiempo.", price: "Pasa día: adultos:$15.000 mil cop. Niños: $7.000 mil cop.", 
+    tags: ["Agroturismo","camping","pozos naturales","senderismo","rutas ecológicas","hospedaje."]
+  },
+  {
+    id: 42, category: "cultura", title: "Santuario Mariano Nuestra Señora del Carmen.", 
+    description: "El Santuario Mariano Nuestra Señora del Carmen es uno de los lugares más representativos de Puerto Colombia y un importante centro de fe en el Atlántico. Reconocido como el único santuario mariano del departamento, abre sus puertas los 365 días del año, ofreciendo a los feligreses un espacio para vivir la sagrada eucaristía y fortalecer su espiritualidad. Su arquitectura conserva un estilo tradicional que refleja la historia y la devoción de la comunidad porteña, invita a vivir una experiencia de recogimiento y conexión con la esencia cultural y espiritual del caribe.", 
+    lat: 10.988, lng: -74.959, image: "assets/images/puntos/Santuario Mariano Nuestra Señora del Carmen.webp", 
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    tags: ["Religiosos","comunitarios y culturales."]
+  },
+  {
+    id: 43, category: "cultura", title: "Sirenato de la cumbia. ", 
+    description: "Desde 1996, Puerto Colombia vibra al compás del Sirenato de la Cumbia. Tambores, flautas y pasos ancestrales elevan este ritmo que define al caribe colombiano. Más que un festival, es la ceremonia viva donde cada generación renueva su pacto con la cumbia, ritmo del alma y memoria de un pueblo.", 
+    lat: 10.989, lng: -74.955, image: "assets/images/puntos/Sirenato de la cumbia.webp", 
+    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
+    tags: ["Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
+  },
+  {
+    id: 44, category: "eventos", title: "Festival del Mar y del Turismo. ", 
+    description: "Desde 2018, Puerto Colombia celebra su vocación costera con este festival que reúne a los municipios del Atlántico. Desfiles, muestras culturales y la elección de la capitanía de los mares hacen de esta fiesta un himno al mar, al liderazgo femenino y al orgullo del corazón azul del departamento.", 
+    lat: 10.987, lng: -74.958, image: "assets/images/puntos/Festival del Mar y del Turismo.webp", 
+    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
+    tags: ["Desfiles","presentaciones culturales","feria gastronómica y actividades recreativas."]
+  },
+  {
+    id: 45, category: "cultura", title: "Parroquia San José de Tubará.", 
+    description: "La parroquia San José de Tubará es una joya histórica construida en 1833 sobre un antiguo asentamiento indígena Mokaná de la tribu caribe. Su arquitectura colonial y su gran valor cultural la convierten en uno de los principales atractivos del municipio. En 1996 fue declarada patrimonio arquitectónico del Atlántico, destacándose como un símbolo de fe, historia y tradición en la región, donde cada piedra y cada oración conectan pasado y presente en una experiencia que invita a reconocer la herencia viva del territorio.", 
+    lat: 10.871, lng: -74.974, image: "assets/images/puntos/Parroquia San José de Tubará.webp", 
+    location: "Tubará, Atlántico.", hours: "Horario de eucaristías: fines de semana y festivos en la mañana y en la tarde.", price: "Gratuito.", 
+    tags: ["Celebraciones religiosas (misas","bautizos","matrimonios","confirmaciones)","atención espiritual y confesiones","actividades comunitarias y pastorales."]
+  },
+  {
+    id: 46, category: "eventos", title: "Festival de la Yuca y el Totumo. ", 
+    description: "El festival de la yuca y el totumo se realiza el domingo de carnaval, con más de 20 años de existencia, inició con los Mokaná en el mirador de Tubará, con la finalidad de mostar los productos que se cultivan y todas las artesanías que se hace con el totumo.", 
+    lat: 10.872, lng: -74.973, image: "assets/images/puntos/Festival de la Yuca y el Totumo.webp", 
+    location: "Tubará, Atlántico.", hours: "", price: "", 
+    tags: []
+  },
+  {
+    id: 47, category: "eventos", title: "Festival de la Máscara y el Bejuco. ", 
+    description: "Eeste festival es la principal cita artesanal de Galapa. Reúne a creadores en bejuco, talla en madera y papel maché, convirtiendo la plaza en un escenario de tradición y creatividad. Es un espacio de exhibición y comercialización que preserva la identidad y las raíces culturales del municipio.", 
+    lat: 10.899, lng: -74.886, image: "assets/images/puntos/Festival de la Máscara y el Bejuco.webp", 
+    location: "Galapa, Atlántico.", hours: "El evento dura entre 1 y 3 dias.", price: "Gratuito.", 
+    tags: ["Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
+  },
+  {
+    id: 48, category: "eventos", title: "Carnaval de Galapa. ", 
+    description: "El Carnaval de Galapa es una explosión de color, ritmo y memoria ancestral. Entre tambores, comparsas y danzas, el pueblo celebra su identidad con disfraces que narran historias y preservan sus raíces. Cada desfile refleja una tradición viva que resiste en el tiempo e invita a disfrutar la alegría del caribe colombiano.", 
+    lat: 10.898, lng: -74.885, image: "assets/images/puntos/Carnaval de Galapa.webp", 
+    location: "Galapa, Atlántico.", hours: "El evento dura entre 8 y 10 dias.", price: "Gratuito.", 
+    tags: ["Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
+  },
+  {
+    id: 49, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe. ", 
+    description: "El Festival de Decimeros y Bailadores de Cumbia del caribe celebra la oralidad y el folclore regional. Es un espacio de transmisión de saberes y salvaguardia patrimonial que reúne a artistas de Magdalena, Córdoba, Sucre y otros departamentos, fortaleciendo la identidad y preservando las raíces culturales del territorio.", 
+    lat: 10.862, lng: -74.774, image: "assets/images/puntos/Festival de Decimeros y Bailadores de Cumbia.webp", 
+    location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
+    tags: []
+  },
+  {
+    id: 50, category: "eventos", title: "Festival regional de Bandas Tradicionales. ", 
+    description: "El Festival de Bandas tradicionales del caribe, en Malambo, celebra la riqueza musical de la región. Reúne agrupaciones de viento y percusión que interpretan porros, cumbias y fandangos. Más que una competencia, es un espacio de encuentro que fortalece la identidad, el talento local y la preservación del patrimonio musical caribeño.", 
+    lat: 10.861, lng: -74.773, image: "assets/images/puntos/Festival regional de Bandas Tradicionales.webp", 
+    location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
+    tags: []
+  },
+  {
+    id: 51, category: "eventos", title: "Fiestas de Santa María Magdalena.", 
+    description: "Las fiestas patronales de Santa María Magdalena son una de las celebraciones más representativas de Malambo. Durante cuatro días reúnen a la comunidad en torno a la fe y la tradición, con actividades culturales, deportivas y religiosas. Incluyen procesiones, muestras folclóricas y presentaciones artísticas que exaltan la herencia cultural y espiritual del municipio.", 
+    lat: 10.86, lng: -74.772, image: "assets/images/puntos/Fiestas de Santa María Magdalena.webp", 
+    location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
+    tags: ["Ofrece servicios de actividades culturales","eventos religiosos","presentaciones artísticas","ferias gastronómicas","competencias deportivas y espacios de recreación familiar."]
+  },
+  {
+    id: 52, category: "cultura", title: "Parque de La Cultura - Asociación Cultural y Artesanal Raíces de Malambo.", 
+    description: "El parque de la cultura “Fabio Miranda” es un espacio emblemático de Malambo que promueve el desarrollo humano y el fortalecimiento económico del territorio. Este parque rinde homenaje a la tradición alfarera, una práctica ancestral que durante siglos ha sido la base de los intercambios comerciales y el reflejo del legado cultural de los pueblos originarios de la región.", 
+    lat: 10.863, lng: -74.775, image: "assets/images/puntos/Parque de La Cultura.webp", 
+    location: "Malambo, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    tags: ["Zonas verdes","áreas de esparcimiento","juegos para niños."]
+  },
+  {
+    id: 53, category: "naturaleza", title: "Parque Lineal de Crespo.", 
+    description: "El Parque Lineal de Crespo es la respuesta de Cartagena al avance del Caribe. Diseñado para frenar la erosión costera y adaptarse al cambio climático, es hoy un corredor verde que reconcilia la ciudad con el mar. Un espacio donde el futuro sostenible camina de la mano de la naturaleza.", 
+    lat: 10.439, lng: -75.522, image: "assets/images/puntos/Parque Lineal de Crespo.webp", 
+    location: "Cartagena, Bolivar.", hours: "", price: "", 
+    tags: []
+  },
+  {
+    id: 54, category: "naturaleza", title: "Playa Marbella.", 
+    description: "Marbella es el secreto urbano de Cartagena: una franja de arena protegida por espolones que desafían las corrientes del caribe. Sus aguas son refugio para quienes buscan una experiencia auténtica lejos del bullicio. Un rincón donde la ciudad y el mar se encuentran en perfecta armonía.", 
+    lat: 10.434, lng: -75.529, image: "assets/images/puntos/Playa Marbella.webp", 
+    location: "Cartagena, Bolivar.", hours: "", price: "", 
+    tags: []
+  },
+  {
+    id: 55, category: "eventos", title: "Fiestas patronales Santa Catalina de Alejandría.", 
+    description: "Las fiestas de Santa Catalina de Alejandría fusionan fe y folclor en una celebración que convoca a toda la comunidad. Procesiones, bailes, corridas de toros y la elección de la diosa llenan de color las calles. Una vivencia que celebra la identidad y el espíritu festivo del caribe con devoción y alegría.", 
+    lat: 10.605, lng: -75.253, image: "assets/images/puntos/Fiestas patronales Santa Catalina de Alejandría.webp", 
+    location: "Santa Catalina, Bolivar.", hours: "El evento dura entre 4 y 7 días.", price: "Gratuito.", 
+    tags: ["Turismo cultural","gastronomía","música y danzas tradicionales","eventos religiosos","comercio local."]
+  },
+  {
+    id: 56, category: "cultura", title: "Museo Etnoindustrial.", 
+    description: "El Museo Etnoindustrial de Galerazamba es un espacio que permite comprender la historia de la producción de sal en la región. A través de herramientas antiguas, fotografías y exhibiciones, los visitantes descubren cómo esta actividad marcó la vida social, económica y cultural de la comunidad. Más que un recorrido histórico, es un encuentro auténtico con la memoria y el trabajo de generaciones que han hecho de la sal su identidad, reflejando el valor de las tradiciones locales y la conexión viva entre la gente y su territorio.", 
+    lat: 10.794, lng: -75.253, image: "assets/images/puntos/Museo Etnoindustrial.webp", 
+    location: "Santa Catalina, Bolivar.", hours: "10:00 a.m. - 4:00 p.m.", price: "Adultos: $7.000 mil cop. Niños (desde 5 años): $5.000 mil cop.", 
+    tags: ["Servicios culturales","recorridos guiados","exhibiciones permanentes","actividades pedagógicas y turismo histórico-patrimonial."]
+  },
+  {
+    id: 57, category: "eventos", title: "Fiestas patronales de San Antonio de Padua.", 
+    description: "Las fiestas de San Antonio de Padua convierten a Piojó en epicentro del folclor caribeño. Bandas papayeras, corralejas, peleas de gallos y la vara de premio llenan de música y emoción sus calles. Una celebración que honra la tradición y reúne a visitantes y locales en torno al patrimonio vivo de la región.", 
+    lat: 10.749, lng: -75.107, image: "assets/images/puntos/Fiestas patronales de San Antonio de Padua.webp", 
+    location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
+    tags: ["Turismo cultural","eventos religiosos","deportes","música y danzas tradicionales","espectáculos taurinos","juegos populares","gastronomía","comercio local."]
+  },
+  {
+    id: 58, category: "infraestructura", title: "Tambo Marina Ecohostal.", 
+    description: "Tambo Marina Ecohostal es un alojamiento ecológico frente al mar, en playa Punta Astillero, Piojó (Atlántico). Entre el sonido de las olas y la brisa cálida, ofrece una experiencia de descanso en contacto con la naturaleza. Tiene hospedaje, restaurante, acceso directo a la playa y actividades como senderismo, pesca y entretenimiento nocturno, este lugar invita a disfrutar del turismo sostenible en un entorno sereno donde la tranquilidad y el mar se encuentran.", 
+    lat: 10.795, lng: -75.224, image: "assets/images/puntos/Tambo Marina Ecohostal.webp", 
+    location: "Piojó, Atlántico.", hours: "8:00 a.m. - 9:00 p.m.", price: "", 
+    tags: ["Hospedaje ecológico","restaurante","acceso directo a la playa","senderismo","entretenimiento nocturno y turismo sostenible."]
+  },
+  {
+    id: 59, category: "eventos", title: "Festival Internacional de las Tunas Corazonistas.", 
+    description: "Las Tunas Corazonistas transforman Puerto Colombia en escenario de guitarras, capas y serenatas bohemias. Países y regiones se encuentran en este festival donde la música estudiantil se convierte en amistad y memoria. Cada nota es un puente entre culturas; cada edición, una celebración que late en el corazón del caribe.", 
+    lat: 10.986, lng: -74.957, image: "assets/images/puntos/Festival Internacional de las Tunas Corazonistas.webp", 
+    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
+    tags: ["Presentaciones musicales en vivo","actividades culturales","intercambio artístico internacional","promoción de agrupaciones regionales y entretenimiento para el público."]
+  },
+  {
+    id: 60, category: "cultura", title: "Piedra Pintada. Colectivo Caminantes por El Morro.", 
+    description: "Piedra Pintada es la memoria viva del pueblo Mokaná. En sus petroglifos hablan los ancestros que habitaron estas montañas de Tubará, resistieron la colonización y dejaron grabado su vínculo sagrado con la tierra. Rodeada de senderos y vegetación exuberante, es un destino para quienes buscan historia, espiritualidad y naturaleza.", 
+    lat: 10.87, lng: -74.97, image: "assets/images/puntos/Piedra Pintada.webp", 
+    location: "Tubará, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    tags: ["Caminatas ecológicas","observación de petroglifos","actividades culturales y espirituales","zonas naturales para descanso."]
+  },
+  {
+    id: 61, category: "eventos", title: "Carnaval de Tubará.", 
+    description: "El Carnaval de Tubará es un abrazo al son de la cumbia. Esta celebración anual convierte las calles del municipio en un río de colores, danzas y tradición que fluye desde las raíces más profundas del Caribe colombiano. Una fiesta que renueva el vínculo entre la comunidad, su historia y la música que la define.", 
+    lat: 10.873, lng: -74.975, image: "assets/images/puntos/Carnaval de Tubará.webp", 
+    location: "Tubará, Atlántico.", hours: "", price: "", 
+    tags: []
+  },
+  {
+    id: 62, category: "eventos", title: "Festival intermunicipal del folclore.", 
+    description: "Galapa se convierte en la capital del folclor caribeño con su Gran parada departamental. Tambores, llamadores y flautas de millo acompañan a comparsas que tiñen las calles de color y movimiento. Un encuentro que celebra la riqueza cultural del Atlántico y eleva la tradición como motor del orgullo regional.", 
+    lat: 10.897, lng: -74.884, image: "assets/images/puntos/Festival intermunicipal del folclore.webp", 
+    location: "Galapa, Atlántico.", hours: "El evento dura 1 día.", price: "Gratuito.", 
+    tags: ["Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
   }
 ];
