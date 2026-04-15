@@ -427,7 +427,7 @@ const mockData = [
     tags: ["Turismo cultural","eventos religiosos","deportes","música y danzas tradicionales","espectáculos taurinos","juegos populares","gastronomía","comercio local."]
   },
   {
-    id: 58, category: "infraestructura", title: "Tambo Marina Ecohostal.", 
+    id: 58, category: "playas", title: "Tambo Marina Ecohostal.", 
     description: "Tambo Marina Ecohostal es un alojamiento ecológico frente al mar, en playa Punta Astillero, Piojó (Atlántico). Entre el sonido de las olas y la brisa cálida, ofrece una experiencia de descanso en contacto con la naturaleza. Tiene hospedaje, restaurante, acceso directo a la playa y actividades como senderismo, pesca y entretenimiento nocturno, este lugar invita a disfrutar del turismo sostenible en un entorno sereno donde la tranquilidad y el mar se encuentran.", 
     lat: 10.795, lng: -75.224, image: "assets/images/puntos/Tambo Marina Ecohostal.webp", 
     location: "Piojó, Atlántico.", hours: "8:00 a.m. - 9:00 p.m.", price: "", 
