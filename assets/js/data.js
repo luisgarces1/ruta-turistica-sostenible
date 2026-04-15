@@ -49,14 +49,14 @@ const mockData = [
     tags: ["Relax en la playa", "Vistas panorámicas", "Artesanías"]
   },
   {
-    id: 4, category: "naturaleza", title: "Cerro la Vieja.", 
+    id: 4, category: "ecoturismo", title: "Cerro la Vieja.", 
     description: "El Cerro La Vieja es la cima del Atlántico, un mirador natural que ofrece una de las panorámicas más espectaculares de la región. Subir a su cumbre es un reto gratificante para los amantes del senderismo y la fotografía, permitiendo observar la línea costera y el relieve ondulado del departamento. Es un lugar cargado de leyendas locales y una biodiversidad que sorprende a cada paso en medio del bosque seco tropical.", 
     lat: 10.733333, lng: -75.104722, image: "assets/images/puntos/foto-principal-l.v.webp", 
     location: "Piojó., Atlántico.", hours: "7:00 a.m. - 6:00 p.m.", price: "Adultos: $8.000 mil cop.", 
     tags: ["Avistamiento de aves", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 5, category: "naturaleza", title: "Caribe Aventura.", 
+    id: 5, category: "ecoturismo", title: "Caribe Aventura.", 
     description: "Prepárate para vivir la emoción en el parque temático más grande de la región, donde la cultura del Caribe se mezcla con la diversión acuática. Caribe Aventura ofrece réplicas de sitios icónicos y atracciones diseñadas para todas las edades. Es el destino perfecto para familias que buscan adrenalina en los toboganes y piscinas, mientras aprenden sobre la identidad costeña en un entorno seguro y vibrante.", 
     lat: 10.765278, lng: -75.200278, image: "assets/images/puntos/foto-principal-c.a.webp", 
     location: "Piojó., Atlántico.", hours: "9:00 a.m. - 4:30 p.m.", price: "Variable.", 
@@ -252,7 +252,7 @@ const mockData = [
     tags: ["Artesanías"]
   },
   {
-    id: 33, category: "naturaleza", title: "La Casa Voltiá.", 
+    id: 33, category: "ecoturismo", title: "La Casa Voltiá.", 
     description: "Una experiencia surrealista y divertida donde todo está de cabeza. Ubicada en el municipio de Juan de Acosta, esta construcción desafía la lógica y la gravedad, ofreciendo un entorno perfecto para la fotografía creativa. Es una parada obligatoria para quienes buscan contenido original y momentos de asombro mientras viajan por la carretera, convirtiéndose en un hito de curiosidad y entretenimiento para todas las edades.", 
     lat: 10.834994, lng: -75.141247, image: "assets/images/puntos/la-casa-voltia.webp", 
     location: "Juan de Acosta.", hours: "9:00 am - 6:00 pm", price: "Gratuito.", 
@@ -266,7 +266,7 @@ const mockData = [
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
-    id: 35, category: "naturaleza", title: "Viaducto Gran Manglar.", 
+    id: 35, category: "infraestructura", title: "Viaducto Gran Manglar.", 
     description: "Una obra maestra de ingeniería civil que coexiste en perfecta armonía con el ecosistema de manglar. Este viaducto sobre la Ciénaga de la Virgen ha sido premiado internacionalmente por su respetuoso diseño ambiental, permitiendo el flujo del agua y la vida silvestre por debajo de la carretera. Conducir sobre él es una experiencia única que ofrece vistas panorámicas impresionantes de la ciénaga y el mar, simbolizando el futuro de la infraestructura sostenible.", 
     lat: 10.476022, lng: -75.488756, image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp", 
     location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
