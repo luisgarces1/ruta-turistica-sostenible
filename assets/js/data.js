@@ -1,9 +1,23 @@
-// assets/js/data.js con descripciones largas restauradas
+/**
+ * ============================================================================
+ * ARCHIVO PRINCIPAL DE DATOS - RUTA TURÍSTICA SOSTENIBLE
+ * ============================================================================
+ * Este archivo contiene toda la información de los puntos turísticos y las 
+ * categorías que se muestran en el mapa interactivo y en el planificador de rutas.
+ * 
+ * ¿CÓMO AGREGAR UN NUEVO PUNTO?
+ * 1. Ve al final del arreglo `mockData`.
+ * 2. Copia la estructura de un punto existente y pégala al final (separada por coma).
+ * 3. Asegúrate de que el 'id' sea único y el 'category' coincida con uno de 'categories'.
+ * 4. Las coordenadas (lat, lng) se sacan de Google Maps.
+ */
+
+// 1. CONFIGURACIÓN DE CATEGORÍAS (Filtros del panel izquierdo)
+// Si agregas una nueva categoría aquí, aparecerá automáticamente en el menú y en "Rutas".
 const categories = [
   { id: "todas", label: "Ver Todos", icon: "📍", color: "bg-slate-800" },
     { id: "playas", label: "Playas y Costas", icon: "🏖️", color: "bg-cyan-500" },
   { id: "ecoturismo", label: "Parques y Reservas", icon: "🏞️", color: "bg-green-600" },
-  { id: "naturaleza", label: "Turismo de Naturaleza", icon: "🌿", color: "bg-emerald-500" },
   { id: "eventos", label: "Festivales y Eventos", icon: "🎉", color: "bg-fuchsia-500" },
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
   { id: "nauticos", label: "Deportes Náuticos", icon: "🌊", color: "bg-sky-500" },
