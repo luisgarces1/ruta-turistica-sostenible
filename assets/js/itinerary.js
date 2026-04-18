@@ -117,11 +117,6 @@ const ItineraryPlanner = {
             this.resetToMainMap();
         });
 
-        routesBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.open();
-        });
-
         closeBtn.addEventListener('click', () => {
             overlay.classList.add('translate-y-full');
         });
@@ -179,9 +174,10 @@ const ItineraryPlanner = {
                 return;
             }
             const diffDays = Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24)) + 1;
-            if (diffDays > 5) { alert('Soporta hasta 5 días.'); return; }
+            if (diffDays > 100) { alert('Soporta hasta 100 días.'); return; }
             this.generate(diffDays);
             overlay.classList.add('translate-y-full');
+            if (window.showView) window.showView('map');
         });
     },
 
@@ -197,7 +193,7 @@ const ItineraryPlanner = {
         ['step-2', 'step-3'].forEach(id => document.getElementById(id).classList.add('hidden'));
     },
 
-    resetToMainMap() {
+    resetToMainMap(reOpen = false) {
         if (this.routePolyline) {
             map.removeLayer(this.routePolyline);
             this.routePolyline = null;
@@ -207,6 +203,8 @@ const ItineraryPlanner = {
         const filterContainer = document.getElementById('filter-container');
         filterContainer.innerHTML = '';
         renderFilters(); updateFilterUI(); filterMarkers(); closeSidePanel();
+        
+        if (reOpen) this.open();
     },
 
     calculateTravelTime(pointA, pointB) {
@@ -232,7 +230,7 @@ const ItineraryPlanner = {
             if (item.category === 'eventos' && item.title.includes('Fiestas novembrinas')) {
                 if (this.startDate.getMonth() !== 10) return false;
             }
-            return this.selectedInterests.has(item.category);
+            return this.selectedInterests.size === 0 || this.selectedInterests.has(item.category);
         });
 
         if (filtered.length === 0) { alert('Sin coincidencias.'); return; }
@@ -240,11 +238,22 @@ const ItineraryPlanner = {
         if (this.startCity === 'Cartagena') filtered.sort((a,b) => a.lat - b.lat);
         else filtered.sort((a,b) => b.lat - a.lat);
 
-        const selectedPoints = filtered.slice(0, numDays * 4);
         this.fullItinerary = {};
-        const itemsPerDay = Math.ceil(selectedPoints.length / numDays);
+        const totalPointsAvailable = filtered.length;
+        
+        // Nueva lógica: Asegurar que CADA día tenga al menos 3 actividades
+        // Si se acaban los puntos únicos, empezamos a repetir el ciclo para llenar los días
         for (let i = 0; i < numDays; i++) {
-            this.fullItinerary[i + 1] = selectedPoints.slice(i * itemsPerDay, (i + 1) * itemsPerDay);
+            const dayPoints = [];
+            const numPointsToday = 3; // Forzamos 3 por día como mínimo
+            
+            for (let j = 0; j < numPointsToday; j++) {
+                // Usamos el operador módulo (%) para volver al principio de la lista si se agotan
+                const pointIdx = (i * numPointsToday + j) % totalPointsAvailable;
+                dayPoints.push(filtered[pointIdx]);
+            }
+            
+            this.fullItinerary[i + 1] = dayPoints;
         }
 
         this.currentDayView = 1;
@@ -257,7 +266,7 @@ const ItineraryPlanner = {
         const numDays = Object.keys(this.fullItinerary).length;
         let tabsHtml = '';
         for (let i = 1; i <= numDays; i++) {
-            tabsHtml += `<button onclick="ItineraryPlanner.switchDay(${i})" class="flex-1 py-2 text-[10px] font-black tracking-widest rounded-lg transition-all ${i === this.currentDayView ? 'bg-[#004a99] text-white shadow-lg' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'}">DÍA ${i}</button>`;
+            tabsHtml += `<button onclick="ItineraryPlanner.switchDay(${i})" class="flex-shrink-0 snap-center px-5 py-2.5 text-[11px] font-black tracking-widest rounded-lg transition-all ${i === this.currentDayView ? 'bg-[#004a99] text-white shadow-lg' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'}">DÍA ${i}</button>`;
         }
 
         const items = this.fullItinerary[this.currentDayView] || [];
@@ -267,18 +276,18 @@ const ItineraryPlanner = {
         filterContainer.innerHTML = `
             <div class="space-y-6">
                 <div class="flex items-center justify-between border-b pb-4">
-                    <button onclick="ItineraryPlanner.resetToMainMap()" class="text-[10px] font-bold text-gray-400 hover:text-gray-900 flex items-center gap-1 group">
-                        <svg class="w-3 h-3 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg> SALIR
+                    <button onclick="ItineraryPlanner.resetToMainMap(true)" class="text-xs font-black text-gray-400 hover:text-[#004a99] flex items-center gap-2 group transition-colors px-1">
+                        <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> SALIR
                     </button>
-                    <span class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded shadow-sm">INICIO: ${this.startCity.toUpperCase()}</span>
+                    <span class="text-[9px] font-black text-blue-600 bg-blue-50 px-2.1 py-1 rounded shadow-sm border border-blue-100 uppercase">INICIO: ${this.startCity}</span>
                 </div>
-                <div class="flex gap-2 bg-gray-50 p-1 rounded-xl">${tabsHtml}</div>
+                <div id="itinerary-days-container" class="flex gap-2 bg-gray-50 p-1.5 rounded-xl overflow-x-auto snap-x snap-mandatory hide-scrollbar whitespace-nowrap w-full cursor-pointer" style="scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch;">${tabsHtml}</div>
                 <div class="space-y-1">
                     <h3 class="text-xl font-black text-gray-900 italic">Ruta del Día ${this.currentDayView}</h3>
                     <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">${date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
                 </div>
                 <div id="itinerary-list" class="space-y-3">
-                    ${items.map((item, idx) => {
+                    ${items.length > 0 ? items.map((item, idx) => {
                         let prevCoord = idx === 0 ? this.cityCoords[this.startCity] : [items[idx-1].lat, items[idx-1].lng];
                         let time = this.calculateTravelTime(prevCoord, [item.lat, item.lng]);
                         let label = idx === 0 ? `Desde centro de ${this.startCity}` : `Desde punto anterior`;
@@ -299,10 +308,30 @@ const ItineraryPlanner = {
                                 </div>
                             </div>
                         `;
-                    }).join('')}
+                    }).join('') : '<p class="text-xs text-gray-400 italic py-4">No hay más actividades para este día.</p>'}
                 </div>
             </div>
         `;
+
+        // Permitir scroll horizontal con la rueda del ratón y mantener posición
+        setTimeout(() => {
+            const tabsContainer = document.getElementById('itinerary-days-container');
+            if (tabsContainer) {
+                // 1. Centrar el botón activo automáticamente
+                const activeBtn = tabsContainer.querySelector('button.text-white');
+                if (activeBtn) {
+                    activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+
+                // 2. Wheel scroll listener
+                tabsContainer.addEventListener('wheel', (evt) => {
+                    if (evt.deltaY !== 0) {
+                        evt.preventDefault();
+                        tabsContainer.scrollLeft += evt.deltaY * 1.5;
+                    }
+                }, { passive: false });
+            }
+        }, 50);
     },
 
     switchDay(day) {
@@ -313,7 +342,21 @@ const ItineraryPlanner = {
 
     focusPoint(id) {
         const marker = allMarkers.find(m => m.itemData.id === id);
-        if (marker) marker.fire('click');
+        if (marker) {
+            // 1. Disparar el click para abrir el panel
+            marker.fire('click');
+            
+            // 2. Centrar mapa con zoom
+            map.setView(marker.getLatLng(), 14);
+
+            // 3. En móviles, forzar el scroll hacia el mapa
+            setTimeout(() => {
+                const mapElement = document.getElementById('map');
+                if (mapElement) {
+                    mapElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
     },
 
     updateMapForDay(day) {
