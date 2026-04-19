@@ -121,9 +121,14 @@ h2, .font-heading {
 .swiper-slide img {
     display: block;
     width: 100%;
-    height: 400px;
+    height: 250px;
     object-fit: cover;
     border-radius: 1rem;
+}
+@media (min-width: 768px) {
+    .swiper-slide img {
+        height: 400px;
+    }
 }
 .swiper-button-next, .swiper-button-prev {
     color: #004a99;

@@ -25,6 +25,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 const markerGroup = L.featureGroup().addTo(map);
 let allMarkers = [];
 let currentActiveFilter = 'todas';
+let activeMunicipalityContext = null;
 
 // DOM Elements
 const filterContainer = document.getElementById('filter-container');
@@ -269,8 +270,13 @@ function openSidePanel(data) {
 window.closeSidePanel = function () {
     // Slide out
     sidePanel.classList.add('translate-y-full', 'md:translate-x-[120%]');
-    // Reset view to show all markers
-    filterMarkers();
+    // Reset view to show all markers if not in municipality context
+    if (activeMunicipalityContext) {
+        window.showView('municipio-detail');
+        // No reseteamos el filtro de marcadores aquí para que si vuelve al mapa siga viendo los del municipio
+    } else {
+        filterMarkers();
+    }
     // Stop any ongoing narration
     if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
@@ -351,3 +357,250 @@ renderFilters();
 renderMarkers();
 filterMarkers();
 preloadImages();
+
+// 8. Municipios Section Logic
+const municipiosData = [
+    {
+        id: "barranquilla",
+        name: "Barranquilla",
+        image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp",
+        description: "Conocida como la 'Puerta de Oro de Colombia', es una ciudad vibrante donde el río Magdalena se une con el mar Caribe. Cuna de cultura, música y progreso.",
+        pointsIds: [20, 21, 22, 23, 24, 29, 31],
+        routes: {
+            fromBAQ: "Estás en el punto de partida. Comienza explorando el Gran Malecón del Río y la Ciénaga de Mallorquín.",
+            fromCTG: "Toma la Vía al Mar hacia el noreste durante aproximadamente 1 hora y 45 minutos (110-120 km) cruzando el Viaducto El Gran Manglar."
+        }
+    },
+    {
+        id: "puerto-colombia",
+        name: "Puerto Colombia",
+        image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp",
+        description: "Un municipio cargado de historia, hogar del muelle por donde entró el progreso al país. Ofrece una mezcla única de patrimonio arquitectónico y playas encantadoras.",
+        pointsIds: [6, 7, 8, 9, 10, 26, 42, 43, 44, 59],
+        routes: {
+            fromBAQ: "A solo 15 minutos de Barranquilla por la Vía al Mar o la Autopista Norte.",
+            fromCTG: "Toma la Vía al Mar hacia Barranquilla; Puerto Colombia está justo antes de llegar a la ciudad, a unos 90 minutos de Cartagena."
+        }
+    },
+    {
+        id: "tubara",
+        name: "Tubará",
+        image: "assets/images/puntos/foto-principal-para-la-pagina-m.t..webp",
+        description: "Tierra de ancestros Mokaná, donde las montañas se encuentran con el mar. Ofrece miradores espectaculares y playas tranquilas como Puerto Velero.",
+        pointsIds: [15, 27, 28, 45, 46, 60, 61],
+        routes: {
+            fromBAQ: "A unos 30-40 minutos por la Vía al Mar hacia el sur.",
+            fromCTG: "Aproximadamente a 1 hora y 15 minutos por la Vía al Mar hacia el norte."
+        }
+    },
+    {
+        id: "juan-de-acosta",
+        name: "Juan de Acosta",
+        image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp",
+        description: "Famoso por sus vientos constantes ideales para el Kitesurf en Salinas del Rey y la tranquilidad de sus playas como Santa Verónica.",
+        pointsIds: [11, 12, 13, 14, 33],
+        routes: {
+            fromBAQ: "A unos 45 minutos por la Vía al Mar.",
+            fromCTG: "A unos 60 minutos por la Vía al Mar."
+        }
+    },
+    {
+        id: "piojo",
+        name: "Piojó",
+        image: "assets/images/puntos/foto-principal-l.v.webp",
+        description: "El punto más alto del Atlántico, un destino de naturaleza pura, bosques secos y vistas panorámicas inigualables desde el Cerro La Vieja.",
+        pointsIds: [3, 4, 5, 40, 41, 57, 58],
+        routes: {
+            fromBAQ: "A 1 hora por la Vía al Mar, tomando el desvío hacia el interior.",
+            fromCTG: "A unos 50 minutos por la Vía al Mar, entrando por la vía a Piojó."
+        }
+    },
+    {
+        id: "santa-catalina",
+        name: "Santa Catalina",
+        image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp",
+        description: "Hogar del famoso Volcán del Totumo y las Salinas de Galerazamba (Mar Rosado). Un encuentro mágico entre la geología y el mar.",
+        pointsIds: [1, 2, 25, 39, 55, 56],
+        routes: {
+            fromBAQ: "A unos 50-60 minutos por la Vía al Mar hacia el sur.",
+            fromCTG: "A unos 40-50 minutos por la Vía al Mar hacia el norte."
+        }
+    },
+    {
+        id: "cartagena",
+        name: "Cartagena",
+        image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp",
+        description: "La joya de la corona, una ciudad amurallada que respira historia colonial en cada esquina, rodeada de lagunas, manglares y playas modernas.",
+        pointsIds: [30, 32, 34, 35, 36, 37, 53, 54],
+        routes: {
+            fromBAQ: "Toma la Vía al Mar hacia el suroeste durante aproximadamente 1 hora y 45 minutos.",
+            fromCTG: "Estás en el punto de partida. Explora el Centro Histórico, Manga y el nuevo Viaducto."
+        }
+    }
+];
+
+function renderMunicipiosGrid() {
+    const grid = document.getElementById('municipios-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    municipiosData.forEach(muni => {
+        const card = document.createElement('div');
+        card.className = "group relative h-80 rounded-[2rem] overflow-hidden shadow-xl cursor-pointer transition-all hover:-translate-y-2";
+        card.onclick = () => showMunicipioDetail(muni.id);
+        
+        card.innerHTML = `
+            <img src="${muni.image}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="${muni.name}">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <p class="text-[10px] font-black text-blue-300 uppercase tracking-widest mb-1">Municipio</p>
+                <h3 class="text-2xl font-black text-white uppercase tracking-tight leading-none">${muni.name}</h3>
+                <div class="mt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="text-white/70 text-[11px] font-medium">Ver ruta y sitios</span>
+                    <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+function showMunicipioDetail(muniId) {
+    const muni = municipiosData.find(m => m.id === muniId);
+    if (!muni) return;
+
+    const detailView = document.getElementById('municipio-detail-view');
+    const content = document.getElementById('municipio-detail-content');
+    
+    // Set municipality context
+    activeMunicipalityContext = muniId;
+    
+    // Get points for this municipality
+    const muniPoints = mockData.filter(p => muni.pointsIds.includes(p.id));
+
+    content.innerHTML = `
+        <div class="relative h-[40vh] md:h-[50vh] w-full">
+            <img src="${muni.image}" class="w-full h-full object-cover" alt="${muni.name}">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+            <button onclick="window.showView('municipios')" class="absolute top-6 left-6 bg-white/80 backdrop-blur-md p-3 rounded-full text-gray-900 shadow-xl z-20 hover:bg-white transition-all">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 -mt-32 relative z-10 pb-20">
+            <div class="bg-white rounded-[3rem] shadow-2xl p-8 md:p-12 border border-gray-100">
+                <h1 class="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter mb-6">${muni.name}</h1>
+                <p class="text-xl text-gray-600 leading-relaxed mb-10 font-medium">
+                    ${muni.description}
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-blue-50 rounded-3xl p-6 border border-blue-100">
+                        <h4 class="text-[#004a99] font-black uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-car"></i> Desde Barranquilla
+                        </h4>
+                        <p class="text-gray-700 text-sm leading-relaxed">${muni.routes.fromBAQ}</p>
+                    </div>
+                    <div class="bg-emerald-50 rounded-3xl p-6 border border-emerald-100">
+                        <h4 class="text-emerald-700 font-black uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-car"></i> Desde Cartagena
+                        </h4>
+                        <p class="text-gray-700 text-sm leading-relaxed">${muni.routes.fromCTG}</p>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-2xl font-black text-gray-900 uppercase tracking-tight mb-6">Puntos de Interés</h3>
+                    <div class="space-y-4">
+                        ${muniPoints.map(point => `
+                            <div class="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all cursor-pointer group" onclick="window.showPointOnMap(${point.id})">
+                                <img src="${point.image}" class="w-20 h-20 rounded-xl object-cover shadow-md" alt="${point.title}">
+                                <div class="flex-1">
+                                    <h5 class="font-bold text-gray-900 group-hover:text-[#004a99] transition-colors">${point.title}</h5>
+                                    <p class="text-xs text-gray-500 line-clamp-2 mt-1">${point.description}</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-blue-500 transition-all mr-2"></i>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <button onclick="window.showMunicipioPointsOnMap('${muni.id}')" class="w-full bg-[#004a99] text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3 hover:shadow-2xl hover:shadow-blue-900/40 transition-all uppercase tracking-widest text-sm">
+                    Ver todos en el mapa interactivo
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </button>
+            </div>
+        </div>
+    `;
+
+    window.showView('municipio-detail');
+}
+
+window.showPointOnMap = function(pointId, fromMunicipio = true) {
+    const point = mockData.find(p => p.id === pointId);
+    if (!point) return;
+
+    if (fromMunicipio) {
+        // Marcamos que venimos de un municipio pero no cambiamos el contexto actual
+    } else {
+        activeMunicipalityContext = null;
+    }
+
+    window.showView('map');
+    
+    // Find the marker
+    const marker = allMarkers.find(m => m.itemData.id === pointId);
+    if (marker) {
+        setTimeout(() => {
+            map.flyTo([point.lat, point.lng], 15, { duration: 1.5 });
+            marker.fire('click');
+        }, 500);
+    }
+}
+
+window.showMunicipioPointsOnMap = function(muniId) {
+    const muni = municipiosData.find(m => m.id === muniId);
+    if (!muni) return;
+
+    activeMunicipalityContext = muniId;
+    window.showView('map');
+    if (window.closeSidePanel) window.closeSidePanel();
+
+    // Desactivar filtros previos
+    currentActiveFilter = 'todas';
+    updateFilterUI();
+
+    // Filtrar marcadores para mostrar solo los de este municipio
+    allMarkers.forEach(marker => {
+        if (muni.pointsIds.includes(marker.itemData.id)) {
+            if (!markerGroup.hasLayer(marker)) markerGroup.addLayer(marker);
+        } else {
+            if (markerGroup.hasLayer(marker)) markerGroup.removeLayer(marker);
+        }
+    });
+
+    if (Object.keys(markerGroup._layers).length > 0) {
+        setTimeout(() => {
+            map.flyToBounds(markerGroup.getBounds(), { padding: [80, 80], maxZoom: 12, duration: 1.5 });
+        }, 500);
+    }
+}
+
+window.resetMunicipalityContext = function() {
+    activeMunicipalityContext = null;
+}
+
+// Initializers
+renderMunicipiosGrid();
+
+// Event listener for the card in routes view
+document.addEventListener('DOMContentLoaded', () => {
+    const cardMuni = document.getElementById('route-card-municipios');
+    if (cardMuni) {
+        cardMuni.addEventListener('click', () => {
+            window.showView('municipios');
+        });
+    }
+});

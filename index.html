@@ -337,7 +337,7 @@
                 <!-- Top Map Section -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     <!-- Sidebar / Filters Card -->
-                    <aside class="lg:col-span-4 bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-[600px] border border-gray-100">
+                    <aside class="lg:col-span-4 bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-[450px] md:h-[600px] border border-gray-100">
                         <div class="px-6 py-5 border-b border-gray-50 bg-white">
                             <h3 class="text-xl font-bold text-[#004a99]">Puntos de Interés</h3>
                             <p class="text-xs text-gray-400 mt-1">Explora nuestra ruta turística</p>
@@ -348,7 +348,7 @@
                     </aside>
 
                     <!-- Map Card -->
-                    <section class="lg:col-span-8 bg-white rounded-2xl shadow-lg overflow-hidden h-[600px] relative border border-gray-100">
+                    <section class="lg:col-span-8 bg-white rounded-2xl shadow-lg overflow-hidden h-[450px] md:h-[600px] relative border border-gray-100">
                         <div id="map" class="w-full h-full z-0"></div>
                         <!-- Side Panel / Details Popup -->
                         <div id="side-panel" class="absolute z-40 top-auto bottom-0 inset-x-0 md:inset-auto md:top-4 md:bottom-4 md:right-4 md:w-[410px] glass-panel rounded-t-3xl md:rounded-2xl shadow-2xl transform translate-y-full md:translate-y-0 md:translate-x-[120%] transition-transform duration-[400ms] ease-out flex flex-col h-[75%] md:h-auto md:max-h-[calc(100%-2rem)] pointer-events-auto border border-white/50">
@@ -389,50 +389,84 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     <!-- card 1 (Planifica tu viaje) -->
-                    <div id="route-card-planifica" class="group relative h-72 md:h-80 rounded-[2.5rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 hover:shadow-brand-500/20">
+                    <div id="route-card-planifica" class="group relative h-72 md:h-80 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 hover:shadow-brand-500/20">
                         <img src="assets/images/puntos/ecoparque-mallorquin.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Planifica tu viaje">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/40 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <h4 class="text-2xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight">Planifica tu viaje</h4>
+                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
+                            <h4 class="text-xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight">Planifica tu viaje</h4>
                             <div class="flex items-center justify-between mt-4">
-                                <span class="bg-yellow-400 text-brand-900 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Comenzar</span>
-                                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-brand-900 transition-all duration-300">
-                                    <i class="fa-solid fa-arrow-right"></i>
+                                <span class="bg-yellow-400 text-brand-900 px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest shadow-lg">Comenzar</span>
+                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-brand-900 transition-all duration-300">
+                                    <i class="fa-solid fa-arrow-right text-sm md:text-base"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- card 2 (Ruta existente) -->
-                    <div class="group relative h-72 md:h-80 rounded-[2.5rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 grayscale-[0.3] hover:grayscale-0">
-                        <img src="assets/images/puntos/enyucate.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Ruta existente">
+                    <div class="group relative h-72 md:h-80 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 grayscale-[0.3] hover:grayscale-0">
+                        <img src="assets/images/puntos/enyucate.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Rutas existentes">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <h4 class="text-2xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight">Ruta existente</h4>
+                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
+                            <h4 class="text-xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight">Rutas existentes</h4>
                             <div class="flex items-center justify-between mt-4">
-                                <span class="bg-white/10 text-white/50 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">Muy pronto</span>
-                                <div class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white/40">
-                                    <i class="fa-solid fa-lock text-sm"></i>
+                                <span class="bg-white/10 text-white/50 backdrop-blur-md px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest border border-white/20">Muy pronto</span>
+                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white/40">
+                                    <i class="fa-solid fa-lock text-xs md:text-sm"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- card 3 (Ruta turística por los municipios del corredor vial) -->
-                    <div class="group relative h-72 md:h-80 md:col-span-2 rounded-[3rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 grayscale-[0.3] hover:grayscale-0">
+                    <div id="route-card-municipios" class="group relative h-80 md:h-80 md:col-span-2 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 grayscale-[0.3] hover:grayscale-0">
                         <img src="assets/images/puntos/foto-principal-para-la-pagina-g.m.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Ruta municipal">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#004a99]/90 via-[#004a99]/30 to-transparent"></div>
-                        <div class="absolute bottom-10 left-10 right-10">
-                            <h4 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight leading-none mb-2">Ruta turística por los municipios del corredor vial</h4>
-                            <div class="flex items-center justify-between mt-6">
-                                <span class="bg-white/10 text-white/50 backdrop-blur-md px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-widest border border-white/20">Expandiendo horizontes</span>
-                                <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white/40">
-                                    <i class="fa-solid fa-map-location-dot text-xl"></i>
+                        <div class="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10">
+                            <h4 class="text-2xl md:text-4xl font-black text-white uppercase tracking-tight leading-tight md:leading-none mb-2">Ruta turística por los municipios del corredor vial</h4>
+                            <div class="flex items-center justify-between mt-4 md:mt-6">
+                                <span class="bg-white/10 text-white/50 backdrop-blur-md px-4 py-2 md:px-5 md:py-2 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-widest border border-white/20">Expandiendo horizontes</span>
+                                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white/40">
+                                    <i class="fa-solid fa-map-location-dot text-lg md:text-xl"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Municipios Selection View (Initially Hidden) -->
+        <div id="municipios-selection-view" class="hidden flex-1 overflow-y-auto bg-white">
+            <!-- Hero Section -->
+            <div class="relative h-[50vh] min-h-[400px] w-full flex items-center justify-center overflow-hidden">
+                <img src="assets/images/municipios-hero.png" class="absolute inset-0 w-full h-full object-cover scale-110 blur-sm" alt="Hero Background">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-white"></div>
+                <div class="relative z-10 text-center px-6 max-w-4xl pt-12 md:pt-0">
+                    <button onclick="window.showView('routes')" class="inline-flex items-center gap-2 text-[#004a99] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Volver a Rutas
+                    </button>
+                    <h2 class="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-tight md:leading-none">
+                        Nuestros <span class="text-blue-300">Municipios</span>
+                    </h2>
+                    <p class="text-white/90 mt-4 md:mt-6 text-sm md:text-xl font-bold leading-relaxed drop-shadow-lg">
+                        Explora la riqueza cultural, gastronómica y natural de las 7 joyas del corredor vial entre Cartagena y Barranquilla.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="municipios-grid">
+                    <!-- Municipios cards will be injected here via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Municipio Detail View (Initially Hidden) -->
+        <div id="municipio-detail-view" class="hidden flex-1 overflow-y-auto bg-white">
+            <div id="municipio-detail-content">
+                <!-- Data injected via JS -->
             </div>
         </div>
     </main>
@@ -590,23 +624,40 @@
         function showView(viewName) {
             const mainMapView = document.getElementById('main-map-view');
             const routesSelectionView = document.getElementById('routes-selection-view');
+            const municipiosSelectionView = document.getElementById('municipios-selection-view');
+            const municipioDetailView = document.getElementById('municipio-detail-view');
+            
+            // Hide all views first
+            mainMapView.classList.add('hidden');
+            routesSelectionView.classList.add('hidden');
+            municipiosSelectionView.classList.add('hidden');
+            municipioDetailView.classList.add('hidden');
             
             if (viewName === 'map') {
                 mainMapView.classList.remove('hidden');
-                routesSelectionView.classList.add('hidden');
                 document.getElementById('mapa-link').classList.add('text-blue-200');
                 document.getElementById('rutas-link').classList.remove('text-blue-200');
             } else if (viewName === 'routes') {
-                mainMapView.classList.add('hidden');
                 routesSelectionView.classList.remove('hidden');
                 document.getElementById('rutas-link').classList.add('text-blue-200');
                 document.getElementById('mapa-link').classList.remove('text-blue-200');
+            } else if (viewName === 'municipios') {
+                municipiosSelectionView.classList.remove('hidden');
+                document.getElementById('rutas-link').classList.add('text-blue-200');
+                document.getElementById('mapa-link').classList.remove('text-blue-200');
+            } else if (viewName === 'municipio-detail') {
+                municipioDetailView.classList.remove('hidden');
+                document.getElementById('rutas-link').classList.add('text-blue-200');
+                document.getElementById('mapa-link').classList.remove('text-blue-200');
             }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         window.showView = showView; // Make it global
 
         document.getElementById('mapa-link').addEventListener('click', (e) => {
             e.preventDefault();
+            if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             showView('map');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (window.ItineraryPlanner) {
@@ -616,12 +667,14 @@
 
         document.getElementById('rutas-link').addEventListener('click', (e) => {
             e.preventDefault();
+            if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             showView('routes');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         document.getElementById('mobile-mapa-link').addEventListener('click', (e) => {
             e.preventDefault();
+            if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             toggleMenu(false);
             showView('map');
             if (window.ItineraryPlanner) {
@@ -631,6 +684,7 @@
 
         document.getElementById('mobile-rutas-link').addEventListener('click', (e) => {
             e.preventDefault();
+            if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             toggleMenu(false);
             showView('routes');
         });
