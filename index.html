@@ -149,45 +149,144 @@
             flex: 0 0 18px;
         }
 
+        /* Footer Styles - Detailed and Institutional */
+        .footer {
+            background: #004a99; /* Institutional Blue */
+            color: white;
+            padding: 100px 0 30px 0; /* More top padding for the wave */
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+
+        /* Essential Wave Divider */
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: -1px; /* Align with top */
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,149.3C672,149,768,203,864,218.7C960,235,1056,213,1152,181.3C1248,150,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            z-index: 10;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 40px;
+        }
+
+        .footer h4 {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .footer p, .footer a {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer .stack {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer .pill-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
         .footer .pillFooter {
-            height: 44px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, .28);
-            background: rgba(255, 255, 255, .10);
+            height: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 0 16px;
-            font-weight: 800;
-            width: max-content;
-            max-width: 100%;
+            gap: 15px;
+            padding: 0 20px;
+            font-weight: 700;
+            font-size: 13px;
+            width: fit-content;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .footer .pillFooter i {
+            font-size: 16px;
         }
 
         .footer .pillFooter:hover {
-            background: rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
             text-decoration: none;
         }
 
-        .footer .footerBrand {
+        .footer .icon-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .footer .icon-btn {
+            width: 38px;
+            height: 38px;
+            background: white;
+            color: #004a99;
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: transform 0.3s, background 0.3s;
         }
 
-        .footer .footerBrand__logo {
-            height: 54px;
-            width: auto;
-            display: block;
-            object-fit: contain;
+        .footer .icon-btn:hover {
+            transform: scale(1.1);
+            background: #e6f0ff;
+            text-decoration: none;
         }
 
-        @media (max-width: 980px) {
+        .footerBrand__logo {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .footer__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 640px) {
             .footer__grid {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                text-align: center;
             }
-
-            .footer .footerBrand__logo {
-                height: 46px;
+            .footer .pillFooter {
+                margin: 0 auto;
+            }
+            .footer .icon-links {
+                justify-content: center;
             }
         }
     </style>
@@ -206,7 +305,7 @@
 <body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col relative">
 
     <!-- Header section - Updated to match Ruta Costera branding -->
-    <header class="bg-[#004a99] text-white py-3 shadow-lg relative z-[110]">
+    <header class="bg-[#002a5a] text-white py-3 shadow-lg sticky top-0 z-[110]">
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[150] hidden md:hidden transition-opacity"></div>
         
@@ -478,90 +577,73 @@
 
     <!-- Footer Original Ruta Costera -->
     <footer class="footer">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="footer__grid">
+                <!-- Column 1: Logo and Pills -->
                 <div class="stack">
-                    <div aria-label="Ruta Costera | ISA Vías" class="footerBrand">
-                        <img alt="Ruta Costera | ISA Vías" class="footerBrand__logo"
-                            src="https://res.cloudinary.com/doj2ayyy9/image/upload/RUTA-COSTERA-logotipo-blanco-sobre-azul-RGB_zxhs9l.svg" />
-                    </div>
+                    <img alt="Ruta Costera | ISA Vías" class="footerBrand__logo"
+                        src="https://res.cloudinary.com/doj2ayyy9/image/upload/RUTA-COSTERA-logotipo-blanco-sobre-azul-RGB_zxhs9l.svg" />
+                    
                     <div class="pill-actions">
-                        <a class="pillFooter" href="https://www.rutacostera.co/proveedores/" rel="noopener"
-                            target="_blank">
-                            <i aria-hidden="true" class="fas fa-truck"></i>
+                        <a class="pillFooter" href="https://www.rutacostera.co/proveedores/" rel="noopener" target="_blank">
+                            <i class="fas fa-truck"></i>
                             <span>Proveedores</span>
                         </a>
-                        <a class="pillFooter" href="https://www.rutacostera.co/quienes-somos/linea-etica/"
-                            rel="noopener" target="_blank">
-                            <i aria-hidden="true" class="fas fa-shield-alt"></i>
+                        <a class="pillFooter" href="https://www.rutacostera.co/quienes-somos/linea-etica/" rel="noopener" target="_blank">
+                            <i class="fas fa-balance-scale"></i>
                             <span>Línea Ética</span>
                         </a>
-                        <a class="pillFooter" href="https://www.rutacostera.co/comunidad/notificaciones-por-aviso/"
-                            rel="noopener" target="_blank">
-                            <i aria-hidden="true" class="fas fa-bell"></i>
+                        <a class="pillFooter" href="https://www.rutacostera.co/comunidad/notificaciones-por-aviso/" rel="noopener" target="_blank">
+                            <i class="fas fa-file-alt"></i>
                             <span>Notificaciones por aviso</span>
                         </a>
                     </div>
                 </div>
+
+                <!-- Column 2: Administrative -->
                 <div class="stack">
                     <h4>Sede administrativa</h4>
                     <p>Carrera 24 No. 1A – 24 Oficina 1702<br />
-                        Edificio BC Empresarial, Puerto Colombia<br />
-                        Tel: 321 973 8494
+                       Edificio BC Empresarial, Puerto Colombia<br />
+                       <strong>Tel:</strong> 321 973 8494
                     </p>
-                    <div style="height:8px"></div>
-                    <h4>Oficina de atención al usuario</h4>
-                    <p>Área de Servicio Juan Mina – K25+200<br />
-                        Circunvalar de la Prosperidad<br />
-                        Tel: 321 226 5650
-                    </p>
-                </div>
-                <div class="stack">
-                    <h4>Atención a emergencias</h4>
-                    <p>📞 311 480 3629</p>
-                    <p>📞 018000 977330</p>
-                    <div style="height:10px"></div>
-                    <h4>Más sobre nosotros</h4>
-                    <div class="stack" style="gap:8px">
-                        <a href="https://www.rutacostera.co/peajes/" rel="noopener" target="_blank">• Peajes</a>
-                        <a href="https://www.rutacostera.co/conoce-la-ruta/" rel="noopener" target="_blank">• Mapa de la
-                            ruta</a>
-                        <a href="https://www.rutacostera.co/trabaja-con-nosotros/" rel="noopener" target="_blank">•
-                            Trabaja con nosotros</a>
-                        <a href="https://www.rutacostera.co/quienes-somos/isa/" rel="noopener" target="_blank">• Sobre
-                            ISA</a>
-                        <a href="https://www.rutacostera.co/contacto/" rel="noopener" target="_blank">• Contáctanos</a>
+                    <div class="mt-4">
+                        <h4>Atención al usuario</h4>
+                        <p>Área de Servicio Juan Mina – K25+200<br />
+                           Circunvalar de la Prosperidad<br />
+                           <strong>Tel:</strong> 321 226 5650
+                        </p>
                     </div>
                 </div>
+
+                <!-- Column 3: Emergencies & Links -->
+                <div class="stack">
+                    <h4>Atención a emergencias</h4>
+                    <p class="font-bold text-lg">311 480 3629</p>
+                    <p class="font-bold text-lg">018000 977330</p>
+                    
+                    <div class="mt-4">
+                        <h4>Más sobre nosotros</h4>
+                        <div class="flex flex-col gap-2">
+                            <a href="https://www.rutacostera.co/peajes/">Peajes</a>
+                            <a href="https://www.rutacostera.co/conoce-la-ruta/">Mapa de la ruta</a>
+                            <a href="https://www.rutacostera.co/trabaja-con-nosotros/">Trabaja con nosotros</a>
+                            <a href="https://www.rutacostera.co/quienes-somos/isa/">Sobre ISA</a>
+                            <a href="https://www.rutacostera.co/contacto/">Contáctanos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 4: Social Media -->
                 <div class="stack">
                     <h4>Redes sociales</h4>
-                    <div aria-label="Redes sociales y navegación" class="icon-links">
-                        <a aria-label="X" class="icon-btn" href="https://x.com/RutaCostera_" rel="noopener"
-                            target="_blank" title="X">
-                            <i aria-hidden="true" class="fab fa-twitter"></i>
-                        </a>
-                        <a aria-label="Instagram" class="icon-btn" href="https://www.instagram.com/rutacostera_/"
-                            rel="noopener" target="_blank" title="Instagram">
-                            <i aria-hidden="true" class="fab fa-instagram"></i>
-                        </a>
-                        <a aria-label="Facebook" class="icon-btn" href="https://www.facebook.com/RutaCosteraCaba/"
-                            rel="noopener" target="_blank" title="Facebook">
-                            <i aria-hidden="true" class="fab fa-facebook-f"></i>
-                        </a>
-                        <a aria-label="LinkedIn" class="icon-btn"
-                            href="https://www.linkedin.com/company/ruta-costera-isa/" rel="noopener" target="_blank"
-                            title="LinkedIn">
-                            <i aria-hidden="true" class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a aria-label="YouTube" class="icon-btn" href="https://www.youtube.com/@rutacostera_"
-                            rel="noopener" target="_blank" title="YouTube">
-                            <i aria-hidden="true" class="fab fa-youtube"></i>
-                        </a>
-                        <a aria-label="Waze" class="icon-btn"
-                            href="https://www.waze.com/es-419/live-map/directions?navigate=yes&amp;utm_campaign=waze_website&amp;utm_source=waze_website&amp;utm_medium=lm_share_location&amp;to=ll.10.96550269%2C-75.00443191"
-                            rel="noopener" target="_blank" title="Waze">
-                            <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
-                        </a>
+                    <div class="icon-links">
+                        <a href="https://x.com/RutaCostera_" target="_blank" class="icon-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/rutacostera_/" target="_blank" class="icon-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/RutaCosteraCaba/" target="_blank" class="icon-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/ruta-costera-isa/" target="_blank" class="icon-btn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@rutacostera_" target="_blank" class="icon-btn"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.waze.com/" target="_blank" class="icon-btn"><i class="fab fa-waze"></i></a>
                     </div>
                 </div>
             </div>
