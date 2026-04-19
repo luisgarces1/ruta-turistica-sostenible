@@ -227,8 +227,11 @@ const ItineraryPlanner = {
 
     generate(numDays) {
         let filtered = mockData.filter(item => {
-            if (item.category === 'eventos' && item.title.includes('Fiestas novembrinas')) {
-                if (this.startDate.getMonth() !== 10) return false;
+            // Si el ítem tiene un mes de evento definido (festivales), validar que coincida con el viaje
+            if (item.eventMonth !== undefined) {
+                const startM = this.startDate.getMonth();
+                const endM = this.endDate.getMonth();
+                if (startM !== item.eventMonth && endM !== item.eventMonth) return false;
             }
             return this.selectedInterests.size === 0 || this.selectedInterests.has(item.category);
         });

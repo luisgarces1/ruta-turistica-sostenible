@@ -31,10 +31,20 @@ const filterContainer = document.getElementById('filter-container');
 const sidePanel = document.getElementById('side-panel');
 
 // 1. Render Filter Buttons
-function renderFilters() {
-    categories.forEach(cat => {
+function renderFilters(targetCategories = categories, isSubmenu = false) {
+    filterContainer.innerHTML = '';
+
+    if (isSubmenu) {
+        const backBtn = document.createElement('button');
+        backBtn.className = "flex items-center gap-2 text-[10px] font-black text-gray-400 hover:text-brand-600 mb-4 transition-all group px-2 uppercase tracking-widest";
+        backBtn.innerHTML = `<i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Volver al menú`;
+        backBtn.onclick = () => renderFilters(categories, false);
+        filterContainer.appendChild(backBtn);
+    }
+
+    targetCategories.forEach(cat => {
         const btn = document.createElement('button');
-        btn.className = `filter-btn w-full text-left px-4 py-3 rounded-2xl transition-all duration-500 flex items-center justify-between border group ${cat.id === 'todas'
+        btn.className = `filter-btn w-full text-left px-4 py-3 rounded-2xl transition-all duration-500 flex items-center justify-between border group ${cat.id === currentActiveFilter
             ? 'glass-card border-brand-200/50 shadow-md translate-x-1'
             : 'bg-white/50 border-transparent hover:bg-white hover:shadow-sm'
             }`;
@@ -44,11 +54,11 @@ function renderFilters() {
             <div class="flex items-center gap-4">
                 <span class="flex items-center justify-center w-10 h-10 rounded-xl ${cat.color} text-white text-base shadow-lg shadow-${cat.color.split('-')[1]}-500/20 group-hover:scale-110 transition-transform duration-500">${cat.icon}</span>
                 <div class="flex flex-col">
-                    <span class="font-bold text-[14px] ${cat.id === 'todas' ? 'text-brand-900' : 'text-gray-600 group-hover:text-gray-900'}">${cat.label}</span>
-                    <span class="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">Explorar sitios</span>
+                    <span class="font-bold text-[14px] ${cat.id === currentActiveFilter ? 'text-brand-900' : 'text-gray-600 group-hover:text-gray-900'}">${cat.label}</span>
+                    <span class="text-[10px] text-gray-400 font-medium uppercase tracking-tighter">${cat.subcategories ? 'Ver subcategorías' : 'Explorar sitios'}</span>
                 </div>
             </div>
-            <div class="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${cat.id === 'todas' ? 'bg-brand-500 text-white' : 'bg-gray-100 text-transparent'}">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${cat.id === currentActiveFilter ? 'bg-brand-500 text-white' : 'bg-gray-100 text-transparent'}">
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" />
                 </svg>
@@ -56,10 +66,17 @@ function renderFilters() {
         `;
 
         btn.addEventListener('click', () => {
-            currentActiveFilter = cat.id;
-            updateFilterUI();
-            filterMarkers();
-            closeSidePanel();
+            if (cat.subcategories) {
+                renderFilters(cat.subcategories, true);
+                // Also optionally filter markers by ALL subcategories
+                currentActiveFilter = cat.id;
+                filterMarkers();
+            } else {
+                currentActiveFilter = cat.id;
+                updateFilterUI();
+                filterMarkers();
+                closeSidePanel();
+            }
         });
 
         filterContainer.appendChild(btn);
@@ -91,7 +108,20 @@ function updateFilterUI() {
 
 // 2. Custom Icons
 function getMarkerIcon(categoryStr) {
-    const catData = categories.find(c => c.id === categoryStr) || categories[0];
+    let catData = categories.find(c => c.id === categoryStr);
+    
+    // Buscar en subcategorías si no está en el nivel principal
+    if (!catData) {
+        categories.forEach(parent => {
+            if (parent.subcategories) {
+                const sub = parent.subcategories.find(s => s.id === categoryStr);
+                if (sub) catData = sub;
+            }
+        });
+    }
+
+    catData = catData || categories[0];
+
     return L.divIcon({
         className: 'custom-div-icon bg-transparent border-none',
         html: `<div class="${catData.color} w-7 h-7 rounded-full flex items-center justify-center text-white shadow-[0_4px_10px_rgba(0,0,0,0.3)] border-[2px] border-white text-xs transform transition-transform duration-300 hover:scale-110 hover:shadow-xl">${catData.icon}</div>`,
@@ -134,7 +164,17 @@ function filterMarkers() {
     }
 
     allMarkers.forEach(marker => {
-        if (currentActiveFilter === 'todas' || marker.itemData.category === currentActiveFilter) {
+        let isVisible = currentActiveFilter === 'todas' || marker.itemData.category === currentActiveFilter;
+
+        // Soporte para selección de categoría padre (Naturaleza)
+        const activeCat = categories.find(c => c.id === currentActiveFilter);
+        if (activeCat && activeCat.subcategories) {
+            if (activeCat.subcategories.find(sub => sub.id === marker.itemData.category)) {
+                isVisible = true;
+            }
+        }
+
+        if (isVisible) {
             if (!markerGroup.hasLayer(marker)) markerGroup.addLayer(marker);
         } else {
             if (markerGroup.hasLayer(marker)) markerGroup.removeLayer(marker);

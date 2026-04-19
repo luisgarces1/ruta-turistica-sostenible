@@ -16,11 +16,19 @@
 // Si agregas una nueva categoría aquí, aparecerá automáticamente en el menú y en "Rutas".
 const categories = [
   { id: "todas", label: "Ver Todos", icon: "📍", color: "bg-slate-800" },
-    { id: "playas", label: "Playas y Costas", icon: "🏖️", color: "bg-cyan-500" },
-  { id: "ecoturismo", label: "Parques y Reservas", icon: "🏞️", color: "bg-green-600" },
+  { 
+    id: "naturaleza", 
+    label: "Turismo de Naturaleza", 
+    icon: "🌿", 
+    color: "bg-emerald-600",
+    subcategories: [
+      { id: "playas", label: "Playas y Costas", icon: "🏖️", color: "bg-cyan-500" },
+      { id: "ecoturismo", label: "Parques y Reservas", icon: "🏞️", color: "bg-green-600" },
+      { id: "nauticos", label: "Deportes Náuticos", icon: "🌊", color: "bg-sky-500" },
+    ]
+  },
   { id: "eventos", label: "Festivales y Eventos", icon: "🎉", color: "bg-fuchsia-500" },
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
-  { id: "nauticos", label: "Deportes Náuticos", icon: "🌊", color: "bg-sky-500" },
   { id: "gastronomia", label: "Placeres Gastronómicos", icon: "🥘", color: "bg-orange-500" },
   { id: "infraestructura", label: "Infraestructura del Corredor Vial", icon: "🛣️", color: "bg-blue-600" },
   { id: "otros", label: "Aeropuertos", icon: "✈️", color: "bg-indigo-400" }
@@ -112,7 +120,7 @@ const mockData = [
     tags: ["Deportes náuticos", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 13, category: "cultura", title: "Festival del Millo.", 
+    id: 13, eventMonth: 1, category: "cultura", title: "Festival del Millo.", 
     description: "Una de las fiestas más emblemáticas del Atlántico que celebra la herencia agrícola del municipio de Juan de Acosta. La música de flauta de millo y los bailes tradicionales se toman las calles, creando un ambiente de alegría contagiosa. Es la oportunidad perfecta para saborear productos derivados de este grano y sumergirse en la esencia del folclor costeño en su estado más genuino.", 
     lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp", 
     location: "Juan de Acosta.", hours: "Anual.", price: "Gratuito.", 
@@ -231,7 +239,7 @@ const mockData = [
     tags: ["Comida autóctona"]
   },
   {
-    id: 30, category: "eventos", title: "Fiestas novembrinas de Cartagena.", 
+    id: 30, eventMonth: 10, category: "eventos", title: "Fiestas novembrinas de Cartagena.", 
     description: "La celebración cultural más importante de la ciudad amurallada que conmemora su independencia. Durante una semana, Cartagena se llena de desfiles, comparsas, música folclórica y un ambiente festivo inigualable en cada plaza y callejón. Es el momento donde la identidad africana y caribeña brilla con más fuerza, invitando a propios y turistas a ser parte de una fiesta histórica cargada de color y alegría.", 
     lat: 10.421903, lng: -75.550075, image: "assets/images/puntos/fiestas-novembrinas-de-cartagena.webp", 
     location: "Cartagena.", hours: "Noviembre.", price: "Gratuito.", 
@@ -287,7 +295,7 @@ const mockData = [
     tags: ["Relax en la playa", "Comida autóctona", "Deportes náuticos"]
   },
   {
-    id: 38, category: "eventos", title: "Festival Enyúcate.", 
+    id: 38, eventMonth: 9, category: "eventos", title: "Festival Enyúcate.", 
     description: "Banquete de tradición que celebra la yuca en todas sus formas en el municipio de Malambo. Este festival reúne a cocineros tradicionales y productores locales en una feria llena de sabores, música de gaita y alegría comunitaria. Es una celebración de la seguridad alimentaria y la cultura campesina, donde probar un tradicional enyucado es conectarse directamente con la tierra y el corazón dulce del Atlántico.", 
     lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/enyucate.webp", 
     location: "Malambo.", hours: "Variable.", price: "Gratuito.", 
@@ -301,7 +309,7 @@ const mockData = [
     tags: ["Avistamiento de aves", "Vistas panorámicas"]
   },
   {
-    id: 40, category: "eventos", title: "Festival de la Palma Amarga. ", 
+    id: 40, eventMonth: 5, category: "eventos", title: "Festival de la Palma Amarga. ", 
     description: "El Festival de la Palma Amarga es un tributo vivo al ingenio de las comunidades de Piojó y su armonía con el entorno natural. Celebra el legado de los artesanos y tejedores que transforman la fibra de la palma en piezas únicas y techos que cuentan historias de la cultura. Es una ventana a los saberes ancestrales que han definido la identidad del Caribe. La música de viento y las muestras artesanales, invitan a valorar la importancia de preservar nuestras materias primas y los oficios que dan vida al territorio.", 
     lat: 10.75, lng: -75.108, image: "assets/images/puntos/Festival de la Palma Amarga.webp", 
     location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
@@ -322,14 +330,14 @@ const mockData = [
     tags: ["Religiosos","comunitarios y culturales."]
   },
   {
-    id: 43, category: "cultura", title: "Sirenato de la cumbia. ", 
+    id: 43, eventMonth: 1, category: "cultura", title: "Sirenato de la cumbia. ", 
     description: "Desde 1996, Puerto Colombia vibra al compás del Sirenato de la Cumbia. Tambores, flautas y pasos ancestrales elevan este ritmo que define al caribe colombiano. Más que un festival, es la ceremonia viva donde cada generación renueva su pacto con la cumbia, ritmo del alma y memoria de un pueblo.", 
     lat: 10.989, lng: -74.955, image: "assets/images/puntos/Sirenato de la cumbia.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
   },
   {
-    id: 44, category: "eventos", title: "Festival del Mar y del Turismo. ", 
+    id: 44, eventMonth: 5, category: "eventos", title: "Festival del Mar y del Turismo. ", 
     description: "Desde 2018, Puerto Colombia celebra su vocación costera con este festival que reúne a los municipios del Atlántico. Desfiles, muestras culturales y la elección de la capitanía de los mares hacen de esta fiesta un himno al mar, al liderazgo femenino y al orgullo del corazón azul del departamento.", 
     lat: 10.987, lng: -74.958, image: "assets/images/puntos/Festival del Mar y del Turismo.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
@@ -343,42 +351,42 @@ const mockData = [
     tags: ["Celebraciones religiosas (misas","bautizos","matrimonios","confirmaciones)","atención espiritual y confesiones","actividades comunitarias y pastorales."]
   },
   {
-    id: 46, category: "eventos", title: "Festival de la Yuca y el Totumo. ", 
+    id: 46, eventMonth: 1, category: "eventos", title: "Festival de la Yuca y el Totumo. ", 
     description: "El festival de la yuca y el totumo se realiza el domingo de carnaval, con más de 20 años de existencia, inició con los Mokaná en el mirador de Tubará, con la finalidad de mostar los productos que se cultivan y todas las artesanías que se hace con el totumo.", 
     lat: 10.872, lng: -74.973, image: "assets/images/puntos/Festival de la Yuca y el Totumo.webp", 
     location: "Tubará, Atlántico.", hours: "", price: "", 
     tags: []
   },
   {
-    id: 47, category: "eventos", title: "Festival de la Máscara y el Bejuco. ", 
+    id: 47, eventMonth: 1, category: "eventos", title: "Festival de la Máscara y el Bejuco. ", 
     description: "Eeste festival es la principal cita artesanal de Galapa. Reúne a creadores en bejuco, talla en madera y papel maché, convirtiendo la plaza en un escenario de tradición y creatividad. Es un espacio de exhibición y comercialización que preserva la identidad y las raíces culturales del municipio.", 
     lat: 10.899, lng: -74.886, image: "assets/images/puntos/Festival de la Máscara y el Bejuco.webp", 
     location: "Galapa, Atlántico.", hours: "El evento dura entre 1 y 3 dias.", price: "Gratuito.", 
     tags: ["Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
   },
   {
-    id: 48, category: "eventos", title: "Carnaval de Galapa. ", 
+    id: 48, eventMonth: 1, category: "eventos", title: "Carnaval de Galapa. ", 
     description: "El Carnaval de Galapa es una explosión de color, ritmo y memoria ancestral. Entre tambores, comparsas y danzas, el pueblo celebra su identidad con disfraces que narran historias y preservan sus raíces. Cada desfile refleja una tradición viva que resiste en el tiempo e invita a disfrutar la alegría del caribe colombiano.", 
     lat: 10.898, lng: -74.885, image: "assets/images/puntos/Carnaval de Galapa.webp", 
     location: "Galapa, Atlántico.", hours: "El evento dura entre 8 y 10 dias.", price: "Gratuito.", 
     tags: ["Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
   },
   {
-    id: 49, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe. ", 
+    id: 49, eventMonth: 7, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe. ", 
     description: "El Festival de Decimeros y Bailadores de Cumbia del caribe celebra la oralidad y el folclore regional. Es un espacio de transmisión de saberes y salvaguardia patrimonial que reúne a artistas de Magdalena, Córdoba, Sucre y otros departamentos, fortaleciendo la identidad y preservando las raíces culturales del territorio.", 
     lat: 10.862, lng: -74.774, image: "assets/images/puntos/Festival de Decimeros y Bailadores de Cumbia.webp", 
     location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
     tags: []
   },
   {
-    id: 50, category: "eventos", title: "Festival regional de Bandas Tradicionales. ", 
+    id: 50, eventMonth: 6, category: "eventos", title: "Festival regional de Bandas Tradicionales. ", 
     description: "El Festival de Bandas tradicionales del caribe, en Malambo, celebra la riqueza musical de la región. Reúne agrupaciones de viento y percusión que interpretan porros, cumbias y fandangos. Más que una competencia, es un espacio de encuentro que fortalece la identidad, el talento local y la preservación del patrimonio musical caribeño.", 
     lat: 10.861, lng: -74.773, image: "assets/images/puntos/Festival regional de Bandas Tradicionales.webp", 
     location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
     tags: []
   },
   {
-    id: 51, category: "eventos", title: "Fiestas de Santa María Magdalena.", 
+    id: 51, eventMonth: 6, category: "eventos", title: "Fiestas de Santa María Magdalena.", 
     description: "Las fiestas patronales de Santa María Magdalena son una de las celebraciones más representativas de Malambo. Durante cuatro días reúnen a la comunidad en torno a la fe y la tradición, con actividades culturales, deportivas y religiosas. Incluyen procesiones, muestras folclóricas y presentaciones artísticas que exaltan la herencia cultural y espiritual del municipio.", 
     lat: 10.86, lng: -74.772, image: "assets/images/puntos/Fiestas de Santa María Magdalena.webp", 
     location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
@@ -406,7 +414,7 @@ const mockData = [
     tags: []
   },
   {
-    id: 55, category: "eventos", title: "Fiestas patronales Santa Catalina de Alejandría.", 
+    id: 55, eventMonth: 10, category: "eventos", title: "Fiestas patronales Santa Catalina de Alejandría.", 
     description: "Las fiestas de Santa Catalina de Alejandría fusionan fe y folclor en una celebración que convoca a toda la comunidad. Procesiones, bailes, corridas de toros y la elección de la diosa llenan de color las calles. Una vivencia que celebra la identidad y el espíritu festivo del caribe con devoción y alegría.", 
     lat: 10.605, lng: -75.253, image: "assets/images/puntos/Fiestas patronales Santa Catalina de Alejandría.webp", 
     location: "Santa Catalina, Bolivar.", hours: "El evento dura entre 4 y 7 días.", price: "Gratuito.", 
@@ -420,7 +428,7 @@ const mockData = [
     tags: ["Servicios culturales","recorridos guiados","exhibiciones permanentes","actividades pedagógicas y turismo histórico-patrimonial."]
   },
   {
-    id: 57, category: "eventos", title: "Fiestas patronales de San Antonio de Padua.", 
+    id: 57, eventMonth: 5, category: "eventos", title: "Fiestas patronales de San Antonio de Padua.", 
     description: "Las fiestas de San Antonio de Padua convierten a Piojó en epicentro del folclor caribeño. Bandas papayeras, corralejas, peleas de gallos y la vara de premio llenan de música y emoción sus calles. Una celebración que honra la tradición y reúne a visitantes y locales en torno al patrimonio vivo de la región.", 
     lat: 10.749, lng: -75.107, image: "assets/images/puntos/Fiestas patronales de San Antonio de Padua.webp", 
     location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
@@ -434,7 +442,7 @@ const mockData = [
     tags: ["Hospedaje ecológico","restaurante","acceso directo a la playa","senderismo","entretenimiento nocturno y turismo sostenible."]
   },
   {
-    id: 59, category: "eventos", title: "Festival Internacional de las Tunas Corazonistas.", 
+    id: 59, eventMonth: 10, category: "eventos", title: "Festival Internacional de las Tunas Corazonistas.", 
     description: "Las Tunas Corazonistas transforman Puerto Colombia en escenario de guitarras, capas y serenatas bohemias. Países y regiones se encuentran en este festival donde la música estudiantil se convierte en amistad y memoria. Cada nota es un puente entre culturas; cada edición, una celebración que late en el corazón del caribe.", 
     lat: 10.986, lng: -74.957, image: "assets/images/puntos/Festival Internacional de las Tunas Corazonistas.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
@@ -448,14 +456,14 @@ const mockData = [
     tags: ["Caminatas ecológicas","observación de petroglifos","actividades culturales y espirituales","zonas naturales para descanso."]
   },
   {
-    id: 61, category: "eventos", title: "Carnaval de Tubará.", 
+    id: 61, eventMonth: 1, category: "eventos", title: "Carnaval de Tubará.", 
     description: "El Carnaval de Tubará es un abrazo al son de la cumbia. Esta celebración anual convierte las calles del municipio en un río de colores, danzas y tradición que fluye desde las raíces más profundas del Caribe colombiano. Una fiesta que renueva el vínculo entre la comunidad, su historia y la música que la define.", 
     lat: 10.873, lng: -74.975, image: "assets/images/puntos/Carnaval de Tubará.webp", 
     location: "Tubará, Atlántico.", hours: "", price: "", 
     tags: []
   },
   {
-    id: 62, category: "eventos", title: "Festival intermunicipal del folclore.", 
+    id: 62, eventMonth: 1, category: "eventos", title: "Festival intermunicipal del folclore.", 
     description: "Galapa se convierte en la capital del folclor caribeño con su Gran parada departamental. Tambores, llamadores y flautas de millo acompañan a comparsas que tiñen las calles de color y movimiento. Un encuentro que celebra la riqueza cultural del Atlántico y eleva la tradición como motor del orgullo regional.", 
     lat: 10.897, lng: -74.884, image: "assets/images/puntos/Festival intermunicipal del folclore.webp", 
     location: "Galapa, Atlántico.", hours: "El evento dura 1 día.", price: "Gratuito.", 
