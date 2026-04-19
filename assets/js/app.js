@@ -1,4 +1,7 @@
-// Init Leaflet Map
+/**
+ * Inicialización del Mapa Leaflet
+ * Configura la vista inicial, límites de zoom y controles personalizados.
+ */
 const map = L.map('map', {
     zoomControl: false, // Customizing zoom position
     minZoom: 8, // Prevent zooming out worldwide
@@ -21,7 +24,12 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
     attribution: '&copy; <a href="https://carto.com/">Carto</a>'
 }).addTo(map);
 
-// Groups and State
+/**
+ * Estado Global y Grupos de Marcadores
+ * markerGroup: Grupo de Leaflet para gestionar la visibilidad de los pines.
+ * allMarkers: Arreglo de referencia con todos los objetos marcador creados.
+ * activeMunicipalityContext: Almacena el ID del municipio si se está explorando uno específico.
+ */
 const markerGroup = L.featureGroup().addTo(map);
 let allMarkers = [];
 let currentActiveFilter = 'todas';
@@ -131,7 +139,11 @@ function getMarkerIcon(categoryStr) {
     });
 }
 
-// 3. Render Markers
+/**
+ * Renderizado de Marcadores (Puntos de Interés)
+ * Itera sobre mockData para crear marcadores físicos en el mapa.
+ * Asocia eventos de clic para abrir el panel lateral con información detallada.
+ */
 function renderMarkers() {
     markerGroup.clearLayers();
     allMarkers = [];
@@ -157,6 +169,11 @@ function renderMarkers() {
     });
 }
 
+/**
+ * Lógica de Filtrado de Marcadores
+ * Filtra la visibilidad de los marcadores basándose en la categoría seleccionada
+ * o en el contexto de municipio activo.
+ */
 function filterMarkers() {
     // If we are in Itinerary Mode, let ItineraryPlanner handle it
     if (window.ItineraryPlanner && window.ItineraryPlanner.fullItinerary) {
@@ -538,6 +555,10 @@ function showMunicipioDetail(muniId) {
     window.showView('municipio-detail');
 }
 
+/**
+ * Función para navegar y centrar un punto específico desde una lista.
+ * Utilizada principalmente desde la vista de municipios.
+ */
 window.showPointOnMap = function(pointId, fromMunicipio = true) {
     const point = mockData.find(p => p.id === pointId);
     if (!point) return;
@@ -560,6 +581,10 @@ window.showPointOnMap = function(pointId, fromMunicipio = true) {
     }
 }
 
+/**
+ * Filtra el mapa para mostrar EXCLUSIVAMENTE los puntos de un municipio.
+ * Realiza un zoom fit para encuadrar todos los sitios pertenecientes.
+ */
 window.showMunicipioPointsOnMap = function(muniId) {
     const muni = municipiosData.find(m => m.id === muniId);
     if (!muni) return;
