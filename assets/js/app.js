@@ -378,17 +378,6 @@ preloadImages();
 // 8. Municipios Section Logic
 const municipiosData = [
     {
-        id: "barranquilla",
-        name: "Barranquilla",
-        image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp",
-        description: "Conocida como la 'Puerta de Oro de Colombia', es una ciudad vibrante donde el río Magdalena se une con el mar Caribe. Cuna de cultura, música y progreso.",
-        pointsIds: [20, 21, 22, 23, 24, 29, 31],
-        routes: {
-            fromBAQ: "Estás en el punto de partida. Comienza explorando el Gran Malecón del Río y la Ciénaga de Mallorquín.",
-            fromCTG: "Toma la Vía al Mar hacia el noreste durante aproximadamente 1 hora y 45 minutos (110-120 km) cruzando el Viaducto El Gran Manglar."
-        }
-    },
-    {
         id: "puerto-colombia",
         name: "Puerto Colombia",
         image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp",
@@ -452,6 +441,17 @@ const municipiosData = [
         routes: {
             fromBAQ: "Toma la Vía al Mar hacia el suroeste durante aproximadamente 1 hora y 45 minutos.",
             fromCTG: "Estás en el punto de partida. Explora el Centro Histórico, Manga y el nuevo Viaducto."
+        }
+    },
+    {
+        id: "barranquilla",
+        name: "Barranquilla",
+        image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp",
+        description: "Conocida como la 'Puerta de Oro de Colombia', es una ciudad vibrante donde el río Magdalena se une con el mar Caribe. Cuna de cultura, música y progreso.",
+        pointsIds: [20, 21, 22, 23, 24, 29, 31],
+        routes: {
+            fromBAQ: "Estás en el punto de partida. Comienza explorando el Gran Malecón del Río y la Ciénaga de Mallorquín.",
+            fromCTG: "Toma la Vía al Mar hacia el noreste durante aproximadamente 1 hora y 45 minutos (110-120 km) cruzando el Viaducto El Gran Manglar."
         }
     }
 ];
