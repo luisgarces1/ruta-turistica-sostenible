@@ -267,14 +267,14 @@ function openSidePanel(data) {
     sidePanel.classList.remove('translate-y-full', 'md:translate-x-[120%]');
 }
 
-window.closeSidePanel = function () {
+window.closeSidePanel = function (returnToContext = true) {
     // Slide out
     sidePanel.classList.add('translate-y-full', 'md:translate-x-[120%]');
     // Reset view to show all markers if not in municipality context
-    if (activeMunicipalityContext) {
+    if (activeMunicipalityContext && returnToContext) {
         window.showView('municipio-detail');
         // No reseteamos el filtro de marcadores aquí para que si vuelve al mapa siga viendo los del municipio
-    } else {
+    } else if (!activeMunicipalityContext) {
         filterMarkers();
     }
     // Stop any ongoing narration
@@ -566,7 +566,7 @@ window.showMunicipioPointsOnMap = function(muniId) {
 
     activeMunicipalityContext = muniId;
     window.showView('map');
-    if (window.closeSidePanel) window.closeSidePanel();
+    if (window.closeSidePanel) window.closeSidePanel(false);
 
     // Desactivar filtros previos
     currentActiveFilter = 'todas';
