@@ -15,22 +15,22 @@
 // 1. CONFIGURACIÓN DE CATEGORÍAS (Filtros del panel izquierdo)
 // Si agregas una nueva categoría aquí, aparecerá automáticamente en el menú y en "Rutas".
 const categories = [
-  { id: "todas", label: "Ver Todos", icon: "📍", color: "bg-slate-800" },
+  { id: "todas", label: "Ver todos", icon: "📍", color: "bg-slate-800" },
   { 
     id: "naturaleza", 
-    label: "Turismo de Naturaleza", 
+    label: "Turismo de naturaleza", 
     icon: "🌿", 
     color: "bg-emerald-600",
     subcategories: [
-      { id: "playas", label: "Playas y Costas", icon: "🏖️", color: "bg-cyan-500" },
-      { id: "ecoturismo", label: "Parques y Reservas", icon: "🏞️", color: "bg-green-600" },
-      { id: "nauticos", label: "Deportes Náuticos", icon: "🌊", color: "bg-sky-500" },
+      { id: "playas", label: "Playas y costas", icon: "🏖️", color: "bg-cyan-500" },
+      { id: "ecoturismo", label: "Parques y reservas", icon: "🏞️", color: "bg-green-600" },
+      { id: "nauticos", label: "Deportes náuticos", icon: "🌊", color: "bg-sky-500" },
     ]
   },
-  { id: "eventos", label: "Festivales y Eventos", icon: "🎉", color: "bg-fuchsia-500" },
+  { id: "eventos", label: "Festivales y eventos", icon: "🎉", color: "bg-fuchsia-500" },
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
-  { id: "gastronomia", label: "Placeres Gastronómicos", icon: "🥘", color: "bg-orange-500" },
-  { id: "infraestructura", label: "Infraestructura del Corredor Vial", icon: "🛣️", color: "bg-blue-600" },
+  { id: "gastronomia", label: "Placeres gastronómicos", icon: "🥘", color: "bg-orange-500" },
+  { id: "infraestructura", label: "Infraestructura del corredor vial", icon: "🛣️", color: "bg-blue-600" },
   { id: "otros", label: "Aeropuertos", icon: "✈️", color: "bg-indigo-400" }
 ];
 
