@@ -227,13 +227,28 @@ const ItineraryPlanner = {
 
     generate(numDays) {
         let filtered = mockData.filter(item => {
-            // Si el ítem tiene un mes de evento definido (festivales), validar que coincida con el viaje
+            // 1. Validar fechas para eventos estacionales
             if (item.eventMonth !== undefined) {
                 const startM = this.startDate.getMonth();
                 const endM = this.endDate.getMonth();
                 if (startM !== item.eventMonth && endM !== item.eventMonth) return false;
             }
-            return this.selectedInterests.size === 0 || this.selectedInterests.has(item.category);
+
+            // 2. Validar categorías e intereses
+            if (this.selectedInterests.size === 0) return true;
+            
+            // Coincidencia directa
+            if (this.selectedInterests.has(item.category)) return true;
+
+            // Expandir búsqueda a subcategorías
+            for (const interestId of this.selectedInterests) {
+                const parentCat = categories.find(c => c.id === interestId);
+                if (parentCat && parentCat.subcategories) {
+                    if (parentCat.subcategories.some(sub => sub.id === item.category)) return true;
+                }
+            }
+
+            return false;
         });
 
         if (filtered.length === 0) { alert('Sin coincidencias.'); return; }
