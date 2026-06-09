@@ -611,7 +611,7 @@ function showMunicipioDetail(muniId) {
                             <div class="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all cursor-pointer group" onclick="window.showPointOnMap(${point.id})">
                                 <img src="${point.image}" class="w-20 h-20 rounded-xl object-cover shadow-md" alt="${point.title}">
                                 <div class="flex-1">
-                                    <h5 class="font-bold text-gray-900 group-hover:text-[#003087] transition-colors">${point.title}</h5>
+                                    <h5 class="font-bold text-[#003087] transition-colors">${point.title}</h5>
                                     <p class="text-xs text-gray-500 line-clamp-2 mt-1">${point.description}</p>
                                 </div>
                                 <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-blue-500 transition-all mr-2"></i>
@@ -719,7 +719,7 @@ function renderExistentesGrid() {
             </div>
             <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                    <h3 class="text-xl font-bold text-gray-900 leading-snug mb-3">${ruta.nombre}</h3>
+                    <h3 class="text-xl font-bold text-[#003087] leading-snug mb-3">${ruta.nombre}</h3>
                     <p class="text-xs text-gray-500 line-clamp-3 mb-4 leading-relaxed">${ruta.descripcion}</p>
                     <div class="space-y-2 mb-6">
                         <div class="flex items-start gap-2">
@@ -816,7 +816,7 @@ function renderRouteSidebar(ruta) {
                         <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#003087] transition-colors"></div>
                         <div class="flex justify-between items-start">
                             <div class="max-w-[85%]">
-                                <p class="font-bold text-gray-800 text-sm group-hover:text-[#003087] transition-colors">${item.title}</p>
+                                <p class="font-bold text-[#003087] text-sm transition-colors">${item.title}</p>
                                 <p class="text-[10px] text-gray-400 font-medium mt-0.5">${item.location}</p>
                             </div>
                             <span class="text-[10px] font-black text-gray-300">#${idx + 1}</span>

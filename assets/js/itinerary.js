@@ -319,7 +319,7 @@ const ItineraryPlanner = {
                                 <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#003087] transition-colors"></div>
                                 <div class="flex justify-between items-start">
                                     <div class="max-w-[80%]">
-                                        <p class="font-bold text-gray-800 text-sm group-hover:text-[#003087] transition-colors">${item.title}</p>
+                                        <p class="font-bold text-[#003087] text-sm transition-colors">${item.title}</p>
                                         <p class="text-[10px] text-gray-400 font-medium mt-0.5">${item.location}</p>
                                     </div>
                                     <span class="text-[10px] font-black text-gray-300">#${idx + 1}</span>
