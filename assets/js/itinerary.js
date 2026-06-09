@@ -297,6 +297,9 @@ const ItineraryPlanner = {
                     <button onclick="ItineraryPlanner.resetToMainMap(true)" class="text-xs font-black text-gray-400 hover:text-[#003087] flex items-center gap-2 group transition-colors px-1">
                         <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> SALIR
                     </button>
+                    <button id="save-itinerary-btn" onclick="ItineraryPlanner.saveCurrentItinerary()" class="text-xs font-black text-gray-400 hover:text-emerald-600 flex items-center gap-1.5 transition-colors px-2 py-1 rounded-lg border border-transparent hover:border-gray-200">
+                        <i class="fa-solid fa-floppy-disk text-[10px]"></i> Guardar
+                    </button>
                     <span class="text-[9px] font-black text-blue-600 bg-blue-50 px-2.1 py-1 rounded shadow-sm border border-blue-100 uppercase">INICIO: ${this.startCity}</span>
                 </div>
                 <div id="itinerary-days-container" class="flex gap-2 bg-gray-50 p-1.5 rounded-xl overflow-x-auto snap-x snap-mandatory hide-scrollbar whitespace-nowrap w-full cursor-pointer" style="scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch;">${tabsHtml}</div>
@@ -315,18 +318,36 @@ const ItineraryPlanner = {
                                 <div class="w-[1px] h-4 border-l border-dashed border-gray-300"></div>
                                 <span class="text-[9px] font-bold text-gray-400 italic">${label}: ~${time} min</span>
                             </div>
-                            <div onclick="ItineraryPlanner.focusPoint(${item.id})" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#003087]/20 transition-all cursor-pointer group relative overflow-hidden">
+                            <div onclick="ItineraryPlanner.focusPoint(${item.id})" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#003087]/20 transition-all cursor-pointer group relative overflow-hidden flex flex-col gap-3">
                                 <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#003087] transition-colors"></div>
-                                <div class="flex justify-between items-start">
-                                    <div class="max-w-[80%]">
+                                <div class="flex justify-between items-start w-full">
+                                    <div class="max-w-[75%]">
                                         <p class="font-bold text-[#003087] text-sm transition-colors">${item.title}</p>
                                         <p class="text-[10px] text-gray-400 font-medium mt-0.5">${item.location}</p>
                                     </div>
-                                    <span class="text-[10px] font-black text-gray-300">#${idx + 1}</span>
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-[10px] font-black text-gray-300 mr-2">#${idx + 1}</span>
+                                        <div class="flex flex-col gap-0.5">
+                                            ${idx > 0 ? `<button onclick="ItineraryPlanner.reorderStop(${this.currentDayView}, ${idx}, 'up', event)" class="p-1 text-[8px] text-gray-400 hover:text-[#003087] bg-gray-50 hover:bg-gray-100 rounded transition-colors" title="Subir Parada"><i class="fa-solid fa-chevron-up"></i></button>` : ''}
+                                            ${idx < items.length - 1 ? `<button onclick="ItineraryPlanner.reorderStop(${this.currentDayView}, ${idx}, 'down', event)" class="p-1 text-[8px] text-gray-400 hover:text-[#003087] bg-gray-50 hover:bg-gray-100 rounded transition-colors" title="Bajar Parada"><i class="fa-solid fa-chevron-down"></i></button>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end items-center gap-3 border-t pt-2 border-gray-50">
+                                    <button onclick="ItineraryPlanner.toggleAlternatives(${this.currentDayView}, ${idx}, event)" class="text-[9px] font-black text-gray-400 hover:text-[#003087] flex items-center gap-1 uppercase tracking-wider transition-colors" title="Cambiar por parada cercana">
+                                        <i class="fa-solid fa-arrows-rotate text-[10px]"></i> Cambiar
+                                    </button>
+                                    <button onclick="ItineraryPlanner.deleteStop(${this.currentDayView}, ${idx}, event)" class="text-[9px] font-black text-gray-400 hover:text-rose-600 flex items-center gap-1 uppercase tracking-wider transition-colors" title="Eliminar parada">
+                                        <i class="fa-solid fa-trash-can text-[10px]"></i> Eliminar
+                                    </button>
+                                </div>
+                                <div id="alternatives-panel-${this.currentDayView}-${idx}" class="hidden mt-2 p-3 bg-slate-50 rounded-xl border border-slate-100 flex flex-col gap-2 pointer-events-auto">
+                                    <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Alternativas cercanas:</p>
+                                    <div class="flex flex-col gap-1.5" id="alternatives-list-${this.currentDayView}-${idx}"></div>
                                 </div>
                             </div>
                         `;
-                    }).join('') : '<p class="text-xs text-gray-400 italic py-4">No hay más actividades para este día.</p>'}
+                    }).join('') : '<p class="text-xs text-gray-400 italic py-4">No hay paradas en este día.</p>'}
                 </div>
             </div>
         `;
@@ -336,7 +357,7 @@ const ItineraryPlanner = {
             const tabsContainer = document.getElementById('itinerary-days-container');
             if (tabsContainer) {
                 // 1. Centrar el botón activo automáticamente
-                const activeBtn = tabsContainer.querySelector('button.text-white');
+                const activeBtn = tabsContainer.querySelector('button.bg-\\[\\#003087\\]');
                 if (activeBtn) {
                     activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
@@ -390,6 +411,165 @@ const ItineraryPlanner = {
                 color: '#003087', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
             }).addTo(map);
         }
+    },
+
+    calculateDistance(pointA, pointB) {
+        const lat1 = pointA[0], lon1 = pointA[1];
+        const lat2 = pointB[0], lon2 = pointB[1];
+        const R = 6371;
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return parseFloat((R * c).toFixed(1));
+    },
+
+    saveCurrentItinerary() {
+        if (!this.fullItinerary) {
+            alert("No hay ningún itinerario para guardar.");
+            return;
+        }
+        const dataToSave = {
+            startCity: this.startCity,
+            startDate: this.startDate ? this.startDate.toISOString() : null,
+            endDate: this.endDate ? this.endDate.toISOString() : null,
+            fullItinerary: this.fullItinerary
+        };
+        localStorage.setItem('saved_itinerary', JSON.stringify(dataToSave));
+        
+        // Show temporary toast or visual feedback on the button
+        const saveBtn = document.getElementById('save-itinerary-btn');
+        if (saveBtn) {
+            const originalHtml = saveBtn.innerHTML;
+            saveBtn.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-500"></i> Guardado`;
+            saveBtn.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-200');
+            saveBtn.classList.remove('text-gray-400');
+            setTimeout(() => {
+                saveBtn.innerHTML = originalHtml;
+                saveBtn.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-200');
+                saveBtn.classList.add('text-gray-400');
+            }, 2000);
+        }
+        if (window.checkSavedRouteUI) window.checkSavedRouteUI();
+    },
+
+    loadSavedItinerary() {
+        const saved = localStorage.getItem('saved_itinerary');
+        if (!saved) return false;
+        try {
+            const data = JSON.parse(saved);
+            this.startCity = data.startCity;
+            this.startDate = data.startDate ? new Date(data.startDate) : null;
+            this.endDate = data.endDate ? new Date(data.endDate) : null;
+            this.fullItinerary = data.fullItinerary;
+            this.currentDayView = 1;
+            
+            // Render and update
+            this.renderItinerarySidebar();
+            this.updateMapForDay(1);
+            
+            // Go to map view
+            if (window.showView) window.showView('map');
+            
+            // Close initial planner overlay if open
+            const overlay = document.getElementById('itinerary-overlay');
+            if (overlay) overlay.classList.add('translate-y-full');
+            
+            return true;
+        } catch (e) {
+            console.error("Error loading saved itinerary", e);
+            return false;
+        }
+    },
+
+    reorderStop(day, index, direction, event) {
+        if (event) event.stopPropagation();
+        const list = this.fullItinerary[day];
+        if (!list) return;
+
+        const targetIdx = direction === 'up' ? index - 1 : index + 1;
+        if (targetIdx < 0 || targetIdx >= list.length) return;
+
+        // Swap items
+        const temp = list[index];
+        list[index] = list[targetIdx];
+        list[targetIdx] = temp;
+
+        this.renderItinerarySidebar();
+        this.updateMapForDay(day);
+    },
+
+    deleteStop(day, index, event) {
+        if (event) event.stopPropagation();
+        const list = this.fullItinerary[day];
+        if (!list) return;
+
+        list.splice(index, 1);
+
+        this.renderItinerarySidebar();
+        this.updateMapForDay(day);
+    },
+
+    toggleAlternatives(day, index, event) {
+        if (event) event.stopPropagation();
+        const panel = document.getElementById(`alternatives-panel-${day}-${index}`);
+        const listContainer = document.getElementById(`alternatives-list-${day}-${index}`);
+        if (!panel || !listContainer) return;
+
+        if (!panel.classList.contains('hidden')) {
+            panel.classList.add('hidden');
+            return;
+        }
+
+        const currentItem = this.fullItinerary[day][index];
+        const eligible = mockData.filter(item => {
+            if (item.id === currentItem.id) return false;
+            const todayPoints = this.fullItinerary[day] || [];
+            if (todayPoints.some(p => p.id === item.id)) return false;
+            
+            if (this.selectedInterests.size > 0) {
+                if (this.selectedInterests.has(item.category) || item.category === currentItem.category) return true;
+                for (const interestId of this.selectedInterests) {
+                    const parentCat = categories.find(c => c.id === interestId);
+                    if (parentCat && parentCat.subcategories) {
+                        if (parentCat.subcategories.some(sub => sub.id === item.category)) return true;
+                    }
+                }
+                return false;
+            }
+            return true;
+        });
+
+        eligible.forEach(item => {
+            item.tempDistance = this.calculateDistance([currentItem.lat, currentItem.lng], [item.lat, item.lng]);
+        });
+        eligible.sort((a, b) => a.tempDistance - b.tempDistance);
+        const top3 = eligible.slice(0, 3);
+
+        if (top3.length === 0) {
+            listContainer.innerHTML = `<p class="text-[10px] text-gray-400 italic">No hay paradas alternativas disponibles.</p>`;
+        } else {
+            listContainer.innerHTML = top3.map(alt => `
+                <button onclick="ItineraryPlanner.selectAlternative(${day}, ${index}, ${alt.id}, event)" class="w-full text-left p-2.5 bg-white hover:bg-[#003087]/5 border border-gray-100 hover:border-[#003087]/20 rounded-xl transition-all flex justify-between items-center group/alt text-[11px] font-bold text-gray-700">
+                    <span class="truncate max-w-[70%] group-hover/alt:text-[#003087] transition-colors">${alt.title}</span>
+                    <span class="text-[9px] text-[#003087] bg-blue-50 px-1.5 py-0.5 rounded">${alt.tempDistance} km</span>
+                </button>
+            `).join('');
+        }
+
+        panel.classList.remove('hidden');
+    },
+
+    selectAlternative(day, index, newPointId, event) {
+        if (event) event.stopPropagation();
+        const newPoint = mockData.find(p => p.id === newPointId);
+        if (!newPoint) return;
+
+        this.fullItinerary[day][index] = newPoint;
+        this.renderItinerarySidebar();
+        this.updateMapForDay(day);
     }
 };
 

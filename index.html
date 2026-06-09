@@ -587,6 +587,23 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- card 4 (Cargar Ruta Guardada) -->
+                    <div id="route-card-saved" class="hidden group relative h-80 md:h-80 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 hover:shadow-emerald-500/20 border-2 border-dashed border-emerald-500/30 bg-emerald-950">
+                        <img src="assets/images/puntos/ecoparque-mallorquin.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 blur-[1px] opacity-40" alt="Ruta guardada">
+                        <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-900/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10">
+                            <h4 class="text-2xl md:text-4xl font-black text-white uppercase tracking-tight leading-tight md:leading-none mb-2">Mi Ruta Guardada</h4>
+                            <div class="flex items-center justify-between mt-4 md:mt-6">
+                                <span class="bg-emerald-600 text-white shadow-lg px-5 py-2 rounded-full text-[9px] md:text-[11px] font-black uppercase tracking-widest border-none flex items-center gap-2">
+                                    <i class="fa-solid fa-clock-rotate-left"></i> Cargar Ruta
+                                </span>
+                                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-emerald-900 transition-all duration-300">
+                                    <i class="fa-solid fa-folder-open text-lg md:text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -788,6 +805,23 @@
         const planificaCard = document.getElementById('route-card-planifica');
         const existentesCard = document.getElementById('route-card-existentes');
 
+        window.checkSavedRouteUI = function() {
+            const savedCard = document.getElementById('route-card-saved');
+            const muniCard = document.getElementById('route-card-municipios');
+            if (savedCard && muniCard) {
+                const hasSaved = localStorage.getItem('saved_itinerary');
+                if (hasSaved) {
+                    savedCard.classList.remove('hidden');
+                    muniCard.classList.remove('md:col-span-2');
+                    muniCard.classList.add('md:col-span-1');
+                } else {
+                    savedCard.classList.add('hidden');
+                    muniCard.classList.remove('md:col-span-1');
+                    muniCard.classList.add('md:col-span-2');
+                }
+            }
+        };
+
         function showView(viewName) {
             const mainMapView = document.getElementById('main-map-view');
             const routesSelectionView = document.getElementById('routes-selection-view');
@@ -810,6 +844,7 @@
                 routesSelectionView.classList.remove('hidden');
                 document.getElementById('rutas-link').classList.add('text-blue-200');
                 document.getElementById('mapa-link').classList.remove('text-blue-200');
+                window.checkSavedRouteUI();
             } else if (viewName === 'municipios') {
                 municipiosSelectionView.classList.remove('hidden');
                 document.getElementById('rutas-link').classList.add('text-blue-200');
@@ -866,6 +901,15 @@
             planificaCard.addEventListener('click', () => {
                 if (window.ItineraryPlanner) {
                     window.ItineraryPlanner.open();
+                }
+            });
+        }
+
+        const savedCard = document.getElementById('route-card-saved');
+        if (savedCard) {
+            savedCard.addEventListener('click', () => {
+                if (window.ItineraryPlanner) {
+                    window.ItineraryPlanner.loadSavedItinerary();
                 }
             });
         }
