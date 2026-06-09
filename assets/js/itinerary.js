@@ -36,7 +36,7 @@ const ItineraryPlanner = {
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Desde dónde inicias?</h2>
                     <p class="text-blue-100/80 text-sm font-medium">Punto de partida para optimizar el recorrido</p>
                     <div class="flex flex-wrap justify-center gap-3">
-                        <button class="city-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-base uppercase tracking-widest bg-white text-[#004a99] min-w-[140px]" data-value="Cartagena">
+                        <button class="city-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-base uppercase tracking-widest bg-white text-[#003087] min-w-[140px]" data-value="Cartagena">
                             Cartagena
                         </button>
                         <button class="city-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-base uppercase tracking-widest min-w-[140px]" data-value="Barranquilla">
@@ -44,7 +44,7 @@ const ItineraryPlanner = {
                         </button>
                     </div>
                     <div class="pt-4">
-                        <button id="next-to-step-2" class="bg-white text-[#004a99] px-10 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 active:scale-95 transition-all text-sm">Siguiente</button>
+                        <button id="next-to-step-2" class="bg-white text-[#003087] px-10 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 active:scale-95 transition-all text-sm">Siguiente</button>
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@ const ItineraryPlanner = {
                     </div>
                     <div class="pt-4 flex justify-center gap-3">
                         <button id="back-to-step-1" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
-                        <button id="next-to-step-3" class="bg-white text-[#004a99] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Siguiente</button>
+                        <button id="next-to-step-3" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Siguiente</button>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@ const ItineraryPlanner = {
 
                     <div class="pt-4 flex justify-center gap-3">
                         <button id="back-to-step-2" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
-                        <button id="generate-itinerary" class="bg-white text-[#004a99] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Generar mi Ruta</button>
+                        <button id="generate-itinerary" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Generar mi Ruta</button>
                     </div>
                 </div>
             </div>
@@ -123,8 +123,8 @@ const ItineraryPlanner = {
 
         document.querySelectorAll('.city-tag').forEach(tag => {
             tag.addEventListener('click', () => {
-                document.querySelectorAll('.city-tag').forEach(t => t.classList.remove('bg-white', 'text-[#004a99]', 'border-white'));
-                tag.classList.add('bg-white', 'text-[#004a99]', 'border-white');
+                document.querySelectorAll('.city-tag').forEach(t => t.classList.remove('bg-white', 'text-[#003087]', 'border-white'));
+                tag.classList.add('bg-white', 'text-[#003087]', 'border-white');
                 this.startCity = tag.dataset.value;
             });
         });
@@ -138,11 +138,11 @@ const ItineraryPlanner = {
             tag.addEventListener('click', () => {
                 const isActive = tag.classList.contains('bg-white');
                 if (isActive) {
-                    tag.classList.remove('bg-white', 'text-[#004a99]', 'border-white');
+                    tag.classList.remove('bg-white', 'text-[#003087]', 'border-white');
                     tag.classList.add('border-white/20');
                     this.selectedInterests.delete(tag.dataset.value);
                 } else {
-                    tag.classList.add('bg-white', 'text-[#004a99]', 'border-white');
+                    tag.classList.add('bg-white', 'text-[#003087]', 'border-white');
                     tag.classList.remove('border-white/20');
                     this.selectedInterests.add(tag.dataset.value);
                 }
@@ -184,7 +184,7 @@ const ItineraryPlanner = {
     resetForm() {
         this.selectedInterests.clear();
         document.querySelectorAll('.interest-tag').forEach(el => {
-            el.classList.remove('bg-white', 'text-[#004a99]', 'border-white');
+            el.classList.remove('bg-white', 'text-[#003087]', 'border-white');
             el.classList.add('border-white/20');
         });
         if (this.flatpickrInstance) this.flatpickrInstance.clear();
@@ -284,7 +284,7 @@ const ItineraryPlanner = {
         const numDays = Object.keys(this.fullItinerary).length;
         let tabsHtml = '';
         for (let i = 1; i <= numDays; i++) {
-            tabsHtml += `<button onclick="ItineraryPlanner.switchDay(${i})" class="flex-shrink-0 snap-center px-5 py-2.5 text-[11px] font-black tracking-widest rounded-lg transition-all ${i === this.currentDayView ? 'bg-[#004a99] text-white shadow-lg' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'}">DÍA ${i}</button>`;
+            tabsHtml += `<button onclick="ItineraryPlanner.switchDay(${i})" class="flex-shrink-0 snap-center px-5 py-2.5 text-[11px] font-black tracking-widest rounded-lg transition-all ${i === this.currentDayView ? 'bg-[#003087] text-white shadow-lg' : 'bg-gray-100 text-gray-400 hover:bg-gray-200'}">DÍA ${i}</button>`;
         }
 
         const items = this.fullItinerary[this.currentDayView] || [];
@@ -294,7 +294,7 @@ const ItineraryPlanner = {
         filterContainer.innerHTML = `
             <div class="space-y-6">
                 <div class="flex items-center justify-between border-b pb-4">
-                    <button onclick="ItineraryPlanner.resetToMainMap(true)" class="text-xs font-black text-gray-400 hover:text-[#004a99] flex items-center gap-2 group transition-colors px-1">
+                    <button onclick="ItineraryPlanner.resetToMainMap(true)" class="text-xs font-black text-gray-400 hover:text-[#003087] flex items-center gap-2 group transition-colors px-1">
                         <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> SALIR
                     </button>
                     <span class="text-[9px] font-black text-blue-600 bg-blue-50 px-2.1 py-1 rounded shadow-sm border border-blue-100 uppercase">INICIO: ${this.startCity}</span>
@@ -315,11 +315,11 @@ const ItineraryPlanner = {
                                 <div class="w-[1px] h-4 border-l border-dashed border-gray-300"></div>
                                 <span class="text-[9px] font-bold text-gray-400 italic">${label}: ~${time} min</span>
                             </div>
-                            <div onclick="ItineraryPlanner.focusPoint(${item.id})" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#004a99]/20 transition-all cursor-pointer group relative overflow-hidden">
-                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#004a99] transition-colors"></div>
+                            <div onclick="ItineraryPlanner.focusPoint(${item.id})" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#003087]/20 transition-all cursor-pointer group relative overflow-hidden">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#003087] transition-colors"></div>
                                 <div class="flex justify-between items-start">
                                     <div class="max-w-[80%]">
-                                        <p class="font-bold text-gray-800 text-sm group-hover:text-[#004a99] transition-colors">${item.title}</p>
+                                        <p class="font-bold text-gray-800 text-sm group-hover:text-[#003087] transition-colors">${item.title}</p>
                                         <p class="text-[10px] text-gray-400 font-medium mt-0.5">${item.location}</p>
                                     </div>
                                     <span class="text-[10px] font-black text-gray-300">#${idx + 1}</span>
@@ -387,7 +387,7 @@ const ItineraryPlanner = {
         if (points.length > 0) {
             map.flyToBounds(markerGroup.getBounds(), { padding: [100, 100], duration: 1.5 });
             this.routePolyline = L.polyline(points.map(i => [i.lat, i.lng]), {
-                color: '#004a99', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
+                color: '#003087', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
             }).addTo(map);
         }
     }

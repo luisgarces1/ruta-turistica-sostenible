@@ -151,10 +151,10 @@
 
         /* Footer Styles - Detailed and Institutional */
         .footer {
-            background: #004a99; /* Institutional Blue */
+            background: #003087; /* Institutional Blue */
             color: white;
             padding: 100px 0 30px 0; /* More top padding for the wave */
-            font-family: 'Inter', sans-serif;
+            font-family: 'Calibri', 'Inter', sans-serif;
             position: relative;
         }
 
@@ -250,7 +250,7 @@
             width: 38px;
             height: 38px;
             background: white;
-            color: #004a99;
+            color: #003087;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -305,13 +305,18 @@
 <body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col relative">
 
     <!-- Header section - Updated to match Ruta Costera branding -->
-    <header class="bg-[#002a5a] text-white py-3 shadow-lg sticky top-0 z-[110]">
+    <header class="bg-[#003087] text-white py-3 shadow-lg sticky top-0 z-[110] overflow-hidden">
+        <!-- Brand Wave "Luz en movimiento" -->
+        <svg class="absolute bottom-0 left-0 w-full h-[8px] brand-wave-svg" viewBox="0 0 1440 20" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 15 C 360 -5, 720 35, 1080 15 C 1260 5, 1380 10, 1440 15" stroke="var(--brand-cyan)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M0 10 C 360 -10, 720 30, 1080 10 C 1260 0, 1380 5, 1440 10" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[150] hidden md:hidden transition-opacity"></div>
         
         <!-- Mobile Menu Sidebar -->
         <div id="mobile-menu" class="fixed top-0 left-0 h-full w-[280px] bg-white text-gray-800 z-[160] -translate-x-full md:hidden transition-transform duration-300 shadow-2xl overflow-y-auto">
-            <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-[#004a99] text-white">
+            <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-[#003087] text-white">
                 <span class="font-bold uppercase tracking-widest text-sm">Menú</span>
                 <button id="close-menu" class="p-2 hover:bg-white/10 rounded-lg">
                     <i class="fa-solid fa-xmark text-xl"></i>
@@ -319,11 +324,11 @@
             </div>
             
             <div class="py-4">
-                <a href="#" id="mobile-mapa-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
+                <a href="#" id="mobile-mapa-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#003087]">
                     <i class="fa-solid fa-map-location-dot"></i>
                     Mapa Interactivo
                 </a>
-                <a href="#" id="mobile-rutas-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#004a99]">
+                <a href="#" id="mobile-rutas-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#003087]">
                     <i class="fa-solid fa-route"></i>
                     Rutas Sugeridas
                 </a>
@@ -489,7 +494,7 @@
                     <!-- Sidebar / Filters Card -->
                     <aside class="lg:col-span-4 bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-[450px] md:h-[600px] border border-gray-100">
                         <div class="px-6 py-5 border-b border-gray-50 bg-white">
-                            <h3 class="text-xl font-bold text-[#004a99]">Puntos de Interés</h3>
+                            <h3 class="text-xl font-bold text-[#003087]">Puntos de Interés</h3>
                             <p class="text-xs text-gray-400 mt-1">Explora nuestra ruta turística</p>
                         </div>
                         <div class="p-4 flex-1 overflow-y-auto hide-scrollbar bg-white" id="filter-container">
@@ -593,7 +598,7 @@
                 <img src="assets/images/puntos/Ruta_de_la_Cumbia.png" class="absolute inset-0 w-full h-full object-cover scale-110 blur-sm" alt="Hero Background">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-white"></div>
                 <div class="relative z-10 text-center px-6 max-w-4xl pt-12 md:pt-0">
-                    <button onclick="window.showView('routes')" class="inline-flex items-center gap-2 text-[#004a99] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
+                    <button onclick="window.showView('routes')" class="inline-flex items-center gap-2 text-[#003087] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
                         <i class="fa-solid fa-arrow-left"></i>
                         Volver a Rutas
                     </button>
@@ -621,7 +626,7 @@
                 <img src="assets/images/municipios-hero.png" class="absolute inset-0 w-full h-full object-cover scale-110 blur-sm" alt="Hero Background">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-white"></div>
                 <div class="relative z-10 text-center px-6 max-w-4xl pt-12 md:pt-0">
-                    <button onclick="window.showView('routes')" class="inline-flex items-center gap-2 text-[#004a99] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
+                    <button onclick="window.showView('routes')" class="inline-flex items-center gap-2 text-[#003087] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
                         <i class="fa-solid fa-arrow-left"></i>
                         Volver a Rutas
                     </button>

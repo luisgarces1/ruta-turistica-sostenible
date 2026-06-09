@@ -15,11 +15,17 @@
 
 /* Glassmorphism Design System */
 :root {
-    --brand-blue: #004a99;
+    --brand-blue: #003087;
+    --brand-cyan: #0099FF;
+    --brand-orange: #FF6900;
     --brand-teal: #14b8a6;
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.4);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 48, 135, 0.15);
+}
+
+body {
+    font-family: 'Calibri', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .glass-card {
@@ -39,7 +45,7 @@
 
 /* Typography & Hierarchy */
 h2, .font-heading {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Calibri', 'Inter', sans-serif;
     letter-spacing: -0.02em;
 }
 
@@ -61,13 +67,13 @@ h2, .font-heading {
 
 /* Button Refinements */
 .btn-primary-glow {
-    background: linear-gradient(135deg, #004a99 0%, #002d5d 100%);
-    box-shadow: 0 10px 25px -5px rgba(0, 74, 153, 0.4);
+    background: linear-gradient(135deg, #003087 0%, #00184E 100%);
+    box-shadow: 0 10px 25px -5px rgba(0, 48, 135, 0.4);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn-primary-glow:hover {
-    box-shadow: 0 15px 35px -5px rgba(0, 74, 153, 0.6);
+    box-shadow: 0 15px 35px -5px rgba(0, 48, 135, 0.6);
     transform: translateY(-4px);
 }
 
@@ -100,7 +106,7 @@ h2, .font-heading {
 
 /* Override default leaflet styling for a cleaner look */
 .leaflet-container {
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Calibri', 'Inter', sans-serif !important;
     background-color: #f1f5f9;
 }
 
@@ -131,12 +137,12 @@ h2, .font-heading {
     }
 }
 .swiper-button-next, .swiper-button-prev {
-    color: #004a99;
+    color: #003087;
 }
 /* Skeleton Loader & Progressive Reveal */
 @keyframes skeleton-pulse {
     0%, 100% { background-color: #f1f5f9; }
-    50% { background-color: rgba(0, 74, 153, 0.05); }
+    50% { background-color: rgba(0, 48, 135, 0.05); }
 }
 
 .skeleton {
@@ -164,7 +170,7 @@ h2, .font-heading {
 .wave-bar {
     width: 3px;
     height: 100%;
-    background: linear-gradient(to top, var(--brand-teal, #14b8a6), var(--brand-blue, #004a99));
+    background: linear-gradient(to top, var(--brand-teal, #14b8a6), var(--brand-blue, #003087));
     border-radius: 10px;
     animation: wave-animation 1.2s ease-in-out infinite;
     box-shadow: 0 0 10px rgba(20, 184, 166, 0.3);
@@ -187,23 +193,29 @@ h2, .font-heading {
 
 .audioguide-btn {
     background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(0, 74, 153, 0.1);
+    border: 1px solid rgba(0, 48, 135, 0.1);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     cursor: pointer;
 }
 
 .audioguide-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px -10px rgba(0, 74, 153, 0.2);
-    border-color: rgba(0, 74, 153, 0.3);
+    box-shadow: 0 12px 24px -10px rgba(0, 48, 135, 0.2);
+    border-color: rgba(0, 48, 135, 0.3);
 }
 
 .audioguide-btn.active {
-    background: var(--brand-blue, #004a99);
+    background: var(--brand-blue, #003087);
     color: white !important;
-    border-color: var(--brand-blue, #004a99);
+    border-color: var(--brand-blue, #003087);
 }
 
 .audioguide-btn.active i {
     color: white !important;
+}
+
+/* Brand Wave "Luz en movimiento" Styling */
+.brand-wave-svg {
+    pointer-events: none;
+    opacity: 0.85;
 }

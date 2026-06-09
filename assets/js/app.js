@@ -282,7 +282,7 @@ function openSidePanel(data) {
                         <div class="wave-bar"></div>
                     </div>
                     <div class="flex flex-col items-end">
-                        <span class="text-[8px] font-black text-[#004a99] uppercase tracking-[0.2em] mb-0.5">Audioguía Activa</span>
+                        <span class="text-[8px] font-black text-[#003087] uppercase tracking-[0.2em] mb-0.5">Audioguía Activa</span>
                         <span class="text-[10px] font-bold text-blue-500/60 tabular-nums" id="audio-timer">00:00</span>
                     </div>
                 </div>
@@ -290,7 +290,7 @@ function openSidePanel(data) {
                 <button id="narrate-btn" onclick="toggleNarration('${data.description.replace(/'/g, "\\'")}', this)" 
                         class="audioguide-btn w-full py-4 rounded-xl flex items-center justify-center gap-4 font-black text-[10px] uppercase tracking-[0.2em] shadow-sm group relative overflow-hidden">
                     <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300 relative z-10">
-                        <i class="fa-solid fa-play text-[#004a99] ml-0.5 transition-transform group-hover:scale-110" id="narrate-icon"></i>
+                        <i class="fa-solid fa-play text-[#003087] ml-0.5 transition-transform group-hover:scale-110" id="narrate-icon"></i>
                     </div>
                     <span class="relative z-10" id="narrate-text">Escuchar Audioguía</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 group-[.active]:opacity-100 transition-opacity duration-500"></div>
@@ -591,7 +591,7 @@ function showMunicipioDetail(muniId) {
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                     <div class="bg-blue-50 rounded-3xl p-6 border border-blue-100">
-                        <h4 class="text-[#004a99] font-black uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                        <h4 class="text-[#003087] font-black uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-car"></i> Desde Barranquilla
                         </h4>
                         <p class="text-gray-700 text-sm leading-relaxed">${muni.routes.fromBAQ}</p>
@@ -611,7 +611,7 @@ function showMunicipioDetail(muniId) {
                             <div class="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all cursor-pointer group" onclick="window.showPointOnMap(${point.id})">
                                 <img src="${point.image}" class="w-20 h-20 rounded-xl object-cover shadow-md" alt="${point.title}">
                                 <div class="flex-1">
-                                    <h5 class="font-bold text-gray-900 group-hover:text-[#004a99] transition-colors">${point.title}</h5>
+                                    <h5 class="font-bold text-gray-900 group-hover:text-[#003087] transition-colors">${point.title}</h5>
                                     <p class="text-xs text-gray-500 line-clamp-2 mt-1">${point.description}</p>
                                 </div>
                                 <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-blue-500 transition-all mr-2"></i>
@@ -620,7 +620,7 @@ function showMunicipioDetail(muniId) {
                     </div>
                 </div>
 
-                <button onclick="window.showMunicipioPointsOnMap('${muni.id}')" class="w-full bg-[#004a99] text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3 hover:shadow-2xl hover:shadow-blue-900/40 transition-all uppercase tracking-widest text-sm">
+                <button onclick="window.showMunicipioPointsOnMap('${muni.id}')" class="w-full bg-[#003087] text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3 hover:shadow-2xl hover:shadow-blue-900/40 transition-all uppercase tracking-widest text-sm">
                     Ver todos en el mapa interactivo
                     <i class="fa-solid fa-map-location-dot"></i>
                 </button>
@@ -723,7 +723,7 @@ function renderExistentesGrid() {
                     <p class="text-xs text-gray-500 line-clamp-3 mb-4 leading-relaxed">${ruta.descripcion}</p>
                     <div class="space-y-2 mb-6">
                         <div class="flex items-start gap-2">
-                            <i class="fa-solid fa-map-pin text-[#004a99] mt-0.5 text-xs"></i>
+                            <i class="fa-solid fa-map-pin text-[#003087] mt-0.5 text-xs"></i>
                             <span class="text-xs text-gray-700"><strong>Ubicación:</strong> ${ruta.ubicacion}</span>
                         </div>
                         <div class="flex items-start gap-2">
@@ -732,7 +732,7 @@ function renderExistentesGrid() {
                         </div>
                     </div>
                 </div>
-                <button onclick="window.showRoutePointsOnMap('${ruta.id}')" class="w-full bg-[#004a99] hover:bg-[#003d80] text-white font-black py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all uppercase tracking-wider text-xs shadow-md">
+                <button onclick="window.showRoutePointsOnMap('${ruta.id}')" class="w-full bg-[#003087] hover:bg-[#003d80] text-white font-black py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all uppercase tracking-wider text-xs shadow-md">
                     Ver ruta en el mapa
                     <i class="fa-solid fa-map-location-dot"></i>
                 </button>
@@ -773,7 +773,7 @@ window.showRoutePointsOnMap = function(routeId) {
     const latlngs = routePoints.map(p => [p.lat, p.lng]);
     if (latlngs.length > 0) {
         window.activeRoutePolyline = L.polyline(latlngs, {
-            color: '#004a99',
+            color: '#003087',
             weight: 6,
             opacity: 0.8,
             dashArray: '8, 12',
@@ -798,7 +798,7 @@ function renderRouteSidebar(ruta) {
     filterContainer.innerHTML = `
         <div class="space-y-6">
             <div class="flex items-center justify-between border-b pb-4">
-                <button onclick="window.exitRouteView()" class="text-xs font-black text-gray-400 hover:text-[#004a99] flex items-center gap-2 group transition-colors px-1">
+                <button onclick="window.exitRouteView()" class="text-xs font-black text-gray-400 hover:text-[#003087] flex items-center gap-2 group transition-colors px-1">
                     <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> SALIR
                 </button>
                 <span class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded shadow-sm border border-blue-100 uppercase">${ruta.categoria}</span>
@@ -812,11 +812,11 @@ function renderRouteSidebar(ruta) {
             </div>
             <div class="space-y-3">
                 ${routePoints.map((item, idx) => `
-                    <div onclick="window.focusRoutePoint(${item.id})" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#004a99]/20 transition-all cursor-pointer group relative overflow-hidden">
-                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#004a99] transition-colors"></div>
+                    <div onclick="window.focusRoutePoint(${item.id})" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#003087]/20 transition-all cursor-pointer group relative overflow-hidden">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#003087] transition-colors"></div>
                         <div class="flex justify-between items-start">
                             <div class="max-w-[85%]">
-                                <p class="font-bold text-gray-800 text-sm group-hover:text-[#004a99] transition-colors">${item.title}</p>
+                                <p class="font-bold text-gray-800 text-sm group-hover:text-[#003087] transition-colors">${item.title}</p>
                                 <p class="text-[10px] text-gray-400 font-medium mt-0.5">${item.location}</p>
                             </div>
                             <span class="text-[10px] font-black text-gray-300">#${idx + 1}</span>
@@ -2486,7 +2486,7 @@ const prosperidadCoords = [
 // ==========================================
 // --- Highlight Vía al Mar (Ruta 90A) ---
 L.polyline(viaAlMarCoords, {
-    color: '#004a99',
+    color: '#003087',
     weight: 12,
     opacity: 0.2,
     lineJoin: 'round'
