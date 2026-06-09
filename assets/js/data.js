@@ -39,42 +39,42 @@ const mockData = [
     id: 1, category: "ecoturismo", title: "Volcán del Totumo.", 
     description: "El Volcán del Totumo no es solo un destino; es un ritual de bienestar y una maravilla geológica única en el Caribe. Famoso por sus baños de lodo medicinal, este cono volcánico de aproximadamente 15 metros invita a los visitantes a flotar en una densidad natural que relaja el cuerpo y rejuvenece la piel. Es una experiencia sensorial inigualable, rodeada de la serenidad de la ciénaga y la calidez de la comunidad local.", 
     lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp", 
-    location: "Santa Catalina., Bolivar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.", 
+    location: "Santa Catalina, Bolívar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.", 
     tags: ["Relax en la playa", "Experiencias sensoriales", "Comida autóctona"]
   },
   {
     id: 2, category: "playas", title: "Playas de Loma Arena.", 
     description: "Estas playas son un secreto guardado para quienes buscan desconexión total. Con sus extensas franjas de arena dorada y un oleaje que invita a la contemplación, Loma Arena es el lugar ideal para disfrutar de puestas de sol cinematográficas. Su ambiente tranquilo lo convierte en un punto estratégico para el turismo de descanso, lejos del bullicio urbano, donde el sonido del mar es el único protagonista.", 
     lat: 10.731697, lng: -75.272444, image: "assets/images/puntos/foto-principal-l.a.webp", 
-    location: "Santa Catalina., Bolivar.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    location: "Santa Catalina, Bolívar.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
     id: 3, category: "playas", title: "Playas de Punta Astilleros.", 
     description: "Punta Astilleros es el refugio de carácter rural donde el campo se encuentra con el océano. Sus playas vírgenes y su entorno natural preservado ofrecen una experiencia auténtica de paz. Es el destino predilecto para caminatas ecológicas por la orilla y para aquellos que desean conocer la vida costera en su estado más puro y sencillo, bajo la sombra de palmeras y la brisa constante del Atlántico.", 
     lat: 10.795, lng: -75.224444, image: "assets/images/puntos/foto-principal-pa.webp", 
-    location: "Piojó., Atlántico.", hours: "9:00 a.m. - Final del día.", price: "Gratuito.", 
+    location: "Piojó, Atlántico.", hours: "9:00 a.m. - Final del día.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas", "Artesanías"]
   },
   {
     id: 4, category: "ecoturismo", title: "Cerro la Vieja.", 
     description: "El Cerro La Vieja es la cima del Atlántico, un mirador natural que ofrece una de las panorámicas más espectaculares de la región. Subir a su cumbre es un reto gratificante para los amantes del senderismo y la fotografía, permitiendo observar la línea costera y el relieve ondulado del departamento. Es un lugar cargado de leyendas locales y una biodiversidad que sorprende a cada paso en medio del bosque seco tropical.", 
     lat: 10.733333, lng: -75.104722, image: "assets/images/puntos/foto-principal-l.v.webp", 
-    location: "Piojó., Atlántico.", hours: "7:00 a.m. - 6:00 p.m.", price: "Adultos: $8.000 mil cop.", 
+    location: "Piojó, Atlántico.", hours: "7:00 a.m. - 6:00 p.m.", price: "Adultos: $8.000 mil cop.", 
     tags: ["Avistamiento de aves", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 5, category: "ecoturismo", title: "Caribe Aventura.", 
     description: "Prepárate para vivir la emoción en el parque temático más grande de la región, donde la cultura del Caribe se mezcla con la diversión acuática. Caribe Aventura ofrece réplicas de sitios icónicos y atracciones diseñadas para todas las edades. Es el destino perfecto para familias que buscan adrenalina en los toboganes y piscinas, mientras aprenden sobre la identidad costeña en un entorno seguro y vibrante.", 
     lat: 10.765278, lng: -75.200278, image: "assets/images/puntos/foto-principal-c.a.webp", 
-    location: "Piojó., Atlántico.", hours: "9:00 a.m. - 4:30 p.m.", price: "Variable.", 
+    location: "Piojó, Atlántico.", hours: "9:00 a.m. - 4:30 p.m.", price: "Variable.", 
     tags: ["Experiencias sensoriales", "Deportes náuticos"]
   },
   {
     id: 6, category: "cultura", title: "Muelle de Puerto Colombia.", 
     description: "El Muelle de Puerto Colombia es el guardián de la memoria y la puerta histórica por donde entró el progreso al país. Recientemente restaurado, este gigante de concreto invita a caminar sobre el mar y revivir la época en que fue uno de los muelles más largos del mundo. Es un símbolo de resiliencia y un lugar mágico para ver el atardecer, conectando el misticismo del pasado con el futuro turístico del Atlántico.", 
     lat: 10.988333, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp", 
-    location: "Puerto Colombia., Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Artesanías", "Comida autóctona"]
   },
   {
@@ -156,7 +156,7 @@ const mockData = [
   },
   {
     id: 18, category: "ecoturismo", title: "Parque Biotemático Megua.", 
-    description: "Una aula viva de 32 hectáreas dedicada a la educación ambiental y la conservación. Con senderos ecológicos, granjas interactivas y zonas de preservación, Megua es el pulmón alternativo donde se aprende sobre el cuidado de la tierra mientras se disfruta del aire puro. Ideal para grupos escolares y familias que desean una jornada de inmersión en el campo y contacto directo con animales y plantas nativas.", 
+    description: "Un aula viva de 32 hectáreas dedicada a la educación ambiental y la conservación. Con senderos ecológicos, granjas interactivas y zonas de preservación, Megua es el pulmón alternativo donde se aprende sobre el cuidado de la tierra mientras se disfruta del aire puro. Ideal para grupos escolares y familias que desean una jornada de inmersión en el campo y contacto directo con animales y plantas nativas.", 
     lat: 10.848611, lng: -74.896667, image: "assets/images/puntos/foto-principal-b.m.webp", 
     location: "Galapa.", hours: "9:00 a.m. - 5:00 p.m.", price: "Adultos: $22.000.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
@@ -227,7 +227,7 @@ const mockData = [
   {
     id: 28, category: "ecoturismo", title: "Parque Mirador Tubará.", 
     description: "Donde la tierra y el cielo se abrazan. Este mirador ubicado en lo más alto de Tubará ofrece una vista de 360 grados que permite ver el Mar Caribe y las montañas circundantes. Sus coloridas esculturas y escalinatas invitan a capturar la esencia de un pueblo de raíces Mokaná. Es el punto ideal para sentir la fuerza del viento y apreciar la majestuosidad geográfica del departamento del Atlántico.", 
-    lat: 10.871111, lng: -74.974444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.t..webp", 
+    lat: 10.871111, lng: -74.974444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp", 
     location: "Tubará.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales", "Avistamiento de aves"]
   },
@@ -256,7 +256,7 @@ const mockData = [
     id: 32, category: "otros", title: "Aeropuerto Internacional Rafael Núñez.", 
     description: "Ubicado en el corazón de Cartagena, el Aeropuerto Internacional Rafael Núñez es mucho más que una terminal aérea; es el punto donde comienza la magia para millones de viajeros cada año. Se destaca por su ubicación privilegiada, a solo minutos del Centro Histórico y la zona turística, facilitando una transición inmediata hacia la historia y el mar. Su diseño eficiente y su conectividad internacional lo consolidan como un motor fundamental del turismo sostenible en la región.", 
     lat: 10.446314, lng: -75.516453, image: "assets/images/puntos/aeropuerto-internacional-rafael-nunez.webp", 
-    location: "Cartagena., Bolívar.", hours: "Abierto todo el tiempo.", price: "N/A.", 
+    location: "Cartagena, Bolívar.", hours: "Abierto todo el tiempo.", price: "N/A.", 
     tags: ["Artesanías"]
   },
   {
@@ -309,8 +309,8 @@ const mockData = [
     tags: ["Avistamiento de aves", "Vistas panorámicas"]
   },
   {
-    id: 40, eventMonth: 5, category: "eventos", title: "Festival de la Palma Amarga. ", 
-    description: "El Festival de la Palma Amarga es un tributo vivo al ingenio de las comunidades de Piojó y su armonía con el entorno natural. Celebra el legado de los artesanos y tejedores que transforman la fibra de la palma en piezas únicas y techos que cuentan historias de la cultura. Es una ventana a los saberes ancestrales que han definido la identidad del Caribe. La música de viento y las muestras artesanales, invitan a valorar la importancia de preservar nuestras materias primas y los oficios que dan vida al territorio.", 
+    id: 40, eventMonth: 5, category: "eventos", title: "Festival de la Palma Amarga.", 
+    description: "El Festival de la Palma Amarga es un tributo vivo al ingenio de las comunidades de Piojó y su armonía con el entorno natural. Celebra el legado de los artesanos y tejedores que transforman la fibra de la palma en piezas únicas y techos que cuentan historias de la cultura. Es una ventana a los saberes ancestrales que han definido la identidad del Caribe. La música de viento y las muestras artesanales invitan a valorar la importancia de preservar nuestras materias primas y los oficios que dan vida al territorio.", 
     lat: 10.75, lng: -75.108, image: "assets/images/puntos/Festival de la Palma Amarga.webp", 
     location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
@@ -324,20 +324,20 @@ const mockData = [
   },
   {
     id: 42, category: "cultura", title: "Santuario Mariano Nuestra Señora del Carmen.", 
-    description: "El Santuario Mariano Nuestra Señora del Carmen es uno de los lugares más representativos de Puerto Colombia y un importante centro de fe en el Atlántico. Reconocido como el único santuario mariano del departamento, abre sus puertas los 365 días del año, ofreciendo a los feligreses un espacio para vivir la sagrada eucaristía y fortalecer su espiritualidad. Su arquitectura conserva un estilo tradicional que refleja la historia y la devoción de la comunidad porteña, invita a vivir una experiencia de recogimiento y conexión con la esencia cultural y espiritual del caribe.", 
+    description: "El Santuario Mariano Nuestra Señora del Carmen es uno de los lugares más representativos de Puerto Colombia y un importante centro de fe en el Atlántico. Reconocido como el único santuario mariano del departamento, abre sus puertas los 365 días del año, ofreciendo a los feligreses un espacio para vivir la sagrada eucaristía y fortalecer su espiritualidad. Su arquitectura conserva un estilo tradicional que refleja la historia y la devoción de la comunidad porteña invita a vivir una experiencia de recogimiento y conexión con la esencia cultural y espiritual del caribe.", 
     lat: 10.988, lng: -74.959, image: "assets/images/puntos/Santuario Mariano Nuestra Señora del Carmen.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Religiosos","comunitarios y culturales."]
   },
   {
-    id: 43, eventMonth: 1, category: "cultura", title: "Sirenato de la cumbia. ", 
+    id: 43, eventMonth: 1, category: "cultura", title: "Sirenato de la cumbia.", 
     description: "Desde 1996, Puerto Colombia vibra al compás del Sirenato de la Cumbia. Tambores, flautas y pasos ancestrales elevan este ritmo que define al caribe colombiano. Más que un festival, es la ceremonia viva donde cada generación renueva su pacto con la cumbia, ritmo del alma y memoria de un pueblo.", 
     lat: 10.989, lng: -74.955, image: "assets/images/puntos/Sirenato de la cumbia.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
   },
   {
-    id: 44, eventMonth: 5, category: "eventos", title: "Festival del Mar y del Turismo. ", 
+    id: 44, eventMonth: 5, category: "eventos", title: "Festival del Mar y del Turismo.", 
     description: "Desde 2018, Puerto Colombia celebra su vocación costera con este festival que reúne a los municipios del Atlántico. Desfiles, muestras culturales y la elección de la capitanía de los mares hacen de esta fiesta un himno al mar, al liderazgo femenino y al orgullo del corazón azul del departamento.", 
     lat: 10.987, lng: -74.958, image: "assets/images/puntos/Festival del Mar y del Turismo.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
@@ -351,50 +351,50 @@ const mockData = [
     tags: ["Celebraciones religiosas (misas","bautizos","matrimonios","confirmaciones)","atención espiritual y confesiones","actividades comunitarias y pastorales."]
   },
   {
-    id: 46, eventMonth: 1, category: "eventos", title: "Festival de la Yuca y el Totumo. ", 
-    description: "El festival de la yuca y el totumo se realiza el domingo de carnaval, con más de 20 años de existencia, inició con los Mokaná en el mirador de Tubará, con la finalidad de mostar los productos que se cultivan y todas las artesanías que se hace con el totumo.", 
+    id: 46, eventMonth: 1, category: "eventos", title: "Festival de la Yuca y el Totumo.", 
+    description: "El Festival de la Yuca y el Totumo se realiza el domingo de carnaval, con más de 20 años de existencia, inició con los Mokaná en el mirador de Tubará, con la finalidad de mostrar los productos que se cultivan y todas las artesanías que se hacen con el totumo.", 
     lat: 10.872, lng: -74.973, image: "assets/images/puntos/Festival de la Yuca y el Totumo.webp", 
     location: "Tubará, Atlántico.", hours: "", price: "", 
     tags: []
   },
   {
-    id: 47, eventMonth: 1, category: "eventos", title: "Festival de la Máscara y el Bejuco. ", 
-    description: "Eeste festival es la principal cita artesanal de Galapa. Reúne a creadores en bejuco, talla en madera y papel maché, convirtiendo la plaza en un escenario de tradición y creatividad. Es un espacio de exhibición y comercialización que preserva la identidad y las raíces culturales del municipio.", 
+    id: 47, eventMonth: 1, category: "eventos", title: "Festival de la Máscara y el Bejuco.", 
+    description: "Este festival es la principal cita artesanal de Galapa. Reúne a creadores en bejuco, talla en madera y papel maché, convirtiendo la plaza en un escenario de tradición y creatividad. Es un espacio de exhibición y comercialización que preserva la identidad y las raíces culturales del municipio.", 
     lat: 10.899, lng: -74.886, image: "assets/images/puntos/Festival de la Máscara y el Bejuco.webp", 
-    location: "Galapa, Atlántico.", hours: "El evento dura entre 1 y 3 dias.", price: "Gratuito.", 
+    location: "Galapa, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
   },
   {
-    id: 48, eventMonth: 1, category: "eventos", title: "Carnaval de Galapa. ", 
+    id: 48, eventMonth: 1, category: "eventos", title: "Carnaval de Galapa.", 
     description: "El Carnaval de Galapa es una explosión de color, ritmo y memoria ancestral. Entre tambores, comparsas y danzas, el pueblo celebra su identidad con disfraces que narran historias y preservan sus raíces. Cada desfile refleja una tradición viva que resiste en el tiempo e invita a disfrutar la alegría del caribe colombiano.", 
     lat: 10.898, lng: -74.885, image: "assets/images/puntos/Carnaval de Galapa.webp", 
-    location: "Galapa, Atlántico.", hours: "El evento dura entre 8 y 10 dias.", price: "Gratuito.", 
+    location: "Galapa, Atlántico.", hours: "El evento dura entre 8 y 10 días.", price: "Gratuito.", 
     tags: ["Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
   },
   {
-    id: 49, eventMonth: 7, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe. ", 
-    description: "El Festival de Decimeros y Bailadores de Cumbia del caribe celebra la oralidad y el folclore regional. Es un espacio de transmisión de saberes y salvaguardia patrimonial que reúne a artistas de Magdalena, Córdoba, Sucre y otros departamentos, fortaleciendo la identidad y preservando las raíces culturales del territorio.", 
+    id: 49, eventMonth: 7, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe.", 
+    description: "El Festival de Decimeros y Bailadores de Cumbia del Caribe celebra la oralidad y el folclore regional. Es un espacio de transmisión de saberes y salvaguardia patrimonial que reúne a artistas de Magdalena, Córdoba, Sucre y otros departamentos, fortaleciendo la identidad y preservando las raíces culturales del territorio.", 
     lat: 10.862, lng: -74.774, image: "assets/images/puntos/Festival de Decimeros y Bailadores de Cumbia.webp", 
-    location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
+    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: []
   },
   {
-    id: 50, eventMonth: 6, category: "eventos", title: "Festival regional de Bandas Tradicionales. ", 
-    description: "El Festival de Bandas tradicionales del caribe, en Malambo, celebra la riqueza musical de la región. Reúne agrupaciones de viento y percusión que interpretan porros, cumbias y fandangos. Más que una competencia, es un espacio de encuentro que fortalece la identidad, el talento local y la preservación del patrimonio musical caribeño.", 
+    id: 50, eventMonth: 6, category: "eventos", title: "Festival regional de Bandas Tradicionales.", 
+    description: "El Festival de Bandas Tradicionales del Caribe, en Malambo, celebra la riqueza musical de la región. Reúne agrupaciones de viento y percusión que interpretan porros, cumbias y fandangos. Más que una competencia, es un espacio de encuentro que fortalece la identidad, el talento local y la preservación del patrimonio musical caribeño.", 
     lat: 10.861, lng: -74.773, image: "assets/images/puntos/Festival regional de Bandas Tradicionales.webp", 
-    location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
+    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: []
   },
   {
     id: 51, eventMonth: 6, category: "eventos", title: "Fiestas de Santa María Magdalena.", 
     description: "Las fiestas patronales de Santa María Magdalena son una de las celebraciones más representativas de Malambo. Durante cuatro días reúnen a la comunidad en torno a la fe y la tradición, con actividades culturales, deportivas y religiosas. Incluyen procesiones, muestras folclóricas y presentaciones artísticas que exaltan la herencia cultural y espiritual del municipio.", 
     lat: 10.86, lng: -74.772, image: "assets/images/puntos/Fiestas de Santa María Magdalena.webp", 
-    location: "Malambo, Atlántico.", hours: "El evento dura ente 1 y 3 dias.", price: "Gratuito.", 
+    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Ofrece servicios de actividades culturales","eventos religiosos","presentaciones artísticas","ferias gastronómicas","competencias deportivas y espacios de recreación familiar."]
   },
   {
     id: 52, category: "cultura", title: "Parque de La Cultura - Asociación Cultural y Artesanal Raíces de Malambo.", 
-    description: "El parque de la cultura “Fabio Miranda” es un espacio emblemático de Malambo que promueve el desarrollo humano y el fortalecimiento económico del territorio. Este parque rinde homenaje a la tradición alfarera, una práctica ancestral que durante siglos ha sido la base de los intercambios comerciales y el reflejo del legado cultural de los pueblos originarios de la región.", 
+    description: "El Parque de la Cultura “Fabio Miranda” es un espacio emblemático de Malambo que promueve el desarrollo humano y el fortalecimiento económico del territorio. Este parque rinde homenaje a la tradición alfarera, una práctica ancestral que durante siglos ha sido la base de los intercambios comerciales y el reflejo del legado cultural de los pueblos originarios de la región.", 
     lat: 10.863, lng: -74.775, image: "assets/images/puntos/Parque de La Cultura.webp", 
     location: "Malambo, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Zonas verdes","áreas de esparcimiento","juegos para niños."]
@@ -403,28 +403,28 @@ const mockData = [
     id: 53, category: "ecoturismo", title: "Parque Lineal de Crespo.", 
     description: "El Parque Lineal de Crespo es la respuesta de Cartagena al avance del Caribe. Diseñado para frenar la erosión costera y adaptarse al cambio climático, es hoy un corredor verde que reconcilia la ciudad con el mar. Un espacio donde el futuro sostenible camina de la mano de la naturaleza.", 
     lat: 10.439, lng: -75.522, image: "assets/images/puntos/Parque Lineal de Crespo.webp", 
-    location: "Cartagena, Bolivar.", hours: "", price: "", 
+    location: "Cartagena, Bolívar.", hours: "", price: "", 
     tags: []
   },
   {
     id: 54, category: "playas", title: "Playa Marbella.", 
     description: "Marbella es el secreto urbano de Cartagena: una franja de arena protegida por espolones que desafían las corrientes del caribe. Sus aguas son refugio para quienes buscan una experiencia auténtica lejos del bullicio. Un rincón donde la ciudad y el mar se encuentran en perfecta armonía.", 
     lat: 10.434, lng: -75.529, image: "assets/images/puntos/Playa Marbella.webp", 
-    location: "Cartagena, Bolivar.", hours: "", price: "", 
+    location: "Cartagena, Bolívar.", hours: "", price: "", 
     tags: []
   },
   {
     id: 55, eventMonth: 10, category: "eventos", title: "Fiestas patronales Santa Catalina de Alejandría.", 
     description: "Las fiestas de Santa Catalina de Alejandría fusionan fe y folclor en una celebración que convoca a toda la comunidad. Procesiones, bailes, corridas de toros y la elección de la diosa llenan de color las calles. Una vivencia que celebra la identidad y el espíritu festivo del caribe con devoción y alegría.", 
     lat: 10.605, lng: -75.253, image: "assets/images/puntos/Fiestas patronales Santa Catalina de Alejandría.webp", 
-    location: "Santa Catalina, Bolivar.", hours: "El evento dura entre 4 y 7 días.", price: "Gratuito.", 
+    location: "Santa Catalina, Bolívar.", hours: "El evento dura entre 4 y 7 días.", price: "Gratuito.", 
     tags: ["Turismo cultural","gastronomía","música y danzas tradicionales","eventos religiosos","comercio local."]
   },
   {
     id: 56, category: "cultura", title: "Museo Etnoindustrial.", 
     description: "El Museo Etnoindustrial de Galerazamba es un espacio que permite comprender la historia de la producción de sal en la región. A través de herramientas antiguas, fotografías y exhibiciones, los visitantes descubren cómo esta actividad marcó la vida social, económica y cultural de la comunidad. Más que un recorrido histórico, es un encuentro auténtico con la memoria y el trabajo de generaciones que han hecho de la sal su identidad, reflejando el valor de las tradiciones locales y la conexión viva entre la gente y su territorio.", 
     lat: 10.794, lng: -75.253, image: "assets/images/puntos/Museo Etnoindustrial.webp", 
-    location: "Santa Catalina, Bolivar.", hours: "10:00 a.m. - 4:00 p.m.", price: "Adultos: $7.000 mil cop. Niños (desde 5 años): $5.000 mil cop.", 
+    location: "Santa Catalina, Bolívar.", hours: "10:00 a.m. - 4:00 p.m.", price: "Adultos: $7.000 mil cop. Niños (desde 5 años): $5.000 mil cop.", 
     tags: ["Servicios culturales","recorridos guiados","exhibiciones permanentes","actividades pedagógicas y turismo histórico-patrimonial."]
   },
   {
@@ -470,3 +470,49 @@ const mockData = [
     tags: ["Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
   }
 ];
+
+const rutasExistentes = [
+  {
+    id: "RE-002",
+    categoria: "Cultural",
+    nombre: "Ruta de la Cumbia y las Músicas del Caribe",
+    departamentos: "Magdalena, Bolívar, Sucre, Atlántico",
+    ubicacion: "El Banco, San Jacinto, Ovejas, Soledad, Barranquilla (entre otros)",
+    puntosDestacados: "Festivales musicales, danzas tradicionales, encuentros culturales, cuna de la cumbia y el vallenato",
+    tipoTurismo: "Cultural, Patrimonio Inmaterial",
+    webRedes: "https://colombiavisible.com/ruta-de-la-cumbia-y-otras-musicas-del-caribe/",
+    observaciones: "Ruta temática musical. Identificar fechas de festivales clave y mapear la secuencia lógica del recorrido por temporada.",
+    descripcion: "Los tambores marcan el camino. Esta ruta sigue el rastro sonoro de la cumbia desde las orillas del río Magdalena hasta los patios donde nació el porro y la gaita. Festivales que transforman pueblos enteros, danzas que llevan siglos contando lo que las palabras no alcanzan, y comunidades que guardan en su memoria el ritmo fundacional del Caribe.",
+    imagen: "assets/images/puntos/Ruta_de_la_Cumbia.png",
+    pointsIds: [13, 31, 43, 49, 50, 62]
+  },
+  {
+    id: "RE-003",
+    categoria: "Artesanal",
+    nombre: "Ruta Artesanal del Atlántico",
+    departamentos: "Atlántico",
+    ubicacion: "Galapa, Usiacurú",
+    puntosDestacados: "Talleres artesanales, máscaras de carnaval, artesanías en palma de iraca, tradición oral",
+    tipoTurismo: "Cultural, Artesanal, Comunitario",
+    webRedes: "https://www.visitatlantico.com/ruta23",
+    observaciones: "Dos municipios con vocación artesanal consolidada. Verificar si hay operador turístico que integre ambos destinos o si funcionan por separado.",
+    descripcion: "Dos pueblos, dos oficios, una misma raíz creadora. En Galapa las manos dan forma a las máscaras que cada año protagonizan el carnaval: animales fantásticos, diablos y figuras que nacen del ingenio colectivo. En Usiacurú la palma de iraca se transforma en hamacas, sombreros y cestería fina, herencia de un saber que pasa de generación en generación entre patios y talleres abiertos al visitante.",
+    imagen: "assets/images/puntos/ruta_artesanal_atlantico.png",
+    pointsIds: [14, 16, 40, 46, 47, 52]
+  },
+  {
+    id: "RE-005",
+    categoria: "Cultural",
+    nombre: "Ruta Cultural del Atlántico",
+    departamentos: "Atlántico",
+    ubicacion: "Barranquilla y alrededores",
+    puntosDestacados: "Carnaval de Barranquilla, museos, patrimonio cultural urbano, gastronomía local",
+    tipoTurismo: "Cultural, Patrimonio, Gastronómico",
+    webRedes: "https://colombiaartesanal.com.co/rutas/atlantico/",
+    observaciones: "Ruta centrada en Barranquilla. Incluye patrimonio UNESCO (Carnaval). Mapear museos, recorridos urbanos y experiencias gastronómicas disponibles.",
+    descripcion: "Barranquilla no se entiende sin su carnaval, pero su riqueza cultural va mucho más allá de los cuatro días de fiesta. Museos que guardan la memoria industrial y artística de la ciudad, barrios con arquitectura republicana que resiste el tiempo, y una escena gastronómica donde la butifarra, el arroz de lisa y el bollo limpio cuentan tanto de la identidad local como cualquier monumento. Una ciudad que se vive caminando.",
+    imagen: "assets/images/puntos/ruta_cultural_atlantico.png",
+    pointsIds: [6, 9, 19, 20, 21, 22, 31, 42, 45]
+  }
+];
+

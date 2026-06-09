@@ -34,6 +34,15 @@ const markerGroup = L.featureGroup().addTo(map);
 let allMarkers = [];
 let currentActiveFilter = 'todas';
 let activeMunicipalityContext = null;
+let activeRouteContext = null;
+window.activeRoutePolyline = null;
+
+window.clearActiveRoutePolyline = function() {
+    if (window.activeRoutePolyline) {
+        map.removeLayer(window.activeRoutePolyline);
+        window.activeRoutePolyline = null;
+    }
+};
 
 // DOM Elements
 const filterContainer = document.getElementById('filter-container');
@@ -73,11 +82,13 @@ function renderFilters(targetCategories = categories, isSubmenu = false) {
                 </svg>
             </div>
         `;
-
         btn.addEventListener('click', () => {
+            if (activeRouteContext) {
+                activeRouteContext = null;
+                window.clearActiveRoutePolyline();
+            }
             if (cat.subcategories) {
                 renderFilters(cat.subcategories, true);
-                // Also optionally filter markers by ALL subcategories
                 currentActiveFilter = cat.id;
                 filterMarkers();
             } else {
@@ -174,11 +185,26 @@ function renderMarkers() {
  * Filtra la visibilidad de los marcadores basándose en la categoría seleccionada
  * o en el contexto de municipio activo.
  */
+
 function filterMarkers() {
     // If we are in Itinerary Mode, let ItineraryPlanner handle it
     if (window.ItineraryPlanner && window.ItineraryPlanner.fullItinerary) {
         window.ItineraryPlanner.updateMapForDay(window.ItineraryPlanner.currentDayView);
         return;
+    }
+
+    if (activeRouteContext) {
+        const ruta = rutasExistentes.find(r => r.id === activeRouteContext);
+        if (ruta) {
+            allMarkers.forEach(marker => {
+                if (ruta.pointsIds.includes(marker.itemData.id)) {
+                    if (!markerGroup.hasLayer(marker)) markerGroup.addLayer(marker);
+                } else {
+                    if (markerGroup.hasLayer(marker)) markerGroup.removeLayer(marker);
+                }
+            });
+            return;
+        }
     }
 
     allMarkers.forEach(marker => {
@@ -441,7 +467,7 @@ const municipiosData = [
     {
         id: "tubara",
         name: "Tubará",
-        image: "assets/images/puntos/foto-principal-para-la-pagina-m.t..webp",
+        image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp",
         description: "Tierra de ancestros Mokaná, donde las montañas se encuentran con el mar. Ofrece miradores espectaculares y playas tranquilas como Puerto Velero.",
         pointsIds: [15, 27, 28, 45, 46, 60, 61],
         routes: {
@@ -613,6 +639,11 @@ window.showPointOnMap = function(pointId, fromMunicipio = true) {
     const point = mockData.find(p => p.id === pointId);
     if (!point) return;
 
+    if (activeRouteContext && !fromMunicipio) {
+        activeRouteContext = null;
+        window.clearActiveRoutePolyline();
+    }
+
     if (fromMunicipio) {
         // Marcamos que venimos de un municipio pero no cambiamos el contexto actual
     } else {
@@ -638,6 +669,11 @@ window.showPointOnMap = function(pointId, fromMunicipio = true) {
 window.showMunicipioPointsOnMap = function(muniId) {
     const muni = municipiosData.find(m => m.id === muniId);
     if (!muni) return;
+
+    if (activeRouteContext) {
+        activeRouteContext = null;
+        window.clearActiveRoutePolyline();
+    }
 
     activeMunicipalityContext = muniId;
     window.showView('map');
@@ -667,8 +703,163 @@ window.resetMunicipalityContext = function() {
     activeMunicipalityContext = null;
 }
 
+function renderExistentesGrid() {
+    const grid = document.getElementById('existentes-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    rutasExistentes.forEach(ruta => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 flex flex-col h-full hover:shadow-2xl hover:-translate-y-1 transition-all duration-300";
+        
+        card.innerHTML = `
+            <div class="relative h-48 w-full overflow-hidden">
+                <img src="${ruta.imagen}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" alt="${ruta.nombre}">
+                <span class="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md z-10">${ruta.categoria}</span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 leading-snug mb-3">${ruta.nombre}</h3>
+                    <p class="text-xs text-gray-500 line-clamp-3 mb-4 leading-relaxed">${ruta.descripcion}</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-map-pin text-[#004a99] mt-0.5 text-xs"></i>
+                            <span class="text-xs text-gray-700"><strong>Ubicación:</strong> ${ruta.ubicacion}</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-star text-amber-500 mt-0.5 text-xs"></i>
+                            <span class="text-xs text-gray-700"><strong>Destacado:</strong> ${ruta.puntosDestacados}</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="window.showRoutePointsOnMap('${ruta.id}')" class="w-full bg-[#004a99] hover:bg-[#003d80] text-white font-black py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all uppercase tracking-wider text-xs shadow-md">
+                    Ver ruta en el mapa
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+window.showRoutePointsOnMap = function(routeId) {
+    const ruta = rutasExistentes.find(r => r.id === routeId);
+    if (!ruta) return;
+
+    activeRouteContext = routeId;
+    activeMunicipalityContext = null;
+    currentActiveFilter = 'todas';
+    updateFilterUI();
+
+    window.showView('map');
+    if (window.closeSidePanel) window.closeSidePanel(false);
+    if (window.ItineraryPlanner) {
+        window.ItineraryPlanner.resetToMainMap();
+    }
+
+    window.clearActiveRoutePolyline();
+
+    // Filter markers
+    allMarkers.forEach(marker => {
+        if (ruta.pointsIds.includes(marker.itemData.id)) {
+            if (!markerGroup.hasLayer(marker)) markerGroup.addLayer(marker);
+        } else {
+            if (markerGroup.hasLayer(marker)) markerGroup.removeLayer(marker);
+        }
+    });
+
+    // Draw route polyline linking points in order
+    const routePoints = ruta.pointsIds.map(id => mockData.find(p => p.id === id)).filter(p => p !== undefined);
+    const latlngs = routePoints.map(p => [p.lat, p.lng]);
+    if (latlngs.length > 0) {
+        window.activeRoutePolyline = L.polyline(latlngs, {
+            color: '#004a99',
+            weight: 6,
+            opacity: 0.8,
+            dashArray: '8, 12',
+            lineCap: 'round',
+            lineJoin: 'round'
+        }).addTo(map);
+        
+        setTimeout(() => {
+            map.flyToBounds(markerGroup.getBounds(), { padding: [100, 100], duration: 1.5 });
+        }, 500);
+    }
+
+    renderRouteSidebar(ruta);
+};
+
+function renderRouteSidebar(ruta) {
+    const filterContainer = document.getElementById('filter-container');
+    if (!filterContainer) return;
+
+    const routePoints = ruta.pointsIds.map(id => mockData.find(p => p.id === id)).filter(p => p !== undefined);
+
+    filterContainer.innerHTML = `
+        <div class="space-y-6">
+            <div class="flex items-center justify-between border-b pb-4">
+                <button onclick="window.exitRouteView()" class="text-xs font-black text-gray-400 hover:text-[#004a99] flex items-center gap-2 group transition-colors px-1">
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> SALIR
+                </button>
+                <span class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded shadow-sm border border-blue-100 uppercase">${ruta.categoria}</span>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-xl font-black text-gray-900 leading-snug">${ruta.nombre}</h3>
+                <p class="text-[11px] text-gray-500 leading-relaxed">${ruta.descripcion}</p>
+            </div>
+            <div class="space-y-1">
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Paradas en la ruta (${routePoints.length})</span>
+            </div>
+            <div class="space-y-3">
+                ${routePoints.map((item, idx) => `
+                    <div onclick="window.focusRoutePoint(${item.id})" class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#004a99]/20 transition-all cursor-pointer group relative overflow-hidden">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-[#004a99] transition-colors"></div>
+                        <div class="flex justify-between items-start">
+                            <div class="max-w-[85%]">
+                                <p class="font-bold text-gray-800 text-sm group-hover:text-[#004a99] transition-colors">${item.title}</p>
+                                <p class="text-[10px] text-gray-400 font-medium mt-0.5">${item.location}</p>
+                            </div>
+                            <span class="text-[10px] font-black text-gray-300">#${idx + 1}</span>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+window.exitRouteView = function() {
+    activeRouteContext = null;
+    window.clearActiveRoutePolyline();
+    
+    // reset sidebar and map to default
+    currentActiveFilter = 'todas';
+    renderFilters();
+    updateFilterUI();
+    filterMarkers();
+    closeSidePanel();
+    
+    // open the existentes selection view again
+    window.showView('existentes');
+};
+
+window.focusRoutePoint = function(id) {
+    const marker = allMarkers.find(m => m.itemData.id === id);
+    if (marker) {
+        marker.fire('click');
+        map.setView(marker.getLatLng(), 14);
+        setTimeout(() => {
+            const mapElement = document.getElementById('map');
+            if (mapElement && window.innerWidth < 768) {
+                mapElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    }
+};
+
 // Initializers
 renderMunicipiosGrid();
+renderExistentesGrid();
 
 // Event listener for the card in routes view
 document.addEventListener('DOMContentLoaded', () => {
@@ -676,6 +867,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cardMuni) {
         cardMuni.addEventListener('click', () => {
             window.showView('municipios');
+        });
+    }
+    const cardExistentes = document.getElementById('route-card-existentes');
+    if (cardExistentes) {
+        cardExistentes.addEventListener('click', () => {
+            window.showView('existentes');
         });
     }
 });
