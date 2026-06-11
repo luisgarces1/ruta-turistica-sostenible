@@ -435,11 +435,12 @@ const ItineraryPlanner = {
             startCity: this.startCity,
             startDate: this.startDate ? this.startDate.toISOString() : null,
             endDate: this.endDate ? this.endDate.toISOString() : null,
-            fullItinerary: this.fullItinerary
+            fullItinerary: this.fullItinerary,
+            savedAt: new Date().toISOString()
         };
         localStorage.setItem('saved_itinerary', JSON.stringify(dataToSave));
-        
-        // Show temporary toast or visual feedback on the button
+
+        // Update button feedback
         const saveBtn = document.getElementById('save-itinerary-btn');
         if (saveBtn) {
             const originalHtml = saveBtn.innerHTML;
@@ -450,9 +451,108 @@ const ItineraryPlanner = {
                 saveBtn.innerHTML = originalHtml;
                 saveBtn.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-200');
                 saveBtn.classList.add('text-gray-400');
-            }, 2000);
+            }, 3000);
         }
+
+        // Show informative toast
+        this._showSaveToast();
+
         if (window.checkSavedRouteUI) window.checkSavedRouteUI();
+    },
+
+    _showSaveToast() {
+        // Remove existing toast if any
+        const existing = document.getElementById('save-success-toast');
+        if (existing) existing.remove();
+
+        const numDays = this.fullItinerary ? Object.keys(this.fullItinerary).length : 0;
+        const dateStr = this.startDate
+            ? this.startDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
+            : '';
+
+        const toast = document.createElement('div');
+        toast.id = 'save-success-toast';
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+            opacity: 0;
+            max-width: 380px;
+            width: calc(100% - 32px);
+        `;
+        toast.innerHTML = `
+            <div style="background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.05); overflow: hidden;">
+                <div style="background: linear-gradient(135deg, #059669, #047857); padding: 16px 20px; display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-floppy-disk" style="color: white; font-size: 18px;"></i>
+                    </div>
+                    <div>
+                        <p style="color: white; font-weight: 900; font-size: 14px; margin: 0;">¡Ruta guardada con éxito!</p>
+                        <p style="color: rgba(255,255,255,0.85); font-size: 11px; margin: 2px 0 0;">${numDays} día${numDays !== 1 ? 's' : ''} · Desde ${this.startCity}${dateStr ? ' · ' + dateStr : ''}</p>
+                    </div>
+                    <button onclick="document.getElementById('save-success-toast').remove()" style="margin-left: auto; background: rgba(255,255,255,0.2); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-xmark" style="color: white; font-size: 12px;"></i>
+                    </button>
+                </div>
+                <div style="padding: 14px 20px; background: #f0fdf4;">
+                    <p style="color: #166534; font-size: 12px; font-weight: 600; margin: 0 0 10px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-circle-info"></i>
+                        ¿Cómo volver a ver tu ruta?
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 20px; height: 20px; background: #003087; color: white; border-radius: 50%; font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
+                            <span style="font-size: 11px; color: #374151; font-weight: 500;">Ve a la sección <strong>RUTAS</strong> en el menú superior</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 20px; height: 20px; background: #003087; color: white; border-radius: 50%; font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
+                            <span style="font-size: 11px; color: #374151; font-weight: 500;">Haz clic en la tarjeta <strong>"Mi Ruta Guardada"</strong></span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 20px; height: 20px; background: #059669; color: white; border-radius: 50%; font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-check" style="font-size: 8px;"></i></span>
+                            <span style="font-size: 11px; color: #374151; font-weight: 500;">¡Tu itinerario se cargará automáticamente!</span>
+                        </div>
+                    </div>
+                    <button onclick="ItineraryPlanner._goToSavedFromToast()" style="margin-top: 12px; width: 100%; background: #003087; color: white; border: none; border-radius: 12px; padding: 10px; font-size: 12px; font-weight: 900; cursor: pointer; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s;" onmouseover="this.style.background='#002266'" onmouseout="this.style.background='#003087'">
+                        <i class="fa-solid fa-folder-open"></i> Ver mi ruta guardada ahora
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(toast);
+
+        // Animate in
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                toast.style.transform = 'translateX(-50%) translateY(0)';
+                toast.style.opacity = '1';
+            });
+        });
+
+        // Auto-dismiss after 8 seconds
+        this._toastTimer = setTimeout(() => {
+            toast.style.transform = 'translateX(-50%) translateY(120px)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 400);
+        }, 8000);
+    },
+
+    _goToSavedFromToast() {
+        const toast = document.getElementById('save-success-toast');
+        if (toast) toast.remove();
+        if (window.showView) window.showView('routes');
+        // Highlight saved card briefly
+        setTimeout(() => {
+            const savedCard = document.getElementById('route-card-saved');
+            if (savedCard) {
+                savedCard.style.transform = 'scale(1.03)';
+                savedCard.style.transition = 'transform 0.3s ease';
+                setTimeout(() => { savedCard.style.transform = ''; }, 600);
+            }
+        }, 300);
     },
 
     loadSavedItinerary() {
@@ -465,23 +565,77 @@ const ItineraryPlanner = {
             this.endDate = data.endDate ? new Date(data.endDate) : null;
             this.fullItinerary = data.fullItinerary;
             this.currentDayView = 1;
-            
+
             // Render and update
             this.renderItinerarySidebar();
             this.updateMapForDay(1);
-            
+
             // Go to map view
             if (window.showView) window.showView('map');
-            
+
             // Close initial planner overlay if open
             const overlay = document.getElementById('itinerary-overlay');
             if (overlay) overlay.classList.add('translate-y-full');
-            
+
+            // Show load confirmation toast
+            const numDays = this.fullItinerary ? Object.keys(this.fullItinerary).length : 0;
+            const savedAt = data.savedAt ? new Date(data.savedAt).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' }) : '';
+            this._showLoadToast(numDays, savedAt);
+
             return true;
         } catch (e) {
             console.error("Error loading saved itinerary", e);
             return false;
         }
+    },
+
+    _showLoadToast(numDays, savedAt) {
+        const existing = document.getElementById('load-success-toast');
+        if (existing) existing.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'load-success-toast';
+        toast.style.cssText = `
+            position: fixed;
+            top: 90px;
+            right: 16px;
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+            transform: translateX(120%);
+            opacity: 0;
+            max-width: 300px;
+        `;
+        toast.innerHTML = `
+            <div style="background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05); overflow: hidden; display: flex; align-items: stretch;">
+                <div style="width: 5px; background: linear-gradient(135deg, #059669, #047857); flex-shrink: 0;"></div>
+                <div style="padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 36px; height: 36px; background: #f0fdf4; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-folder-open" style="color: #059669; font-size: 16px;"></i>
+                    </div>
+                    <div>
+                        <p style="color: #111827; font-weight: 800; font-size: 13px; margin: 0;">Ruta cargada</p>
+                        <p style="color: #6b7280; font-size: 11px; margin: 2px 0 0;">${numDays} día${numDays !== 1 ? 's' : ''} · Desde ${this.startCity}${savedAt ? ' · guardada el ' + savedAt : ''}</p>
+                    </div>
+                    <button onclick="document.getElementById('load-success-toast').remove()" style="margin-left: 4px; background: #f3f4f6; border: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-xmark" style="color: #6b7280; font-size: 10px;"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(toast);
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                toast.style.transform = 'translateX(0)';
+                toast.style.opacity = '1';
+            });
+        });
+
+        setTimeout(() => {
+            toast.style.transform = 'translateX(120%)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 400);
+        }, 4000);
     },
 
     reorderStop(day, index, direction, event) {
