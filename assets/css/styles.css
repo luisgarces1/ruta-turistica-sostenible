@@ -277,8 +277,12 @@ h2, .font-heading {
 /* Hide Google Translate Banner and override body positioning */
 .goog-te-banner-frame.skiptranslate, 
 .goog-te-banner-frame, 
-iframe.goog-te-banner-frame {
+iframe.goog-te-banner-frame,
+iframe[id*="translate"],
+#goog-gt-tt,
+.goog-te-balloon-frame {
     display: none !important;
+    visibility: hidden !important;
 }
 
 body {
@@ -286,8 +290,8 @@ body {
     position: static !important;
 }
 
-.goog-te-balloon-frame {
-    display: none !important;
+html {
+    margin-top: 0px !important;
 }
 
 .goog-text-highlight {

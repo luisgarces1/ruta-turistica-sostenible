@@ -337,21 +337,24 @@
                 <div class="mt-4 px-6 py-2 border-t border-gray-100">
                     <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Idioma / Language</span>
                 </div>
-                <div class="grid grid-cols-3 gap-2 px-6 py-2">
-                    <button id="mobile-lang-es" onclick="changeLanguage('es', 'ESP')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-[#FF6900] bg-emerald-50 text-[#FF6900] hover:bg-emerald-100/50 transition-colors">
+                <div class="grid grid-cols-4 gap-2 px-6 py-2">
+                    <button id="mobile-lang-es" onclick="changeLanguage('es', 'ESP')" class="flex flex-col items-center justify-center p-2 rounded-xl border border-[#FF6900] bg-emerald-50 text-[#FF6900] hover:bg-emerald-100/50 transition-colors">
                         <img src="https://flagcdn.com/w40/es.png" class="w-8 h-auto rounded shadow-sm border border-gray-100" alt="ES">
-                        <span class="text-[10px] font-black mt-1">ES</span>
+                        <span class="text-[9px] font-black mt-1">ES</span>
                     </button>
-                    <button id="mobile-lang-en" onclick="changeLanguage('en', 'ENG')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+                    <button id="mobile-lang-en" onclick="changeLanguage('en', 'ENG')" class="flex flex-col items-center justify-center p-2 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
                         <img src="https://flagcdn.com/w40/us.png" class="w-8 h-auto rounded shadow-sm border border-gray-100" alt="EN">
-                        <span class="text-[10px] font-black mt-1">EN</span>
+                        <span class="text-[9px] font-black mt-1">EN</span>
                     </button>
-                    <button id="mobile-lang-pt" onclick="changeLanguage('pt', 'POR')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+                    <button id="mobile-lang-pt" onclick="changeLanguage('pt', 'POR')" class="flex flex-col items-center justify-center p-2 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
                         <img src="https://flagcdn.com/w40/pt.png" class="w-8 h-auto rounded shadow-sm border border-gray-100" alt="PT">
-                        <span class="text-[10px] font-black mt-1">PT</span>
+                        <span class="text-[9px] font-black mt-1">PT</span>
+                    </button>
+                    <button id="mobile-lang-fr" onclick="changeLanguage('fr', 'FRA')" class="flex flex-col items-center justify-center p-2 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+                        <img src="https://flagcdn.com/w40/fr.png" class="w-8 h-auto rounded shadow-sm border border-gray-100" alt="FR">
+                        <span class="text-[9px] font-black mt-1">FR</span>
                     </button>
                 </div>
-                
                 <div class="mt-4 px-6 py-2">
                     <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Conexiones</span>
                 </div>
@@ -494,6 +497,9 @@
                                 </button>
                                 <button onclick="changeLanguage('pt', 'POR')" class="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700 hover:text-[#003087] font-bold text-xs transition-colors border-t border-gray-50">
                                     <img src="https://flagcdn.com/w20/pt.png" class="w-5 h-auto rounded-sm shadow-sm border border-gray-100" alt="PT"> Português (PT)
+                                </button>
+                                <button onclick="changeLanguage('fr', 'FRA')" class="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700 hover:text-[#003087] font-bold text-xs transition-colors border-t border-gray-50">
+                                    <img src="https://flagcdn.com/w20/fr.png" class="w-5 h-auto rounded-sm shadow-sm border border-gray-100" alt="FR"> Français (FR)
                                 </button>
                             </div>
                         </div>
@@ -1022,15 +1028,40 @@
         }
 
         // --- Google Translate Integration ---
+        window.currentLanguageCode = 'es';
+
         window.googleTranslateElementInit = function() {
             new google.translate.TranslateElement({
                 pageLanguage: 'es',
-                includedLanguages: 'en,es,pt',
+                includedLanguages: 'en,es,pt,fr',
                 autoDisplay: false
             }, 'google_translate_element');
         };
 
+        // MutationObserver to actively hide Google Translate top banner and fix layout
+        const translateObserver = new MutationObserver(() => {
+            const translateHeader = document.querySelector('.goog-te-banner-frame');
+            if (translateHeader) {
+                translateHeader.style.setProperty('display', 'none', 'important');
+                translateHeader.style.setProperty('visibility', 'hidden', 'important');
+            }
+            const skipIframe = document.querySelector('iframe.skiptranslate');
+            if (skipIframe) {
+                skipIframe.style.setProperty('display', 'none', 'important');
+                skipIframe.style.setProperty('visibility', 'hidden', 'important');
+            }
+            if (document.body && (document.body.style.top !== '0px' || document.body.style.top !== '')) {
+                document.body.style.setProperty('top', '0px', 'important');
+                document.body.style.setProperty('position', 'static', 'important');
+            }
+            if (document.documentElement && (document.documentElement.style.marginTop !== '0px' || document.documentElement.style.marginTop !== '')) {
+                document.documentElement.style.setProperty('margin-top', '0px', 'important');
+            }
+        });
+        translateObserver.observe(document.documentElement, { childList: true, subtree: true });
+
         window.changeLanguage = function(langCode, label) {
+            window.currentLanguageCode = langCode;
             const selectEl = document.querySelector('#google_translate_element select');
             if (selectEl) {
                 selectEl.value = langCode;
@@ -1052,14 +1083,15 @@
             const btnEs = document.getElementById('mobile-lang-es');
             const btnEn = document.getElementById('mobile-lang-en');
             const btnPt = document.getElementById('mobile-lang-pt');
-            if (!btnEs || !btnEn || !btnPt) return;
+            const btnFr = document.getElementById('mobile-lang-fr');
+            if (!btnEs || !btnEn || !btnPt || !btnFr) return;
 
-            [btnEs, btnEn, btnPt].forEach(btn => {
+            [btnEs, btnEn, btnPt, btnFr].forEach(btn => {
                 btn.classList.remove('bg-emerald-50', 'border-[#FF6900]', 'text-[#FF6900]');
                 btn.classList.add('border-gray-200', 'text-gray-700');
             });
             
-            const activeBtn = langCode === 'es' ? btnEs : (langCode === 'en' ? btnEn : btnPt);
+            const activeBtn = langCode === 'es' ? btnEs : (langCode === 'en' ? btnEn : (langCode === 'pt' ? btnPt : btnFr));
             activeBtn.classList.remove('border-gray-200', 'text-gray-700');
             activeBtn.classList.add('bg-emerald-50', 'border-[#FF6900]', 'text-[#FF6900]');
         }

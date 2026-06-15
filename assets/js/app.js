@@ -287,7 +287,7 @@ function openSidePanel(data) {
                     </div>
                 </div>
 
-                <button id="narrate-btn" onclick="toggleNarration('${data.description.replace(/'/g, "\\'")}', this)" 
+                <button id="narrate-btn" onclick="toggleNarration(this)" 
                         class="audioguide-btn w-full py-4 rounded-xl flex items-center justify-center gap-4 font-black text-[10px] uppercase tracking-[0.2em] shadow-sm group relative overflow-hidden">
                     <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300 relative z-10">
                         <i class="fa-solid fa-play text-[#003087] ml-0.5 transition-transform group-hover:scale-110" id="narrate-icon"></i>
@@ -318,7 +318,7 @@ function openSidePanel(data) {
                 </button>
 
                 <!-- 5. Description -->
-                <div class="glass-card rounded-xl p-3 text-[12px] md:text-[13px] text-gray-700 leading-tight font-medium italic">
+                <div id="poi-description-text" class="glass-card rounded-xl p-3 text-[12px] md:text-[13px] text-gray-700 leading-tight font-medium italic">
                     ${data.description}
                 </div>
             </div>
@@ -356,11 +356,14 @@ let currentUtterance = null;
 window.audioInterval = null;
 let audioSeconds = 0;
 
-window.toggleNarration = function(text, btn) {
+window.toggleNarration = function(btn) {
     const wave = document.getElementById('audio-wave');
     const icon = document.getElementById('narrate-icon');
     const textSpan = document.getElementById('narrate-text');
     const timer = document.getElementById('audio-timer');
+    const descEl = document.getElementById('poi-description-text');
+    if (!descEl) return;
+    const text = descEl.innerText;
     
     if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
@@ -370,7 +373,37 @@ window.toggleNarration = function(text, btn) {
 
     if ('speechSynthesis' in window) {
         currentUtterance = new SpeechSynthesisUtterance(text);
-        currentUtterance.lang = 'es-ES';
+        
+        // Dynamic Voice Language Mapping
+        let voiceLang = 'es-ES';
+        const currentLang = window.currentLanguageCode || 'es';
+        if (currentLang === 'en') voiceLang = 'en-US';
+        else if (currentLang === 'pt') voiceLang = 'pt-PT';
+        else if (currentLang === 'fr') voiceLang = 'fr-FR';
+        
+        currentUtterance.lang = voiceLang;
+        
+        // Find a more human, natural-sounding voice if available
+        if ('getVoices' in window.speechSynthesis) {
+            const voices = window.speechSynthesis.getVoices();
+            if (voices && voices.length > 0) {
+                // Filter voices that match the active language prefix (e.g., 'es', 'en')
+                const langMatches = voices.filter(v => v.lang.toLowerCase().startsWith(currentLang));
+                
+                if (langMatches.length > 0) {
+                    // Prioritize modern Neural, Google, or Natural voices (much more human-like)
+                    const bestVoice = langMatches.find(v => {
+                        const name = v.name.toLowerCase();
+                        return name.includes('natural') || name.includes('google') || name.includes('neural') || name.includes('online');
+                    }) || langMatches.find(v => v.lang.toLowerCase() === voiceLang.toLowerCase()) || langMatches[0];
+                    
+                    if (bestVoice) {
+                        currentUtterance.voice = bestVoice;
+                    }
+                }
+            }
+        }
+        
         currentUtterance.rate = 0.9; // Slightly slower for more professional feel
         
         currentUtterance.onstart = () => {
