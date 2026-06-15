@@ -333,6 +333,25 @@
                     Rutas Sugeridas
                 </a>
                 
+                <!-- Idioma / Language Selector -->
+                <div class="mt-4 px-6 py-2 border-t border-gray-100">
+                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Idioma / Language</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 px-6 py-2">
+                    <button id="mobile-lang-es" onclick="changeLanguage('es', 'ESP')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-[#FF6900] bg-emerald-50 text-[#FF6900] hover:bg-emerald-100/50 transition-colors">
+                        <img src="https://flagcdn.com/w40/es.png" class="w-8 h-auto rounded shadow-sm border border-gray-100" alt="ES">
+                        <span class="text-[10px] font-black mt-1">ES</span>
+                    </button>
+                    <button id="mobile-lang-en" onclick="changeLanguage('en', 'ENG')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+                        <img src="https://flagcdn.com/w40/us.png" class="w-8 h-auto rounded shadow-sm border border-gray-100" alt="EN">
+                        <span class="text-[10px] font-black mt-1">EN</span>
+                    </button>
+                    <button id="mobile-lang-pt" onclick="changeLanguage('pt', 'POR')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+                        <img src="https://flagcdn.com/w40/pt.png" class="w-8 h-auto rounded shadow-sm border border-gray-100" alt="PT">
+                        <span class="text-[10px] font-black mt-1">PT</span>
+                    </button>
+                </div>
+                
                 <div class="mt-4 px-6 py-2">
                     <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Conexiones</span>
                 </div>
@@ -455,6 +474,30 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Language Selector Dropdown -->
+                    <div class="relative group h-full flex items-center">
+                        <button class="text-[13px] font-extrabold tracking-widest hover:text-blue-200 transition-colors flex items-center gap-1.5 uppercase">
+                            <i class="fa-solid fa-earth-americas text-xs text-[#FF6900]"></i>
+                            <span id="current-lang-label">ESP</span>
+                            <svg class="w-3 h-3 group-hover:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="absolute top-full right-0 mt-0 pt-4 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[120]">
+                            <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden py-1 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                <button onclick="changeLanguage('es', 'ESP')" class="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700 hover:text-[#003087] font-bold text-xs transition-colors">
+                                    <img src="https://flagcdn.com/w20/es.png" class="w-5 h-auto rounded-sm shadow-sm border border-gray-100" alt="ES"> Español (ES)
+                                </button>
+                                <button onclick="changeLanguage('en', 'ENG')" class="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700 hover:text-[#003087] font-bold text-xs transition-colors border-t border-gray-50">
+                                    <img src="https://flagcdn.com/w20/us.png" class="w-5 h-auto rounded-sm shadow-sm border border-gray-100" alt="EN"> English (EN)
+                                </button>
+                                <button onclick="changeLanguage('pt', 'POR')" class="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700 hover:text-[#003087] font-bold text-xs transition-colors border-t border-gray-50">
+                                    <img src="https://flagcdn.com/w20/pt.png" class="w-5 h-auto rounded-sm shadow-sm border border-gray-100" alt="PT"> Português (PT)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
 
                 <!-- Vertical Separator -->
@@ -516,19 +559,8 @@
                 <!-- Carousel Section Card -->
                 <section class="bg-white rounded-2xl shadow-lg p-2 overflow-hidden border border-gray-100">
                     <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp" alt="Viaducto el Gran Manglar">
-                                <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">Viaducto el Gran Manglar</div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="assets/images/puntos/foto-principal-para-la-pagina-g.m.webp" alt="Gran Malecón">
-                                <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">Gran Malecón</div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="assets/images/puntos/fotografia-para-la-pagina-vt.webp" alt="Volcán del Totumo">
-                                <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">Volcán del Totumo</div>
-                            </div>
+                        <div class="swiper-wrapper" id="swiper-wrapper-dynamic">
+                            <!-- Slides dynamically populated from mockData -->
                         </div>
                         <div class="swiper-button-next !w-10 !h-10 !bg-white/20 !rounded-full !after:text-sm hover:!bg-white/40 transition-colors"></div>
                         <div class="swiper-button-prev !w-10 !h-10 !bg-white/20 !rounded-full !after:text-sm hover:!bg-white/40 transition-colors"></div>
@@ -591,6 +623,10 @@
 
                     <!-- card 4 (Cargar Ruta Guardada) -->
                     <div id="route-card-saved" class="hidden group relative h-80 md:h-80 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl cursor-pointer transition-all hover:-translate-y-2 hover:shadow-emerald-500/20 border-2 border-dashed border-emerald-500/30 bg-emerald-950">
+                        <!-- Delete Button -->
+                        <button id="delete-saved-route-btn" class="absolute top-6 right-6 z-30 bg-black/40 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border border-white/10" title="Borrar ruta guardada">
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
                         <img src="assets/images/puntos/ecoparque-mallorquin.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 blur-[1px] opacity-40" alt="Ruta guardada">
                         <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-900/40 to-transparent"></div>
                         <div class="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10">
@@ -768,6 +804,22 @@
 
     <!-- Initialize Swiper -->
     <script>
+        // Populate Swiper dynamically with images from mockData
+        const swiperWrapper = document.getElementById('swiper-wrapper-dynamic');
+        if (swiperWrapper && typeof mockData !== 'undefined') {
+            // Whitelist of point IDs that have beautiful, high-resolution, landscape-oriented images
+            const allowedIds = [45, 60, 58, 24, 48, 56, 52, 40, 62, 9, 14, 13, 22, 18, 17, 44, 51, 42, 41];
+            const carouselItems = mockData.filter(item => allowedIds.includes(item.id));
+            
+            // Render slides
+            swiperWrapper.innerHTML = carouselItems.map(item => `
+                <div class="swiper-slide cursor-pointer" onclick="if(window.showView) { window.showView('map'); }">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                    <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">${item.title}</div>
+                </div>
+            `).join('');
+        }
+
         // Init Swiper
         var swiper = new Swiper(".mySwiper", {
             loop: true,
@@ -952,15 +1004,73 @@
             });
         }
 
+        const deleteSavedRouteBtn = document.getElementById('delete-saved-route-btn');
+        if (deleteSavedRouteBtn) {
+            deleteSavedRouteBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evitar cargar el itinerario
+                if (confirm('¿Estás seguro de que deseas eliminar tu ruta guardada?')) {
+                    localStorage.removeItem('saved_itinerary');
+                    window.checkSavedRouteUI();
+                }
+            });
+        }
+
         if (existentesCard) {
             existentesCard.addEventListener('click', () => {
                 showView('existentes');
             });
         }
 
+        // --- Google Translate Integration ---
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'en,es,pt',
+                autoDisplay: false
+            }, 'google_translate_element');
+        };
+
+        window.changeLanguage = function(langCode, label) {
+            const selectEl = document.querySelector('#google_translate_element select');
+            if (selectEl) {
+                selectEl.value = langCode;
+                selectEl.dispatchEvent(new Event('change'));
+                
+                // Update label in navbar
+                const labelEl = document.getElementById('current-lang-label');
+                if (labelEl) labelEl.textContent = label;
+                
+                // Add class to active language button in mobile if desired
+                updateMobileLangUI(langCode);
+            } else {
+                // If translate script hasn't loaded yet, try again in a bit
+                setTimeout(() => window.changeLanguage(langCode, label), 500);
+            }
+        };
+
+        function updateMobileLangUI(langCode) {
+            const btnEs = document.getElementById('mobile-lang-es');
+            const btnEn = document.getElementById('mobile-lang-en');
+            const btnPt = document.getElementById('mobile-lang-pt');
+            if (!btnEs || !btnEn || !btnPt) return;
+
+            [btnEs, btnEn, btnPt].forEach(btn => {
+                btn.classList.remove('bg-emerald-50', 'border-[#FF6900]', 'text-[#FF6900]');
+                btn.classList.add('border-gray-200', 'text-gray-700');
+            });
+            
+            const activeBtn = langCode === 'es' ? btnEs : (langCode === 'en' ? btnEn : btnPt);
+            activeBtn.classList.remove('border-gray-200', 'text-gray-700');
+            activeBtn.classList.add('bg-emerald-50', 'border-[#FF6900]', 'text-[#FF6900]');
+        }
+
         // Initialize with Map view active
         showView('map');
     </script>
+    
+    <!-- Hidden Google Translate Element -->
+    <div id="google_translate_element" class="hidden"></div>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>

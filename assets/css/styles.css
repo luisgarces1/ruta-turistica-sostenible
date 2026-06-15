@@ -273,3 +273,26 @@ h2, .font-heading {
     background-color: rgba(255, 105, 0, 0.06) !important;
     border-left-color: var(--brand-orange, #FF6900) !important;
 }
+
+/* Hide Google Translate Banner and override body positioning */
+.goog-te-banner-frame.skiptranslate, 
+.goog-te-banner-frame, 
+iframe.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+    position: static !important;
+}
+
+.goog-te-balloon-frame {
+    display: none !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    color: inherit !important;
+}
+
