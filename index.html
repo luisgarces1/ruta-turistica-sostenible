@@ -351,13 +351,6 @@
                     Visita Barranquilla
                 </a>
                 
-                <a href="https://www.rutacostera.co/conoce-la-ruta/#sitios-turisticos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-medium">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
-                        <i class="fa-solid fa-route text-xs"></i>
-                    </div>
-                    Sitios de interés
-                </a>
-
                 <a href="https://colombiavisible.com/ruta-de-la-cumbia-y-otras-musicas-del-caribe/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-medium border-t border-gray-100">
                     <div class="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600">
                         <i class="fa-solid fa-music text-xs"></i>
@@ -428,15 +421,7 @@
                                     </div>
                                 </a>
 
-                                <a href="https://www.rutacostera.co/conoce-la-ruta/#sitios-turisticos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-emerald-50 transition-colors group/item border-y border-gray-50">
-                                    <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 group-hover/item:bg-emerald-600 group-hover/item:text-white transition-colors">
-                                        <i class="fa-solid fa-route text-xs"></i>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="text-gray-900 font-bold text-xs uppercase tracking-tight">Sitios de interés</span>
-                                        <span class="text-[10px] text-gray-400 font-medium">Conoce la Ruta Costera</span>
-                                    </div>
-                                </a>
+
 
                                 <a href="https://colombiavisible.com/ruta-de-la-cumbia-y-otras-musicas-del-caribe/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-5 py-3 hover:bg-rose-50 transition-colors group/item">
                                     <div class="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600 group-hover/item:bg-rose-600 group-hover/item:text-white transition-colors">
@@ -615,9 +600,9 @@
                 <img src="assets/images/puntos/Ruta_de_la_Cumbia.png" class="absolute inset-0 w-full h-full object-cover scale-110 blur-sm" alt="Hero Background">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-white"></div>
                 <div class="relative z-10 text-center px-6 max-w-4xl pt-12 md:pt-0">
-                    <button onclick="window.showView('routes')" class="inline-flex items-center gap-2 text-[#003087] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
+                    <button onclick="window.goBack('routes')" class="inline-flex items-center gap-2 text-[#003087] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
                         <i class="fa-solid fa-arrow-left"></i>
-                        Volver a Rutas
+                        Atrás
                     </button>
                     <h2 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-tight md:leading-none">
                         Rutas <span class="text-blue-300">Existentes</span>
@@ -643,9 +628,9 @@
                 <img src="assets/images/municipios-hero.png" class="absolute inset-0 w-full h-full object-cover scale-110 blur-sm" alt="Hero Background">
                 <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-white"></div>
                 <div class="relative z-10 text-center px-6 max-w-4xl pt-12 md:pt-0">
-                    <button onclick="window.showView('routes')" class="inline-flex items-center gap-2 text-[#003087] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
+                    <button onclick="window.goBack('routes')" class="inline-flex items-center gap-2 text-[#003087] font-black uppercase tracking-widest text-[10px] mb-6 bg-white px-5 py-2.5 rounded-full shadow-2xl hover:bg-gray-50 transition-all border border-blue-100">
                         <i class="fa-solid fa-arrow-left"></i>
-                        Volver a Rutas
+                        Atrás
                     </button>
                     <h2 class="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-tight md:leading-none">
                         Nuestros <span class="text-blue-300">Municipios</span>
@@ -822,12 +807,24 @@
             }
         };
 
-        function showView(viewName) {
+        // --- Historial de vistas para navegación "Atrás" ---
+        const viewHistory = [];
+        let _currentView = null;
+
+        function showView(viewName, addToHistory = true) {
             const mainMapView = document.getElementById('main-map-view');
             const routesSelectionView = document.getElementById('routes-selection-view');
             const municipiosSelectionView = document.getElementById('municipios-selection-view');
             const municipioDetailView = document.getElementById('municipio-detail-view');
             const existentesSelectionView = document.getElementById('existentes-selection-view');
+
+            // Guardar vista actual en el historial antes de cambiar
+            if (addToHistory && _currentView && _currentView !== viewName) {
+                viewHistory.push(_currentView);
+                // Limitar historial a 10 entradas
+                if (viewHistory.length > 10) viewHistory.shift();
+            }
+            _currentView = viewName;
             
             // Hide all views first
             mainMapView.classList.add('hidden');
@@ -861,10 +858,25 @@
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Función global "Atrás": navega a la vista anterior del historial
+        window.goBack = function(fallback = 'routes') {
+            const prev = viewHistory.pop();
+            if (prev) {
+                showView(prev, false); // false = no agregar al historial al retroceder
+            } else {
+                showView(fallback, false);
+            }
+        };
+
         window.showView = showView; // Make it global
+
 
         document.getElementById('mapa-link').addEventListener('click', (e) => {
             e.preventDefault();
+            // Close itinerary overlay if open
+            const itinOverlay = document.getElementById('itinerary-overlay');
+            if (itinOverlay) itinOverlay.classList.add('translate-y-full');
             if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             showView('map');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -882,6 +894,9 @@
 
         document.getElementById('mobile-mapa-link').addEventListener('click', (e) => {
             e.preventDefault();
+            // Close itinerary overlay if open
+            const itinOverlayM = document.getElementById('itinerary-overlay');
+            if (itinOverlayM) itinOverlayM.classList.add('translate-y-full');
             if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             toggleMenu(false);
             showView('map');

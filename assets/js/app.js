@@ -577,7 +577,7 @@ function showMunicipioDetail(muniId) {
         <div class="relative h-[40vh] md:h-[50vh] w-full">
             <img src="${muni.image}" class="w-full h-full object-cover" alt="${muni.name}">
             <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-            <button onclick="window.showView('municipios')" class="absolute top-6 left-6 bg-white/80 backdrop-blur-md p-3 rounded-full text-gray-900 shadow-xl z-20 hover:bg-white transition-all">
+            <button onclick="window.goBack('municipios')" class="absolute top-6 left-6 bg-white/80 backdrop-blur-md p-3 rounded-full text-gray-900 shadow-xl z-20 hover:bg-white transition-all">
                 <i class="fa-solid fa-arrow-left"></i>
             </button>
         </div>
@@ -840,7 +840,9 @@ window.exitRouteView = function() {
     closeSidePanel();
     
     // open the existentes selection view again
-    window.showView('existentes');
+    // Volver a la vista anterior
+    if (window.goBack) window.goBack('existentes');
+    else window.showView('existentes');
 };
 
 window.focusRoutePoint = function(id) {

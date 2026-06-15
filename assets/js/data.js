@@ -27,7 +27,7 @@ const categories = [
       { id: "nauticos", label: "Deportes náuticos", icon: "🌊", color: "bg-sky-500" },
     ]
   },
-  { id: "eventos", label: "Festivales y eventos", icon: "🎉", color: "bg-fuchsia-500" },
+  { id: "eventos", label: "Festividades y eventos", icon: "🎉", color: "bg-fuchsia-500" },
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
   { id: "gastronomia", label: "Placeres gastronómicos", icon: "🥘", color: "bg-orange-500" },
   { id: "infraestructura", label: "Infraestructura del corredor vial", icon: "🛣️", color: "bg-blue-600" },

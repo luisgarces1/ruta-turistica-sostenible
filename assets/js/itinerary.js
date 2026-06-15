@@ -114,6 +114,9 @@ const ItineraryPlanner = {
 
         mapaBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            // Close overlay if open
+            const overlay = document.getElementById('itinerary-overlay');
+            if (overlay) overlay.classList.add('translate-y-full');
             this.resetToMainMap();
         });
 
