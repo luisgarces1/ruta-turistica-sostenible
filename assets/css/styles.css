@@ -300,3 +300,16 @@ html {
     color: inherit !important;
 }
 
+/* Highlight days on flatpickr with festivals */
+.flatpickr-day.has-festival-day {
+    border: 1px dashed var(--brand-orange, #FF6900) !important;
+    background-color: rgba(255, 105, 0, 0.08) !important;
+    border-radius: 50% !important;
+}
+.flatpickr-day.has-festival-day.selected {
+    background-color: var(--brand-orange, #FF6900) !important;
+    border-color: var(--brand-orange, #FF6900) !important;
+    color: white !important;
+}
+
+

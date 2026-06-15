@@ -61,12 +61,24 @@ const ItineraryPlanner = {
                     </div>
                 </div>
 
-                <div id="step-3" class="space-y-6 hidden animate-fade-in">
+                <div id="step-3" class="space-y-6 hidden animate-fade-in w-full px-4 max-w-lg mx-auto">
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Cuándo viajas?</h2>
                     
-                    <div class="bg-white p-2 rounded-3xl shadow-2xl inline-block">
-                        <div id="calendar-container" class="text-gray-800 scale-90 origin-top"></div>
-                        <input type="text" id="date-range-input" class="absolute opacity-0 pointer-events-none">
+                    <div class="flex flex-col md:flex-row gap-6 items-center justify-center">
+                        <div class="bg-white p-2 rounded-3xl shadow-2xl inline-block shrink-0">
+                            <div id="calendar-container" class="text-gray-800 scale-90 origin-top"></div>
+                            <input type="text" id="date-range-input" class="absolute opacity-0 pointer-events-none">
+                        </div>
+
+                        <!-- Calendar Festivals Panel -->
+                        <div id="calendar-festivals-info" class="hidden text-xs text-left bg-black/40 backdrop-blur-xl p-5 rounded-3xl w-full max-w-sm border border-white/10 space-y-3 custom-scrollbar">
+                            <p class="font-black uppercase tracking-widest text-[#FF6900] flex items-center gap-1.5 border-b border-white/10 pb-2">
+                                <i class="fa-solid fa-calendar-days"></i> Calendario de Eventos
+                            </p>
+                            <div id="calendar-festivals-list" class="max-h-56 overflow-y-auto custom-scrollbar space-y-2.5 text-blue-100 font-medium pr-1">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
                     </div>
 
                     <div class="pt-4 flex justify-center gap-3">
@@ -93,6 +105,23 @@ const ItineraryPlanner = {
                 if (selectedDates.length === 2) {
                     this.startDate = selectedDates[0];
                     this.endDate = selectedDates[1];
+                }
+            },
+            onDayCreate: (dObj, dStr, fp, dayElem) => {
+                const date = dayElem.dateObj;
+                const month = date.getMonth();
+                const dayNum = date.getDate();
+                const events = mockData.filter(item => {
+                    if (item.category !== 'eventos') return false;
+                    if (item.eventMonth !== month) return false;
+                    if (item.startDay !== undefined && item.endDay !== undefined) {
+                        return dayNum >= item.startDay && dayNum <= item.endDay;
+                    }
+                    return true;
+                });
+                if (events.length > 0) {
+                    dayElem.classList.add('has-festival-day');
+                    dayElem.setAttribute('title', events.map(e => `${e.title} (${e.location.split(',')[0]})`).join(', '));
                 }
             }
         });
@@ -164,6 +193,42 @@ const ItineraryPlanner = {
             }
             document.getElementById('step-2').classList.add('hidden');
             document.getElementById('step-3').classList.remove('hidden');
+            
+            // Show/hide festival info panel
+            const festInfo = document.getElementById('calendar-festivals-info');
+            const festList = document.getElementById('calendar-festivals-list');
+            if (festInfo && festList) {
+                if (this.selectedInterests.has('eventos')) {
+                    festInfo.classList.remove('hidden');
+                    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+                    const events = mockData.filter(item => item.category === 'eventos').sort((a,b) => {
+                        if (a.eventMonth !== b.eventMonth) return a.eventMonth - b.eventMonth;
+                        return (a.startDay || 0) - (b.startDay || 0);
+                    });
+                    
+                    festList.innerHTML = events.map(ev => {
+                        let dateRangeStr = monthNames[ev.eventMonth];
+                        if (ev.startDay !== undefined) {
+                            if (ev.endDay !== undefined && ev.endDay !== ev.startDay) {
+                                dateRangeStr += ` ${ev.startDay}-${ev.endDay}`;
+                            } else {
+                                dateRangeStr += ` ${ev.startDay}`;
+                            }
+                        }
+                        return `
+                            <div class="flex justify-between items-start gap-4 border-b border-white/5 pb-1.5 last:border-b-0 last:pb-0">
+                                <span class="font-bold text-[#FF6900] uppercase text-[10px] shrink-0 w-24">${dateRangeStr}</span>
+                                <div class="flex-1 min-w-0 text-left">
+                                    <p class="text-white font-bold truncate text-[11px]">${ev.title}</p>
+                                    <p class="text-blue-200/60 text-[9px] uppercase tracking-wider">${ev.location.split(',')[0]}</p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    festInfo.classList.add('hidden');
+                }
+            }
         });
 
         document.getElementById('back-to-step-2').addEventListener('click', () => {
@@ -176,11 +241,119 @@ const ItineraryPlanner = {
                 alert('Por favor selecciona un rango de fechas en el calendario');
                 return;
             }
+
+            // Check if events are selected and if they match the date range
+            if (this.selectedInterests.has('eventos')) {
+                const selectedDates = [];
+                let curr = new Date(this.startDate);
+                while (curr <= this.endDate) {
+                    selectedDates.push(new Date(curr));
+                    curr.setDate(curr.getDate() + 1);
+                }
+                
+                // Buscar eventos que coincidan con CUALQUIER día del rango
+                const matchingEvents = mockData.filter(item => {
+                    if (item.category !== 'eventos') return false;
+                    return selectedDates.some(d => {
+                        const m = d.getMonth();
+                        const dayNum = d.getDate();
+                        if (item.eventMonth !== m) return false;
+                        if (item.startDay !== undefined && item.endDay !== undefined) {
+                            return dayNum >= item.startDay && dayNum <= item.endDay;
+                        }
+                        return true;
+                    });
+                });
+                
+                if (matchingEvents.length === 0) {
+                    ItineraryPlanner.showCustomAlert(
+                        'Sin eventos programados',
+                        'No hay festividades ni eventos programados para las fechas seleccionadas. Por favor, selecciona una fecha diferente o cambia tus intereses.'
+                    );
+                    return;
+                }
+
+                // Encontrar el rango de días en el que hay eventos activos
+                const daysWithEvents = selectedDates.filter(d => {
+                    const m = d.getMonth();
+                    const dayNum = d.getDate();
+                    return matchingEvents.some(item => {
+                        if (item.eventMonth !== m) return false;
+                        if (item.startDay !== undefined && item.endDay !== undefined) {
+                            return dayNum >= item.startDay && dayNum <= item.endDay;
+                        }
+                        return true;
+                    });
+                });
+
+                // Si hay días sin eventos y el usuario SOLO seleccionó 'eventos' como interés, le avisamos
+                if (daysWithEvents.length < selectedDates.length && this.selectedInterests.size === 1) {
+                    const lastEventDate = new Date(Math.max(...daysWithEvents.map(d => d.getTime())));
+                    const dateStr = lastEventDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
+                    
+                    ItineraryPlanner.showCustomAlert(
+                        'Días sin festividades',
+                        `Solo hay festividades programadas hasta el <strong>${dateStr}</strong>. Si deseas viajar más días (hasta el <strong>${this.endDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}</strong>), por favor regresa al paso anterior y selecciona categorías adicionales (como Playas, Ecoturismo, Gastronomía) para rellenar los días restantes.`
+                    );
+                    return;
+                }
+            }
+
             const diffDays = Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24)) + 1;
-            if (diffDays > 100) { alert('Soporta hasta 100 días.'); return; }
+            if (diffDays > 100) { 
+                ItineraryPlanner.showCustomAlert('Ruta demasiado larga', 'Soporta hasta 100 días.'); 
+                return; 
+            }
             this.generate(diffDays);
             overlay.classList.add('translate-y-full');
             if (window.showView) window.showView('map');
+        });
+    },
+
+    showCustomAlert(title, text) {
+        // Remove existing custom modal if any
+        const existing = document.getElementById('itinerary-custom-alert');
+        if (existing) existing.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'itinerary-custom-alert';
+        modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300';
+        
+        modal.innerHTML = `
+            <div class="bg-white rounded-[24px] max-w-md w-full overflow-hidden shadow-2xl border border-gray-100 transform scale-95 opacity-0 transition-all duration-300 flex flex-col">
+                <div class="p-6 pb-4 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-[#FF6900]/10 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-circle-exclamation text-[#FF6900] text-xl"></i>
+                    </div>
+                    <div class="flex-1 space-y-1">
+                        <h3 class="text-lg font-black text-[#003087] uppercase tracking-tight">${title}</h3>
+                        <p class="text-xs text-gray-500 font-medium leading-relaxed">${text}</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-6 py-4 flex justify-end">
+                    <button id="close-custom-alert" class="bg-[#003087] text-white hover:bg-[#002266] px-6 py-2.5 rounded-xl font-bold uppercase tracking-wider text-[11px] shadow-md transition-all active:scale-95">Aceptar</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Trigger animations
+        setTimeout(() => {
+            modal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+            modal.querySelector('div').classList.add('scale-100', 'opacity-100');
+        }, 10);
+
+        const closeModal = () => {
+            modal.querySelector('div').classList.remove('scale-100', 'opacity-100');
+            modal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.remove(), 300);
+        };
+
+        modal.querySelector('#close-custom-alert').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
         });
     },
 
@@ -229,12 +402,27 @@ const ItineraryPlanner = {
     },
 
     generate(numDays) {
+        // Build list of dates
+        const selectedDates = [];
+        let curr = new Date(this.startDate);
+        while (curr <= this.endDate) {
+            selectedDates.push(new Date(curr));
+            curr.setDate(curr.getDate() + 1);
+        }
+
         let filtered = mockData.filter(item => {
             // 1. Validar fechas para eventos estacionales
             if (item.eventMonth !== undefined) {
-                const startM = this.startDate.getMonth();
-                const endM = this.endDate.getMonth();
-                if (startM !== item.eventMonth && endM !== item.eventMonth) return false;
+                const overlaps = selectedDates.some(d => {
+                    const m = d.getMonth();
+                    const dayNum = d.getDate();
+                    if (item.eventMonth !== m) return false;
+                    if (item.startDay !== undefined && item.endDay !== undefined) {
+                        return dayNum >= item.startDay && dayNum <= item.endDay;
+                    }
+                    return true;
+                });
+                if (!overlaps) return false;
             }
 
             // 2. Validar categorías e intereses
@@ -260,20 +448,66 @@ const ItineraryPlanner = {
         else filtered.sort((a,b) => b.lat - a.lat);
 
         this.fullItinerary = {};
-        const totalPointsAvailable = filtered.length;
         
-        // Nueva lógica: Asegurar que CADA día tenga al menos 3 actividades
-        // Si se acaban los puntos únicos, empezamos a repetir el ciclo para llenar los días
+        // Separamos puntos estáticos/no-eventos y eventos para poder programar con precisión de fecha
+        const nonEventPoints = filtered.filter(item => item.category !== 'eventos');
+        const eventPoints = filtered.filter(item => item.category === 'eventos');
+
+        // Para cada día del viaje, calculamos la fecha correspondiente para validar qué eventos ocurren ESE día
         for (let i = 0; i < numDays; i++) {
+            const dayDate = new Date(this.startDate);
+            dayDate.setDate(dayDate.getDate() + i);
+            const dayMonth = dayDate.getMonth();
+            const dayNum = dayDate.getDate();
+
+            // Eventos que ocurren en este día específico
+            const activeEventsToday = eventPoints.filter(ev => {
+                if (ev.eventMonth !== dayMonth) return false;
+                if (ev.startDay !== undefined && ev.endDay !== undefined) {
+                    return dayNum >= ev.startDay && dayNum <= ev.endDay;
+                }
+                return true;
+            });
+
             const dayPoints = [];
-            const numPointsToday = 3; // Forzamos 3 por día como mínimo
             
-            for (let j = 0; j < numPointsToday; j++) {
-                // Usamos el operador módulo (%) para volver al principio de la lista si se agotan
-                const pointIdx = (i * numPointsToday + j) % totalPointsAvailable;
-                dayPoints.push(filtered[pointIdx]);
+            // Si hay eventos ocurriendo hoy, los priorizamos
+            activeEventsToday.forEach(ev => {
+                if (dayPoints.length < 3 && !dayPoints.some(p => p.id === ev.id)) {
+                    dayPoints.push(ev);
+                }
+            });
+
+            // Rellenamos el resto de las 3 actividades diarias usando puntos no-evento (únicos)
+            const numPointsToday = 3;
+            let fillIndex = 0;
+            let attempts = 0;
+            
+            // Primero intentamos llenar con puntos de no-eventos que no estén ya repetidos en el mismo día
+            while (dayPoints.length < numPointsToday && nonEventPoints.length > 0 && attempts < nonEventPoints.length) {
+                const pointIdx = (i * numPointsToday + fillIndex) % nonEventPoints.length;
+                const candidate = nonEventPoints[pointIdx];
+                if (!dayPoints.some(p => p.id === candidate.id)) {
+                    dayPoints.push(candidate);
+                }
+                fillIndex++;
+                attempts++;
             }
-            
+
+            // Si aún faltan y se agotan las opciones sin repetición, permitimos rellenar con lo que haya de filtered (pero evitando duplicados en el mismo día)
+            if (dayPoints.length < numPointsToday && filtered.length > 0) {
+                let backupAttempts = 0;
+                while (dayPoints.length < numPointsToday && backupAttempts < filtered.length) {
+                    const pointIdx = (i * numPointsToday + fillIndex) % filtered.length;
+                    const candidate = filtered[pointIdx];
+                    if (!dayPoints.some(p => p.id === candidate.id)) {
+                        dayPoints.push(candidate);
+                    }
+                    fillIndex++;
+                    backupAttempts++;
+                }
+            }
+
             this.fullItinerary[i + 1] = dayPoints;
         }
 
