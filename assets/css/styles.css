@@ -219,3 +219,57 @@ h2, .font-heading {
     pointer-events: none;
     opacity: 0.85;
 }
+
+/* Custom Premium Navigation Links (aligned with rutacostera.co branding) */
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.15em !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+}
+
+.nav-link.active {
+    color: #ffffff !important;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--brand-orange, #FF6900);
+    border-radius: 9999px;
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+.mobile-nav-link {
+    transition: all 0.3s ease !important;
+    border-left: 4px solid transparent;
+}
+
+.mobile-nav-link.active {
+    color: var(--brand-orange, #FF6900) !important;
+    background-color: rgba(255, 105, 0, 0.06) !important;
+    border-left-color: var(--brand-orange, #FF6900) !important;
+}

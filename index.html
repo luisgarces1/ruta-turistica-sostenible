@@ -324,11 +324,11 @@
             </div>
             
             <div class="py-4">
-                <a href="#" id="mobile-mapa-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#003087]">
+                <a href="#" id="mobile-mapa-link" class="mobile-nav-link flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#003087]">
                     <i class="fa-solid fa-map-location-dot"></i>
                     Mapa Interactivo
                 </a>
-                <a href="#" id="mobile-rutas-link" class="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#003087]">
+                <a href="#" id="mobile-rutas-link" class="mobile-nav-link flex items-center gap-4 px-6 py-4 hover:bg-gray-50 text-sm font-bold uppercase tracking-wider text-[#003087]">
                     <i class="fa-solid fa-route"></i>
                     Rutas Sugeridas
                 </a>
@@ -389,8 +389,8 @@
 
             <div class="flex items-center gap-4 md:gap-8">
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="#" id="mapa-link" class="text-[13px] font-extrabold tracking-widest hover:text-blue-200 transition-colors">MAPA</a>
-                    <a href="#" id="rutas-link" class="text-[13px] font-extrabold tracking-widest hover:text-blue-200 transition-colors">RUTAS</a>
+                    <a href="#" id="mapa-link" class="nav-link">MAPA</a>
+                    <a href="#" id="rutas-link" class="nav-link">RUTAS</a>
                     <!-- Dropdown for CONEXIONES -->
                     <div class="relative group h-full flex items-center">
                         <button class="text-[13px] font-extrabold tracking-widest hover:text-blue-200 transition-colors flex items-center gap-1 uppercase">
@@ -481,6 +481,22 @@
                         <div class="px-6 py-5 border-b border-gray-50 bg-white">
                             <h3 class="text-xl font-bold text-[#003087]">Puntos de Interés</h3>
                             <p class="text-xs text-gray-400 mt-1">Explora nuestra ruta turística</p>
+                            
+                            <!-- Search Bar -->
+                            <div class="mt-4 relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+                                </div>
+                                <input type="text" id="poi-search-input" placeholder="Buscar festividad, playa, sitio..." class="block w-full pl-9 pr-8 py-2.5 text-xs bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#FF6900] focus:border-[#FF6900] transition-all font-semibold text-gray-700 placeholder:text-gray-400 placeholder:font-semibold">
+                                <button id="clear-search-btn" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 hidden">
+                                    <i class="fa-solid fa-xmark text-xs"></i>
+                                </button>
+                                
+                                <!-- Predictive Search Dropdown -->
+                                <div id="predictive-search-results" class="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 max-h-60 overflow-y-auto hidden z-[200] custom-scrollbar">
+                                    <!-- Results injected via JS -->
+                                </div>
+                            </div>
                         </div>
                         <div class="p-4 flex-1 overflow-y-auto hide-scrollbar bg-white" id="filter-container">
                             <!-- Filters and items injected via JS -->
@@ -833,27 +849,34 @@
             municipioDetailView.classList.add('hidden');
             if (existentesSelectionView) existentesSelectionView.classList.add('hidden');
             
+            // Update active state on header and mobile links
+            const dMapa = document.getElementById('mapa-link');
+            const dRutas = document.getElementById('rutas-link');
+            const mMapa = document.getElementById('mobile-mapa-link');
+            const mRutas = document.getElementById('mobile-rutas-link');
+
             if (viewName === 'map') {
                 mainMapView.classList.remove('hidden');
-                document.getElementById('mapa-link').classList.add('text-blue-200');
-                document.getElementById('rutas-link').classList.remove('text-blue-200');
-            } else if (viewName === 'routes') {
-                routesSelectionView.classList.remove('hidden');
-                document.getElementById('rutas-link').classList.add('text-blue-200');
-                document.getElementById('mapa-link').classList.remove('text-blue-200');
-                window.checkSavedRouteUI();
-            } else if (viewName === 'municipios') {
-                municipiosSelectionView.classList.remove('hidden');
-                document.getElementById('rutas-link').classList.add('text-blue-200');
-                document.getElementById('mapa-link').classList.remove('text-blue-200');
-            } else if (viewName === 'municipio-detail') {
-                municipioDetailView.classList.remove('hidden');
-                document.getElementById('rutas-link').classList.add('text-blue-200');
-                document.getElementById('mapa-link').classList.remove('text-blue-200');
-            } else if (viewName === 'existentes') {
-                if (existentesSelectionView) existentesSelectionView.classList.remove('hidden');
-                document.getElementById('rutas-link').classList.add('text-blue-200');
-                document.getElementById('mapa-link').classList.remove('text-blue-200');
+                if (dMapa) dMapa.classList.add('active');
+                if (dRutas) dRutas.classList.remove('active');
+                if (mMapa) mMapa.classList.add('active');
+                if (mRutas) mRutas.classList.remove('active');
+            } else {
+                if (dMapa) dMapa.classList.remove('active');
+                if (dRutas) dRutas.classList.add('active');
+                if (mMapa) mMapa.classList.remove('active');
+                if (mRutas) mRutas.classList.add('active');
+
+                if (viewName === 'routes') {
+                    routesSelectionView.classList.remove('hidden');
+                    window.checkSavedRouteUI();
+                } else if (viewName === 'municipios') {
+                    municipiosSelectionView.classList.remove('hidden');
+                } else if (viewName === 'municipio-detail') {
+                    municipioDetailView.classList.remove('hidden');
+                } else if (viewName === 'existentes') {
+                    if (existentesSelectionView) existentesSelectionView.classList.remove('hidden');
+                }
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });

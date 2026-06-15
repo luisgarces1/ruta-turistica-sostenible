@@ -584,7 +584,7 @@ function showMunicipioDetail(muniId) {
 
         <div class="max-w-4xl mx-auto px-6 -mt-32 relative z-10 pb-20">
             <div class="bg-white rounded-[3rem] shadow-2xl p-8 md:p-12 border border-gray-100">
-                <h1 class="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter mb-6">${muni.name}</h1>
+                <h1 class="text-4xl md:text-6xl font-black text-[#003087] uppercase tracking-tighter mb-6">${muni.name}</h1>
                 <p class="text-xl text-gray-600 leading-relaxed mb-10 font-medium">
                     ${muni.description}
                 </p>
@@ -2518,7 +2518,6 @@ L.polyline(prosperidadCoords, {
     lineJoin: 'round'
 }).addTo(map).bindTooltip("Circunvalar de la Prosperidad", { sticky: true });
 
-
 L.polyline(prosperidadCoords, {
     color: '#0084ff',
     weight: 6,
@@ -2526,3 +2525,122 @@ L.polyline(prosperidadCoords, {
     lineJoin: 'round'
 }).addTo(map).bindTooltip("Circunvalar de la Prosperidad", { sticky: true });
 
+// --- Búsqueda Predictiva de Puntos de Interés ---
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('poi-search-input');
+    const clearSearchBtn = document.getElementById('clear-search-btn');
+    const searchResults = document.getElementById('predictive-search-results');
+
+    if (!searchInput || !searchResults) return;
+
+    // Helper to find category info
+    const getCategoryInfo = (catId) => {
+        let catData = categories.find(c => c.id === catId);
+        if (!catData) {
+            categories.forEach(parent => {
+                if (parent.subcategories) {
+                    const sub = parent.subcategories.find(s => s.id === catId);
+                    if (sub) catData = sub;
+                }
+            });
+        }
+        return catData || { label: 'Otros', icon: '📍', color: 'bg-slate-500' };
+    };
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        
+        if (query.length === 0) {
+            clearSearchBtn.classList.add('hidden');
+            searchResults.innerHTML = '';
+            searchResults.classList.add('hidden');
+            return;
+        }
+
+        clearSearchBtn.classList.remove('hidden');
+
+        // Filter mockData
+        const matches = mockData.filter(item => {
+            const normalizedTitle = item.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const normalizedDesc = item.description.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const normalizedLoc = item.location.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const normalizedTags = item.tags ? item.tags.map(t => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).join(' ') : '';
+            const normalizedCat = item.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            return normalizedTitle.includes(query) || 
+                   normalizedDesc.includes(query) || 
+                   normalizedLoc.includes(query) || 
+                   normalizedTags.includes(query) ||
+                   normalizedCat.includes(query);
+        });
+
+        // Render matches
+        if (matches.length === 0) {
+            searchResults.innerHTML = `
+                <div class="px-4 py-3.5 text-xs text-gray-400 font-bold text-center">
+                    No se encontraron resultados para "${e.target.value}"
+                </div>
+            `;
+        } else {
+            searchResults.innerHTML = '';
+            matches.slice(0, 8).forEach(item => {
+                const catInfo = getCategoryInfo(item.category);
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors border-b border-gray-50 last:border-b-0";
+                
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" class="w-8 h-8 rounded-lg object-cover shrink-0" alt="${item.title}">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-xs font-black text-gray-900 truncate uppercase tracking-tight">${item.title}</p>
+                        <p class="text-[10px] text-gray-400 font-bold truncate flex items-center gap-1.5 uppercase tracking-tighter">
+                            <span class="${catInfo.color} text-white text-[8px] px-1.5 py-0.5 rounded">${catInfo.icon} ${catInfo.label}</span>
+                            <span>• ${item.location.split(',')[0]}</span>
+                        </p>
+                    </div>
+                `;
+
+                itemDiv.addEventListener('click', () => {
+                    // Open the side panel for this item
+                    openSidePanel(item);
+
+                    // Fly map to marker
+                    const isMobile = window.innerWidth < 768;
+                    const latOffset = isMobile ? -0.05 : 0;
+                    map.flyTo([item.lat + latOffset, item.lng], 13, { duration: 0.8 });
+
+                    // Hide dropdown and clear search
+                    searchResults.classList.add('hidden');
+                    searchInput.value = '';
+                    clearSearchBtn.classList.add('hidden');
+                });
+
+                searchResults.appendChild(itemDiv);
+            });
+        }
+        
+        searchResults.classList.remove('hidden');
+    });
+
+    // Clear search button
+    clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearSearchBtn.classList.add('hidden');
+        searchResults.innerHTML = '';
+        searchResults.classList.add('hidden');
+        searchInput.focus();
+    });
+
+    // Close search results when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.classList.add('hidden');
+        }
+    });
+
+    // Focus input to re-show results if query exists
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value.trim().length > 0) {
+            searchResults.classList.remove('hidden');
+        }
+    });
+});
