@@ -216,10 +216,10 @@ const ItineraryPlanner = {
                             }
                         }
                         return `
-                            <div class="flex justify-between items-start gap-4 border-b border-white/5 pb-1.5 last:border-b-0 last:pb-0">
-                                <span class="font-bold text-[#FF6900] uppercase text-[10px] shrink-0 w-24">${dateRangeStr}</span>
+                            <div onclick="ItineraryPlanner.generateRouteForEvent(${ev.id})" class="flex justify-between items-start gap-4 border-b border-white/5 pb-1.5 last:border-b-0 last:pb-0 cursor-pointer hover:bg-white/10 p-1.5 rounded transition-all group" title="Click para generar ruta con este evento">
+                                <span class="font-bold text-[#FF6900] uppercase text-[10px] shrink-0 w-24 group-hover:text-white transition-colors">${dateRangeStr}</span>
                                 <div class="flex-1 min-w-0 text-left">
-                                    <p class="text-white font-bold truncate text-[11px]">${ev.title}</p>
+                                    <p class="text-white font-bold truncate text-[11px] group-hover:text-[#FF6900] transition-colors">${ev.title}</p>
                                     <p class="text-blue-200/60 text-[9px] uppercase tracking-wider">${ev.location.split(',')[0]}</p>
                                 </div>
                             </div>
@@ -961,6 +961,39 @@ const ItineraryPlanner = {
         this.fullItinerary[day][index] = newPoint;
         this.renderItinerarySidebar();
         this.updateMapForDay(day);
+    },
+
+    generateRouteForEvent(eventId) {
+        const ev = mockData.find(item => item.id === eventId);
+        if (!ev) return;
+
+        const currentYear = new Date().getFullYear();
+        this.selectedInterests.add('eventos');
+
+        // Update interest tags UI to show 'eventos' is selected
+        const eventTag = document.querySelector(`.interest-tag[data-value="eventos"]`);
+        if (eventTag) {
+            eventTag.classList.add('bg-white', 'text-[#003087]', 'border-white');
+            eventTag.classList.remove('border-white/20');
+        }
+
+        const start = new Date(currentYear, ev.eventMonth, ev.startDay || 1);
+        const end = new Date(currentYear, ev.eventMonth, ev.endDay || ev.startDay || 1);
+        
+        this.startDate = start;
+        this.endDate = end;
+
+        if (this.flatpickrInstance) {
+            this.flatpickrInstance.set('minDate', null);
+            this.flatpickrInstance.setDate([start, end], true);
+        }
+
+        const diffDays = Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24)) + 1;
+        this.generate(diffDays);
+
+        const overlay = document.getElementById('itinerary-overlay');
+        if (overlay) overlay.classList.add('translate-y-full');
+        if (window.showView) window.showView('map');
     }
 };
 
