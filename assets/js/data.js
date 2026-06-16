@@ -846,6 +846,22 @@ const mockData = [
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
   },
+  {
+    id: 92,
+    eventMonth: 1,
+    startDay: 14,
+    endDay: 17,
+    category: "eventos",
+    title: "Carnaval de Barranquilla",
+    description: "Declarado Patrimonio Oral e Inmaterial de la Humanidad por la Unesco, el Carnaval de Barranquilla es la fiesta más grande del Caribe colombiano. Cuatro días de desfiles, comparsas, música y color que celebran las raíces africanas, indígenas y europeas de esta costa. Una experiencia que desborda las calles cada febrero.",
+    lat: 10.9967,
+    lng: -74.8181,
+    image: "assets/images/puntos/carnaval de barranquilla.jpg",
+    location: "Barranquilla, Atlántico.",
+    hours: "4 días oficiales previos al Miércoles de Ceniza (2026: 14 al 17 de febrero)",
+    price: "Gratuito.",
+    tags: ["Festividad cultural", "Patrimonio Unesco", "Evento masivo", "Música y danza", "Desfiles y comparsas"]
+  },
 ];
 
 const rutasExistentes = [
