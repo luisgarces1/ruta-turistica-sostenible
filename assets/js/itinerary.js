@@ -641,12 +641,49 @@ const ItineraryPlanner = {
             if (points.find(p => p.id === m.itemData.id)) { if (!markerGroup.hasLayer(m)) markerGroup.addLayer(m); }
             else { if (markerGroup.hasLayer(m)) markerGroup.removeLayer(m); }
         });
-        if (this.routePolyline) map.removeLayer(this.routePolyline);
+        if (this.routePolyline) {
+            map.removeLayer(this.routePolyline);
+            this.routePolyline = null;
+        }
         if (points.length > 0) {
             map.flyToBounds(markerGroup.getBounds(), { padding: [100, 100], duration: 1.5 });
-            this.routePolyline = L.polyline(points.map(i => [i.lat, i.lng]), {
-                color: '#003087', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
-            }).addTo(map);
+            
+            // Track active request to prevent race conditions
+            this.activeRouteFetchDay = day;
+            const currentFetchDay = day;
+            
+            const coordsQuery = points.map(p => `${p.lng},${p.lat}`).join(';');
+            const url = `https://router.project-osrm.org/route/v1/driving/${coordsQuery}?overview=full&geometries=geojson`;
+            
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    if (this.activeRouteFetchDay !== currentFetchDay) return;
+                    
+                    if (this.routePolyline) map.removeLayer(this.routePolyline);
+                    
+                    if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
+                        const route = data.routes[0];
+                        const latlngs = route.geometry.coordinates.map(c => [c[1], c[0]]);
+                        this.routePolyline = L.polyline(latlngs, {
+                            color: '#003087', weight: 5, opacity: 0.85, lineCap: 'round', lineJoin: 'round'
+                        }).addTo(map);
+                    } else {
+                        // Fallback straight lines
+                        this.routePolyline = L.polyline(points.map(i => [i.lat, i.lng]), {
+                            color: '#003087', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
+                        }).addTo(map);
+                    }
+                })
+                .catch(err => {
+                    console.error("OSRM Route fetch error:", err);
+                    if (this.activeRouteFetchDay !== currentFetchDay) return;
+                    
+                    if (this.routePolyline) map.removeLayer(this.routePolyline);
+                    this.routePolyline = L.polyline(points.map(i => [i.lat, i.lng]), {
+                        color: '#003087', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
+                    }).addTo(map);
+                });
         }
     },
 
