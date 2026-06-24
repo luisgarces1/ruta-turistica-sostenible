@@ -8,6 +8,7 @@ const ItineraryPlanner = {
     fullItinerary: null,
     flatpickrInstance: null,
     startCity: 'Cartagena',
+    activeStopIndex: 0,
 
     // Coordenadas aproximadas de centros de ciudades
     cityCoords: {
@@ -512,6 +513,7 @@ const ItineraryPlanner = {
         }
 
         this.currentDayView = 1;
+        this.activeStopIndex = 0;
         this.renderItinerarySidebar();
         this.updateMapForDay(1);
     },
@@ -566,9 +568,24 @@ const ItineraryPlanner = {
                         let time = this.calculateTravelTime(prevCoord, [item.lat, item.lng]);
                         let label = idx === 0 ? `Desde centro de ${this.startCity}` : `Desde punto anterior`;
                         
+                        const isBeyond = idx > this.activeStopIndex;
+                        const isCurrent = idx === this.activeStopIndex;
+                        const opacityClass = isBeyond ? 'itinerary-faded' : 'opacity-100 transition-all duration-300';
+                        
+                        let cardClass = "";
+                        let borderBarClass = "";
+                        
+                        if (isCurrent) {
+                            cardClass = "itinerary-card-active p-5 rounded-2xl transition-all duration-300 cursor-pointer group relative overflow-hidden flex flex-col gap-4";
+                            borderBarClass = "absolute left-0 top-0 bottom-0 w-2 bg-[#003087] transition-all duration-300";
+                        } else {
+                            cardClass = `bg-white p-5 rounded-2xl border border-gray-100 shadow-[0_4px_16px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_24px_rgba(0,48,135,0.06)] hover:border-[#003087]/20 transition-all duration-300 cursor-pointer group relative overflow-hidden flex flex-col gap-4 ${opacityClass}`;
+                            borderBarClass = "absolute left-0 top-0 bottom-0 w-1.5 bg-gray-200 group-hover:bg-[#003087] transition-all duration-300";
+                        }
+                        
                         return `
                             <!-- Connection Timeline Line & Time -->
-                            <div class="flex items-center gap-3 py-2.5 pl-4 relative">
+                            <div class="flex items-center gap-3 py-2.5 pl-4 relative ${opacityClass}">
                                 <div class="absolute left-[27px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-gray-200 to-gray-200"></div>
                                 <div class="w-6 h-6 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 z-10 shadow-sm">
                                     <i class="fa-solid fa-car text-[10px] text-[#003087]"></i>
@@ -580,8 +597,8 @@ const ItineraryPlanner = {
                             </div>
 
                             <!-- Stop Activity Card -->
-                            <div onclick="ItineraryPlanner.focusPoint(${item.id})" class="bg-white p-5 rounded-2xl border border-gray-100 shadow-[0_4px_16px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_24px_rgba(0,48,135,0.06)] hover:border-[#003087]/20 transition-all duration-300 cursor-pointer group relative overflow-hidden flex flex-col gap-4">
-                                <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gray-200 group-hover:bg-[#003087] transition-all duration-300"></div>
+                            <div onclick="ItineraryPlanner.focusPoint(${item.id})" class="${cardClass}">
+                                <div class="${borderBarClass}"></div>
                                 <div class="flex justify-between items-start w-full gap-2">
                                     <div class="max-w-[75%] space-y-1">
                                         <p class="font-extrabold text-[#003087] text-sm group-hover:text-[#002266] transition-colors leading-tight">${item.title}</p>
@@ -643,11 +660,20 @@ const ItineraryPlanner = {
 
     switchDay(day) {
         this.currentDayView = day;
+        this.activeStopIndex = 0;
         this.renderItinerarySidebar();
         this.updateMapForDay(day);
     },
 
     focusPoint(id) {
+        const points = this.fullItinerary[this.currentDayView] || [];
+        const idx = points.findIndex(p => p.id === id);
+        if (idx !== -1) {
+            this.activeStopIndex = idx;
+            this.updateMapForDay(this.currentDayView);
+            this.renderItinerarySidebar();
+        }
+
         const marker = allMarkers.find(m => m.itemData.id === id);
         if (marker) {
             // 1. Disparar el click para abrir el panel
@@ -676,14 +702,22 @@ const ItineraryPlanner = {
             map.removeLayer(this.routePolyline);
             this.routePolyline = null;
         }
-        if (points.length > 0) {
+
+        const activeIndex = this.activeStopIndex !== undefined ? this.activeStopIndex : 0;
+        const pointsToRoute = points.slice(0, activeIndex + 1);
+
+        if (pointsToRoute.length > 0) {
             map.flyToBounds(markerGroup.getBounds(), { padding: [100, 100], duration: 1.5 });
             
             // Track active request to prevent race conditions
             this.activeRouteFetchDay = day;
             const currentFetchDay = day;
             
-            const coordsQuery = points.map(p => `${p.lng},${p.lat}`).join(';');
+            const startCityCoords = this.cityCoords[this.startCity];
+            const cityLngLat = `${startCityCoords[1]},${startCityCoords[0]}`;
+            const pointsLngLat = pointsToRoute.map(p => `${p.lng},${p.lat}`);
+            const coordsQuery = [cityLngLat, ...pointsLngLat].join(';');
+            
             const url = `https://router.project-osrm.org/route/v1/driving/${coordsQuery}?overview=full&geometries=geojson`;
             
             fetch(url)
@@ -701,7 +735,9 @@ const ItineraryPlanner = {
                         }).addTo(map);
                     } else {
                         // Fallback straight lines
-                        this.routePolyline = L.polyline(points.map(i => [i.lat, i.lng]), {
+                        const startCityLatLng = [startCityCoords[0], startCityCoords[1]];
+                        const straightLatLngs = [startCityLatLng, ...pointsToRoute.map(i => [i.lat, i.lng])];
+                        this.routePolyline = L.polyline(straightLatLngs, {
                             color: '#003087', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
                         }).addTo(map);
                     }
@@ -711,7 +747,9 @@ const ItineraryPlanner = {
                     if (this.activeRouteFetchDay !== currentFetchDay) return;
                     
                     if (this.routePolyline) map.removeLayer(this.routePolyline);
-                    this.routePolyline = L.polyline(points.map(i => [i.lat, i.lng]), {
+                    const startCityLatLng = [startCityCoords[0], startCityCoords[1]];
+                    const straightLatLngs = [startCityLatLng, ...pointsToRoute.map(i => [i.lat, i.lng])];
+                    this.routePolyline = L.polyline(straightLatLngs, {
                         color: '#003087', weight: 4, opacity: 0.8, dashArray: '8, 12', lineCap: 'round', lineJoin: 'round'
                     }).addTo(map);
                 });

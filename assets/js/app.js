@@ -173,6 +173,17 @@ function renderMarkers() {
             const isMobile = window.innerWidth < 768;
             const latOffset = isMobile ? -0.05 : 0; // Look a bit lower on mobile so panel doesn't cover marker
             map.flyTo([item.lat + latOffset, item.lng], 13, { duration: 0.8 });
+
+            // Synchronize with ItineraryPlanner if active
+            if (window.ItineraryPlanner && window.ItineraryPlanner.fullItinerary && window.ItineraryPlanner.currentDayView) {
+                const dayPoints = window.ItineraryPlanner.fullItinerary[window.ItineraryPlanner.currentDayView] || [];
+                const stopIdx = dayPoints.findIndex(p => p.id === item.id);
+                if (stopIdx !== -1) {
+                    window.ItineraryPlanner.activeStopIndex = stopIdx;
+                    window.ItineraryPlanner.updateMapForDay(window.ItineraryPlanner.currentDayView);
+                    window.ItineraryPlanner.renderItinerarySidebar();
+                }
+            }
         });
 
         markerGroup.addLayer(marker);

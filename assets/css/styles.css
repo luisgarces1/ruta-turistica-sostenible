@@ -312,4 +312,20 @@ html {
     color: white !important;
 }
 
+/* Itinerary Progressive Routing Styles */
+.itinerary-card-active {
+    background-color: rgba(239, 246, 255, 0.55) !important; /* bg-blue-50/55 */
+    border: 2px solid #003087 !important; /* border-2 border-[#003087] */
+    box-shadow: 0 8px 24px rgba(0, 48, 135, 0.08) !important;
+}
+
+.itinerary-faded {
+    opacity: 0.4 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+.itinerary-faded:hover {
+    opacity: 0.75 !important;
+}
+
 
