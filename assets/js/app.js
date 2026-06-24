@@ -233,7 +233,15 @@ function filterMarkers() {
 
 // 4. Side Panel Logic
 function openSidePanel(data) {
-    const categoryData = categories.find(c => c.id === data.category);
+    let categoryData = categories.find(c => c.id === data.category);
+    if (!categoryData) {
+        categories.forEach(parent => {
+            if (parent.subcategories) {
+                const sub = parent.subcategories.find(s => s.id === data.category);
+                if (sub) categoryData = sub;
+            }
+        });
+    }
 
     sidePanel.innerHTML = `
         <!-- Image Header (Fast Reveal + Skeleton) -->
