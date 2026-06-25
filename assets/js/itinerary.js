@@ -9,6 +9,10 @@ const ItineraryPlanner = {
     flatpickrInstance: null,
     startCity: 'Cartagena',
     activeStopIndex: 0,
+    selectedCompanion: 'En Pareja',
+    selectedBudget: 'Moderado',
+    selectedPace: 'Moderado',
+    userEmail: '',
 
     // Coordenadas aproximadas de centros de ciudades
     cityCoords: {
@@ -24,7 +28,7 @@ const ItineraryPlanner = {
     createOverlay() {
         const overlay = document.createElement('div');
         overlay.id = 'itinerary-overlay';
-        overlay.className = 'fixed inset-0 z-[200] transform translate-y-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center p-6 text-white text-center sm:overflow-y-auto bg-cover bg-center bg-no-repeat';
+        overlay.className = 'fixed inset-0 z-[200] transform translate-y-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center p-6 text-white text-center sm:overflow-y-auto bg-cover bg-center bg-no-repeat pointer-events-none';
         overlay.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp")';
         
         overlay.innerHTML = `
@@ -32,7 +36,8 @@ const ItineraryPlanner = {
                 <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
-            <div class="max-w-xl w-full space-y-6 py-6 transition-all">
+            <div class="max-w-2xl w-full space-y-6 py-6 transition-all">
+                <!-- STEP 1: Starting City -->
                 <div id="step-1" class="space-y-6 animate-fade-in w-full px-4">
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Desde dónde inicias?</h2>
                     <p class="text-blue-100/80 text-sm font-medium">Punto de partida para optimizar el recorrido</p>
@@ -49,9 +54,10 @@ const ItineraryPlanner = {
                     </div>
                 </div>
 
+                <!-- STEP 2: Interests -->
                 <div id="step-2" class="space-y-6 hidden animate-fade-in">
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Qué te interesa?</h2>
-                    <div class="flex flex-wrap justify-center gap-2">
+                    <div class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto">
                         ${categories.filter(c => c.id !== 'todas' && c.id !== 'otros').map(cat => `
                             <button class="interest-tag px-4 py-2 rounded-full border border-white/20 hover:border-white hover:bg-white/10 transition-all font-bold text-sm" data-value="${cat.id}">${cat.label}</button>
                         `).join('')}
@@ -62,7 +68,70 @@ const ItineraryPlanner = {
                     </div>
                 </div>
 
-                <div id="step-3" class="space-y-6 hidden animate-fade-in w-full px-4 max-w-lg mx-auto">
+                <!-- STEP 3: Companion -->
+                <div id="step-3" class="space-y-6 hidden animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Con quién viajas?</h2>
+                    <p class="text-blue-100/80 text-sm font-medium">Adaptamos las actividades para ti y tus acompañantes</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button class="companion-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-sm uppercase tracking-widest min-w-[130px]" data-value="Solo">
+                            👤 Solo
+                        </button>
+                        <button class="companion-tag px-4 py-3 rounded-xl border-2 border-white bg-white text-[#003087] transition-all font-black text-sm uppercase tracking-widest min-w-[130px]" data-value="En Pareja">
+                            💕 En Pareja
+                        </button>
+                        <button class="companion-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-sm uppercase tracking-widest min-w-[130px]" data-value="Con Amigos">
+                            🍻 Con Amigos
+                        </button>
+                        <button class="companion-tag px-4 py-3 rounded-xl border-2 border-white/20 hover:border-white transition-all font-black text-sm uppercase tracking-widest min-w-[130px]" data-value="En Familia">
+                            👨‍👩‍👧‍👦 En Familia
+                        </button>
+                    </div>
+                    <div class="pt-4 flex justify-center gap-3">
+                        <button id="back-to-step-2" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
+                        <button id="next-to-step-4" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Budget & Pace -->
+                <div id="step-4" class="space-y-8 hidden animate-fade-in max-w-lg mx-auto">
+                    <div class="space-y-4">
+                        <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">¿Cuál es tu presupuesto?</h2>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button class="budget-tag px-4 py-2.5 rounded-xl border border-white/20 hover:border-white transition-all font-extrabold text-xs uppercase tracking-wider min-w-[110px]" data-value="Económico">
+                                Económico
+                            </button>
+                            <button class="budget-tag px-4 py-2.5 rounded-xl border border-white bg-white text-[#003087] transition-all font-extrabold text-xs uppercase tracking-wider min-w-[110px]" data-value="Moderado">
+                                Moderado
+                            </button>
+                            <button class="budget-tag px-4 py-2.5 rounded-xl border border-white/20 hover:border-white transition-all font-extrabold text-xs uppercase tracking-wider min-w-[110px]" data-value="Lujoso">
+                                Lujoso
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">¿Qué ritmo prefieres?</h2>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button class="pace-tag px-4 py-2.5 rounded-xl border border-white/20 hover:border-white transition-all font-extrabold text-xs uppercase tracking-wider min-w-[110px]" data-value="Relajado">
+                                Relajado
+                            </button>
+                            <button class="pace-tag px-4 py-2.5 rounded-xl border border-white bg-white text-[#003087] transition-all font-extrabold text-xs uppercase tracking-wider min-w-[110px]" data-value="Moderado">
+                                Moderado
+                            </button>
+                            <button class="pace-tag px-4 py-2.5 rounded-xl border border-white/20 hover:border-white transition-all font-extrabold text-xs uppercase tracking-wider min-w-[110px]" data-value="Activo">
+                                Activo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex justify-center gap-3 border-t border-white/10">
+                        <button id="back-to-step-3" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
+                        <button id="next-to-step-5" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Calendar range -->
+                <div id="step-5" class="space-y-6 hidden animate-fade-in w-full px-4 max-w-lg mx-auto">
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Cuándo viajas?</h2>
                     
                     <div class="flex flex-col md:flex-row gap-6 items-center justify-center">
@@ -83,9 +152,48 @@ const ItineraryPlanner = {
                     </div>
 
                     <div class="pt-4 flex justify-center gap-3">
-                        <button id="back-to-step-2" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
-                        <button id="generate-itinerary" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Generar mi Ruta</button>
+                        <button id="back-to-step-4" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
+                        <button id="next-to-step-6" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Siguiente</button>
                     </div>
+                </div>
+
+                <!-- STEP 6: Confirm & Send -->
+                <div id="step-6" class="space-y-6 hidden animate-fade-in w-full px-4 max-w-md mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿A dónde te enviamos la guía?</h2>
+                    <p class="text-blue-100/80 text-sm font-medium">Ingresa tu correo para recibir el itinerario detallado y tenerlo siempre a mano</p>
+                    
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-envelope text-gray-400 text-base"></i>
+                            </div>
+                            <input type="email" id="itinerary-email-input" placeholder="correo@ejemplo.com" class="block w-full pl-12 pr-4 py-4 bg-white border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#FF6900] transition-all font-bold text-gray-800 placeholder:text-gray-400 text-sm shadow-xl">
+                        </div>
+                        <div class="flex items-center justify-center gap-2.5 text-xs text-blue-100/90 font-medium">
+                            <input type="checkbox" id="itinerary-privacy-check" checked class="rounded border-white/20 text-[#003087] focus:ring-0 w-4 h-4 cursor-pointer">
+                            <label for="itinerary-privacy-check" class="cursor-pointer select-none">Acepto recibir la guía y políticas de privacidad</label>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 flex justify-center gap-3">
+                        <button id="back-to-step-5" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
+                        <button id="generate-itinerary" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm flex items-center gap-2">
+                            <span>Crear mi guía</span>
+                            <i class="fa-solid fa-wand-magic-sparkles text-xs text-[#FF6900]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- LOADING SCREEN -->
+                <div id="itinerary-loading" class="space-y-6 flex flex-col items-center justify-center py-10 hidden">
+                    <div class="relative w-20 h-20">
+                        <div class="animate-spin rounded-full h-20 w-20 border-4 border-white/20 border-t-white"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fa-solid fa-paper-plane text-white text-xl animate-bounce"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold uppercase tracking-wider text-white">Diseñando tu viaje...</h3>
+                    <p class="text-blue-100/70 text-xs max-w-xs">Buscando paradas ideales y enviando la guía a tu correo electrónico.</p>
                 </div>
             </div>
         `;
@@ -131,8 +239,15 @@ const ItineraryPlanner = {
     open() {
         const overlay = document.getElementById('itinerary-overlay');
         if (overlay) {
-            overlay.classList.remove('translate-y-full');
+            overlay.classList.remove('translate-y-full', 'pointer-events-none');
             this.resetForm();
+        }
+    },
+
+    close() {
+        const overlay = document.getElementById('itinerary-overlay');
+        if (overlay) {
+            overlay.classList.add('translate-y-full', 'pointer-events-none');
         }
     },
 
@@ -145,13 +260,12 @@ const ItineraryPlanner = {
         mapaBtn.addEventListener('click', (e) => {
             e.preventDefault();
             // Close overlay if open
-            const overlay = document.getElementById('itinerary-overlay');
-            if (overlay) overlay.classList.add('translate-y-full');
+            this.close();
             this.resetToMainMap();
         });
 
         closeBtn.addEventListener('click', () => {
-            overlay.classList.add('translate-y-full');
+            this.close();
         });
 
         document.querySelectorAll('.city-tag').forEach(tag => {
@@ -194,6 +308,50 @@ const ItineraryPlanner = {
             }
             document.getElementById('step-2').classList.add('hidden');
             document.getElementById('step-3').classList.remove('hidden');
+        });
+
+        document.querySelectorAll('.companion-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.companion-tag').forEach(t => t.classList.remove('bg-white', 'text-[#003087]', 'border-white'));
+                tag.classList.add('bg-white', 'text-[#003087]', 'border-white');
+                this.selectedCompanion = tag.dataset.value;
+            });
+        });
+
+        document.getElementById('back-to-step-2').addEventListener('click', () => {
+            document.getElementById('step-3').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+        });
+
+        document.getElementById('next-to-step-4').addEventListener('click', () => {
+            document.getElementById('step-3').classList.add('hidden');
+            document.getElementById('step-4').classList.remove('hidden');
+        });
+
+        document.querySelectorAll('.budget-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.budget-tag').forEach(t => t.classList.remove('bg-white', 'text-[#003087]', 'border-white'));
+                tag.classList.add('bg-white', 'text-[#003087]', 'border-white');
+                this.selectedBudget = tag.dataset.value;
+            });
+        });
+
+        document.querySelectorAll('.pace-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.pace-tag').forEach(t => t.classList.remove('bg-white', 'text-[#003087]', 'border-white'));
+                tag.classList.add('bg-white', 'text-[#003087]', 'border-white');
+                this.selectedPace = tag.dataset.value;
+            });
+        });
+
+        document.getElementById('back-to-step-3').addEventListener('click', () => {
+            document.getElementById('step-4').classList.add('hidden');
+            document.getElementById('step-3').classList.remove('hidden');
+        });
+
+        document.getElementById('next-to-step-5').addEventListener('click', () => {
+            document.getElementById('step-4').classList.add('hidden');
+            document.getElementById('step-5').classList.remove('hidden');
             
             // Show/hide festival info panel
             const festInfo = document.getElementById('calendar-festivals-info');
@@ -232,12 +390,12 @@ const ItineraryPlanner = {
             }
         });
 
-        document.getElementById('back-to-step-2').addEventListener('click', () => {
-            document.getElementById('step-3').classList.add('hidden');
-            document.getElementById('step-2').classList.remove('hidden');
+        document.getElementById('back-to-step-4').addEventListener('click', () => {
+            document.getElementById('step-5').classList.add('hidden');
+            document.getElementById('step-4').classList.remove('hidden');
         });
 
-        document.getElementById('generate-itinerary').addEventListener('click', () => {
+        document.getElementById('next-to-step-6').addEventListener('click', () => {
             if (!this.startDate || !this.endDate) {
                 alert('Por favor selecciona un rango de fechas en el calendario');
                 return;
@@ -300,14 +458,52 @@ const ItineraryPlanner = {
                 }
             }
 
+            document.getElementById('step-5').classList.add('hidden');
+            document.getElementById('step-6').classList.remove('hidden');
+        });
+
+        document.getElementById('back-to-step-5').addEventListener('click', () => {
+            document.getElementById('step-6').classList.add('hidden');
+            document.getElementById('step-5').classList.remove('hidden');
+        });
+
+        document.getElementById('generate-itinerary').addEventListener('click', () => {
+            const emailInput = document.getElementById('itinerary-email-input');
+            const privacyCheck = document.getElementById('itinerary-privacy-check');
+            
+            const email = emailInput ? emailInput.value.trim() : '';
+            
+            // Simple email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                alert('Por favor ingresa un correo electrónico válido.');
+                return;
+            }
+            
+            if (privacyCheck && !privacyCheck.checked) {
+                alert('Debes aceptar las políticas de privacidad.');
+                return;
+            }
+            
+            this.userEmail = email;
+
             const diffDays = Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24)) + 1;
             if (diffDays > 100) { 
                 ItineraryPlanner.showCustomAlert('Ruta demasiado larga', 'Soporta hasta 100 días.'); 
                 return; 
             }
-            this.generate(diffDays);
-            overlay.classList.add('translate-y-full');
-            if (window.showView) window.showView('map');
+            
+            // Show loading animation
+            document.getElementById('step-6').classList.add('hidden');
+            document.getElementById('itinerary-loading').classList.remove('hidden');
+            
+            setTimeout(() => {
+                this.generate(diffDays);
+                
+                // Hide loading screen, close overlay, show view
+                document.getElementById('itinerary-loading').classList.add('hidden');
+                this.close();
+            }, 1800);
         });
     },
 
@@ -360,14 +556,62 @@ const ItineraryPlanner = {
 
     resetForm() {
         this.selectedInterests.clear();
+        this.selectedCompanion = 'En Pareja';
+        this.selectedBudget = 'Moderado';
+        this.selectedPace = 'Moderado';
+        this.userEmail = '';
+        
         document.querySelectorAll('.interest-tag').forEach(el => {
             el.classList.remove('bg-white', 'text-[#003087]', 'border-white');
             el.classList.add('border-white/20');
         });
+        
+        document.querySelectorAll('.companion-tag').forEach(el => {
+            if (el.dataset.value === 'En Pareja') {
+                el.classList.add('bg-white', 'text-[#003087]', 'border-white');
+                el.classList.remove('border-white/20');
+            } else {
+                el.classList.remove('bg-white', 'text-[#003087]', 'border-white');
+                el.classList.add('border-white/20');
+            }
+        });
+        
+        document.querySelectorAll('.budget-tag').forEach(el => {
+            if (el.dataset.value === 'Moderado') {
+                el.classList.add('bg-white', 'text-[#003087]', 'border-white');
+                el.classList.remove('border-white/20');
+            } else {
+                el.classList.remove('bg-white', 'text-[#003087]', 'border-white');
+                el.classList.add('border-white/20');
+            }
+        });
+
+        document.querySelectorAll('.pace-tag').forEach(el => {
+            if (el.dataset.value === 'Moderado') {
+                el.classList.add('bg-white', 'text-[#003087]', 'border-white');
+                el.classList.remove('border-white/20');
+            } else {
+                el.classList.remove('bg-white', 'text-[#003087]', 'border-white');
+                el.classList.add('border-white/20');
+            }
+        });
+        
+        const emailInput = document.getElementById('itinerary-email-input');
+        if (emailInput) emailInput.value = '';
+        
         if (this.flatpickrInstance) this.flatpickrInstance.clear();
         this.startDate = null; this.endDate = null;
-        ['step-1'].forEach(id => document.getElementById(id).classList.remove('hidden'));
-        ['step-2', 'step-3'].forEach(id => document.getElementById(id).classList.add('hidden'));
+        
+        // Hide all steps and show step 1
+        for (let i = 1; i <= 6; i++) {
+            const stepEl = document.getElementById(`step-${i}`);
+            if (stepEl) {
+                if (i === 1) stepEl.classList.remove('hidden');
+                else stepEl.classList.add('hidden');
+            }
+        }
+        const loadingEl = document.getElementById('itinerary-loading');
+        if (loadingEl) loadingEl.classList.add('hidden');
     },
 
     resetToMainMap(reOpen = false) {
@@ -514,8 +758,11 @@ const ItineraryPlanner = {
 
         this.currentDayView = 1;
         this.activeStopIndex = 0;
+        this.renderFullItineraryPage();
         this.renderItinerarySidebar();
         this.updateMapForDay(1);
+        if (window.showView) window.showView('itinerary');
+        this.sendEmailMailto();
     },
 
     renderItinerarySidebar() {
@@ -917,8 +1164,7 @@ const ItineraryPlanner = {
             if (window.showView) window.showView('map');
 
             // Close initial planner overlay if open
-            const overlay = document.getElementById('itinerary-overlay');
-            if (overlay) overlay.classList.add('translate-y-full');
+            this.close();
 
             // Show load confirmation toast
             const numDays = this.fullItinerary ? Object.keys(this.fullItinerary).length : 0;
@@ -1097,9 +1343,400 @@ const ItineraryPlanner = {
         const diffDays = Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24)) + 1;
         this.generate(diffDays);
 
-        const overlay = document.getElementById('itinerary-overlay');
-        if (overlay) overlay.classList.add('translate-y-full');
         if (window.showView) window.showView('map');
+    },
+
+    renderFullItineraryPage() {
+        const container = document.getElementById('itinerary-view');
+        if (!container) return;
+
+        const numDays = Object.keys(this.fullItinerary).length;
+        const dateStartStr = this.startDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+        const dateEndStr = this.endDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+        
+        // Build Day Selectors HTML
+        let dayTabsHtml = '';
+        for (let i = 1; i <= numDays; i++) {
+            const date = new Date(this.startDate);
+            date.setDate(date.getDate() + (i - 1));
+            const dayName = date.toLocaleDateString('es-ES', { weekday: 'short' });
+            const dayNum = date.getDate();
+            dayTabsHtml += `
+                <a href="#itinerary-day-section-${i}" class="day-scroll-link flex items-center justify-between p-3.5 rounded-xl border border-gray-100 hover:border-[#003087]/20 hover:bg-blue-50/30 transition-all font-extrabold text-xs text-gray-500 hover:text-[#003087] group ${i === 1 ? 'bg-blue-50/50 border-[#003087]/20 text-[#003087]' : ''}" data-day="${i}">
+                    <div class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-lg bg-gray-100 group-hover:bg-[#003087]/10 group-hover:text-[#003087] flex items-center justify-center text-[10px] text-gray-400 font-black transition-colors ${i === 1 ? 'bg-[#003087] text-white' : ''}">
+                            D${i}
+                        </span>
+                        <div class="text-left leading-tight">
+                            <p class="font-black uppercase tracking-wider text-[10px]">Día ${i}</p>
+                            <p class="text-[9px] font-semibold text-gray-400">${dayName.toUpperCase()} ${dayNum}</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-[9px] text-gray-300 group-hover:translate-x-0.5 transition-transform"></i>
+                </a>
+            `;
+        }
+
+        // Build Itinerary Timeline HTML
+        let timelineDaysHtml = '';
+        for (let i = 1; i <= numDays; i++) {
+            const date = new Date(this.startDate);
+            date.setDate(date.getDate() + (i - 1));
+            const dayLabel = date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            const stops = this.fullItinerary[i] || [];
+
+            let stopsHtml = '';
+            if (stops.length === 0) {
+                stopsHtml = `<p class="text-xs text-gray-400 italic py-6">No hay paradas programadas para este día.</p>`;
+            } else {
+                stopsHtml = stops.map((item, idx) => {
+                    let prevCoord = idx === 0 ? this.cityCoords[this.startCity] : [stops[idx-1].lat, stops[idx-1].lng];
+                    let travelTime = this.calculateTravelTime(prevCoord, [item.lat, item.lng]);
+                    let connectionHtml = '';
+                    
+                    if (idx === 0) {
+                        connectionHtml = `
+                            <div class="flex items-center gap-2 mb-4 pl-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                <i class="fa-solid fa-house-chimney text-[#003087]"></i>
+                                <span>Punto de partida: Centro de ${this.startCity}</span>
+                            </div>
+                        `;
+                    } else {
+                        connectionHtml = `
+                            <!-- Travel Time indicator -->
+                            <div class="my-3 pl-8 relative flex items-center gap-3">
+                                <div class="w-7 h-7 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 shadow-sm">
+                                    <i class="fa-solid fa-car text-[10px] text-[#003087]"></i>
+                                </div>
+                                <div class="flex flex-col text-left">
+                                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-wider">Desde parada anterior</span>
+                                    <span class="text-[10px] font-black text-[#003087] bg-blue-50/50 px-2 py-0.5 rounded-md border border-blue-50/30 w-fit">🚗 ~${travelTime} min de viaje</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    // Find category details
+                    const categoryObj = categories.find(c => c.id === item.category);
+                    const parentCategory = categories.find(c => c.subcategories && c.subcategories.some(sub => sub.id === item.category));
+                    const catLabel = categoryObj ? categoryObj.label : (parentCategory ? parentCategory.label : 'Turismo');
+                    const catIcon = categoryObj ? categoryObj.icon : (parentCategory ? parentCategory.icon : '📍');
+                    const catBgColor = categoryObj ? categoryObj.color : (parentCategory ? parentCategory.color : 'bg-blue-600');
+
+                    // Format tags list
+                    const tagsHtml = item.tags ? item.tags.map(t => `<span class="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase tracking-wide border border-gray-200/55">${t}</span>`).join('') : '';
+
+                    return `
+                        ${connectionHtml}
+
+                        <!-- Stop Card -->
+                        <div class="bg-white rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,48,135,0.06)] hover:border-[#003087]/10 transition-all duration-500 overflow-hidden flex flex-col md:flex-row group">
+                            <!-- Image Left -->
+                            <div class="md:w-1/3 h-52 md:h-auto min-h-[180px] relative overflow-hidden shrink-0">
+                                <img src="${item.image}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 w-7 h-7 rounded-xl bg-[#003087] text-white font-black text-xs flex items-center justify-center shadow-lg border border-white/20">
+                                    ${idx + 1}
+                                </span>
+                            </div>
+                            
+                            <!-- Info Right -->
+                            <div class="p-6 md:p-8 flex-1 flex flex-col justify-between text-left space-y-4">
+                                <div class="space-y-3">
+                                    <div class="flex flex-wrap gap-2 items-center">
+                                        <span class="${catBgColor} text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm flex items-center gap-1.5 border-none">
+                                            <span>${catIcon}</span>
+                                            <span>${catLabel}</span>
+                                        </span>
+                                        <span class="text-[9px] text-[#FF6900] bg-orange-50 font-black uppercase tracking-widest px-3 py-1 rounded-full border border-orange-100">
+                                            Parada ${idx + 1}
+                                        </span>
+                                    </div>
+                                    <h4 class="text-xl font-black text-[#003087] leading-tight group-hover:text-[#002266] transition-colors">${item.title}</h4>
+                                    <p class="text-xs text-gray-400 font-bold flex items-center gap-1.5">
+                                        <i class="fa-solid fa-location-dot text-gray-300"></i> ${item.location}
+                                    </p>
+                                    <p class="text-xs text-gray-600 leading-relaxed font-medium">${item.description}</p>
+                                </div>
+
+                                <div class="border-t border-gray-55 pt-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                                    <div class="flex flex-wrap gap-1.5">
+                                        ${tagsHtml}
+                                    </div>
+                                    <button onclick="ItineraryPlanner.viewStopOnMap(${i}, ${item.id})" class="text-[10px] font-black text-[#003087] bg-blue-50/50 border border-blue-100 hover:bg-[#003087] hover:text-white px-4 py-2 rounded-xl flex items-center gap-1.5 uppercase tracking-wider transition-all shadow-sm active:scale-95 shrink-0">
+                                        <i class="fa-solid fa-map-location-dot"></i> Ver en Mapa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            timelineDaysHtml += `
+                <!-- Day Section -->
+                <div id="itinerary-day-section-${i}" class="space-y-6 pt-6 border-b border-gray-100 pb-10 last:border-b-0">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-blue-50/50 to-transparent p-4 rounded-2xl border border-blue-50/30">
+                        <div class="space-y-1">
+                            <h3 class="text-2xl font-black text-[#003087] tracking-tight flex items-center gap-2">
+                                <span class="w-2 h-7 bg-[#FF6900] rounded-full"></span>
+                                Día ${i}: Ruta del Viaje
+                            </h3>
+                            <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest flex items-center gap-1.5 pl-3.5">
+                                <i class="fa-regular fa-calendar-check text-[11px] text-[#003087]"></i> ${dayLabel.toUpperCase()}
+                            </p>
+                        </div>
+                        <span class="text-xs font-black text-blue-700 bg-blue-50/80 border border-blue-100 px-4 py-2 rounded-full w-fit uppercase tracking-widest">
+                            ${stops.length} Parada${stops.length !== 1 ? 's' : ''} Programada${stops.length !== 1 ? 's' : ''}
+                        </span>
+                    </div>
+
+                    <div class="space-y-4">
+                        ${stopsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Complete View HTML
+        container.innerHTML = `
+            <!-- HEADER HERO BANNER -->
+            <div class="relative min-h-[300px] w-full flex items-center justify-center overflow-hidden bg-cover bg-center print:bg-none print:h-auto print:min-h-0" style="background-image: linear-gradient(rgba(0, 48, 135, 0.88), rgba(0, 24, 78, 0.95)), url('assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp')">
+                <div class="relative z-10 text-center px-6 max-w-5xl py-12 space-y-6 text-white">
+                    <span class="bg-[#FF6900] text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full border-none shadow-lg">
+                        ✨ Tu Itinerario Generado con Éxito
+                    </span>
+                    
+                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+                        Guía de viaje <span class="text-[#0099FF]">Ruta Turística Sostenible</span>
+                    </h2>
+                    
+                    <p class="text-blue-100/90 text-sm md:text-base font-bold max-w-3xl mx-auto leading-relaxed">
+                        ¡Hola! Hemos diseñado este recorrido inteligente especialmente para ti. Está pensado para maximizar tu experiencia a lo largo del corredor vial.
+                    </p>
+
+                    <!-- Summary Cards Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-4xl mx-auto pt-4 text-left">
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                            <span class="text-[9px] font-black text-blue-200 uppercase tracking-widest">📍 Ciudad Origen</span>
+                            <span class="text-sm font-black text-white mt-1 uppercase">${this.startCity}</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                            <span class="text-[9px] font-black text-blue-200 uppercase tracking-widest">👥 Compañía</span>
+                            <span class="text-sm font-black text-white mt-1 uppercase">${this.selectedCompanion}</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                            <span class="text-[9px] font-black text-blue-200 uppercase tracking-widest">💰 Presupuesto</span>
+                            <span class="text-sm font-black text-white mt-1 uppercase">${this.selectedBudget}</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                            <span class="text-[9px] font-black text-blue-200 uppercase tracking-widest">⚡ Ritmo del Viaje</span>
+                            <span class="text-sm font-black text-white mt-1 uppercase">${this.selectedPace}</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 flex flex-col justify-between col-span-2 md:col-span-1">
+                            <span class="text-[9px] font-black text-blue-200 uppercase tracking-widest">📅 Duración</span>
+                            <span class="text-sm font-black text-white mt-1 uppercase">${numDays} Día${numDays !== 1 ? 's' : ''}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN CONTAINER -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8 print:py-0 print:px-0">
+                
+                <!-- EMAIL SUCCESS BANNER -->
+                <div class="bg-emerald-55 border border-emerald-200 rounded-3xl p-5 md:p-6 flex items-start gap-4 shadow-sm animate-fade-in print:hidden">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-paper-plane text-emerald-600 text-lg"></i>
+                    </div>
+                    <div class="text-left space-y-1">
+                        <h4 class="text-sm font-black text-[#047857] uppercase tracking-wider">¡Guía enviada a tu correo!</h4>
+                        <p class="text-xs text-[#065f46] font-medium leading-relaxed">
+                            Hemos enviado una copia digital de esta planificación a <strong>${this.userEmail}</strong>. Consérvala para acceder a las direcciones y coordenadas incluso sin conexión.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ACTIONS BAR -->
+                <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between border-b border-gray-200/60 pb-6 print:hidden">
+                    <div class="flex items-center gap-2">
+                        <button onclick="window.goBack('routes')" class="text-xs font-black text-gray-500 hover:text-[#003087] flex items-center gap-2 transition-all px-4 py-2.5 rounded-xl border border-gray-200 hover:border-blue-100 hover:bg-white bg-[#f8fafc]">
+                            <i class="fa-solid fa-arrow-left"></i> VOLVER
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <button onclick="window.showView('map')" class="text-xs font-black text-white bg-[#003087] hover:bg-[#002266] px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg hover:-translate-y-0.5 active:scale-95">
+                            <i class="fa-solid fa-map-location-dot"></i> Ver en Mapa Interactivo
+                        </button>
+                        <button onclick="ItineraryPlanner.sendEmailMailto()" class="text-xs font-black text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
+                            <i class="fa-solid fa-envelope text-[#0099FF]"></i> Enviar por Correo
+                        </button>
+                        <button onclick="window.print()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
+                            <i class="fa-solid fa-file-pdf text-[#FF6900]"></i> Imprimir / Guardar PDF
+                        </button>
+                        <button onclick="ItineraryPlanner.open()" class="text-xs font-black text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Planificar otro viaje
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DESKTOP GRID LAYOUT (Sticky navigation on left, scroll timeline on right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
+                    <!-- Left Sidebar - Day Selector (Sticky on desktop, horizontal scroll on mobile) -->
+                    <aside class="lg:col-span-3 lg:sticky lg:top-6 space-y-4 print:hidden">
+                        <div class="bg-white rounded-3xl border border-gray-100 p-5 shadow-sm space-y-4">
+                            <h4 class="text-xs font-black text-gray-400 uppercase tracking-widest text-left">Resumen de Días</h4>
+                            <div class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0" id="itinerary-view-days-list" style="scrollbar-width: none;">
+                                ${dayTabsHtml}
+                            </div>
+                        </div>
+                        
+                        <div class="hidden lg:block bg-gradient-to-br from-[#003087] to-[#00184E] rounded-3xl p-5 text-white text-left space-y-3 shadow-md">
+                            <i class="fa-solid fa-lightbulb text-[#FFC600] text-xl"></i>
+                            <h5 class="text-sm font-black uppercase tracking-wider">¿Sabías que?</h5>
+                            <p class="text-[11px] text-blue-100/80 leading-relaxed font-medium">
+                                El corredor vial cuenta con más de 100 km de paisajes únicos. Al presionar "Ver en Mapa", podrás navegar paso a paso con GPS e indicaciones en tiempo real.
+                            </p>
+                        </div>
+                    </aside>
+
+                    <!-- Right Column - Timeline Sections -->
+                    <main class="lg:col-span-9 space-y-8 max-w-full">
+                        <div class="bg-white rounded-3xl border border-gray-100 p-6 md:p-8 shadow-sm">
+                            <div class="space-y-6">
+                                ${timelineDaysHtml}
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            
+            <!-- FOOTER SIGNATURE -->
+            <div class="bg-gray-100 border-t border-gray-200/60 py-6 text-center text-xs font-extrabold text-gray-400 uppercase tracking-wider print:hidden">
+                Ruta Costera Sostenible · Planificador de Viajes Sostenibles
+            </div>
+        `;
+
+        // Add smooth scrolling to sections and active class tracking
+        setTimeout(() => {
+            const links = container.querySelectorAll('.day-scroll-link');
+            
+            // Click Handler for smooth scrolling
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    
+                    // Update active styles instantly
+                    links.forEach(l => {
+                        l.classList.remove('bg-blue-50/50', 'border-[#003087]/20', 'text-[#003087]');
+                        l.querySelector('span').classList.remove('bg-[#003087]', 'text-white');
+                        l.querySelector('span').classList.add('bg-gray-100', 'text-gray-400');
+                    });
+                    
+                    link.classList.add('bg-blue-50/50', 'border-[#003087]/20', 'text-[#003087]');
+                    link.querySelector('span').classList.add('bg-[#003087]', 'text-white');
+                    link.querySelector('span').classList.remove('bg-gray-100', 'text-gray-400');
+                });
+            });
+
+            // Intersection Observer to highlight active day on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        const dayNum = id.split('-').pop();
+                        
+                        links.forEach(l => {
+                            const linkDay = l.dataset.day;
+                            if (linkDay === dayNum) {
+                                l.classList.add('bg-blue-50/50', 'border-[#003087]/20', 'text-[#003087]');
+                                l.querySelector('span').classList.add('bg-[#003087]', 'text-white');
+                                l.querySelector('span').classList.remove('bg-gray-100', 'text-gray-400');
+                                
+                                // scroll tab into view on mobile (removed l.scrollIntoView which locked the parent page)
+                            } else {
+                                l.classList.remove('bg-blue-50/50', 'border-[#003087]/20', 'text-[#003087]');
+                                l.querySelector('span').classList.remove('bg-[#003087]', 'text-white');
+                                l.querySelector('span').classList.add('bg-gray-100', 'text-gray-400');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            for (let i = 1; i <= numDays; i++) {
+                const sec = document.getElementById(`itinerary-day-section-${i}`);
+                if (sec) observer.observe(sec);
+            }
+        }, 100);
+    },
+
+    viewStopOnMap(day, stopId) {
+        // 1. Switch to Map View
+        if (window.showView) window.showView('map');
+
+        // 2. Load the specific day route and focus the stop
+        this.switchDay(day);
+        
+        // 3. Focus point on map
+        setTimeout(() => {
+            this.focusPoint(stopId);
+        }, 300);
+    },
+
+    sendEmailMailto() {
+        if (!this.fullItinerary || !this.userEmail) return;
+
+        const numDays = Object.keys(this.fullItinerary).length;
+        let bodyText = `¡Hola!\n\nAquí tienes tu itinerario personalizado para la Ruta Turística Sostenible (Cartagena - Barranquilla).\n\n`;
+        bodyText += `Detalles de tu viaje:\n`;
+        bodyText += `- Origen: ${this.startCity}\n`;
+        bodyText += `- Compañía: ${this.selectedCompanion}\n`;
+        bodyText += `- Presupuesto: ${this.selectedBudget}\n`;
+        bodyText += `- Ritmo: ${this.selectedPace}\n`;
+        bodyText += `- Duración: ${numDays} día(s)\n\n`;
+        bodyText += `--------------------------------------------------\n\n`;
+
+        for (let i = 1; i <= numDays; i++) {
+            const date = new Date(this.startDate);
+            date.setDate(date.getDate() + (i - 1));
+            const dayLabel = date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            bodyText += `DÍA ${i} (${dayLabel.toUpperCase()}):\n`;
+
+            const stops = this.fullItinerary[i] || [];
+            if (stops.length === 0) {
+                bodyText += `  No hay paradas programadas.\n`;
+            } else {
+                stops.forEach((item, idx) => {
+                    bodyText += `  Parada ${idx + 1}: ${item.title}\n`;
+                    bodyText += `  - Ubicación: ${item.location}\n`;
+                    bodyText += `  - Horario: ${item.hours}\n`;
+                    bodyText += `  - Precio estimado: ${item.price}\n`;
+                    bodyText += `  - Descripción: ${item.description}\n\n`;
+                });
+            }
+            bodyText += `--------------------------------------------------\n\n`;
+        }
+
+        bodyText += `¡Buen viaje!\nEquipo de Ruta Turística Sostenible.\n\n---\nSi tienes alguna pregunta sobre tu viaje o el corredor vial, no dudes en escribirnos a: rutaturisticasostenible@gmail.com`;
+
+        const subject = encodeURIComponent(`Guía de viaje - Ruta Turística Sostenible`);
+        const emailBody = encodeURIComponent(bodyText);
+        const mailtoUrl = `mailto:${this.userEmail}?subject=${subject}&body=${emailBody}`;
+
+        // Direct redirection for mailto is more compatible across modern browsers than hidden iframe
+        window.location.href = mailtoUrl;
     }
 };
 

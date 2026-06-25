@@ -712,6 +712,11 @@
                 <!-- Data injected via JS -->
             </div>
         </div>
+
+        <!-- Itinerary View (Initially Hidden) -->
+        <div id="itinerary-view" class="hidden flex-1 overflow-y-auto bg-[#f8fafc]">
+            <!-- Content will be injected dynamically via itinerary.js -->
+        </div>
     </main>
 
     <!-- (Removed full-screen overlay for better institutional consistency) -->
@@ -804,9 +809,9 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <!-- App JS -->
-    <script src="assets/js/data.js?v=5.8"></script>
-    <script src="assets/js/itinerary.js?v=5.8"></script>
-    <script src="assets/js/app.js?v=5.8"></script>
+    <script src="assets/js/data.js?v=5.9"></script>
+    <script src="assets/js/itinerary.js?v=5.9"></script>
+    <script src="assets/js/app.js?v=5.9"></script>
 
     <!-- Initialize Swiper -->
     <script>
@@ -891,6 +896,17 @@
             const municipiosSelectionView = document.getElementById('municipios-selection-view');
             const municipioDetailView = document.getElementById('municipio-detail-view');
             const existentesSelectionView = document.getElementById('existentes-selection-view');
+            const itineraryView = document.getElementById('itinerary-view');
+
+            // Manage overflow on <main> dynamically to allow scrolling in full-page views
+            const mainContainer = document.querySelector('main');
+            if (mainContainer) {
+                if (viewName === 'map') {
+                    mainContainer.classList.add('overflow-hidden');
+                } else {
+                    mainContainer.classList.remove('overflow-hidden');
+                }
+            }
 
             // Guardar vista actual en el historial antes de cambiar
             if (addToHistory && _currentView && _currentView !== viewName) {
@@ -906,6 +922,7 @@
             municipiosSelectionView.classList.add('hidden');
             municipioDetailView.classList.add('hidden');
             if (existentesSelectionView) existentesSelectionView.classList.add('hidden');
+            if (itineraryView) itineraryView.classList.add('hidden');
             
             // Update active state on header and mobile links
             const dMapa = document.getElementById('mapa-link');
@@ -934,6 +951,8 @@
                     municipioDetailView.classList.remove('hidden');
                 } else if (viewName === 'existentes') {
                     if (existentesSelectionView) existentesSelectionView.classList.remove('hidden');
+                } else if (viewName === 'itinerary') {
+                    if (itineraryView) itineraryView.classList.remove('hidden');
                 }
             }
             
@@ -956,8 +975,9 @@
         document.getElementById('mapa-link').addEventListener('click', (e) => {
             e.preventDefault();
             // Close itinerary overlay if open
-            const itinOverlay = document.getElementById('itinerary-overlay');
-            if (itinOverlay) itinOverlay.classList.add('translate-y-full');
+            if (window.ItineraryPlanner) {
+                window.ItineraryPlanner.close();
+            }
             if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             showView('map');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -976,8 +996,9 @@
         document.getElementById('mobile-mapa-link').addEventListener('click', (e) => {
             e.preventDefault();
             // Close itinerary overlay if open
-            const itinOverlayM = document.getElementById('itinerary-overlay');
-            if (itinOverlayM) itinOverlayM.classList.add('translate-y-full');
+            if (window.ItineraryPlanner) {
+                window.ItineraryPlanner.close();
+            }
             if (window.resetMunicipalityContext) window.resetMunicipalityContext();
             toggleMenu(false);
             showView('map');

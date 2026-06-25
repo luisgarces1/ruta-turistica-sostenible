@@ -328,4 +328,75 @@ html {
     opacity: 0.75 !important;
 }
 
+/* Premium Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Custom Scrollbar hiding for tabs */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* --- Print Styles --- */
+@media print {
+    /* Hide all elements that are not part of the itinerary content */
+    header, footer, aside, .print\:hidden, button, .pill-actions, .icon-links, #close-itinerary, #itinerary-overlay, #save-success-toast, #load-success-toast {
+        display: none !important;
+    }
+    
+    /* Ensure body and html behave well for printing */
+    body, html, main, #itinerary-view {
+        background: white !important;
+        color: black !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        position: static !important;
+    }
+
+    /* Print color adjustment */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Force page break for each day section */
+    div[id^="itinerary-day-section-"] {
+        page-break-after: always;
+        break-after: page;
+        padding-top: 2rem !important;
+    }
+
+    /* Cards adjustments for printing */
+    .bg-white {
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+    }
+    
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+}
+
 
