@@ -1550,9 +1550,9 @@ const ItineraryPlanner = {
                         <i class="fa-solid fa-paper-plane text-emerald-600 text-lg"></i>
                     </div>
                     <div class="text-left space-y-1">
-                        <h4 class="text-sm font-black text-[#047857] uppercase tracking-wider">¡Guía enviada a tu correo!</h4>
+                        <h4 class="text-sm font-black text-[#047857] uppercase tracking-wider">¡Guía preparada para enviar!</h4>
                         <p class="text-xs text-[#065f46] font-medium leading-relaxed">
-                            Hemos enviado una copia digital de esta planificación a <strong>${this.userEmail}</strong>. Consérvala para acceder a las direcciones y coordenadas incluso sin conexión.
+                            Se ha intentado abrir tu gestor de correo predeterminado para enviar la guía a <strong>${this.userEmail}</strong>. Si no se abrió, presiona **"Enviar por Correo"** o usa el botón **"Copiar Guía"** para pegarla y compartirla manualmente.
                         </p>
                     </div>
                 </div>
@@ -1570,6 +1570,9 @@ const ItineraryPlanner = {
                         </button>
                         <button onclick="ItineraryPlanner.sendEmailMailto()" class="text-xs font-black text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-envelope text-[#0099FF]"></i> Enviar por Correo
+                        </button>
+                        <button onclick="ItineraryPlanner.copyItineraryToClipboard()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
+                            <i class="fa-solid fa-copy text-[#14b8a6]"></i> Copiar Guía
                         </button>
                         <button onclick="window.print()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-file-pdf text-[#FF6900]"></i> Imprimir / Guardar PDF
@@ -1732,8 +1735,53 @@ const ItineraryPlanner = {
         const emailBody = encodeURIComponent(bodyText);
         const mailtoUrl = `mailto:${this.userEmail}?subject=${subject}&body=${emailBody}`;
 
-        // Direct redirection for mailto is more compatible across modern browsers than hidden iframe
-        window.location.href = mailtoUrl;
+        // Create a temporary anchor element and trigger a click event to bypass local file browser restrictions
+        const mailtoLink = document.createElement('a');
+        mailtoLink.href = mailtoUrl;
+        mailtoLink.style.display = 'none';
+        document.body.appendChild(mailtoLink);
+        mailtoLink.click();
+        document.body.removeChild(mailtoLink);
+    },
+
+    copyItineraryToClipboard() {
+        if (!this.fullItinerary) return;
+
+        const numDays = Object.keys(this.fullItinerary).length;
+        let bodyText = `¡Hola!\n\nAquí tienes el resumen de mi itinerario personalizado para la Ruta Turística Sostenible (Cartagena - Barranquilla).\n\n`;
+        bodyText += `DETALLES DE MI VIAJE:\n`;
+        bodyText += `- Origen: ${this.startCity}\n`;
+        bodyText += `- Acompañantes: ${this.selectedCompanion}\n`;
+        bodyText += `- Presupuesto: ${this.selectedBudget}\n`;
+        bodyText += `- Ritmo de viaje: ${this.selectedPace}\n`;
+        bodyText += `- Duración: ${numDays} día(s)\n\n`;
+        bodyText += `--------------------------------------------------\n\n`;
+
+        for (let i = 1; i <= numDays; i++) {
+            const date = new Date(this.startDate);
+            date.setDate(date.getDate() + (i - 1));
+            const dayLabel = date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            bodyText += `DÍA ${i} (${dayLabel.toUpperCase()}):\n`;
+
+            const stops = this.fullItinerary[i] || [];
+            if (stops.length === 0) {
+                bodyText += `  No hay paradas programadas.\n`;
+            } else {
+                stops.forEach((item, idx) => {
+                    bodyText += `  Parada ${idx + 1}: ${item.title} (${item.location.split(',')[0]})\n`;
+                });
+            }
+            bodyText += `--------------------------------------------------\n\n`;
+        }
+
+        bodyText += `Para ver mapas interactivos, horarios, precios y descripciones completas de cada lugar, visita nuestro planificador en la web.\n\n`;
+        bodyText += `¡Buen viaje!\nEquipo de Ruta Turística Sostenible.\nContacto: rutaturisticasostenible@gmail.com`;
+
+        navigator.clipboard.writeText(bodyText).then(() => {
+            this.showCustomAlert('Copiado con éxito', 'El itinerario ha sido copiado al portapapeles. Puedes pegarlo en tu correo de Gmail o enviarlo por WhatsApp.');
+        }).catch(err => {
+            alert('No se pudo copiar el itinerario de forma automática. Por favor copia el texto manualmente.');
+        });
     }
 };
 
