@@ -1699,12 +1699,12 @@ const ItineraryPlanner = {
         if (!this.fullItinerary || !this.userEmail) return;
 
         const numDays = Object.keys(this.fullItinerary).length;
-        let bodyText = `¡Hola!\n\nAquí tienes tu itinerario personalizado para la Ruta Turística Sostenible (Cartagena - Barranquilla).\n\n`;
-        bodyText += `Detalles de tu viaje:\n`;
+        let bodyText = `¡Hola!\n\nAquí tienes el resumen de tu itinerario personalizado para la Ruta Turística Sostenible (Cartagena - Barranquilla).\n\n`;
+        bodyText += `DETALLES DE TU VIAJE:\n`;
         bodyText += `- Origen: ${this.startCity}\n`;
-        bodyText += `- Compañía: ${this.selectedCompanion}\n`;
+        bodyText += `- Acompañantes: ${this.selectedCompanion}\n`;
         bodyText += `- Presupuesto: ${this.selectedBudget}\n`;
-        bodyText += `- Ritmo: ${this.selectedPace}\n`;
+        bodyText += `- Ritmo de viaje: ${this.selectedPace}\n`;
         bodyText += `- Duración: ${numDays} día(s)\n\n`;
         bodyText += `--------------------------------------------------\n\n`;
 
@@ -1719,17 +1719,14 @@ const ItineraryPlanner = {
                 bodyText += `  No hay paradas programadas.\n`;
             } else {
                 stops.forEach((item, idx) => {
-                    bodyText += `  Parada ${idx + 1}: ${item.title}\n`;
-                    bodyText += `  - Ubicación: ${item.location}\n`;
-                    bodyText += `  - Horario: ${item.hours}\n`;
-                    bodyText += `  - Precio estimado: ${item.price}\n`;
-                    bodyText += `  - Descripción: ${item.description}\n\n`;
+                    bodyText += `  Parada ${idx + 1}: ${item.title} (${item.location.split(',')[0]})\n`;
                 });
             }
             bodyText += `--------------------------------------------------\n\n`;
         }
 
-        bodyText += `¡Buen viaje!\nEquipo de Ruta Turística Sostenible.\n\n---\nSi tienes alguna pregunta sobre tu viaje o el corredor vial, no dudes en escribirnos a: rutaturisticasostenible@gmail.com`;
+        bodyText += `Para ver mapas interactivos, horarios, precios y descripciones completas de cada lugar, visita nuestro planificador en la web.\n\n`;
+        bodyText += `¡Buen viaje!\nEquipo de Ruta Turística Sostenible.\nContacto: rutaturisticasostenible@gmail.com`;
 
         const subject = encodeURIComponent(`Guía de viaje - Ruta Turística Sostenible`);
         const emailBody = encodeURIComponent(bodyText);
