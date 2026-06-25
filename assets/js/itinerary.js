@@ -762,7 +762,7 @@ const ItineraryPlanner = {
         this.renderItinerarySidebar();
         this.updateMapForDay(1);
         if (window.showView) window.showView('itinerary');
-        this.sendEmailMailto();
+        this.showEmailMethodModal();
     },
 
     renderItinerarySidebar() {
@@ -1545,14 +1545,14 @@ const ItineraryPlanner = {
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8 print:py-0 print:px-0">
                 
                 <!-- EMAIL SUCCESS BANNER -->
-                <div class="bg-emerald-55 border border-emerald-200 rounded-3xl p-5 md:p-6 flex items-start gap-4 shadow-sm animate-fade-in print:hidden">
+                <div class="bg-emerald-50 border border-emerald-200 rounded-3xl p-5 md:p-6 flex items-start gap-4 shadow-sm animate-fade-in print:hidden">
                     <div class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-paper-plane text-emerald-600 text-lg"></i>
+                        <i class="fa-solid fa-check text-emerald-600 text-lg"></i>
                     </div>
                     <div class="text-left space-y-1">
-                        <h4 class="text-sm font-black text-[#047857] uppercase tracking-wider">¡Guía preparada para enviar!</h4>
+                        <h4 class="text-sm font-black text-[#047857] uppercase tracking-wider">¡Guía de viaje generada con éxito!</h4>
                         <p class="text-xs text-[#065f46] font-medium leading-relaxed">
-                            Se ha intentado abrir tu gestor de correo predeterminado para enviar la guía a <strong>${this.userEmail}</strong>. Si no se abrió, presiona **"Enviar por Correo"** o usa el botón **"Copiar Guía"** para pegarla y compartirla manualmente.
+                            Hemos guardado tu itinerario para <strong>${this.userEmail}</strong>. Si la ventana de opciones de envío no se abrió automáticamente, presiona el botón **"Enviar por Correo"** o **"Copiar Guía"** para enviarla a tu cuenta o compartirla manualmente.
                         </p>
                     </div>
                 </div>
@@ -1568,7 +1568,7 @@ const ItineraryPlanner = {
                         <button onclick="window.showView('map')" class="text-xs font-black text-white bg-[#003087] hover:bg-[#002266] px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-map-location-dot"></i> Ver en Mapa Interactivo
                         </button>
-                        <button onclick="ItineraryPlanner.sendEmailMailto()" class="text-xs font-black text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
+                        <button onclick="ItineraryPlanner.showEmailMethodModal()" class="text-xs font-black text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-envelope text-[#0099FF]"></i> Enviar por Correo
                         </button>
                         <button onclick="ItineraryPlanner.copyItineraryToClipboard()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
@@ -1696,6 +1696,156 @@ const ItineraryPlanner = {
         setTimeout(() => {
             this.focusPoint(stopId);
         }, 300);
+    },
+    showEmailMethodModal() {
+        if (!this.fullItinerary) return;
+
+        const emailTo = this.userEmail || '';
+        const numDays = Object.keys(this.fullItinerary).length;
+        let bodyText = `¡Hola!\n\nAquí tienes el resumen de tu itinerario personalizado para la Ruta Turística Sostenible (Cartagena - Barranquilla).\n\n`;
+        bodyText += `DETALLES DE TU VIAJE:\n`;
+        bodyText += `- Origen: ${this.startCity}\n`;
+        bodyText += `- Acompañantes: ${this.selectedCompanion}\n`;
+        bodyText += `- Presupuesto: ${this.selectedBudget}\n`;
+        bodyText += `- Ritmo de viaje: ${this.selectedPace}\n`;
+        bodyText += `- Duración: ${numDays} día(s)\n\n`;
+        bodyText += `--------------------------------------------------\n\n`;
+
+        for (let i = 1; i <= numDays; i++) {
+            const date = new Date(this.startDate);
+            date.setDate(date.getDate() + (i - 1));
+            const dayLabel = date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            bodyText += `DÍA ${i} (${dayLabel.toUpperCase()}):\n`;
+
+            const stops = this.fullItinerary[i] || [];
+            if (stops.length === 0) {
+                bodyText += `  No hay paradas programadas.\n`;
+            } else {
+                stops.forEach((item, idx) => {
+                    bodyText += `  Parada ${idx + 1}: ${item.title} (${item.location.split(',')[0]})\n`;
+                });
+            }
+            bodyText += `--------------------------------------------------\n\n`;
+        }
+
+        bodyText += `Para ver mapas interactivos, horarios, precios y descripciones completas de cada lugar, visita nuestro planificador en la web.\n\n`;
+        bodyText += `¡Buen viaje!\nEquipo de Ruta Turística Sostenible.\nContacto: rutaturisticasostenible@gmail.com`;
+
+        const subjectStr = `Guía de viaje - Ruta Turística Sostenible`;
+        const subject = encodeURIComponent(subjectStr);
+        const emailBody = encodeURIComponent(bodyText);
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailTo)}&su=${subject}&body=${emailBody}`;
+
+        // Remove existing custom modal if any
+        const existing = document.getElementById('itinerary-email-modal');
+        if (existing) existing.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'itinerary-email-modal';
+        modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300';
+        
+        modal.innerHTML = `
+            <div class="bg-white rounded-[32px] max-w-lg w-full overflow-hidden shadow-2xl border border-gray-100 transform scale-95 opacity-0 transition-all duration-300 flex flex-col">
+                <!-- Header -->
+                <div class="p-6 pb-4 border-b border-gray-100 flex items-start justify-between">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-[#0099FF]/10 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-paper-plane text-[#0099FF] text-xl"></i>
+                        </div>
+                        <div class="text-left space-y-1">
+                            <h3 class="text-lg font-black text-[#003087] uppercase tracking-tight">Enviar Guía de Viaje</h3>
+                            <p class="text-xs text-gray-500 font-medium leading-relaxed">Selecciona el método más cómodo para guardar o enviar tu itinerario a <strong>${emailTo || 'tu correo'}</strong></p>
+                        </div>
+                    </div>
+                    <button id="close-email-modal-x" class="text-gray-400 hover:text-gray-600 transition-colors p-1.5 rounded-full hover:bg-gray-100">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                
+                <!-- Body / Options -->
+                <div class="p-6 space-y-4 text-left">
+                    <!-- Option 1: Gmail Web -->
+                    <button id="email-opt-gmail" class="w-full border-2 border-gray-100 hover:border-[#FF6900]/30 hover:bg-[#FF6900]/5 p-4 rounded-2xl transition-all duration-200 flex items-center gap-4 text-left group">
+                        <div class="w-10 h-10 rounded-xl bg-red-50 group-hover:bg-red-100 flex items-center justify-center shrink-0 text-red-500 text-lg transition-colors">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-black text-gray-800 uppercase tracking-wide group-hover:text-[#FF6900] transition-colors">Abrir en Gmail (Web)</h4>
+                            <p class="text-[11px] text-gray-500 font-medium">Recomendado si usas Gmail en el navegador web. Abre una nueva pestaña lista para enviar.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-[#FF6900] transition-all group-hover:translate-x-1"></i>
+                    </button>
+
+                    <!-- Option 2: Default Mail Client -->
+                    <button id="email-opt-mailto" class="w-full border-2 border-gray-100 hover:border-[#003087]/30 hover:bg-blue-50/50 p-4 rounded-2xl transition-all duration-200 flex items-center gap-4 text-left group">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center shrink-0 text-[#003087] text-lg transition-colors">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-black text-gray-800 uppercase tracking-wide group-hover:text-[#003087] transition-colors">Aplicación de Correo</h4>
+                            <p class="text-[11px] text-gray-500 font-medium">Abre tu aplicación de correo local predeterminada (Outlook, Windows Mail, Apple Mail, etc.).</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-[#003087] transition-all group-hover:translate-x-1"></i>
+                    </button>
+
+                    <!-- Option 3: Copy to Clipboard -->
+                    <button id="email-opt-copy" class="w-full border-2 border-gray-100 hover:border-[#14b8a6]/30 hover:bg-teal-50/50 p-4 rounded-2xl transition-all duration-200 flex items-center gap-4 text-left group">
+                        <div class="w-10 h-10 rounded-xl bg-teal-50 group-hover:bg-teal-100 flex items-center justify-center shrink-0 text-teal-600 text-lg transition-colors">
+                            <i class="fa-solid fa-copy"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-black text-gray-800 uppercase tracking-wide group-hover:text-teal-600 transition-colors">Copiar Resumen</h4>
+                            <p class="text-[11px] text-gray-500 font-medium">Copia el itinerario en texto para que puedas pegarlo manualmente en tu correo, bloc de notas o WhatsApp.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-teal-600 transition-all group-hover:translate-x-1"></i>
+                    </button>
+                </div>
+                
+                <!-- Footer -->
+                <div class="bg-gray-50 px-6 py-4 flex justify-end">
+                    <button id="close-email-modal-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2.5 rounded-xl font-bold uppercase tracking-wider text-[11px] transition-all active:scale-95">Cerrar</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Trigger animations
+        setTimeout(() => {
+            modal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+            modal.querySelector('div').classList.add('scale-100', 'opacity-100');
+        }, 10);
+
+        const closeModal = () => {
+            modal.querySelector('div').classList.remove('scale-100', 'opacity-100');
+            modal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.remove(), 300);
+        };
+
+        modal.querySelector('#close-email-modal-x').addEventListener('click', closeModal);
+        modal.querySelector('#close-email-modal-btn').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Gmail Action
+        modal.querySelector('#email-opt-gmail').addEventListener('click', () => {
+            window.open(gmailUrl, '_blank');
+            closeModal();
+        });
+
+        // Mailto Action
+        modal.querySelector('#email-opt-mailto').addEventListener('click', () => {
+            this.sendEmailMailto();
+            closeModal();
+        });
+
+        // Copy Action
+        modal.querySelector('#email-opt-copy').addEventListener('click', () => {
+            this.copyItineraryToClipboard();
+            closeModal();
+        });
     },
 
     sendEmailMailto() {
