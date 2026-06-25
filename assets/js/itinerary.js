@@ -1753,8 +1753,8 @@ const ItineraryPlanner = {
                             <i class="fa-solid fa-paper-plane text-[#0099FF] text-xl"></i>
                         </div>
                         <div class="text-left space-y-1">
-                            <h3 class="text-lg font-black text-[#003087] uppercase tracking-tight">Enviar Guía de Viaje</h3>
-                            <p class="text-xs text-gray-500 font-medium leading-relaxed">Selecciona el método más cómodo para guardar o enviar tu itinerario a <strong>${emailTo || 'tu correo'}</strong></p>
+                            <h3 class="text-lg font-black text-[#003087] uppercase tracking-tight">Enviar e Itinerario en PDF</h3>
+                            <p class="text-xs text-gray-500 font-medium leading-relaxed">Sigue estos dos sencillos pasos para guardar y enviar tu itinerario a <strong>${emailTo || 'tu correo'}</strong></p>
                         </div>
                     </div>
                     <button id="close-email-modal-x" class="text-gray-400 hover:text-gray-600 transition-colors p-1.5 rounded-full hover:bg-gray-100">
@@ -1763,42 +1763,74 @@ const ItineraryPlanner = {
                 </div>
                 
                 <!-- Body / Options -->
-                <div class="p-6 space-y-4 text-left">
-                    <!-- Option 1: Gmail Web -->
-                    <button id="email-opt-gmail" class="w-full border-2 border-gray-100 hover:border-[#FF6900]/30 hover:bg-[#FF6900]/5 p-4 rounded-2xl transition-all duration-200 flex items-center gap-4 text-left group">
-                        <div class="w-10 h-10 rounded-xl bg-red-50 group-hover:bg-red-100 flex items-center justify-center shrink-0 text-red-500 text-lg transition-colors">
-                            <i class="fa-solid fa-envelope-open-text"></i>
+                <div class="p-6 space-y-6 text-left max-h-[75vh] overflow-y-auto">
+                    <!-- STEP 1 -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-[#FF6900] text-white flex items-center justify-center text-xs font-black">1</span>
+                            <h4 class="text-xs font-black text-[#003087] uppercase tracking-widest">Guarda la guía en PDF</h4>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-sm font-black text-gray-800 uppercase tracking-wide group-hover:text-[#FF6900] transition-colors">Abrir en Gmail (Web)</h4>
-                            <p class="text-[11px] text-gray-500 font-medium">Recomendado si usas Gmail en el navegador web. Abre una nueva pestaña lista para enviar.</p>
+                        
+                        <div class="bg-orange-50/50 border border-[#FF6900]/10 rounded-2xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                            <div class="flex-1 space-y-0.5">
+                                <p class="text-xs font-bold text-gray-700">Generar archivo PDF</p>
+                                <p class="text-[10px] text-gray-500 font-medium leading-relaxed">Se abrirá el diálogo de impresión del sistema. Selecciona la opción <strong>"Guardar como PDF"</strong> en la lista de impresoras.</p>
+                            </div>
+                            <button id="email-opt-pdf" class="bg-[#FF6900] hover:bg-[#e05c00] text-white text-xs font-black px-4 py-3 rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 shrink-0">
+                                <i class="fa-solid fa-file-pdf"></i> Guardar PDF
+                            </button>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-[#FF6900] transition-all group-hover:translate-x-1"></i>
-                    </button>
+                    </div>
+                    
+                    <!-- Divider line -->
+                    <div class="border-t border-gray-100"></div>
 
-                    <!-- Option 2: Default Mail Client -->
-                    <button id="email-opt-mailto" class="w-full border-2 border-gray-100 hover:border-[#003087]/30 hover:bg-blue-50/50 p-4 rounded-2xl transition-all duration-200 flex items-center gap-4 text-left group">
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center shrink-0 text-[#003087] text-lg transition-colors">
-                            <i class="fa-solid fa-desktop"></i>
+                    <!-- STEP 2 -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-[#003087] text-white flex items-center justify-center text-xs font-black">2</span>
+                            <h4 class="text-xs font-black text-[#003087] uppercase tracking-widest">Elige cómo enviar tu correo</h4>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-sm font-black text-gray-800 uppercase tracking-wide group-hover:text-[#003087] transition-colors">Aplicación de Correo</h4>
-                            <p class="text-[11px] text-gray-500 font-medium">Abre tu aplicación de correo local predeterminada (Outlook, Windows Mail, Apple Mail, etc.).</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-[#003087] transition-all group-hover:translate-x-1"></i>
-                    </button>
+                        <p class="text-[11px] text-gray-500 font-medium -mt-1 leading-relaxed">Una vez guardado tu PDF, selecciona una de las opciones de abajo. Podrás redactar tu mensaje y <strong>adjuntar o arrastrar el archivo PDF</strong> que acabas de guardar.</p>
+                        
+                        <div class="space-y-2.5">
+                            <!-- Option 1: Gmail Web -->
+                            <button id="email-opt-gmail" class="w-full border-2 border-gray-100 hover:border-[#FF6900]/30 hover:bg-[#FF6900]/5 p-3 rounded-xl transition-all duration-200 flex items-center gap-3.5 text-left group">
+                                <div class="w-9 h-9 rounded-lg bg-red-50 group-hover:bg-red-100 flex items-center justify-center shrink-0 text-red-500 text-sm transition-colors">
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h5 class="text-xs font-black text-gray-800 uppercase tracking-wide group-hover:text-[#FF6900] transition-colors">Abrir en Gmail (Web)</h5>
+                                    <p class="text-[10px] text-gray-500 font-medium leading-tight">Abre una nueva pestaña en tu cuenta de Gmail Web lista para redactar y adjuntar el PDF.</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-[#FF6900] transition-all group-hover:translate-x-1 text-xs"></i>
+                            </button>
 
-                    <!-- Option 3: Copy to Clipboard -->
-                    <button id="email-opt-copy" class="w-full border-2 border-gray-100 hover:border-[#14b8a6]/30 hover:bg-teal-50/50 p-4 rounded-2xl transition-all duration-200 flex items-center gap-4 text-left group">
-                        <div class="w-10 h-10 rounded-xl bg-teal-50 group-hover:bg-teal-100 flex items-center justify-center shrink-0 text-teal-600 text-lg transition-colors">
-                            <i class="fa-solid fa-copy"></i>
+                            <!-- Option 2: Default Mail Client -->
+                            <button id="email-opt-mailto" class="w-full border-2 border-gray-100 hover:border-[#003087]/30 hover:bg-blue-50/50 p-3 rounded-xl transition-all duration-200 flex items-center gap-3.5 text-left group">
+                                <div class="w-9 h-9 rounded-lg bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center shrink-0 text-[#003087] text-sm transition-colors">
+                                    <i class="fa-solid fa-desktop"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h5 class="text-xs font-black text-gray-800 uppercase tracking-wide group-hover:text-[#003087] transition-colors">Aplicación de Correo</h5>
+                                    <p class="text-[10px] text-gray-500 font-medium leading-tight">Abre Outlook, Correo de Windows o Apple Mail con los datos pre-rellenados.</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-[#003087] transition-all group-hover:translate-x-1 text-xs"></i>
+                            </button>
+
+                            <!-- Option 3: Copy to Clipboard -->
+                            <button id="email-opt-copy" class="w-full border-2 border-gray-100 hover:border-[#14b8a6]/30 hover:bg-teal-50/50 p-3 rounded-xl transition-all duration-200 flex items-center gap-3.5 text-left group">
+                                <div class="w-9 h-9 rounded-lg bg-teal-50 group-hover:bg-teal-100 flex items-center justify-center shrink-0 text-teal-600 text-sm transition-colors">
+                                    <i class="fa-solid fa-copy"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h5 class="text-xs font-black text-gray-800 uppercase tracking-wide group-hover:text-teal-600 transition-colors">Copiar Resumen en Texto</h5>
+                                    <p class="text-[10px] text-gray-500 font-medium leading-tight">Copia todo el itinerario resumido en texto plano para pegarlo donde tú quieras.</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-teal-600 transition-all group-hover:translate-x-1 text-xs"></i>
+                            </button>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-sm font-black text-gray-800 uppercase tracking-wide group-hover:text-teal-600 transition-colors">Copiar Resumen</h4>
-                            <p class="text-[11px] text-gray-500 font-medium">Copia el itinerario en texto para que puedas pegarlo manualmente en tu correo, bloc de notas o WhatsApp.</p>
-                        </div>
-                        <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-teal-600 transition-all group-hover:translate-x-1"></i>
-                    </button>
+                    </div>
                 </div>
                 
                 <!-- Footer -->
@@ -1827,6 +1859,11 @@ const ItineraryPlanner = {
         modal.querySelector('#close-email-modal-btn').addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
+        });
+
+        // PDF Action
+        modal.querySelector('#email-opt-pdf').addEventListener('click', () => {
+            window.print();
         });
 
         // Gmail Action
