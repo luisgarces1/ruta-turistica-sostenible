@@ -257,10 +257,10 @@ function openSidePanel(data) {
     sidePanel.innerHTML = `
         <!-- Image Header (Fast Reveal + Skeleton) -->
         <div class="relative h-36 md:h-48 w-full shrink overflow-hidden rounded-t-3xl md:rounded-t-2xl p-3 skeleton min-h-[140px]">
-            <img src="${data.image}" 
+            <img src="${data.image || 'assets/images/puntos/default-fallback.png'}" 
                  loading="eager"
                  onload="this.classList.add('img-fade-in'); this.parentElement.classList.remove('skeleton')"
-                 onerror="this.src='https://images.unsplash.com/photo-1543884877-a8eb0bf1775f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.parentElement.classList.remove('skeleton')" 
+                 onerror="this.src='assets/images/puntos/default-fallback.png'; this.parentElement.classList.remove('skeleton')" 
                  class="w-full h-full object-cover rounded-2xl shadow-xl border-4 border-white/40 opacity-0 transition-opacity" 
                  alt="${data.title}">
             
@@ -492,8 +492,10 @@ window.openGoogleMaps = function(lat, lng) {
 // 7. Performance Optimizer: Preload first 10 images
 function preloadImages() {
     mockData.slice(0, 10).forEach(item => {
-        const img = new Image();
-        img.src = item.image;
+        if (item.image) {
+            const img = new Image();
+            img.src = item.image;
+        }
     });
 }
 
@@ -661,7 +663,7 @@ function showMunicipioDetail(muniId) {
                     <div class="space-y-4">
                         ${muniPoints.map(point => `
                             <div class="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all cursor-pointer group" onclick="window.showPointOnMap(${point.id})">
-                                <img src="${point.image}" class="w-20 h-20 rounded-xl object-cover shadow-md" alt="${point.title}">
+                                <img src="${point.image || 'assets/images/puntos/default-fallback.png'}" class="w-20 h-20 rounded-xl object-cover shadow-md" alt="${point.title}">
                                 <div class="flex-1">
                                     <h5 class="font-bold text-[#003087] transition-colors">${point.title}</h5>
                                     <p class="text-xs text-gray-500 line-clamp-2 mt-1">${point.description}</p>
@@ -2682,7 +2684,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 itemDiv.className = "flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors border-b border-gray-50 last:border-b-0";
                 
                 itemDiv.innerHTML = `
-                    <img src="${item.image}" class="w-8 h-8 rounded-lg object-cover shrink-0" alt="${item.title}">
+                    <img src="${item.image || 'assets/images/puntos/default-fallback.png'}" class="w-8 h-8 rounded-lg object-cover shrink-0" alt="${item.title}">
                     <div class="flex-1 min-w-0">
                         <p class="text-xs font-black text-gray-900 truncate uppercase tracking-tight">${item.title}</p>
                         <p class="text-[10px] text-gray-400 font-bold truncate flex items-center gap-1.5 uppercase tracking-tighter">

@@ -514,7 +514,7 @@ const ItineraryPlanner = {
 
         const modal = document.createElement('div');
         modal.id = 'itinerary-custom-alert';
-        modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300';
+        modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300 print:hidden';
         
         modal.innerHTML = `
             <div class="bg-white rounded-[24px] max-w-md w-full overflow-hidden shadow-2xl border border-gray-100 transform scale-95 opacity-0 transition-all duration-300 flex flex-col">
@@ -1433,7 +1433,7 @@ const ItineraryPlanner = {
                         <div class="bg-white rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,48,135,0.06)] hover:border-[#003087]/10 transition-all duration-500 overflow-hidden flex flex-col md:flex-row group">
                             <!-- Image Left -->
                             <div class="md:w-1/3 h-52 md:h-auto min-h-[180px] relative overflow-hidden shrink-0">
-                                <img src="${item.image}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <img src="${item.image || 'assets/images/puntos/default-fallback.png'}" alt="${item.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                                 <span class="absolute top-4 left-4 w-7 h-7 rounded-xl bg-[#003087] text-white font-black text-xs flex items-center justify-center shadow-lg border border-white/20">
                                     ${idx + 1}
@@ -1742,7 +1742,7 @@ const ItineraryPlanner = {
 
         const modal = document.createElement('div');
         modal.id = 'itinerary-email-modal';
-        modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300';
+        modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300 print:hidden';
         
         modal.innerHTML = `
             <div class="bg-white rounded-[32px] max-w-lg w-full overflow-hidden shadow-2xl border border-gray-100 transform scale-95 opacity-0 transition-all duration-300 flex flex-col">

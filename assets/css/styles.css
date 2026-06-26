@@ -360,7 +360,7 @@ html {
 /* --- Print Styles --- */
 @media print {
     /* Hide all elements that are not part of the itinerary content */
-    header, footer, aside, .print\:hidden, button, .pill-actions, .icon-links, #close-itinerary, #itinerary-overlay, #save-success-toast, #load-success-toast {
+    header, footer, aside, .print\:hidden, button, .pill-actions, .icon-links, #close-itinerary, #itinerary-overlay, #save-success-toast, #load-success-toast, #itinerary-email-modal, #itinerary-custom-alert {
         display: none !important;
     }
     
