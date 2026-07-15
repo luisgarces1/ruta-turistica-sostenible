@@ -37,196 +37,196 @@ const categories = [
 const mockData = [
   {
     id: 1, category: "ecoturismo", title: "Volcán del Totumo", 
-    description: "El Volcán del Totumo no es solo un destino; es un ritual de bienestar y una maravilla geológica única en el Caribe. Famoso por sus baños de lodo medicinal, este cono volcánico de aproximadamente 15 metros invita a los visitantes a flotar en una densidad natural que relaja el cuerpo y rejuvenece la piel. Es una experiencia sensorial inigualable, rodeada de la serenidad de la ciénaga y la calidez de la comunidad local.", 
+    description: "Un cono volcánico de 15 metros que emerge entre la ciénaga y el mar. Su lodo medicinal nace de procesos geológicos únicos en el Caribe: gases que burbujean desde las profundidades y minerales que relajan el cuerpo mientras flotas en su densa superficie tibia. Un fenómeno natural vivo..", 
     lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp", 
     location: "Santa Catalina, Bolívar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.", 
     tags: ["Relax en la playa", "Experiencias sensoriales", "Comida autóctona"]
   },
   {
     id: 2, category: "playas", title: "Playas de Loma Arena", 
-    description: "Estas playas son un secreto guardado para quienes buscan desconexión total. Con sus extensas franjas de arena dorada y un oleaje que invita a la contemplación, Loma Arena es el lugar ideal para disfrutar de puestas de sol cinematográficas. Su ambiente tranquilo lo convierte en un punto estratégico para el turismo de descanso, lejos del bullicio urbano, donde el sonido del mar es el único protagonista.", 
+    description: "Arena dorada que avanza sin interrupciones hasta donde el ojo alcanza. En Loma Arena el Caribe llega tranquilo y el paisaje permanece sin intervención: sin estructuras, sin bullicio. Solo el oleaje, el cielo abierto y la línea de palmeras que marca el límite entre la tierra y el mar.", 
     lat: 10.731697, lng: -75.272444, image: "assets/images/puntos/foto-principal-l.a.webp", 
     location: "Santa Catalina, Bolívar.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
     id: 3, category: "playas", title: "Playas de Punta Astilleros", 
-    description: "Punta Astilleros es el refugio de carácter rural donde el campo se encuentra con el océano. Sus playas vírgenes y su entorno natural preservado ofrecen una experiencia auténtica de paz. Es el destino predilecto para caminatas ecológicas por la orilla y para aquellos que desean conocer la vida costera en su estado más puro y sencillo, bajo la sombra de palmeras y la brisa constante del Atlántico.", 
+    description: "Donde la costa del Atlántico se conserva en su estado más puro. Playas vírgenes rodeadas de vegetación nativa, con brisa constante y acceso a senderos ecológicos que siguen la orilla. Un entorno costero que no ha cedido a la infraestructura y por eso sigue siendo refugio de aves y paisaje auténtico.", 
     lat: 10.795, lng: -75.224444, image: "assets/images/puntos/foto-principal-pa.webp", 
     location: "Piojó, Atlántico.", hours: "9:00 a.m. - Final del día.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas", "Artesanías"]
   },
   {
     id: 4, category: "ecoturismo", title: "Cerro la Vieja", 
-    description: "El Cerro La Vieja es la cima del Atlántico, un mirador natural que ofrece una de las panorámicas más espectaculares de la región. Subir a su cumbre es un reto gratificante para los amantes del senderismo y la fotografía, permitiendo observar la línea costera y el relieve ondulado del departamento. Es un lugar cargado de leyendas locales y una biodiversidad que sorprende a cada paso en medio del bosque seco tropical.", 
+    description: "La cima del Atlántico guarda bosque seco tropical, fauna sorprendente y una panorámica que abarca la línea costera y el relieve ondulado del departamento. Cada paso hacia la cumbre atraviesa microhábitats distintos. Subir es una inmersión en la biodiversidad del Caribe, no solo un esfuerzo físico.", 
     lat: 10.733333, lng: -75.104722, image: "assets/images/puntos/foto-principal-l.v.webp", 
     location: "Piojó, Atlántico.", hours: "7:00 a.m. - 6:00 p.m.", price: "Adultos: $8.000 mil cop.", 
     tags: ["Avistamiento de aves", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 5, category: "ecoturismo", title: "Caribe Aventura", 
-    description: "Prepárate para vivir la emoción en el parque temático más grande de la región, donde la cultura del Caribe se mezcla con la diversión acuática. Caribe Aventura ofrece réplicas de sitios icónicos y atracciones diseñadas para todas las edades. Es el destino perfecto para familias que buscan adrenalina en los toboganes y piscinas, mientras aprenden sobre la identidad costeña en un entorno seguro y vibrante.", 
+    description: "Un parque que usa la naturaleza del Caribe como escenario principal. Toboganes, piscinas y atracciones acuáticas están integrados en un entorno donde el agua, la vegetación y el paisaje regional son los protagonistas. Una experiencia que conecta la diversión familiar con la identidad natural del territorio.", 
     lat: 10.765278, lng: -75.200278, image: "assets/images/puntos/foto-principal-c.a.webp", 
     location: "Piojó, Atlántico.", hours: "9:00 a.m. - 4:30 p.m.", price: "Variable.", 
     tags: ["Experiencias sensoriales", "Deportes náuticos"]
   },
   {
     id: 6, category: "cultura", title: "Muelle de Puerto Colombia", 
-    description: "El Muelle de Puerto Colombia es el guardián de la memoria y la puerta histórica por donde entró el progreso al país. Recientemente restaurado, este gigante de concreto invita a caminar sobre el mar y revivir la época en que fue uno de los muelles más largos del mundo. Es un símbolo de resiliencia y un lugar mágico para ver el atardecer, conectando el misticismo del pasado con el futuro turístico del Atlántico.", 
+    description: "El muelle más largo de Colombia  en su época hoy camina sobre el mar como testigo de una era que transformó al país. Sus pilotes de concreto sostienen una historia de vapores, mercancías y viajeros que llegaron al Caribe. Caminar sobre él es recorrer la memoria del comercio y la apertura de una nación.", 
     lat: 10.988333, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Artesanías", "Comida autóctona"]
   },
   {
     id: 7, category: "gastronomia", title: "Centro gastronómico Muelle 1888", 
-    description: "El Muelle 1888 en Puerto Colombia es un espacio ideal que combina la mejor oferta culinaria con una arquitectura que rinde homenaje a la herencia inmigrante. Aquí, los sabores locales e internacionales se encuentran en un ambiente sofisticado y acogedor frente al mar. Es la parada obligatoria para los amantes del buen comer que buscan una experiencia cosmopolita con sabor a Caribe.", 
+    description: "Una arquitectura que rinde tributo a las olas inmigrantes que llegaron por este puerto. Los sabores locales e internacionales conviven aquí con la historia del lugar, invitando a comer despacio, a mirar el mar y a entender cómo la mesa caribeña es también un archivo de memorias y encuentros.", 
     lat: 10.989444, lng: -74.958611, image: "assets/images/puntos/foto-principal-m.1888.webp", 
     location: "Puerto Colombia.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Comida autóctona", "Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 8, category: "cultura", title: "Ventana de Sueños", 
-    description: "La Ventana de Sueños, ícono contemporáneo de Puerto Colombia, es un faro de arte y luz que rinde tributo a los inmigrantes. Con su imponente estructura de cristal, se ha convertido en un hito fotográfico que simboliza la esperanza y el dinamismo de la región. Sus colores reflejan el cielo y el mar, creando un espectáculo visual que fascina a residentes y turistas por igual al caer la noche.", 
+    description: "Estructura de cristal que al caer la noche transforma la costa de Puerto Colombia en un faro de colores. Es un monumento a los inmigrantes que llegaron sin certezas y construyeron identidad. Su reflejo sobre el mar convierte cada visita en un encuentro entre la historia humana y el presente festivo del Atlántico.", 
     lat: 11.001667, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-v.s.webp", 
     location: "Puerto Colombia.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 9, category: "cultura", title: "Antigua estación del Ferrocarril", 
-    description: "Inaugurada originalmente en 1871, esta joya arquitectónica es el testimonio vivo de la era ferroviaria en Colombia. Sus muros conservan las historias de viajeros y mercancías que transformaron la economía nacional. Hoy, restaurada y convertida en centro cultural, permite a los visitantes viajar en el tiempo y apreciar el legado del transporte que unió al Caribe con el interior del país.", 
+    description: "Inaugurada en 1871, sus muros de ladrillo guardan el eco de los trenes que conectaron el interior del país con el mar. Hoy convertida en centro cultural, la estación invita a recorrer la era ferroviaria que cambió la economía colombiana y dejó en Puerto Colombia una huella arquitectónica todavía vigente.", 
     lat: 10.988611, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-ef.webp", 
     location: "Puerto Colombia.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 10, category: "playas", title: "Playas de Puerto Colombia", 
-    description: "Destacan por el azul del océano y su proximidad a monumentos históricos. Son playas vibrantes, llenas de vida y cultura, donde se puede disfrutar de la gastronomía típica en los quioscos locales mientras se contempla el muelle. Ideales para un día de sol relajado con el toque histórico que solo Puerto Colombia puede ofrecer.", 
+    description: "El mar llega aquí con fuerza moderada y temperatura cálida todo el año. La proximidad del muelle histórico crea un paisaje donde el agua y la arquitectura se entrelazan sin competir. Playas abiertas, brisa del Caribe y una costa que combina el descanso natural con la escala humana del balneario clásico.", 
     lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.p.webp", 
     location: "Puerto Colombia.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 11, category: "playas", title: "Playa de Santa Verónica", 
-    description: "Un oasis que combina la tranquilidad del mar con la calidez local. Famosa por sus restaurantes frente al océano que ofrecen el mejor pescado frito de la zona, Santa Verónica es perfecta para quienes buscan un ambiente familiar y relajado. Sus vientos constantes también la hacen atractiva para quienes desean iniciarse en los deportes de viento en un entorno amigable.", 
+    description: "El viento constante de Juan de Acosta convierte a Santa Verónica en un punto privilegiado del litoral atlántico. Sus corrientes suaves y el agua clara la hacen ideal para iniciarse en deportes de viento. Frente al océano, los restaurantes de pescado frito completan un entorno donde el mar dicta el ritmo.", 
     lat: 10.88038, lng: -75.08297, image: "assets/images/puntos/fotografia-para-la-pagina-p.s.webp", 
     location: "Juan de Acosta.", hours: "7:00 a.m. - 9:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona", "Vistas panorámicas"]
   },
   {
     id: 12, category: "nauticos", title: "Salinas del Rey", 
-    description: "El referente mundial del Atlántico para el kitesurf. Salinas del Rey es un escenario natural privilegiado donde el viento y las olas dictan el ritmo. Atrae a deportistas de todo el mundo gracias a sus condiciones excepcionales, ofreciendo un espectáculo de velas de colores sobre el mar rosado. Es un punto de encuentro internacional que posiciona al departamento en el mapa del turismo deportivo de élite.", 
+    description: "Las condiciones de viento y oleaje de Juan de Acosta generan aquí uno de los escenarios de kitesurf más exigentes del mundo. Pero antes de la adrenalina está el paisaje: agua que cambia de tono según la hora y la sal que brilla bajo el sol caribeño. Un accidente geográfico convertido en destino de alto rendimiento.", 
     lat: 10.871944, lng: -75.095556, image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp", 
     location: "Juan de Acosta.", hours: "9:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Deportes náuticos", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 13, eventMonth: 0, startDay: 30, endDay: 31, category: "cultura", title: "Festival del Millo", 
-    description: "Una de las fiestas más emblemáticas del Atlántico que celebra la herencia agrícola del municipio de Juan de Acosta. La música de flauta de millo y los bailes tradicionales se toman las calles, creando un ambiente de alegría contagiosa. Es la oportunidad perfecta para saborear productos derivados de este grano y sumergirse en la esencia del folclor costeño en su estado más genuino.", 
+    description: "La flauta de millo sale a las calles de Juan de Acosta cada año para recordar el origen agrícola de este municipio. El baile, la música y los platos derivados del grano tejen una celebración donde la herencia campesina del Caribe no es pasado sino identidad activa que se renueva con cada edición.", 
     lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp", 
     location: "Juan de Acosta.", hours: "Anual.", price: "Gratuito.", 
     tags: ["Comida autóctona", "Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 14, category: "gastronomia", title: "Parador El Sombrero Vueltiao", 
-    description: "Inspirado en el emblemático símbolo nacional, este parador es una obra de arte arquitectónica ubicada estratégicamente en la carretera. Más que una parada, es un homenaje a las artesanías de la región donde se puede degustar comida típica y comprar recuerdos auténticos. Su design de sombrero gigante es el fondo perfecto para la foto que certifica tu paso por el corazón del Caribe.", 
+    description: "Una parada en la vía que es mucho más que descanso. El sombrero vueltiao gigante marca un punto donde artesanos y productores locales exhiben y venden su trabajo. Aquí la carretera se convierte en mercado vivo: comida típica, artesanías auténticas y el orgullo de quienes hacen de su oficio una identidad.", 
     lat: 10.8805, lng: -75.0711, image: "assets/images/puntos/foto-principal-s.v.webp", 
     location: "Juan de Acosta.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Artesanías", "Comida autóctona", "Vistas panorámicas"]
   },
   {
     id: 15, category: "playas", title: "Playa de Puerto Velero", 
-    description: "Un destino de paz absoluta y aguas tranquilas gracias a su formación natural de ensenada. Es el lugar predilecto para el aprendizaje de la vela y otros deportes náuticos. Con sus cabañas sobre el agua y restaurantes especializados, ofrece una experiencia de confort y naturaleza ideal para parejas y buscadores de exclusividad en un entorno marítimo protegido.", 
+    description: "La ensenada natural de Puerto Velero protege sus aguas del oleaje abierto, creando una calma que pocas playas del Caribe colombiano ofrecen. El entorno de manglares y la profundidad gradual la hacen refugio ideal para la vela y los deportes náuticos suaves en un ecosistema costero todavía bien conservado.", 
     lat: 10.947222, lng: -75.036944, image: "assets/images/puntos/foto-principal-para-la-pagina-p.v.webp", 
     location: "Tubará.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Deportes náuticos", "Comida autóctona"]
   },
   {
     id: 16, category: "cultura", title: "Museo Arqueológico de Galapa", 
-    description: "Custodia la memoria ancestral de las culturas que habitaron el territorio antes de la llegada de los españoles. A través de cerámicas y piezas únicas, el museo narra la historia de los Mokaná y otras tribus de la región. Es un espacio de aprendizaje esencial para entender las raíces culturales del Atlántico y valorar el arte precolombino en su máxima expresión.", 
+    description: "Las cerámicas y piezas que custodian estas salas no son solo objetos: son los vestigios de los Mokaná y las culturas que habitaron este territorio antes de la conquista. Recorrer el museo es reconocer en cada pieza la continuidad de un pueblo cuya historia no empezó en 1492 sino siglos antes.", 
     lat: 10.899722, lng: -74.886111, image: "assets/images/puntos/foto-principal-m.g.webp", 
     location: "Galapa.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 17, category: "ecoturismo", title: "Mariposario Butterfly Caribe", 
-    description: "Celebra la diversidad y la metamorfosis en este santuario dedicado a las mariposas. Ubicado en medio de la exuberante vegetación de Galapa, permite a los visitantes interactuar con cientos de especies en un jardín controlado que educa sobre la importancia de los polinizadores. Una experiencia mágica y educativa que conecta a niños y adultos con la delicada belleza de la naturaleza tropical.", 
+    description: "Cientos de especies de mariposas viven y se reproducen en este jardín controlado en Galapa. Más que un atractivo visual, el mariposario educa sobre el papel crítico de los polinizadores en los ecosistemas tropicales. Una experiencia que pone al visitante en contacto directo con la fragilidad y la belleza de la vida natural.", 
     lat: 10.875833, lng: -74.930833, image: "assets/images/puntos/foto-principal-m.a.webp", 
     location: "Galapa.", hours: "9:30 a.m. - 2:30 p.m.", price: "Adultos: $25.000.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
     id: 18, category: "ecoturismo", title: "Parque Biotemático Megua", 
-    description: "Un aula viva de 32 hectáreas dedicada a la educación ambiental y la conservación. Con senderos ecológicos, granjas interactivas y zonas de preservación, Megua es el pulmón alternativo donde se aprende sobre el cuidado de la tierra mientras se disfruta del aire puro. Ideal para grupos escolares y familias que desean una jornada de inmersión en el campo y contacto directo con animales y plantas nativas.", 
+    description: "32 hectáreas de senderos, granjas interactivas y zonas de conservación en las afueras de Galapa. Megua es un aula viva donde se aprende sobre suelos, plantas nativas y ciclos naturales mientras se camina entre animales de la región. El contacto directo con los procesos del campo es el centro de la experiencia.", 
     lat: 10.848611, lng: -74.896667, image: "assets/images/puntos/foto-principal-b.m.webp", 
     location: "Galapa.", hours: "9:00 a.m. - 5:00 p.m.", price: "Adultos: $22.000.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 19, category: "cultura", title: "Museo Carlos Arturo Valdez", 
-    description: "Ubicado en Malambo, preserva el legado de la etnia Mokaná y la historia municipal a través de una colección privada donada a la comunidad. Es un rincón de tesoros históricos donde se pueden apreciar objetos de la vida cotidiana de antaño y vestigios que dan cuenta del desarrollo de esta población a orillas del río, siendo un punto clave para la identidad local.", 
+    description: "Una colección privada donada a la comunidad de Malambo que preserva objetos de la vida cotidiana de la etnia Mokaná y vestigios del desarrollo histórico de este municipio a orillas del río. Cada pieza habla de una época y de una gente que construyó identidad en el cruce entre el agua y la tierra.", 
     lat: 10.861667, lng: -74.773611, image: "assets/images/puntos/foto-principal-para-la-pagina-m.a.webp", 
     location: "Malambo.", hours: "8:00 a.m. - 12:00 p.m.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 20, category: "cultura", title: "Ventana al Mundo", 
-    description: "El ícono moderno de Barranquilla que simboliza la apertura de la ciudad hacia el futuro. Con sus imponentes placas de vidrio multicolor y su diseño audaz, este monumento se ha convertido en el sitio más fotografiado del departamento. Rodeado de zonas verdes y senderos peatonales, es el lugar de encuentro por excelencia para apreciar el urbanismo contemporáneo y el orgullo barranquillero.", 
+    description: "Placas de vidrio multicolor que se elevan en Barranquilla como símbolo de una ciudad que mira hacia afuera sin perder su raíz caribeña. El monumento más fotografiado del Atlántico es también una declaración de identidad: una ciudad que celebra su apertura al mundo desde la orilla del río que la define.", 
     lat: 11.0325, lng: -74.831389, image: "assets/images/puntos/foto-principal-para-la-pagina-v.m.webp", 
     location: "Barranquilla.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 21, category: "cultura", title: "Ventana de Campeones", 
-    description: "El monumento 'Aleta de Tiburón' rinde un vibrante homenaje al Junior de Barranquilla y a la pasión deportiva de la ciudad. Ubicado en la rotonda de la Vía 40, su estructura de cristal y acero brilla con los colores del equipo, convirtiéndose en un altar para los hinchas y un símbolo de la identidad festiva y futbolera que caracteriza a la Puerta de Oro de Colombia.", 
+    description: "La Aleta de Tiburón no es solo homenaje al Junior de Barranquilla: es la materialización del vínculo entre una ciudad y su equipo. Cristal y acero que brillan con los colores de una pasión colectiva que trasciende el estadio y se instala en la rotonda de la Vía 40 como monumento a la identidad festiva barranquillera.", 
     lat: 10.998319, lng: -74.772767, image: "assets/images/puntos/aleta-de-tiburon.webp", 
     location: "Barranquilla.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 22, category: "cultura", title: "Gran Malecón del Río", 
-    description: "El referente de turismo sostenible que devolvió la ciudad al Río Magdalena. Con kilómetros de senderos peatonales, zonas de picnic, gastronomía de alto nivel y espacios culturales, el Malecón es el corazón social de Barranquilla. Aquí se vive la integración familiar y el disfrute del paisaje fluvial, consolidándose como el espacio público más importante y visitado de todo el país en los últimos años.", 
+    description: "Barranquilla le devolvió kilómetros de orilla al Magdalena y creó el espacio público más visitado del país. El Malecón no es solo un paseo: es la prueba de que una ciudad puede reconectarse con el río que la fundó. Cada sendero recuperado, cada zona verde, es territorio que dejó de darle la espalda al agua.", 
     lat: 11.020017, lng: -74.793225, image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp", 
     location: "Barranquilla.", hours: "5:00 a.m - 11:00 p.m.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Comida autóctona", "Relax en la playa"]
   },
   {
     id: 23, category: "nauticos", title: "Playas de Puerto Mocho", 
-    description: "El destino de playa de Barranquilla que se está transformando en un paraíso de turismo sostenible. Ubicado cerca de la desembocadura de Bocas de Ceniza, Puerto Mocho ofrece el encuentro único entre el río y el mar. Con su nuevo sistema de transporte en tren turístico y zonas de servicios renovadas, promete ser el balneario urbano por excelencia para disfrutar de la brisa marina sin salir de la ciudad.", 
+    description: "Donde el Magdalena y el mar Caribe se encuentran en Bocas de Cenizas, Puerto Mocho ofrece un fenómeno natural único: dos cuerpos de agua con colores y temperaturas distintas que se mezclan ante tus ojos. El tren turístico y los servicios renovados hacen accesible este ecosistema de desembocadura sin alterarlo.", 
     lat: 11.045556, lng: -74.828889, image: "assets/images/puntos/mocho.webp", 
     location: "Barranquilla.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas", "Deportes náuticos"]
   },
   {
     id: 24, category: "ecoturismo", title: "Ecoparque Ciénaga de Mallorquín", 
-    description: "Un imponente pulmón verde dedicado a la recuperación ecológica y el avistamiento de aves. Sus pasarelas de madera sobre el agua permiten adentrarse en el ecosistema de manglar sin perturbar la vida silvestre. Es un santuario de biodiversidad que invita a la desconexión urbana y al aprendizaje sobre la importancia de los humedales costeros en la protección ambiental de Barranquilla.", 
+    description: "Pasarelas de madera sobre el agua que llevan al corazón del manglar sin dejar huella. La Ciénaga de Mallorquín es el pulmón verde de Barranquilla: un humedal costero en proceso de recuperación ecológica donde el avistamiento de aves y el silencio del ecosistema son la experiencia en sí misma.", 
     lat: 11.028, lng: -74.778, image: "assets/images/puntos/ecoparque-mallorquin.webp", 
     location: "Barranquilla.", hours: "6:00 a.m - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 25, category: "ecoturismo", title: "Salinas de Galerazamba", 
-    description: "El famoso 'Mar rosado' de Colombia es un espectáculo visual que ocurre gracias a la alta concentración de sal y una microalga específica. Visitar las salinas es adentrarse en un paisaje surrealista donde el agua adquiere tonalidades intensas de rosa y rojo. Además de su valor fotográfico, es un sitio cargado de historia minera y un motor económico vital para la comunidad de Galerazamba en Santa Catalina.", 
+    description: "El color rosa del agua en Galerazamba no es un filtro: es el resultado de una microalga que prospera en la alta concentración de sal. Un fenómeno geológico y biológico que convierte este paisaje en algo casi irreal. Las salinas son también historia minera viva y sustento económico de la comunidad de Santa Catalina.", 
     lat: 10.794167, lng: -75.253333, image: "assets/images/puntos/foto-principal-s.g.webp", 
     location: "Santa Catalina.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 26, category: "playas", title: "Playas del Country", 
-    description: "Ofrecen un ambiente relajado y exclusivo muy cerca de las zonas residenciales de Puerto Colombia. Son ideales por sus servicios de alta calidad y su oleaje moderado para practicar deportes náuticos suaves. Es la playa elegida por quienes buscan comodidad, buenos restaurantes y un ambiente social vibrante, perfecta para disfrutar de un día de sol con todas las facilidades a la mano.", 
+    description: "Oleaje moderado, servicios de calidad y una ubicación cercana a las zonas residenciales de Puerto Colombia. Las playas del Country ofrecen condiciones naturales propicias para los deportes náuticos suaves en un litoral bien conservado donde el mar caribeño llega con temperatura cálida y color intenso.", 
     lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.s.webp", 
     location: "Puerto Colombia.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 27, category: "playas", title: "Playa de Caño Dulce", 
-    description: "Caracterizada por su ambiente sereno e ideal para familias con niños debido a su poca profundidad y olas suaves. Caño Dulce es un refugio de descanso total donde se puede disfrutar de un baño de mar prolongado y saborear la tradicional comida de mar en los restaurantes que bordean la costa. Su entorno natural conservado la hacen una joya escondida para el descanso absoluto.", 
+    description: "Poca profundidad, olas suaves y un entorno costero que conserva su naturalidad. Caño Dulce, en Tubará, es la playa que el Caribe ofrece a las familias que buscan baño tranquilo, comida de mar fresca y un litoral sin aglomeración. El entorno natural conservado es su mayor atractivo y su rasgo más frágil.", 
     lat: 10.939722, lng: -75.027778, image: "assets/images/puntos/foto-principal-para-la-pagina-c.d.webp", 
     location: "Tubará.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona"]
   },
   {
     id: 28, category: "ecoturismo", title: "Parque Mirador Tubará", 
-    description: "Donde la tierra y el cielo se abrazan. Este mirador ubicado en lo más alto de Tubará ofrece una vista de 360 grados que permite ver el Mar Caribe y las montañas circundantes. Sus coloridas esculturas y escalinatas invitan a capturar la esencia de un pueblo de raíces Mokaná. Es el punto ideal para sentir la fuerza del viento y apreciar la majestuosidad geográfica del departamento del Atlántico.", 
+    description: "Desde lo más alto de Tubará, una vista de 360 grados revela la geografía completa del Atlántico: el Mar Caribe, las montañas del departamento y el relieve ondulado del territorio Mokaná. El viento que siempre sopla aquí es el mismo que ha moldeado este paisaje durante siglos. Un mirador que muestra el territorio tal como es.", 
     lat: 10.871111, lng: -74.974444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp", 
     location: "Tubará.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales", "Avistamiento de aves"]
@@ -240,14 +240,14 @@ const mockData = [
   },
   {
     id: 30, eventMonth: 10, startDay: 9, endDay: 16, category: "eventos", title: "Fiestas novembrinas de Cartagena", 
-    description: "La celebración cultural más importante de la ciudad amurallada que conmemora su independencia. Durante una semana, Cartagena se llena de desfiles, comparsas, música folclórica y un ambiente festivo inigualable en cada plaza y callejón. Es el momento donde la identidad africana y caribeña brilla con más fuerza, invitando a propios y turistas a ser parte de una fiesta histórica cargada de color y alegría.", 
+    description: "Una semana en noviembre en que Cartagena conmemora su independencia con desfiles, comparsas y música folclórica que llena cada plaza y callejón. Las Fiestas novembrinas son la celebración de la identidad africana y caribeña de la ciudad amurallada, un patrimonio vivo que la historia no ha podido contener.", 
     lat: 10.421903, lng: -75.550075, image: "assets/images/puntos/fiestas-novembrinas-de-cartagena.webp", 
     location: "Cartagena.", hours: "Noviembre.", price: "Gratuito.", 
     tags: ["Experiencias sensoriales", "Artesanías", "Comida autóctona"]
   },
   {
     id: 31, category: "cultura", title: "Museo del Carnaval", 
-    description: "Una de las infraestructuras culturales más vibrantes de Barranquilla dedicada a preservar el patrimonio oral e inmaterial de la humanidad. El museo ofrece un viaje por la historia, los personajes y el color del Carnaval, exhibiendo los vestidos reales de las reinas y los secretos de las danzas tradicionales. Un espacio donde se vive el carnaval todo el año y se entiende por qué Barranquilla es la capital de la festividad en Colombia.", 
+    description: "El Carnaval de Barranquilla vive aquí los 365 días del año. Vestidos reales de reinas, secretos de las danzas tradicionales y la historia de un patrimonio oral e inmaterial de la humanidad. Recorrer el museo es entender por qué el Carnaval no es solo cuatro días de fiesta sino el ADN festivo de toda una ciudad.", 
     lat: 10.992789, lng: -74.787797, image: "assets/images/puntos/museo-del-carnaval-de-barranquilla.webp", 
     location: "Barranquilla.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
@@ -261,210 +261,210 @@ const mockData = [
   },
   {
     id: 33, category: "ecoturismo", title: "La Casa Voltiá", 
-    description: "Una experiencia surrealista y divertida donde todo está de cabeza. Ubicada en el municipio de Juan de Acosta, esta construcción desafía la lógica y la gravedad, ofreciendo un entorno perfecto para la fotografía creativa. Es una parada obligatoria para quienes buscan contenido original y momentos de asombro mientras viajan por la carretera, convirtiéndose en un hito de curiosidad y entretenimiento para todas las edades.", 
+    description: "Una construcción que desafía la lógica en Juan de Acosta: todo está de cabeza, la gravedad parece invertida y la fotografía creativa se convierte en juego colectivo. La Casa Voltiá es una iniciativa local que hace de la curiosidad un motor económico para la comunidad y convierte la carretera en destino.", 
     lat: 10.834994, lng: -75.141247, image: "assets/images/puntos/la-casa-voltia.webp", 
     location: "Juan de Acosta.", hours: "9:00 am - 6:00 pm", price: "Gratuito.", 
     tags: ["Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 34, category: "playas", title: "Manzanillo del Mar", 
-    description: "Playa serena y auténtica que conserva el encanto de una comunidad de pescadores. Ubicada en la zona norte de Cartagena, ofrece un ambiente más privado y tranquilo que los balnearios tradicionales. Es el lugar perfecto para disfrutar de la comida típica frente al mar, realizar largas caminatas por la costa o simplemente contemplar el horizonte en un entorno de paz absoluta, siendo un modelo de equilibrio entre turismo y vida local.", 
+    description: "Una comunidad de pescadores que conserva el ritmo de la vida costera sin ceder al turismo masivo. En Manzanillo del Mar, el visitante llega a un entorno donde la gente vive del mar y lo conoce profundo. La comida fresca, las caminatas por la costa y la escala íntima del lugar son consecuencia de esa vida, no un decorado.", 
     lat: 10.515992, lng: -75.499278, image: "assets/images/puntos/manzanillo-del-mar.webp", 
     location: "Cartagena.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
     id: 35, category: "infraestructura", title: "Viaducto Gran Manglar", 
-    description: "Una obra maestra de ingeniería civil que coexiste en perfecta armonía con el ecosistema de manglar. Este viaducto sobre la Ciénaga de la Virgen ha sido premiado internacionalmente por su respetuoso diseño ambiental, permitiendo el flujo del agua y la vida silvestre por debajo de la carretera. Conducir sobre él es una experiencia única que ofrece vistas panorámicas impresionantes de la ciénaga y el mar, simbolizando el futuro de la infraestructura sostenible.", 
+    description: "Un viaducto premiado internacionalmente por permitir que el ecosistema de manglar respire por debajo de la carretera. El agua fluye, las raíces crecen y las aves anidan mientras el tráfico pasa por encima. Conducir sobre él es ver que la infraestructura puede coexistir con la naturaleza sin dominarla.", 
     lat: 10.476022, lng: -75.488756, image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp", 
     location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 36, category: "ecoturismo", title: "Ciénaga de la Virgen", 
-    description: "Uno de los tesoros hídricos de Cartagena y un ecosistema estratégico para la biodiversidad local. Hogar de manglares and numerosas especies de aves migratorias, la ciénaga es un destino ideal para el ecoturismo y la observación de aves. Paseos en barca guiados por pescadores locales permiten conocer la importancia de la conservación mientras se disfruta de un paisaje natural que abraza la zona norte de la ciudad.", 
+    description: "Humedal estratégico al norte de Cartagena, hogar de manglares, aves migratorias y peces que alimentan a las comunidades de sus orillas. Los recorridos en barca guiados por pescadores locales permiten entrar al ecosistema con respeto, aprendiendo de quienes conocen cada canal y cada especie por nombre.", 
     lat: 10.460533, lng: -75.494847, image: "assets/images/puntos/cienaga-de-la-virgen.webp", 
     location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
     id: 37, category: "playas", title: "Playa de la Boquilla", 
-    description: "El corazón afrodescendiente de la costa cartagenera donde el mar se disfruta entre manglares y tambores. La Boquilla es famosa por sus recorridos en canoa por los túneles de manglar y su excepcional oferta gastronómica. Es un destino que combina la playa con la cultura viva, invitando a los turistas a participar en talleres de danza o pesca, viviendo una experiencia humana y natural profundamente auténtica.", 
+    description: "El manglar y el mar se abrazan en La Boquilla mientras los tambores marcan el compás de una comunidad afrodescendiente que vive de los dos. Los recorridos en canoa por los túneles de manglar son guiados por locales que conocen este ecosistema desde niños. Naturaleza y cultura que no se pueden entender por separado.", 
     lat: 10.4621, lng: -75.504458, image: "assets/images/puntos/playa-de-la-boquilla.webp", 
     location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona", "Deportes náuticos"]
   },
   {
     id: 38, eventMonth: 5, startDay: 1, endDay: 3, category: "eventos", title: "Festival Enyúcate", 
-    description: "Banquete de tradición que celebra la yuca en todas sus formas en el municipio de Malambo. Este festival reúne a cocineros tradicionales y productores locales en una feria llena de sabores, música de gaita y alegría comunitaria. Es una celebración de la seguridad alimentaria y la cultura campesina, donde probar un tradicional enyucado es conectarse directamente con la tierra y el corazón dulce del Atlántico.", 
+    description: "La yuca toma el centro de Malambo para celebrar la seguridad alimentaria y la cultura campesina del Atlántico. Cocineros tradicionales, productores locales y música de gaita comparten espacio en una feria donde probar un enyucado es conectarse con la tierra y con el conocimiento agrícola que sostiene a la región.", 
     lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/enyucate.webp", 
     location: "Malambo.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Comida autóctona", "Artesanías"]
   },
   {
     id: 39, category: "ecoturismo", title: "Ciénaga del Totumo", 
-    description: "Humedal estratégico famoso por colindar con el Volcán del Totumo, ofreciendo un ecosistema de agua dulce ideal para la observación de fauna y flora. Sus aguas reflejan el cielo y los manglares, creando un entorno de paz inmensa. Es el complemento perfecto para el baño de lodo, permitiendo paseos en lancha para apreciar la inmensidad del paisaje hídrico y la vida de los pescadores artesanales que cuidan de este santuario natural.", 
+    description: "Humedal de agua dulce que coexiste con el Volcán del Totumo en Santa Catalina. Sus aguas tranquilas reflejan manglares y cielo abierto, y sus orillas son hábitat de aves y peces que los pescadores artesanales conocen bien. Los paseos en lancha muestran la escala real de un ecosistema hídrico todavía en equilibrio.", 
     lat: 10.738397, lng: -75.260689, image: "assets/images/puntos/cienaga-totumo.webp", 
     location: "Santa Catalina.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Vistas panorámicas"]
   },
   {
     id: 40, eventMonth: 1, startDay: 16, endDay: 16, category: "eventos", title: "Festival de la Palma Amarga", 
-    description: "El Festival de la Palma Amarga es un tributo vivo al ingenio de las comunidades de Piojó y su armonía con el entorno natural. Celebra el legado de los artesanos y tejedores que transforman la fibra de la palma en piezas únicas y techos que cuentan historias de la cultura. Es una ventana a los saberes ancestrales que han definido la identidad del Caribe. La música de viento y las muestras artesanales invitan a valorar la importancia de preservar nuestras materias primas y los oficios que dan vida al territorio.", 
+    description: "En Piojó, la fibra de la palma amarga se convierte en artesanía, en techo y en identidad. El festival celebra el conocimiento ancestral de tejedores y artesanos que transforman este recurso natural en objetos que cuentan la historia del territorio. Música de viento y muestras artesanales que vinculan cultura y tierra.", 
     lat: 10.75, lng: -75.108, image: "assets/images/puntos/Festival de la Palma Amarga.webp", 
     location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
   },
   {
     id: 41, category: "ecoturismo", title: "Calvaduria Ecoturismo y Camping - Asociación agroecológica Nueva Generación de Piojó", 
-    description: "Calvaduría Ecoturismo y Camping invita a descubrir el Atlántico más natural y fresco. En este espacio donde el agroturismo, el camping y los pozos naturales se entrelazan, cada experiencia se convierte en una oportunidad para reconectarse con la tierra y con uno mismo. Entre montañas suaves, aire puro y la hospitalidad rural, este lugar celebra la armonía entre naturaleza y comunidad, recordando que cada visita deja una huella positiva en el entorno.", 
+    description: "Pozos naturales, senderos entre montañas suaves y una asociación agroecológica que gestiona el territorio con criterio. En Calvaduria el camping, el agroturismo y la naturaleza no son productos empaquetados: son la vida cotidiana de una comunidad de Piojó que aprendió a cuidar el entorno como condición de su propio futuro.", 
     lat: 10.751, lng: -75.109, image: "assets/images/puntos/Calvaduria Ecoturismo y Camping.webp", 
     location: "Piojó, Atlántico.", hours: "Abierto todo el tiempo.", price: "Pasa día: adultos:$15.000 mil cop. Niños: $7.000 mil cop.", 
     tags: ["Agroturismo","camping","pozos naturales","senderismo","rutas ecológicas","hospedaje."]
   },
   {
     id: 42, category: "cultura", title: "Santuario Mariano Nuestra Señora del Carmen", 
-    description: "El Santuario Mariano Nuestra Señora del Carmen es uno de los lugares más representativos de Puerto Colombia y un importante centro de fe en el Atlántico. Reconocido como el único santuario mariano del departamento, abre sus puertas los 365 días del año, ofreciendo a los feligreses un espacio para vivir la sagrada eucaristía y fortalecer su espiritualidad. Su arquitectura conserva un estilo tradicional que refleja la historia y la devoción de la comunidad porteña invita a vivir una experiencia de recogimiento y conexión con la esencia cultural y espiritual del caribe.", 
+    description: "El único santuario mariano del Atlántico abre sus puertas los 365 días del año en Puerto Colombia. Su arquitectura tradicional conserva el estilo de una devoción que ha acompañado a la comunidad porteña por generaciones. Un espacio de fe que es también patrimonio cultural y punto de encuentro entre historia y espiritualidad caribeña.", 
     lat: 10.988, lng: -74.959, image: "assets/images/puntos/Santuario Mariano Nuestra Señora del Carmen.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Religiosos","comunitarios y culturales."]
   },
   {
     id: 43, eventMonth: 0, startDay: 29, endDay: 31, category: "eventos", title: "Sirenato de la cumbia", 
-    description: "Desde 1996, Puerto Colombia vibra al compás del Sirenato de la Cumbia. Tambores, flautas y pasos ancestrales elevan este ritmo que define al caribe colombiano. Más que un festival, es la ceremonia viva donde cada generación renueva su pacto con la cumbia, ritmo del alma y memoria de un pueblo.", 
+    description: "Desde 1996, Puerto Colombia se convierte cada año en el escenario donde la cumbia se celebra a sí misma. Tambores, flautas y pasos ancestrales renuevan el pacto de cada generación con el ritmo que define al Caribe colombiano. No es un festival de entretenimiento: es la ceremonia viva de una memoria musical.", 
     lat: 10.989, lng: -74.955, image: "assets/images/puntos/Sirenato de la cumbia.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
   },
   {
     id: 44, eventMonth: 5, startDay: 1, endDay: 3, category: "eventos", title: "Festival del Mar y del Turismo", 
-    description: "Desde 2018, Puerto Colombia celebra su vocación costera con este festival que reúne a los municipios del Atlántico. Desfiles, muestras culturales y la elección de la capitanía de los mares hacen de esta fiesta un himno al mar, al liderazgo femenino y al orgullo del corazón azul del departamento.", 
+    description: "Desde 2018, Puerto Colombia reúne a los municipios del Atlántico para celebrar la vocación costera del departamento. Desfiles, muestras culturales y la elección de la capitanía de los mares construyen cada año un himno colectivo al mar, al liderazgo y al orgullo de una región que vive de cara al Caribe.", 
     lat: 10.987, lng: -74.958, image: "assets/images/puntos/Festival del Mar y del Turismo.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Desfiles","presentaciones culturales","feria gastronómica y actividades recreativas."]
   },
   {
     id: 45, category: "cultura", title: "Parroquia San José de Tubará", 
-    description: "La parroquia San José de Tubará es una joya histórica construida en 1833 sobre un antiguo asentamiento indígena Mokaná de la tribu caribe. Su arquitectura colonial y su gran valor cultural la convierten en uno de los principales atractivos del municipio. En 1996 fue declarada patrimonio arquitectónico del Atlántico, destacándose como un símbolo de fe, historia y tradición en la región, donde cada piedra y cada oración conectan pasado y presente en una experiencia que invita a reconocer la herencia viva del territorio.", 
+    description: "Construida en 1833 sobre un antiguo asentamiento Mokaná, esta parroquia fue declarada patrimonio arquitectónico del Atlántico en 1996. Sus muros coloniales guardan la memoria de una comunidad indígena que no desapareció sino que adaptó su fe y su identidad a la historia que llegó desde afuera.", 
     lat: 10.871, lng: -74.974, image: "assets/images/puntos/Parroquia San José de Tubará.webp", 
     location: "Tubará, Atlántico.", hours: "Horario de eucaristías: fines de semana y festivos en la mañana y en la tarde.", price: "Gratuito.", 
     tags: ["Celebraciones religiosas (misas","bautizos","matrimonios","confirmaciones)","atención espiritual y confesiones","actividades comunitarias y pastorales."]
   },
   {
     id: 46, eventMonth: 1, startDay: 14, endDay: 15, category: "eventos", title: "Festival de la Yuca y el Totumo", 
-    description: "El Festival de la Yuca y el Totumo se realiza el domingo de carnaval, con más de 20 años de existencia, inició con los Mokaná en el mirador de Tubará, con la finalidad de mostrar los productos que se cultivan y todas las artesanías que se hacen con el totumo.", 
+    description: "Más de 20 años de existencia y un origen Mokaná en el mirador de Tubará. Este festival celebra cada domingo de carnaval los cultivos y las artesanías que los pueblos originarios del Atlántico han producido por siglos. La yuca y el totumo no son solo productos: son el vínculo vivo entre la tierra y la identidad del territorio.", 
     lat: 10.872, lng: -74.973, image: "assets/images/puntos/Festival de la Yuca y el Totumo.webp", 
     location: "Tubará, Atlántico.", hours: "", price: "", 
     tags: []
   },
   {
     id: 47, eventMonth: 10, startDay: 21, endDay: 23, category: "eventos", title: "Festival de la Máscara y el Bejuco", 
-    description: "Este festival es the principal cita artesanal de Galapa. Reúne a creadores en bejuco, talla en madera y papel maché, convirtiendo la plaza en un escenario de tradición y creatividad. Es un espacio de exhibición y comercialización que preserva la identidad y las raíces culturales del municipio.", 
+    description: "La plaza de Galapa se convierte en escenario de creadores que trabajan el bejuco, la madera y el papel maché con técnicas de generación en generación. El festival no es solo exhibición: es el espacio donde los oficios artesanales de Galapa se afirman como patrimonio vivo frente a la homogeneización cultural.", 
     lat: 10.899, lng: -74.886, image: "assets/images/puntos/Festival de la Máscara y el Bejuco.webp", 
     location: "Galapa, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
   },
   {
     id: 48, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Carnaval de Galapa", 
-    description: "El Carnaval de Galapa es una explosión de color, ritmo y memoria ancestral. Entre tambores, comparsas y danzas, el pueblo celebra su identidad con disfraces que narran historias y preservan sus raíces. Cada desfile refleja una tradición viva que resiste en el tiempo e invita a disfrutar la alegría del caribe colombiano.", 
+    description: "Ocho a diez días en que Galapa celebra su identidad con tambores, comparsas y danzas que llevan décadas narrando la historia del municipio. Cada disfraz es una memoria, cada desfile una afirmación de raíces. El Carnaval de Galapa resiste en el tiempo porque la comunidad lo construye desde adentro, no para afuera.", 
     lat: 10.898, lng: -74.885, image: "assets/images/puntos/Carnaval de Galapa.webp", 
     location: "Galapa, Atlántico.", hours: "El evento dura entre 8 y 10 días.", price: "Gratuito.", 
     tags: ["Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
   },
   {
     id: 49, eventMonth: 6, startDay: 17, endDay: 19, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe", 
-    description: "El Festival de Decimeros y Bailadores de Cumbia del Caribe celebra la oralidad y el folclore regional. Es un espacio de transmisión de saberes y salvaguardia patrimonial que reúne a artistas de Magdalena, Córdoba, Sucre y otros departamentos, fortaleciendo la identidad y preservando las raíces culturales del territorio.", 
+    description: "Un espacio de transmisión oral donde decimeros y bailadores de Magdalena, Córdoba, Sucre y el Atlántico se encuentran en Malambo para preservar la poesía y el movimiento del Caribe. Más que competencia, el festival es un acto de salvaguardia patrimonial que pone en diálogo tradiciones que el tiempo podría silenciar.", 
     lat: 10.862, lng: -74.774, image: "assets/images/puntos/Festival de Decimeros y Bailadores de Cumbia.webp", 
     location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: []
   },
   {
     id: 50, eventMonth: 6, startDay: 17, endDay: 19, category: "eventos", title: "Festival regional de Bandas Tradicionales", 
-    description: "El Festival de Bandas Tradicionales del Caribe, en Malambo, celebra la riqueza musical de la región. Reúne agrupaciones de viento y percusión que interpretan porros, cumbias y fandangos. Más que una competencia, es un espacio de encuentro que fortalece la identidad, el talento local y la preservación del patrimonio musical caribeño.", 
+    description: "Porros, cumbias y fandangos interpretados por agrupaciones de viento y percusión que se reúnen en Malambo para demostrar que la música tradicional del Caribe no es pasado. El festival es encuentro y fortalecimiento: el talento local se mide y se celebra en un espacio que le da valor al patrimonio musical de la región.", 
     lat: 10.861, lng: -74.773, image: "assets/images/puntos/Festival regional de Bandas Tradicionales.webp", 
     location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: []
   },
   {
     id: 51, eventMonth: 6, startDay: 19, endDay: 22, category: "eventos", title: "Fiestas de Santa María Magdalena", 
-    description: "Las fiestas patronales de Santa María Magdalena son una de las celebraciones más representativas de Malambo. Durante cuatro días reúnen a la comunidad en torno a la fe y la tradición, con actividades culturales, deportivas y religiosas. Incluyen procesiones, muestras folclóricas y presentaciones artísticas que exaltan la herencia cultural y espiritual del municipio.", 
+    description: "Cuatro días de procesiones, muestras folclóricas y celebraciones deportivas que reúnen a Malambo en torno a su patrona. Las fiestas de Santa María Magdalena no son solo devoción: son el momento del año en que la comunidad se reconoce a sí misma, celebra su herencia y renueva los lazos que la definen como pueblo.", 
     lat: 10.86, lng: -74.772, image: "assets/images/puntos/Fiestas de Santa María Magdalena.webp", 
     location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Ofrece servicios de actividades culturales","eventos religiosos","presentaciones artísticas","ferias gastronómicas","competencias deportivas y espacios de recreación familiar."]
   },
   {
     id: 52, category: "cultura", title: "Parque de La Cultura - Asociación Cultural y Artesanal Raíces de Malambo", 
-    description: "El Parque de la Cultura “Fabio Miranda” es un espacio emblemático de Malambo que promueve el desarrollo humano y el fortalecimiento económico del territorio. Este parque rinde homenaje a la tradición alfarera, una práctica ancestral que durante siglos ha sido la base de los intercambios comerciales y el reflejo del legado cultural de los pueblos originarios de la región.", 
+    description: "Un parque que rinde homenaje a la tradición alfarera que durante siglos ha sido el sustento y la identidad de Malambo. La Asociación Raíces gestiona este espacio como punto de encuentro entre el pasado indígena y el presente comunitario, donde el barro y las manos de los artesanos cuentan la historia que los libros no alcanzaron.", 
     lat: 10.863, lng: -74.775, image: "assets/images/puntos/Parque de La Cultura.webp", 
     location: "Malambo, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Zonas verdes","áreas de esparcimiento","juegos para niños."]
   },
   {
     id: 53, category: "ecoturismo", title: "Parque Lineal de Crespo", 
-    description: "El Parque Lineal de Crespo es la respuesta de Cartagena al avance del Caribe. Diseñado para frenar la erosión costera y adaptarse al cambio climático, es hoy un corredor verde que reconcilia la ciudad con el mar. Un espacio donde el futuro sostenible camina de la mano de la naturaleza.", 
+    description: "Diseñado para frenar la erosión costera que el Caribe avanzaba sin pausa, el Parque Lineal de Crespo es hoy un corredor verde que reconcilia a Cartagena con su mar. Cada árbol plantado, cada sendero recuperado, es una respuesta activa al cambio climático desde la escala urbana. El futuro sostenible construido metro a metro.", 
     lat: 10.439, lng: -75.522, image: "assets/images/puntos/Parque Lineal de Crespo.webp", 
     location: "Cartagena, Bolívar.", hours: "", price: "", 
     tags: []
   },
   {
     id: 54, category: "playas", title: "Playa Marbella", 
-    description: "Marbella es el secreto urbano de Cartagena: una franja de arena protegida por espolones que desafían las corrientes del caribe. Sus aguas son refugio para quienes buscan una experiencia auténtica lejos del bullicio. Un rincón donde la ciudad y el mar se encuentran en perfecta armonía.", 
+    description: "Espolones que desafían las corrientes del Caribe protegen esta franja de arena en el borde urbano de Cartagena. Marbella es la playa de la ciudad que no cede a las corrientes erosivas y ofrece aguas accesibles lejos del bullicio de los balnearios tradicionales. Un litoral urbano que conserva su carácter natural.", 
     lat: 10.434, lng: -75.529, image: "assets/images/puntos/Playa Marbella.webp", 
     location: "Cartagena, Bolívar.", hours: "", price: "", 
     tags: []
   },
   {
     id: 55, eventMonth: 10, startDay: 20, endDay: 25, category: "eventos", title: "Fiestas patronales Santa Catalina de Alejandría", 
-    description: "Las fiestas de Santa Catalina de Alejandría fusionan fe y folclor en una celebración que convoca a toda la comunidad. Procesiones, bailes, corridas de toros y la elección de la diosa llenan de color las calles. Una vivencia que celebra la identidad y el espíritu festivo del caribe con devoción y alegría.", 
+    description: "Fe y folclor que se fusionan durante varios días en el municipio que lleva el nombre de la patrona. Procesiones, corridas de toros y la elección de la diosa llenan las calles de una celebración donde la identidad africana y caribeña de la Costa Caribe se expresa sin filtros, con devoción y alegría a la vez.", 
     lat: 10.605, lng: -75.253, image: "assets/images/puntos/Fiestas patronales Santa Catalina de Alejandría.webp", 
     location: "Santa Catalina, Bolívar.", hours: "El evento dura entre 4 y 7 días.", price: "Gratuito.", 
     tags: ["Turismo cultural","gastronomía","música y danzas tradicionales","eventos religiosos","comercio local."]
   },
   {
     id: 56, category: "cultura", title: "Museo Etnoindustrial", 
-    description: "El Museo Etnoindustrial de Galerazamba es un espacio que permite comprender la historia de la producción de sal en la región. A través de herramientas antiguas, fotografías y exhibiciones, los visitantes descubren cómo esta actividad marcó la vida social, económica y cultural de la comunidad. Más que un recorrido histórico, es un encuentro auténtico con la memoria y el trabajo de generaciones que han hecho de la sal su identidad, reflejando el valor de las tradiciones locales y la conexión viva entre la gente y su territorio.", 
+    description: "En Galerazamba, la sal no es solo un mineral: es la historia económica y social de generaciones. El museo preserva herramientas, fotografías y testimonios que explican cómo la producción salinera marcó la vida entera de esta comunidad. Un recorrido que convierte el trabajo humano sobre el territorio en patrimonio cultural.", 
     lat: 10.794, lng: -75.253, image: "assets/images/puntos/Museo Etnoindustrial.webp", 
     location: "Santa Catalina, Bolívar.", hours: "10:00 a.m. - 4:00 p.m.", price: "Adultos: $7.000 mil cop. Niños (desde 5 años): $5.000 mil cop.", 
     tags: ["Servicios culturales","recorridos guiados","exhibiciones permanentes","actividades pedagógicas y turismo histórico-patrimonial."]
   },
   {
     id: 57, eventMonth: 5, startDay: 10, endDay: 16, category: "eventos", title: "Fiestas patronales de San Antonio de Padua", 
-    description: "Las fiestas de San Antonio de Padua convierten a Piojó en epicentro del folclor caribeño. Bandas papayeras, corralejas, peleas de gallos y la vara de premio llenan de música y emoción sus calles. Una celebración que honra la tradición y reúne a visitantes y locales en torno al patrimonio vivo de la región.", 
+    description: "Piojó se convierte en epicentro del folclor caribeño cuando las bandas papayeras, las corralejas y la vara de premio toman sus calles. Las fiestas de San Antonio no son espectáculo para visitantes: son una celebración comunitaria que honra la tradición y reafirma la identidad de un pueblo que vive su patrimonio con intensidad.", 
     lat: 10.749, lng: -75.107, image: "assets/images/puntos/Fiestas patronales de San Antonio de Padua.webp", 
     location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Turismo cultural","eventos religiosos","deportes","música y danzas tradicionales","espectáculos taurinos","juegos populares","gastronomía","comercio local."]
   },
   {
     id: 58, category: "playas", title: "Tambo Marina Ecohostal", 
-    description: "Tambo Marina Ecohostal es un alojamiento ecológico frente al mar, en playa Punta Astillero, Piojó (Atlántico). Entre el sonido de las olas y la brisa cálida, ofrece una experiencia de descanso en contacto con la naturaleza. Tiene hospedaje, restaurante, acceso directo a la playa y actividades como senderismo, pesca y entretenimiento nocturno, este lugar invita a disfrutar del turismo sostenible en un entorno sereno donde la tranquilidad y el mar se encuentran.", 
+    description: "Frente al mar en Punta Astillero, este ecohostal propone quedarse quieto. El sonido de las olas, el acceso directo a la playa virgen y las actividades de senderismo y pesca son la agenda. Un modelo de alojamiento que cuida el entorno costero como condición de la experiencia misma: sin naturaleza sana, no hay Tambo Marina.", 
     lat: 10.795, lng: -75.224, image: "assets/images/puntos/Tambo Marina Ecohostal.webp", 
     location: "Piojó, Atlántico.", hours: "8:00 a.m. - 9:00 p.m.", price: "", 
     tags: ["Hospedaje ecológico","restaurante","acceso directo a la playa","senderismo","entretenimiento nocturno y turismo sostenible."]
   },
   {
     id: 59, eventMonth: 9, startDay: 15, endDay: 17, category: "eventos", title: "Festival Internacional de las Tunas Corazonistas", 
-    description: "Las Tunas Corazonistas transforman Puerto Colombia en escenario de guitarras, capas y serenatas bohemias. Países y regiones se encuentran en este festival donde la música estudiantil se convierte en amistad y memoria. Cada nota es un puente entre culturas; cada edición, una celebración que late en el corazón del caribe.", 
+    description: "Guitarras, capas y serenatas bohemias transforman Puerto Colombia en escenario internacional. Las Tunas Corazonistas hacen de la música estudiantil un puente entre culturas: cada agrupación llega con su región grabada en el repertorio y se va llevando el Caribe colombiano en la memoria. Un festival que construye identidad con cada acorde.", 
     lat: 10.986, lng: -74.957, image: "assets/images/puntos/Festival Internacional de las Tunas Corazonistas.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
     tags: ["Presentaciones musicales en vivo","actividades culturales","intercambio artístico internacional","promoción de agrupaciones regionales y entretenimiento para el público."]
   },
   {
     id: 60, category: "cultura", title: "Piedra Pintada. Colectivo Caminantes por El Morro", 
-    description: "Piedra Pintada es la memoria viva del pueblo Mokaná. En sus petroglifos hablan los ancestros que habitaron estas montañas de Tubará, resistieron la colonización y dejaron grabado su vínculo sagrado con la tierra. Rodeada de senderos y vegetación exuberante, es un destino para quienes buscan historia, espiritualidad y naturaleza.", 
+    description: "En los petroglifos de Tubará hablan los ancestros Mokaná que habitaron estas montañas siglos antes de la conquista. El Colectivo Caminantes guía los senderos que llevan a la piedra con el conocimiento de quienes viven el territorio. Visitar Piedra Pintada es entrar a la memoria viva de un pueblo que grabó su historia en la roca.", 
     lat: 10.87, lng: -74.97, image: "assets/images/puntos/Piedra Pintada.webp", 
     location: "Tubará, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Caminatas ecológicas","observación de petroglifos","actividades culturales y espirituales","zonas naturales para descanso."]
   },
   {
     id: 61, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Carnaval de Tubará", 
-    description: "El Carnaval de Tubará es un abrazo al son de la cumbia. Esta celebración anual convierte las calles del municipio en un río de colores, danzas y tradición que fluye desde las raíces más profundas del Caribe colombiano. Una fiesta que renueva el vínculo entre la comunidad, su historia y la música que la define.", 
+    description: "Cada año las calles de Tubará se convierten en río de colores, danzas y cumbia que fluyen desde las raíces más profundas del Caribe colombiano. El Carnaval de Tubará es la celebración que renueva el vínculo entre la comunidad Mokaná y la música que la define, pasando la tradición de generación en generación con orgullo.", 
     lat: 10.873, lng: -74.975, image: "assets/images/puntos/Carnaval de Tubará.webp", 
     location: "Tubará, Atlántico.", hours: "", price: "", 
     tags: []
   },
   {
     id: 62, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Festival intermunicipal del folclore", 
-    description: "Galapa se convierte en la capital del folclor caribeño con su Gran parada departamental. Tambores, llamadores y flautas de millo acompañan a comparsas que tiñen las calles de color y movement. Un encuentro que celebra la riqueza cultural del Atlántico y eleva la tradición como motor del orgullo regional.", 
+    description: "Un encuentro que reúne expresiones folclóricas de varios municipios del Atlántico para celebrar la riqueza y diversidad cultural de la región. Danzas, músicas y manifestaciones tradicionales comparten escenario en un festival que entiende el folclore no como reliquia sino como práctica viva que necesita espacio para existir.", 
     lat: 10.897, lng: -74.884, image: "assets/images/puntos/Festival intermunicipal del folclore.webp", 
     location: "Galapa, Atlántico.", hours: "El evento dura 1 día.", price: "Gratuito.", 
     tags: ["Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
@@ -840,7 +840,7 @@ const mockData = [
     endDay: 17,
     category: "eventos",
     title: "Carnaval de Barranquilla",
-    description: "Declarado Patrimonio Oral e Inmaterial de la Humanidad por la Unesco, el Carnaval de Barranquilla es la fiesta más grande del Caribe colombiano. Cuatro días de desfiles, comparsas, música y color que celebran las raíces africanas, indígenas y europeas de esta costa. Una experiencia que desborda las calles cada febrero.",
+    description: "Cuatro días que concentran siglos de mezcla cultural africana, indígena y europea en las calles de Barranquilla. Patrimonio Oral e Inmaterial de la Humanidad declarado por la UNESCO, el Carnaval no se visita: se vive. Cada danza, cada disfraz y cada tambor es la expresión colectiva de una identidad que el río y el mar construyeron juntos.",
     lat: 10.9967,
     lng: -74.8181,
     image: "assets/images/puntos/carnaval de barranquilla.webp",
@@ -853,7 +853,7 @@ const mockData = [
     id: 93,
     category: "cultura",
     title: "Catedral de Cartagena",
-    description: "Desde el corazón de la ciudad amurallada, la Catedral de Cartagena eleva su fachada colonial hacia el cielo caribeño. Piedras que acumulan siglos de historia, fe y mestizaje. Un lugar donde el tiempo se detiene y la arquitectura habla de todo lo que este territorio ha vivido y resistido.",
+    description: "La catedral más antigua de Colombia en tierra firme concentra en sus muros la historia religiosa y arquitectónica de Cartagena desde el siglo XVI. Cada reforma que resistió y cada daño que acumuló es parte del relato de una ciudad que construyó fe e identidad al mismo tiempo que construía sus murallas.",
     lat: 10.4238769,
     lng: -75.5505382,
     image: "assets/images/puntos/catedral_de_cartagena.webp",
@@ -866,7 +866,7 @@ const mockData = [
     id: 94,
     category: "cultura",
     title: "Palacio de la Gobernación",
-    description: "En el corazón histórico de Cartagena, el Palacio de la Gobernación es testigo mudo de siglos de poder, transformación y vida pública. Su arquitectura colonial guarda la memoria del Caribe y del Departamento de Bolívar. Una pieza esencial para entender la historia política y urbana de esta costa.",
+    description: "Sede del poder departamental de Bolívar y testigo arquitectónico de la vida política de Cartagena. El Palacio de la Gobernación conserva en su fachada y sus patios interiores el estilo colonial que define el centro histórico, siendo parte inseparable del patrimonio urbano que convierte a Cartagena en ciudad de memoria.",
     lat: 10.4238769,
     lng: -75.5505382,
     image: "assets/images/puntos/palacio_de_la_gobernación.webp",
@@ -879,7 +879,7 @@ const mockData = [
     id: 95,
     category: "cultura",
     title: "Plaza Bolívar",
-    description: "El corazón abierto del centro histórico de Cartagena. Desde aquí se irradian las calles coloniales, los balcones floridos y las cúpulas que definen la ciudad amurallada. La Plaza Bolívar es el punto de encuentro donde la historia, la vida cotidiana y el turismo convergen bajo el sol caribeño.",
+    description: "El corazón del centro histórico de Cartagena donde la arquitectura colonial converge con la vida cotidiana de la ciudad. La Plaza Bolívar no es solo un espacio turístico: es el lugar donde la historia pública de Cartagena se escribe desde siempre, con la catedral, el palacio y la estatua del Libertador como testigos permanentes.",
     lat: 10.42325,
     lng: -75.55122222222222,
     image: "",
@@ -892,7 +892,7 @@ const mockData = [
     id: 96,
     category: "cultura",
     title: "Las Bóvedas",
-    description: "Construidas como fortaleza militar, las 23 bóvedas coloniales de Cartagena guardan hoy el espíritu artesanal del Caribe. Arcos de piedra que alguna vez resguardaron pólvora y soldados, ahora albergan colores, tejidos y memorias. Un paseo entre la historia y el presente vibrante de la ciudad amurallada.",
+    description: "Construidas en el siglo XVIII como almacenes militares y luego usadas como calabozos, Las Bóvedas guardan capas de historia colonial entre sus paredes de piedra. Hoy artesanos locales ocupan estos espacios convirtiéndolos en un mercado vivo donde el patrimonio arquitectónico y la economía comunitaria comparten el mismo techo.",
     lat: 10.4286,
     lng: -75.5515,
     image: "assets/images/puntos/las_bóvedas.webp",
@@ -905,7 +905,7 @@ const mockData = [
     id: 97,
     category: "cultura",
     title: "Museo del Oro",
-    description: "Frente al Parque Bolívar, el Museo del Oro custodia el brillo de civilizaciones que habitaron estas tierras mucho antes de la Colonia. Piezas en oro de culturas nativas que revelan la complejidad y riqueza del mundo precolombino. Un diálogo silencioso entre el pasado profundo y el presente caribeño.",
+    description: "La colección zenú del Museo del Oro de Cartagena revela el dominio técnico y simbólico de los orfebres precolombinos que habitaron la Costa Caribe. Cada pieza de filigrana de oro es evidencia de una civilización que dominó el metal mucho antes de que los europeos llegaran a estas costas con sus propios criterios de valor.",
     lat: 10.4231612,
     lng: -75.5508695,
     image: "assets/images/puntos/museo_del_oro.webp",
@@ -918,7 +918,7 @@ const mockData = [
     id: 98,
     category: "cultura",
     title: "Casa del Marqués de Premio Real",
-    description: "En la Plaza de la Aduana, esta casona colonial es una de las construcciones mejor conservadas de Cartagena. Sus paredes gruesas y patios frescos cuentan historias del poder y el comercio en el Nuevo Mundo. Recorrerla es adentrarse en la arquitectura y las tensiones de la época colonial en el Caribe.",
+    description: "Una de las casas coloniales mejor conservadas de Cartagena, con balcones de madera y patios interiores que reproducen el modelo arquitectónico que la élite criolla construyó durante el Virreinato. Recorrerla es entender cómo se vivía el poder y la distinción social en la ciudad portuaria más importante del Caribe colonial.",
     lat: 10.4222922,
     lng: -75.5507459,
     image: "assets/images/puntos/casa_del_marqués_de_premio_real.webp",
@@ -931,7 +931,7 @@ const mockData = [
     id: 99,
     category: "playas",
     title: "El Laguito",
-    description: "Donde los edificios modernos se miran en el agua, El Laguito es el perfil contemporáneo de Cartagena. Un sector que contrasta con la ciudad amurallada y muestra su vocación cosmopolita. Frente a la bahía, entre brisa marina y horizonte abierto, es el espacio donde la ciudad mira hacia el futuro.",
+    description: "Una extensión de mar protegida por la formación natural de Bocagrande que ofrece aguas tranquilas y temperatura constante en Cartagena. El Laguito combina el paisaje del Caribe con la escala íntima de una ensenada urbana donde el baño, el paseo y la contemplación del horizonte coexisten con el perfil de la ciudad.",
     lat: 10.3975509,
     lng: -75.5626241,
     image: "assets/images/puntos/el_laguito.webp",
@@ -944,7 +944,7 @@ const mockData = [
     id: 100,
     category: "playas",
     title: "Playa Castillo Grande",
-    description: "Aguas quietas que bañan la bahía de Cartagena con una calma que invita al nado y al reposo. Playa Castillo Grande es el lugar donde el ritmo se ralentiza y el Caribe muestra su cara más serena. Ideal para quienes buscan la experiencia auténtica del mar sin las corrientes abiertas del océano.",
+    description: "Arena blanca y aguas del Caribe con la silueta de Cartagena de fondo. Castillo Grande ofrece el litoral más accesible de la ciudad histórica, donde el mar llega con temperatura cálida y color turquesa. Un espacio costero donde el entorno natural del Caribe colombiano se vive a pocos metros del centro histórico.",
     lat: 10.3955111,
     lng: -75.5549756,
     image: "assets/images/puntos/playa_castillo_grande.webp",
@@ -957,7 +957,7 @@ const mockData = [
     id: 101,
     category: "cultura",
     title: "Museo de las Fortificaciones",
-    description: "Dentro de las mismas murallas que alguna vez defendieron a Cartagena de piratas e imperios, este museo de sitio reconstruye la epopeya de una obra colosal. Siglos de ingeniería militar, sudor y estrategia en piedra coralina. El relato vivo de cómo una ciudad aprendió a sobrevivir frente al mar y la historia.",
+    description: "Las murallas y castillos que defendieron a Cartagena de piratas e imperios son hoy el mayor sistema de ingeniería militar colonial del continente. El museo explica cómo se construyó esta defensa y qué significó para la ciudad. Cada piedra coralina es el resultado de una estrategia que mantuvo a Cartagena en pie durante siglos.",
     lat: 10.4307269,
     lng: -75.5458671,
     image: "assets/images/puntos/museo_de_las_fortificaciones.webp",
@@ -970,7 +970,7 @@ const mockData = [
     id: 102,
     category: "cultura",
     title: "Museo Romántico",
-    description: "En un edificio republicano del siglo XIX, el Museo Romántico preserva el alma íntima de Barranquilla. Cartas de amor, muebles, fotografías y objetos de una época en que la ciudad costera soñaba con ser metrópoli. Un lugar para entender la sensibilidad y la memoria de quienes construyeron este Caribe urbano.",
+    description: "Objetos cotidianos, vestidos, cartas y fotografías del siglo XIX y principios del XX que reconstruyen la vida íntima de la élite barranquillera en sus años de mayor esplendor. El Museo Romántico preserva la memoria doméstica de una época en que el comercio del río convirtió a Barranquilla en ciudad cosmopolita.",
     lat: 10.9949113,
     lng: -74.7945569,
     image: "",
@@ -983,7 +983,7 @@ const mockData = [
     id: 103,
     category: "cultura",
     title: "Teatro Amira de la Rosa",
-    description: "El escenario más vivo de Barranquilla. El Teatro Amira de la Rosa ha albergado teatro, música, danza y pensamiento durante décadas. Sus butacas han visto nacer y crecer la cultura caribeña contemporánea. Asistir a una función aquí es participar de la conversación más larga y rica que esta ciudad tiene consigo misma.",
+    description: "El teatro más emblemático de Barranquilla lleva el nombre de una escritora caribeña y es el escenario donde la ciudad ha celebrado su vida cultural por décadas. Su arquitectura y su historia lo convierten en patrimonio urbano activo: no es solo un edificio histórico sino un espacio donde la cultura viva sigue encontrando su lugar.",
     lat: 10.9932289,
     lng: -74.7897284,
     image: "assets/images/puntos/teatro_amira_de_la_rosa.webp",
@@ -996,7 +996,7 @@ const mockData = [
     id: 104,
     category: "cultura",
     title: "Catedral Metropolitana María Reina",
-    description: "Modernismo y fe caribeña se fusionan en este templo de líneas depuradas que se alza en el corazón de Barranquilla. La imagen del Cristo Libertador Latinoamericano convoca la espiritualidad de un continente. Un espacio de encuentro donde la arquitectura del siglo XX dialoga con siglos de devoción popular.",
+    description: "La catedral principal de Barranquilla concentra en su interior la historia religiosa y la identidad espiritual de una ciudad que construyó su fe al mismo ritmo que construyó su vocación comercial. Su arquitectura moderna contrasta con la tradición que alberga, siendo parte inseparable del paisaje urbano del centro barranquillero.",
     lat: 10.9882416,
     lng: -74.7926504,
     image: "",
@@ -1009,7 +1009,7 @@ const mockData = [
     id: 105,
     category: "cultura",
     title: "Estadio Metropolitano",
-    description: "Sesenta mil voces que vibran como un solo ser. El Estadio Metropolitano Roberto Meléndez es mucho más que un escenario deportivo: es el latido colectivo de Barranquilla, el espacio donde Junior y la Selección Colombia despiertan la pasión de todo el Caribe. Sentirlo desde adentro es sentir la ciudad entera.",
+    description: "El Estadio Metropolitano Roberto Meléndez no es solo un recinto deportivo: es el corazón de la identidad futbolera de Barranquilla. Con capacidad para más de 50.000 personas, es escenario de la Selección Colombia y del Atlético Junior, siendo parte del imaginario colectivo de una ciudad que vive el fútbol como expresión cultural.",
     lat: 10.9272935,
     lng: -74.8032621,
     image: "assets/images/puntos/estadio_metropolitano.webp",
@@ -1022,7 +1022,7 @@ const mockData = [
     id: 106,
     category: "cultura",
     title: "Barrio El Prado",
-    description: "Barranquilla guardó sus sueños de modernidad en El Prado. Mansiones de los años veinte, buganviles desbordadas, el Hotel Del Prado como centinela de otra época. Un barrio que es archivo vivo de la prosperidad caribeña y del cosmopolitismo que moldeó la ciudad portuaria más dinámica del norte de Colombia.",
+    description: "El primer barrio planificado de Colombia conserva sus calles arboladas, sus casonas de estilo republicano y el ambiente tranquilo de una época en que Barranquilla proyectaba su prosperidad en la arquitectura. Recorrer El Prado es leer la historia de una ciudad que se pensó a sí misma con ambición y elegancia en los años veinte.",
     lat: 10.9982874,
     lng: -74.8008951,
     image: "",
@@ -1035,7 +1035,7 @@ const mockData = [
     id: 107,
     category: "cultura",
     title: "Museo Antropológico y Etnológico",
-    description: "Las culturas precolombinas del norte de Colombia encontraron su casa en este imponente edificio de Barranquilla. Piezas Quimbaya, San Agustín, Tierradentro y Tubará en un mismo recinto. Un viaje a las raíces profundas del Caribe colombiano, donde la cerámica y el oro narran lo que los documentos no pudieron guardar.",
+    description: "Colecciones que abarcan las culturas prehispánicas y las tradiciones étnicas del Caribe colombiano. El museo ofrece una lectura profunda de la diversidad humana que habitó y habita este territorio, con piezas que permiten entender los sistemas simbólicos, los rituales y las formas de vida que precedieron y acompañan la historia oficial.",
     lat: 10.9967659,
     lng: -74.7981077,
     image: "",
@@ -1048,7 +1048,7 @@ const mockData = [
     id: 108,
     category: "cultura",
     title: "Zoológico de Barranquilla",
-    description: "Un encuentro con la fauna del mundo en el corazón del Caribe colombiano. El Zoológico de Barranquilla es también guardián de especies de la biodiversidad nacional, un espacio donde la ciudad y la naturaleza viva se miran de frente. Ideal para conectar con la riqueza natural que rodea este corredor costero.",
+    description: "El zoológico más antiguo de Colombia alberga especies de fauna nativa e internacional en un entorno verde dentro de la ciudad. Más que un paseo, es un espacio de educación ambiental donde el contacto con animales silvestres genera conciencia sobre la biodiversidad y la conservación de especies que el desarrollo urbano amenaza.",
     lat: 11.0109951,
     lng: -74.800609,
     image: "",
@@ -1061,7 +1061,7 @@ const mockData = [
     id: 109,
     category: "cultura",
     title: "Castillo de Salgar",
-    description: "Sobre la costa atlántica, el Castillo de Salgar combina historia y naturaleza en un entorno privilegiado. Vestigio colonial convertido en espacio de cultura y recreación familiar, guarda el espíritu de Puerto Colombia como pueblo que se reinventa sin perder su memoria. El mar, siempre presente, completa el paisaje.",
+    description: "Construido en el siglo XIX sobre la costa atlántica, el Castillo de Salgar es uno de los patrimonios históricos más singulares del departamento. Su arquitectura defensiva frente al mar cuenta la historia de una época en que el litoral del Atlántico era frontera entre el comercio y la inseguridad, entre el orden y lo desconocido.",
     lat: 11.0182381,
     lng: -74.9441948,
     image: "assets/images/puntos/castillo_de_salgar.webp",
@@ -1074,7 +1074,7 @@ const mockData = [
     id: 110,
     category: "cultura",
     title: "Biblioteca Piloto del Caribe",
-    description: "En el Complejo Cultural de la Antigua Aduana, la Biblioteca Piloto del Caribe custodia la memoria escrita de una región. Libros, archivos y colecciones que cuentan el Caribe colombiano desde adentro. Un espacio donde el conocimiento se abre al público y la cultura encuentra su lugar en medio del bullicio urbano de Barranquilla.",
+    description: "Centro de la memoria escrita del Caribe colombiano, la Biblioteca Piloto preserva colecciones documentales, archivos históricos y fondos especiales que hacen de este espacio un referente cultural ineludible. Más que repositorio, es un lugar vivo donde la investigación, la lectura y el acceso al conocimiento regional tienen casa propia.",
     lat: 10.9884559,
     lng: -74.7788765,
     image: "",
@@ -1087,7 +1087,7 @@ const mockData = [
     id: 111,
     category: "ecoturismo",
     title: "Parque Isla Salamanca",
-    description: "Donde el río Magdalena entrega sus aguas al Mar Caribe nace uno de los ecosistemas más ricos de Colombia. El Parque Isla Salamanca es el encuentro de lo dulce y lo salado, de manglares, aves migratorias y biodiversidad desbordante. Un umbral natural que recuerda que este corredor costero está vivo mucho más allá del asfalto.",
+    description: "Una franja de tierra entre el mar Caribe y la Ciénaga Grande de Santa Marta que alberga uno de los ecosistemas de manglar más extensos y biodiversos de Colombia. El Parque Isla Salamanca es corredor biológico, refugio de aves migratorias y zona de reproducción de especies que dependen del equilibrio entre el agua salada y la dulce.",
     lat: 11.0487593,
     lng: -74.8151028,
     image: "assets/images/puntos/parque_isla_salamanca.webp",
@@ -1100,7 +1100,7 @@ const mockData = [
     id: 112,
     category: "ecoturismo",
     title: "Jardín Botánico",
-    description: "En medio de Barranquilla, esta reserva urbana es travesada por manantiales que desafían la ciudad de cemento. El Jardín Botánico es un pulmón verde donde la naturaleza costera resiste y prospera. Un espacio para reconectar con la biodiversidad caribeña a pocos minutos del centro, sin salir de la ciudad.",
+    description: "Una colección de flora nativa e introducida que convierte un espacio de Barranquilla en laboratorio vivo de la biodiversidad vegetal del Caribe. Los senderos del Jardín Botánico permiten identificar especies, entender sus relaciones ecológicas y apreciar la riqueza de un territorio donde la vegetación tropical es también historia y cultura.",
     lat: 10.9512537,
     lng: -74.7993843,
     image: "assets/images/puntos/jardín_botánico.webp",
@@ -1113,7 +1113,7 @@ const mockData = [
     id: 113,
     category: "cultura",
     title: "Iglesia San Roque",
-    description: "El estilo neogótico de la Iglesia San Roque contrasta con el trópico que la rodea y la hace aún más singular. Patrono popular de Barranquilla, San Roque convoca devoción y comunidad en este templo que es también patrimonio arquitectónico. Una parada para entender la fe cotidiana que atraviesa la cultura caribeña.",
+    description: "Una de las iglesias más antiguas de Barranquilla, levantada en el barrio de San Roque donde la devoción popular y la arquitectura colonial conviven con la vida del mercado público. La iglesia es testigo de la historia social del centro barranquillero y punto de referencia de la religiosidad popular que define al Caribe urbano.",
     lat: 10.9753664,
     lng: -74.7806259,
     image: "assets/images/puntos/iglesia_san_roque.webp",
@@ -1126,7 +1126,7 @@ const mockData = [
     id: 114,
     category: "cultura",
     title: "Plaza de la Intendencia Fluvial",
-    description: "Aquí llegaban y partían los vapores que conectaban el interior del país con el Caribe. La Plaza de la Intendencia Fluvial fue el nervio del comercio fluvial por el Magdalena, eje de una ciudad que creció mirando al río. Su historia es la historia de Barranquilla como puerta entre dos mundos.",
+    description: "Un espacio histórico junto al río Magdalena que evoca la época en que Barranquilla era el principal puerto fluvial del país. La Plaza de la Intendencia Fluvial recuerda el tiempo en que el río era la arteria principal del comercio nacional y esta ciudad era la puerta de entrada de la modernidad al interior de Colombia.",
     lat: 10.9861341,
     lng: -74.7780901,
     image: "",
@@ -1139,7 +1139,7 @@ const mockData = [
     id: 115,
     category: "cultura",
     title: "Museo de Arte Moderno",
-    description: "El Museo de Arte Moderno de Barranquilla es el espacio donde el Caribe colombiano dialoga con las corrientes del arte contemporáneo nacional e internacional. Exposiciones, biblioteca y auditorio configuran un centro cultural vivo. Un lugar donde la ciudad se piensa a sí misma a través de las obras de sus artistas.",
+    description: "El MAMB es el espacio donde el arte contemporáneo del Caribe colombiano y de América Latina dialoga con el mundo. Su colección permanente y sus exposiciones temporales presentan obras que cuestionan, celebran y reinterpretan la identidad cultural de una región que ha producido artistas de alcance internacional desde sus propias raíces.",
     lat: 11.0036548,
     lng: -74.80776,
     image: "assets/images/puntos/museo_de_arte_moderno.webp",
@@ -1152,7 +1152,7 @@ const mockData = [
     id: 116,
     category: "cultura",
     title: "Estatua del Joe Arroyo",
-    description: "En el parque de los Músicos, la figura del Joe Arroyo detiene el tiempo en Barranquilla. El más universal de los salseros caribeños, cuya voz contó la historia de Africa, Colombia y el mar en el mismo ritmo. Su estatua es punto de peregrinaje para quienes saben que la música de esta ciudad cambia el mundo.",
+    description: "Joe Arroyo inmortalizado en bronce en el corazón de Barranquilla. La estatua es el reconocimiento de una ciudad a quien llevó su ritmo al mundo: la salsa, el porro y la fusión caribeña en una voz que se convirtió en patrimonio sonoro. Visitarla es recordar que la cultura popular es también la historia más honesta de un pueblo.",
     lat: 10.9947728,
     lng: -74.8061694,
     image: "assets/images/puntos/estatua_del_joe_arroyo.webp",
@@ -1165,7 +1165,7 @@ const mockData = [
     id: 117,
     category: "cultura",
     title: "Museo Mapuka",
-    description: "MAPUKA, el Museo Arqueológico de los Pueblos Karib, recupera y celebra las identidades del Caribe colombiano. Colecciones que reconstruyen el universo espiritual y material de los pueblos que habitaron esta costa antes y después de la conquista. Un espacio de memoria viva, necesario para entender de dónde venimos.",
+    description: "Colecciones arqueológicas, etnográficas y de historia natural que hacen del Museo Mapuka el espacio donde Barranquilla cuenta sus capas más profundas. Desde los vestigios precolombinos hasta las expresiones culturales contemporáneas, el museo traza un recorrido que muestra la complejidad de una ciudad construida sobre múltiples historias.",
     lat: 11.02022,
     lng: -74.8511682,
     image: "assets/images/puntos/museo_mapuka.webp",
@@ -1178,7 +1178,7 @@ const mockData = [
     id: 118,
     category: "cultura",
     title: "Plaza Principal de Puerto Colombia",
-    description: "La plaza de Puerto Colombia es el lugar donde el pueblo se encuentra con su propia historia. Frente al mar que alguna vez hizo de este municipio el puerto más importante de Colombia, la plaza guarda la calma y el orgullo de un territorio que sabe lo que fue y lo que todavía puede ser.",
+    description: "El centro de la vida social de Puerto Colombia desde siempre. La plaza principal concentra la arquitectura histórica del municipio, la iglesia, los kioscos y el ritmo cotidiano de un pueblo costero que conserva su escala humana. Un espacio donde la historia del puerto más importante del Atlántico se vive en la conversación diaria.",
     lat: 10.988422,
     lng: -74.9595477,
     image: "",
@@ -1191,7 +1191,7 @@ const mockData = [
     id: 119,
     category: "cultura",
     title: "Taller del Rey Momo",
-    description: "En Galapa, las manos de José Llanos tallan en madera la esencia del Carnaval. El Taller del Rey Momo es el lugar donde nacen las máscaras que representan la festividad y el humor caribeño en su expresión más auténtica. Una visita aquí es acercarse al origen artesanal de la fiesta más grande de Colombia.",
+    description: "Aquí se fabrican los disfraces, las caretas y los muñecos que dan vida al Carnaval de Barranquilla. El taller del Rey Momo es el espacio donde artesanos populares transforman cartón, tela y pintura en personajes que durante cuatro días son el alma de la fiesta. Un oficio comunitario que el turismo puede visitar, no solo presenciar.",
     lat: 10.8989,
     lng: -74.8838,
     image: "",
@@ -1204,7 +1204,7 @@ const mockData = [
     id: 120,
     category: "playas",
     title: "Bocas de Cenizas",
-    description: "El río más largo de Colombia entrega sus aguas al Caribe en Bocas de Cenizas. Ese encuentro entre el Magdalena y el mar es uno de los fenómenos naturales más imponentes del litoral norte. Un territorio de transición, de mezcla de corrientes y de biodiversidad, donde el agua dulce y salada escriben juntas el paisaje.",
+    description: "Donde el Magdalena entrega al Caribe el agua que recorrió todo el país. En Bocas de Cenizas el río y el mar se encuentran visiblemente: dos colores, dos temperaturas, dos mundos que se mezclan en un fenómeno geológico e hidrológico único. Un punto de la geografía colombiana donde la escala del territorio se vuelve tangible.",
     lat: 11.1063345,
     lng: -74.8572919,
     image: "",
@@ -1217,7 +1217,7 @@ const mockData = [
     id: 121,
     category: "cultura",
     title: "Estatua de Shakira",
-    description: "Barranquilla le rinde homenaje a su hija más universal en el Paseo Bolívar. La estatua de Shakira celebra a la artista que llevó el nombre de esta ciudad y del Caribe colombiano a todos los escenarios del mundo. Un símbolo de identidad y orgullo que convoca a locales y visitantes en el corazón de la ciudad.",
+    description: "Un homenaje de Barranquilla a su hija más universal. La estatua de Shakira frente al estadio celebra a una artista que llevó el Caribe colombiano al mundo sin dejar de nombrarlo. Para la ciudad, el monumento es también un acto de reconocimiento: la cultura popular barranquillera tiene dimensión global y la ciudad lo sabe.",
     lat: 11.0099574,
     lng: -74.7820282,
     image: "assets/images/puntos/estatua_shakira.png",
@@ -1230,7 +1230,7 @@ const mockData = [
     id: 122,
     category: "cultura",
     title: "Castillo de San Felipe",
-    description: "El Castillo San Felipe de Barajas es la cima de la ingeniería militar española en América. Construido sobre el cerro de San Lázaro, sus túneles y bastiones protegieron a Cartagena de Indias durante siglos. Recorrerlo es entender la obsesión de un imperio por defender la ciudad más codiciada del Nuevo Mundo.",
+    description: "La fortaleza militar más grande construida por España en América. El Castillo de San Felipe de Barajas en Cartagena es una obra de ingeniería del siglo XVII diseñada para resistir cualquier ataque. Sus túneles, rampas y bastiones cuentan la historia de un imperio que protegió su joya del Caribe con todo lo que tenía.",
     lat: 10.4220285,
     lng: -75.5421521,
     image: "assets/images/puntos/castillo_de_san_felipe.png",
@@ -1243,7 +1243,7 @@ const mockData = [
     id: 123,
     category: "cultura",
     title: "Monumento Torre del Reloj",
-    description: "La Torre del Reloj es la puerta de entrada al alma de Cartagena. Por aquí cruzaron conquistadores, esclavos, comerciantes y viajeros que definieron el destino de esta ciudad amurallada. Hoy, su arco colonial da la bienvenida a quienes llegan a descubrir el Caribe más histórico y vivo de Colombia.",
+    description: "La puerta de entrada al centro histórico de Cartagena desde el siglo XVII. La Torre del Reloj marcó durante siglos el límite entre la ciudad amurallada y el mundo exterior. Hoy es el umbral simbólico por donde millones de visitantes ingresan a un patrimonio de la humanidad que comenzó a construirse hace más de cuatro siglos.",
     lat: 10.4228085,
     lng: -75.5495241,
     image: "assets/images/puntos/monumento_torre_del_reloj.png",
@@ -1256,7 +1256,7 @@ const mockData = [
     id: 124,
     category: "cultura",
     title: "Santuario de San Pedro Claver",
-    description: "El Santuario de San Pedro Claver honra al jesuita que dedicó su vida a los africanos esclavizados en Cartagena de Indias. Su claustro colonial y su iglesia guardan la memoria de una de las historias más profundas del Caribe: la de quienes resistieron y sobrevivieron en esta costa para siempre dar forma a su cultura.",
+    description: "El jesuita que dedicó su vida a los africanos esclavizados que llegaban por el puerto de Cartagena tiene aquí su santuario. San Pedro Claver no es solo un santo colonial: es la memoria de una resistencia moral en medio de una de las épocas más oscuras de la historia americana, preservada en piedra en el corazón de la ciudad.",
     lat: 10.4217512,
     lng: -75.553694,
     image: "assets/images/puntos/santuario_san_pedro_claver.png",
@@ -1269,7 +1269,7 @@ const mockData = [
     id: 125,
     category: "cultura",
     title: "Iglesia de Santo Domingo",
-    description: "Desde el siglo XVI, la Iglesia de Santo Domingo es testigo del paso del tiempo en Cartagena. Una de las más antiguas del país, su plaza alberga hoy la vida cotidiana de la ciudad: vendedores, turistas y cartageneros conviviendo a la sombra de piedras que acumulan comics siglos de historia caribeña.",
+    description: "La iglesia más antigua de Cartagena guarda en sus bóvedas y columnas las marcas del tiempo y de los terremotos que intentaron derribarla. Construida por los dominicos en el siglo XVI, Santo Domingo sobrevivió a todo y hoy preside la plaza más concurrida del centro histórico como testigo inmóvil de cinco siglos de historia caribeña.",
     lat: 10.4243142,
     lng: -75.5529982,
     image: "assets/images/puntos/iglesia_santo_domingo.png",
