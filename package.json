@@ -1,5 +1,12 @@
 {
+  "scripts": {
+    "build:css": "npx -y tailwindcss@3 -i assets/css/input.css -o assets/css/tailwind.min.css --config tailwind.config.js --minify"
+  },
   "dependencies": {
     "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
   }
 }
+
