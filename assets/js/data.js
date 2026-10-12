@@ -16,10 +16,10 @@
 // Si agregas una nueva categoría aquí, aparecerá automáticamente en el menú y en "Rutas".
 const categories = [
   { id: "todas", label: "Ver todos", icon: "📍", color: "bg-slate-800" },
-  { 
-    id: "naturaleza", 
-    label: "Turismo de naturaleza", 
-    icon: "🌿", 
+  {
+    id: "naturaleza",
+    label: "Turismo de naturaleza",
+    icon: "🌿",
     color: "bg-emerald-600",
     subcategories: [
       { id: "playas", label: "Playas y costas", icon: "🏖️", color: "bg-cyan-500" },
@@ -36,438 +36,438 @@ const categories = [
 
 const mockData = [
   {
-    id: 1, category: "ecoturismo", title: "Volcán del Totumo", 
-    description: "Un cono volcánico de 15 metros que emerge entre la ciénaga y el mar. Su lodo medicinal nace de procesos geológicos únicos en el Caribe: gases que burbujean desde las profundidades y minerales que relajan el cuerpo mientras flotas en su densa superficie tibia. Un fenómeno natural vivo..", 
-    lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp", 
-    location: "Santa Catalina, Bolívar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.", 
+    id: 1, category: "ecoturismo", title: "Volcán del Totumo",
+    description: "Un cono volcánico de 15 metros que emerge entre la ciénaga y el mar. Su lodo medicinal nace de procesos geológicos únicos en el Caribe: gases que burbujean desde las profundidades y minerales que relajan el cuerpo mientras flotas en su densa superficie tibia. Un fenómeno natural vivo..",
+    lat: 10.744444, lng: -75.241389, image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp",
+    location: "Santa Catalina, Bolívar.", hours: "6:00 a.m. - 6:00 p.m.", price: "Adultos: $20.000 mil cop.",
     tags: ["Relax en la playa", "Experiencias sensoriales", "Comida autóctona"]
   },
   {
-    id: 2, category: "playas", title: "Playas de Loma Arena", 
-    description: "Arena dorada que avanza sin interrupciones hasta donde el ojo alcanza. En Loma Arena el Caribe llega tranquilo y el paisaje permanece sin intervención: sin estructuras, sin bullicio. Solo el oleaje, el cielo abierto y la línea de palmeras que marca el límite entre la tierra y el mar.", 
-    lat: 10.731697, lng: -75.272444, image: "assets/images/puntos/foto-principal-l.a.webp", 
-    location: "Santa Catalina, Bolívar.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    id: 2, category: "playas", title: "Playas de Loma Arena",
+    description: "Arena dorada que avanza sin interrupciones hasta donde el ojo alcanza. En Loma Arena el Caribe llega tranquilo y el paisaje permanece sin intervención: sin estructuras, sin bullicio. Solo el oleaje, el cielo abierto y la línea de palmeras que marca el límite entre la tierra y el mar.",
+    lat: 10.731697, lng: -75.272444, image: "assets/images/puntos/foto-principal-l.a.webp",
+    location: "Santa Catalina, Bolívar.", hours: "Abierto todo el tiempo.", price: "Gratuito.",
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
-    id: 3, category: "playas", title: "Playas de Punta Astilleros", 
-    description: "Donde la costa del Atlántico se conserva en su estado más puro. Playas vírgenes rodeadas de vegetación nativa, con brisa constante y acceso a senderos ecológicos que siguen la orilla. Un entorno costero que no ha cedido a la infraestructura y por eso sigue siendo refugio de aves y paisaje auténtico.", 
-    lat: 10.795, lng: -75.224444, image: "assets/images/puntos/foto-principal-pa.webp", 
-    location: "Piojó, Atlántico.", hours: "9:00 a.m. - Final del día.", price: "Gratuito.", 
+    id: 3, category: "playas", title: "Playas de Punta Astilleros",
+    description: "Donde la costa del Atlántico se conserva en su estado más puro. Playas vírgenes rodeadas de vegetación nativa, con brisa constante y acceso a senderos ecológicos que siguen la orilla. Un entorno costero que no ha cedido a la infraestructura y por eso sigue siendo refugio de aves y paisaje auténtico.",
+    lat: 10.795, lng: -75.224444, image: "assets/images/puntos/foto-principal-pa.webp",
+    location: "Piojó, Atlántico.", hours: "9:00 a.m. - Final del día.", price: "Gratuito.",
     tags: ["Relax en la playa", "Vistas panorámicas", "Artesanías"]
   },
   {
-    id: 4, category: "ecoturismo", title: "Cerro la Vieja", 
-    description: "La cima del Atlántico guarda bosque seco tropical, fauna sorprendente y una panorámica que abarca la línea costera y el relieve ondulado del departamento. Cada paso hacia la cumbre atraviesa microhábitats distintos. Subir es una inmersión en la biodiversidad del Caribe, no solo un esfuerzo físico.", 
-    lat: 10.733333, lng: -75.104722, image: "assets/images/puntos/foto-principal-l.v.webp", 
-    location: "Piojó, Atlántico.", hours: "7:00 a.m. - 6:00 p.m.", price: "Adultos: $8.000 mil cop.", 
+    id: 4, category: "ecoturismo", title: "Cerro la Vieja",
+    description: "La cima del Atlántico guarda bosque seco tropical, fauna sorprendente y una panorámica que abarca la línea costera y el relieve ondulado del departamento. Cada paso hacia la cumbre atraviesa microhábitats distintos. Subir es una inmersión en la biodiversidad del Caribe, no solo un esfuerzo físico.",
+    lat: 10.733333, lng: -75.104722, image: "assets/images/puntos/foto-principal-l.v.webp",
+    location: "Piojó, Atlántico.", hours: "7:00 a.m. - 6:00 p.m.", price: "Adultos: $8.000 mil cop.",
     tags: ["Avistamiento de aves", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 5, category: "ecoturismo", title: "Caribe Aventura", 
-    description: "Un parque que usa la naturaleza del Caribe como escenario principal. Toboganes, piscinas y atracciones acuáticas están integrados en un entorno donde el agua, la vegetación y el paisaje regional son los protagonistas. Una experiencia que conecta la diversión familiar con la identidad natural del territorio.", 
-    lat: 10.765278, lng: -75.200278, image: "assets/images/puntos/foto-principal-c.a.webp", 
-    location: "Piojó, Atlántico.", hours: "9:00 a.m. - 4:30 p.m.", price: "Variable.", 
+    id: 5, category: "ecoturismo", title: "Caribe Aventura",
+    description: "Un parque que usa la naturaleza del Caribe como escenario principal. Toboganes, piscinas y atracciones acuáticas están integrados en un entorno donde el agua, la vegetación y el paisaje regional son los protagonistas. Una experiencia que conecta la diversión familiar con la identidad natural del territorio.",
+    lat: 10.765278, lng: -75.200278, image: "assets/images/puntos/foto-principal-c.a.webp",
+    location: "Piojó, Atlántico.", hours: "9:00 a.m. - 4:30 p.m.", price: "Variable.",
     tags: ["Experiencias sensoriales", "Deportes náuticos"]
   },
   {
-    id: 6, category: "cultura", title: "Muelle de Puerto Colombia", 
-    description: "El muelle más largo de Colombia  en su época hoy camina sobre el mar como testigo de una era que transformó al país. Sus pilotes de concreto sostienen una historia de vapores, mercancías y viajeros que llegaron al Caribe. Caminar sobre él es recorrer la memoria del comercio y la apertura de una nación.", 
-    lat: 10.988333, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    id: 6, category: "cultura", title: "Muelle de Puerto Colombia",
+    description: "El muelle más largo de Colombia  en su época hoy camina sobre el mar como testigo de una era que transformó al país. Sus pilotes de concreto sostienen una historia de vapores, mercancías y viajeros que llegaron al Caribe. Caminar sobre él es recorrer la memoria del comercio y la apertura de una nación.",
+    lat: 10.988333, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Artesanías", "Comida autóctona"]
   },
   {
-    id: 7, category: "gastronomía", title: "Centro gastronómico Muelle 1888", 
-    description: "Una arquitectura que rinde tributo a las olas inmigrantes que llegaron por este puerto. Los sabores locales e internacionales conviven aquí con la historia del lugar, invitando a comer despacio, a mirar el mar y a entender cómo la mesa caribeña es también un archivo de memorias y encuentros.", 
-    lat: 10.989444, lng: -74.958611, image: "assets/images/puntos/foto-principal-m.1888.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "Variable.", price: "Gratuito.", 
+    id: 7, category: "gastronomía", title: "Centro gastronómico Muelle 1888",
+    description: "Una arquitectura que rinde tributo a las olas inmigrantes que llegaron por este puerto. Los sabores locales e internacionales conviven aquí con la historia del lugar, invitando a comer despacio, a mirar el mar y a entender cómo la mesa caribeña es también un archivo de memorias y encuentros.",
+    lat: 10.989444, lng: -74.958611, image: "assets/images/puntos/foto-principal-m.1888.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "Variable.", price: "Gratuito.",
     tags: ["Comida autóctona", "Relax en la playa", "Vistas panorámicas"]
   },
   {
-    id: 8, category: "cultura", title: "Ventana de Sueños", 
-    description: "Estructura de cristal que al caer la noche transforma la costa de Puerto Colombia en un faro de colores. Es un monumento a los inmigrantes que llegaron sin certezas y construyeron identidad. Su reflejo sobre el mar convierte cada visita en un encuentro entre la historia humana y el presente festivo del Atlántico.", 
-    lat: 11.001667, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-v.s.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
+    id: 8, category: "cultura", title: "Ventana de Sueños",
+    description: "Estructura de cristal que al caer la noche transforma la costa de Puerto Colombia en un faro de colores. Es un monumento a los inmigrantes que llegaron sin certezas y construyeron identidad. Su reflejo sobre el mar convierte cada visita en un encuentro entre la historia humana y el presente festivo del Atlántico.",
+    lat: 11.001667, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-v.s.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 9, category: "cultura", title: "Antigua estación del Ferrocarril", 
-    description: "Inaugurada en 1871, sus muros de ladrillo guardan el eco de los trenes que conectaron el interior del país con el mar. Hoy convertida en centro cultural, la estación invita a recorrer la era ferroviaria que cambió la economía colombiana y dejó en Puerto Colombia una huella arquitectónica todavía vigente.", 
-    lat: 10.988611, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-ef.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
+    id: 9, category: "cultura", title: "Antigua estación del Ferrocarril",
+    description: "Inaugurada en 1871, sus muros de ladrillo guardan el eco de los trenes que conectaron el interior del país con el mar. Hoy convertida en centro cultural, la estación invita a recorrer la era ferroviaria que cambió la economía colombiana y dejó en Puerto Colombia una huella arquitectónica todavía vigente.",
+    lat: 10.988611, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-ef.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 10, category: "playas", title: "Playas de Puerto Colombia", 
-    description: "El mar llega aquí con fuerza moderada y temperatura cálida todo el año. La proximidad del muelle histórico crea un paisaje donde el agua y la arquitectura se entrelazan sin competir. Playas abiertas, brisa del Caribe y una costa que combina el descanso natural con la escala humana del balneario clásico.", 
-    lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.p.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
+    id: 10, category: "playas", title: "Playas de Puerto Colombia",
+    description: "El mar llega aquí con fuerza moderada y temperatura cálida todo el año. La proximidad del muelle histórico crea un paisaje donde el agua y la arquitectura se entrelazan sin competir. Playas abiertas, brisa del Caribe y una costa que combina el descanso natural con la escala humana del balneario clásico.",
+    lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.p.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.",
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
-    id: 11, category: "playas", title: "Playa de Santa Verónica", 
-    description: "El viento constante de Juan de Acosta convierte a Santa Verónica en un punto privilegiado del litoral atlántico. Sus corrientes suaves y el agua clara la hacen ideal para iniciarse en deportes de viento. Frente al océano, los restaurantes de pescado frito completan un entorno donde el mar dicta el ritmo.", 
-    lat: 10.88038, lng: -75.08297, image: "assets/images/puntos/fotografia-para-la-pagina-p.s.webp", 
-    location: "Juan de Acosta, Atlántico.", hours: "7:00 a.m. - 9:00 p.m.", price: "Gratuito.", 
+    id: 11, category: "playas", title: "Playa de Santa Verónica",
+    description: "El viento constante de Juan de Acosta convierte a Santa Verónica en un punto privilegiado del litoral atlántico. Sus corrientes suaves y el agua clara la hacen ideal para iniciarse en deportes de viento. Frente al océano, los restaurantes de pescado frito completan un entorno donde el mar dicta el ritmo.",
+    lat: 10.88038, lng: -75.08297, image: "assets/images/puntos/fotografia-para-la-pagina-p.s.webp",
+    location: "Juan de Acosta, Atlántico.", hours: "7:00 a.m. - 9:00 p.m.", price: "Gratuito.",
     tags: ["Relax en la playa", "Comida autóctona", "Vistas panorámicas"]
   },
   {
-    id: 12, category: "nauticos", title: "Salinas del Rey", 
-    description: "Las condiciones de viento y oleaje de Juan de Acosta generan aquí uno de los escenarios de kitesurf más exigentes del mundo. Pero antes de la adrenalina está el paisaje: agua que cambia de tono según la hora y la sal que brilla bajo el sol caribeño. Un accidente geográfico convertido en destino de alto rendimiento.", 
-    lat: 10.871944, lng: -75.095556, image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp", 
-    location: "Juan de Acosta, Atlántico.", hours: "9:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
+    id: 12, category: "nauticos", title: "Salinas del Rey",
+    description: "Las condiciones de viento y oleaje de Juan de Acosta generan aquí uno de los escenarios de kitesurf más exigentes del mundo. Pero antes de la adrenalina está el paisaje: agua que cambia de tono según la hora y la sal que brilla bajo el sol caribeño. Un accidente geográfico convertido en destino de alto rendimiento.",
+    lat: 10.871944, lng: -75.095556, image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp",
+    location: "Juan de Acosta, Atlántico.", hours: "9:00 a.m. - 6:00 p.m.", price: "Gratuito.",
     tags: ["Deportes náuticos", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 13, eventMonth: 0, startDay: 30, endDay: 31, category: "cultura", title: "Festival del Millo", 
-    description: "La flauta de millo sale a las calles de Juan de Acosta cada año para recordar el origen agrícola de este municipio. El baile, la música y los platos derivados del grano tejen una celebración donde la herencia campesina del Caribe no es pasado sino identidad activa que se renueva con cada edición.", 
-    lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp", 
-    location: "Juan de Acosta, Atlántico.", hours: "Anual.", price: "Gratuito.", 
+    id: 13, eventMonth: 0, startDay: 30, endDay: 31, category: "eventos", title: "Festival del Millo",
+    description: "La flauta de millo sale a las calles de Juan de Acosta cada año para recordar el origen agrícola de este municipio. El baile, la música y los platos derivados del grano tejen una celebración donde la herencia campesina del Caribe no es pasado sino identidad activa que se renueva con cada edición.",
+    lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp",
+    location: "Juan de Acosta, Atlántico.", hours: "Anual.", price: "Gratuito.",
     tags: ["Comida autóctona", "Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 14, category: "gastronomía", title: "Parador El Sombrero Vueltiao", 
-    description: "Una parada en la vía que es mucho más que descanso. El sombrero vueltiao gigante marca un punto donde artesanos y productores locales exhiben y venden su trabajo. Aquí la carretera se convierte en mercado vivo: comida típica, artesanías auténticas y el orgullo de quienes hacen de su oficio una identidad.", 
-    lat: 10.8805, lng: -75.0711, image: "assets/images/puntos/foto-principal-s.v.webp", 
-    location: "Juan de Acosta, Atlántico.", hours: "Variable.", price: "Gratuito.", 
+    id: 14, category: "gastronomía", title: "Parador El Sombrero Vueltiao",
+    description: "Una parada en la vía que es mucho más que descanso. El sombrero vueltiao gigante marca un punto donde artesanos y productores locales exhiben y venden su trabajo. Aquí la carretera se convierte en mercado vivo: comida típica, artesanías auténticas y el orgullo de quienes hacen de su oficio una identidad.",
+    lat: 10.8805, lng: -75.0711, image: "assets/images/puntos/foto-principal-s.v.webp",
+    location: "Juan de Acosta, Atlántico.", hours: "Variable.", price: "Gratuito.",
     tags: ["Artesanías", "Comida autóctona", "Vistas panorámicas"]
   },
   {
-    id: 15, category: "playas", title: "Playa de Puerto Velero", 
-    description: "La ensenada natural de Puerto Velero protege sus aguas del oleaje abierto, creando una calma que pocas playas del Caribe colombiano ofrecen. El entorno de manglares y la profundidad gradual la hacen refugio ideal para la vela y los deportes náuticos suaves en un ecosistema costero todavía bien conservado.", 
-    lat: 10.947222, lng: -75.036944, image: "assets/images/puntos/foto-principal-para-la-pagina-p.v.webp", 
-    location: "Tubará, Atlántico.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
+    id: 15, category: "playas", title: "Playa de Puerto Velero",
+    description: "La ensenada natural de Puerto Velero protege sus aguas del oleaje abierto, creando una calma que pocas playas del Caribe colombiano ofrecen. El entorno de manglares y la profundidad gradual la hacen refugio ideal para la vela y los deportes náuticos suaves en un ecosistema costero todavía bien conservado.",
+    lat: 10.947222, lng: -75.036944, image: "assets/images/puntos/foto-principal-para-la-pagina-p.v.webp",
+    location: "Tubará, Atlántico.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.",
     tags: ["Relax en la playa", "Deportes náuticos", "Comida autóctona"]
   },
   {
-    id: 16, category: "cultura", title: "Museo Arqueológico de Galapa", 
-    description: "Las cerámicas y piezas que custodian estas salas no son solo objetos: son los vestigios de los Mokaná y las culturas que habitaron este territorio antes de la conquista. Recorrer el museo es reconocer en cada pieza la continuidad de un pueblo cuya historia no empezó en 1492 sino siglos antes.", 
-    lat: 10.899722, lng: -74.886111, image: "assets/images/puntos/foto-principal-m.g.webp", 
-    location: "Galapa, Atlántico.", hours: "Variable.", price: "Gratuito.", 
+    id: 16, category: "cultura", title: "Museo Arqueológico de Galapa",
+    description: "Las cerámicas y piezas que custodian estas salas no son solo objetos: son los vestigios de los Mokaná y las culturas que habitaron este territorio antes de la conquista. Recorrer el museo es reconocer en cada pieza la continuidad de un pueblo cuya historia no empezó en 1492 sino siglos antes.",
+    lat: 10.899722, lng: -74.886111, image: "assets/images/puntos/foto-principal-m.g.webp",
+    location: "Galapa, Atlántico.", hours: "Variable.", price: "Gratuito.",
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 17, category: "ecoturismo", title: "Mariposario Butterfly Caribe", 
-    description: "Cientos de especies de mariposas viven y se reproducen en este jardín controlado en Galapa. Más que un atractivo visual, el mariposario educa sobre el papel crítico de los polinizadores en los ecosistemas tropicales. Una experiencia que pone al visitante en contacto directo con la fragilidad y la belleza de la vida natural.", 
-    lat: 10.875833, lng: -74.930833, image: "assets/images/puntos/foto-principal-m.a.webp", 
-    location: "Galapa, Atlántico.", hours: "9:30 a.m. - 2:30 p.m.", price: "Adultos: $25.000.", 
+    id: 17, category: "ecoturismo", title: "Mariposario Butterfly Caribe",
+    description: "Cientos de especies de mariposas viven y se reproducen en este jardín controlado en Galapa. Más que un atractivo visual, el mariposario educa sobre el papel crítico de los polinizadores en los ecosistemas tropicales. Una experiencia que pone al visitante en contacto directo con la fragilidad y la belleza de la vida natural.",
+    lat: 10.875833, lng: -74.930833, image: "assets/images/puntos/foto-principal-m.a.webp",
+    location: "Galapa, Atlántico.", hours: "9:30 a.m. - 2:30 p.m.", price: "Adultos: $25.000.",
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
-    id: 18, category: "ecoturismo", title: "Parque Biotemático Megua", 
-    description: "32 hectáreas de senderos, granjas interactivas y zonas de conservación en las afueras de Galapa. Megua es un aula viva donde se aprende sobre suelos, plantas nativas y ciclos naturales mientras se camina entre animales de la región. El contacto directo con los procesos del campo es el centro de la experiencia.", 
-    lat: 10.848611, lng: -74.896667, image: "assets/images/puntos/foto-principal-b.m.webp", 
-    location: "Galapa, Atlántico.", hours: "9:00 a.m. - 5:00 p.m.", price: "Adultos: $22.000.", 
+    id: 18, category: "ecoturismo", title: "Parque Biotemático Megua",
+    description: "32 hectáreas de senderos, granjas interactivas y zonas de conservación en las afueras de Galapa. Megua es un aula viva donde se aprende sobre suelos, plantas nativas y ciclos naturales mientras se camina entre animales de la región. El contacto directo con los procesos del campo es el centro de la experiencia.",
+    lat: 10.848611, lng: -74.896667, image: "assets/images/puntos/foto-principal-b.m.webp",
+    location: "Galapa, Atlántico.", hours: "9:00 a.m. - 5:00 p.m.", price: "Adultos: $22.000.",
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
-    id: 19, category: "cultura", title: "Museo Carlos Arturo Valdez", 
-    description: "Una colección privada donada a la comunidad de Malambo que preserva objetos de la vida cotidiana de la etnia Mokaná y vestigios del desarrollo histórico de este municipio a orillas del río. Cada pieza habla de una época y de una gente que construyó identidad en el cruce entre el agua y la tierra.", 
-    lat: 10.861667, lng: -74.773611, image: "assets/images/puntos/foto-principal-para-la-pagina-m.a.webp", 
-    location: "Malambo, Atlántico.", hours: "8:00 a.m. - 12:00 p.m.", price: "Gratuito.", 
+    id: 19, category: "cultura", title: "Museo Carlos Arturo Valdez",
+    description: "Una colección privada donada a la comunidad de Malambo que preserva objetos de la vida cotidiana de la etnia Mokaná y vestigios del desarrollo histórico de este municipio a orillas del río. Cada pieza habla de una época y de una gente que construyó identidad en el cruce entre el agua y la tierra.",
+    lat: 10.861667, lng: -74.773611, image: "assets/images/puntos/foto-principal-para-la-pagina-m.a.webp",
+    location: "Malambo, Atlántico.", hours: "8:00 a.m. - 12:00 p.m.", price: "Gratuito.",
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 20, category: "cultura", title: "Ventana al Mundo", 
-    description: "Placas de vidrio multicolor que se elevan en Barranquilla como símbolo de una ciudad que mira hacia afuera sin perder su raíz caribeña. El monumento más fotografiado del Atlántico es también una declaración de identidad: una ciudad que celebra su apertura al mundo desde la orilla del río que la define.", 
-    lat: 11.0325, lng: -74.831389, image: "assets/images/puntos/foto-principal-para-la-pagina-v.m.webp", 
-    location: "Barranquilla, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
+    id: 20, category: "cultura", title: "Ventana al Mundo",
+    description: "Placas de vidrio multicolor que se elevan en Barranquilla como símbolo de una ciudad que mira hacia afuera sin perder su raíz caribeña. El monumento más fotografiado del Atlántico es también una declaración de identidad: una ciudad que celebra su apertura al mundo desde la orilla del río que la define.",
+    lat: 11.0325, lng: -74.831389, image: "assets/images/puntos/foto-principal-para-la-pagina-v.m.webp",
+    location: "Barranquilla, Atlántico.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 21, category: "cultura", title: "Ventana de Campeones", 
-    description: "La Aleta de Tiburón no es solo homenaje al Junior de Barranquilla: es la materialización del vínculo entre una ciudad y su equipo. Cristal y acero que brillan con los colores de una pasión colectiva que trasciende el estadio y se instala en la rotonda de la Vía 40 como monumento a la identidad festiva barranquillera.", 
-    lat: 10.998319, lng: -74.772767, image: "assets/images/puntos/aleta-de-tiburon.webp", 
-    location: "Barranquilla, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
+    id: 21, category: "cultura", title: "Ventana de Campeones",
+    description: "La Aleta de Tiburón no es solo homenaje al Junior de Barranquilla: es la materialización del vínculo entre una ciudad y su equipo. Cristal y acero que brillan con los colores de una pasión colectiva que trasciende el estadio y se instala en la rotonda de la Vía 40 como monumento a la identidad festiva barranquillera.",
+    lat: 10.998319, lng: -74.772767, image: "assets/images/puntos/aleta-de-tiburon.webp",
+    location: "Barranquilla, Atlántico.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 22, category: "cultura", title: "Gran Malecón del Río", 
-    description: "Barranquilla le devolvió kilómetros de orilla al Magdalena y creó el espacio público más visitado del país. El Malecón no es solo un paseo: es la prueba de que una ciudad puede reconectarse con el río que la fundó. Cada sendero recuperado, cada zona verde, es territorio que dejó de darle la espalda al agua.", 
-    lat: 11.020017, lng: -74.793225, image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp", 
-    location: "Barranquilla, Atlántico.", hours: "5:00 a.m - 11:00 p.m.", price: "Gratuito.", 
+    id: 22, category: "cultura", title: "Gran Malecón del Río",
+    description: "Barranquilla le devolvió kilómetros de orilla al Magdalena y creó el espacio público más visitado del país. El Malecón no es solo un paseo: es la prueba de que una ciudad puede reconectarse con el río que la fundó. Cada sendero recuperado, cada zona verde, es territorio que dejó de darle la espalda al agua.",
+    lat: 11.020017, lng: -74.793225, image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp",
+    location: "Barranquilla, Atlántico.", hours: "5:00 a.m - 11:00 p.m.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Comida autóctona", "Relax en la playa"]
   },
   {
-    id: 23, category: "nauticos", title: "Playas de Puerto Mocho", 
-    description: "Donde el Magdalena y el mar Caribe se encuentran en Bocas de Cenizas, Puerto Mocho ofrece un fenómeno natural único: dos cuerpos de agua con colores y temperaturas distintas que se mezclan ante tus ojos. El tren turístico y los servicios renovados hacen accesible este ecosistema de desembocadura sin alterarlo.", 
-    lat: 11.045556, lng: -74.828889, image: "assets/images/puntos/mocho.webp", 
-    location: "Barranquilla, Atlántico.", hours: "Variable.", price: "Gratuito.", 
+    id: 23, category: "nauticos", title: "Playas de Puerto Mocho",
+    description: "Donde el Magdalena y el mar Caribe se encuentran en Bocas de Cenizas, Puerto Mocho ofrece un fenómeno natural único: dos cuerpos de agua con colores y temperaturas distintas que se mezclan ante tus ojos. El tren turístico y los servicios renovados hacen accesible este ecosistema de desembocadura sin alterarlo.",
+    lat: 11.045556, lng: -74.828889, image: "assets/images/puntos/mocho.webp",
+    location: "Barranquilla, Atlántico.", hours: "Variable.", price: "Gratuito.",
     tags: ["Relax en la playa", "Vistas panorámicas", "Deportes náuticos"]
   },
   {
-    id: 24, category: "ecoturismo", title: "Ecoparque Ciénaga de Mallorquín", 
-    description: "Pasarelas de madera sobre el agua que llevan al corazón del manglar sin dejar huella. La Ciénaga de Mallorquín es el pulmón verde de Barranquilla: un humedal costero en proceso de recuperación ecológica donde el avistamiento de aves y el silencio del ecosistema son la experiencia en sí misma.", 
-    lat: 11.028, lng: -74.778, image: "assets/images/puntos/ecoparque-mallorquin.webp", 
-    location: "Barranquilla, Atlántico.", hours: "6:00 a.m - 6:00 p.m.", price: "Gratuito.", 
+    id: 24, category: "ecoturismo", title: "Ecoparque Ciénaga de Mallorquín",
+    description: "Pasarelas de madera sobre el agua que llevan al corazón del manglar sin dejar huella. La Ciénaga de Mallorquín es el pulmón verde de Barranquilla: un humedal costero en proceso de recuperación ecológica donde el avistamiento de aves y el silencio del ecosistema son la experiencia en sí misma.",
+    lat: 11.028, lng: -74.778, image: "assets/images/puntos/ecoparque-mallorquin.webp",
+    location: "Barranquilla, Atlántico.", hours: "6:00 a.m - 6:00 p.m.", price: "Gratuito.",
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
-    id: 25, category: "ecoturismo", title: "Salinas de Galerazamba", 
-    description: "El color rosa del agua en Galerazamba no es un filtro: es el resultado de una microalga que prospera en la alta concentración de sal. Un fenómeno geológico y biológico que convierte este paisaje en algo casi irreal. Las salinas son también historia minera viva y sustento económico de la comunidad de Santa Catalina.", 
-    lat: 10.794167, lng: -75.253333, image: "assets/images/puntos/foto-principal-s.g.webp", 
-    location: "Santa Catalina, Bolívar.", hours: "Variable.", price: "Gratuito.", 
+    id: 25, category: "ecoturismo", title: "Salinas de Galerazamba",
+    description: "El color rosa del agua en Galerazamba no es un filtro: es el resultado de una microalga que prospera en la alta concentración de sal. Un fenómeno geológico y biológico que convierte este paisaje en algo casi irreal. Las salinas son también historia minera viva y sustento económico de la comunidad de Santa Catalina.",
+    lat: 10.794167, lng: -75.253333, image: "assets/images/puntos/foto-principal-s.g.webp",
+    location: "Santa Catalina, Bolívar.", hours: "Variable.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 26, category: "playas", title: "Playas del Country", 
-    description: "Oleaje moderado, servicios de calidad y una ubicación cercana a las zonas residenciales de Puerto Colombia. Las playas del Country ofrecen condiciones naturales propicias para los deportes náuticos suaves en un litoral bien conservado donde el mar caribeño llega con temperatura cálida y color intenso.", 
-    lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.s.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
+    id: 26, category: "playas", title: "Playas del Country",
+    description: "Oleaje moderado, servicios de calidad y una ubicación cercana a las zonas residenciales de Puerto Colombia. Las playas del Country ofrecen condiciones naturales propicias para los deportes náuticos suaves en un litoral bien conservado donde el mar caribeño llega con temperatura cálida y color intenso.",
+    lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.s.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.",
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
-    id: 27, category: "playas", title: "Playa de Caño Dulce", 
-    description: "Poca profundidad, olas suaves y un entorno costero que conserva su naturalidad. Caño Dulce, en Tubará, es la playa que el Caribe ofrece a las familias que buscan baño tranquilo, comida de mar fresca y un litoral sin aglomeración. El entorno natural conservado es su mayor atractivo y su rasgo más frágil.", 
-    lat: 10.939722, lng: -75.027778, image: "assets/images/puntos/foto-principal-para-la-pagina-c.d.webp", 
-    location: "Tubará, Atlántico.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
+    id: 27, category: "playas", title: "Playa de Caño Dulce",
+    description: "Poca profundidad, olas suaves y un entorno costero que conserva su naturalidad. Caño Dulce, en Tubará, es la playa que el Caribe ofrece a las familias que buscan baño tranquilo, comida de mar fresca y un litoral sin aglomeración. El entorno natural conservado es su mayor atractivo y su rasgo más frágil.",
+    lat: 10.939722, lng: -75.027778, image: "assets/images/puntos/foto-principal-para-la-pagina-c.d.webp",
+    location: "Tubará, Atlántico.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.",
     tags: ["Relax en la playa", "Comida autóctona"]
   },
   {
-    id: 28, category: "ecoturismo", title: "Parque Mirador Tubará", 
-    description: "Desde lo más alto de Tubará, una vista de 360 grados revela la geografía completa del Atlántico: el Mar Caribe, las montañas del departamento y el relieve ondulado del territorio Mokaná. El viento que siempre sopla aquí es el mismo que ha moldeado este paisaje durante siglos. Un mirador que muestra el territorio tal como es.", 
-    lat: 10.871111, lng: -74.974444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp", 
-    location: "Tubará, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    id: 28, category: "ecoturismo", title: "Parque Mirador Tubará",
+    description: "Desde lo más alto de Tubará, una vista de 360 grados revela la geografía completa del Atlántico: el Mar Caribe, las montañas del departamento y el relieve ondulado del territorio Mokaná. El viento que siempre sopla aquí es el mismo que ha moldeado este paisaje durante siglos. Un mirador que muestra el territorio tal como es.",
+    lat: 10.871111, lng: -74.974444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp",
+    location: "Tubará, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Experiencias sensoriales", "Avistamiento de aves"]
   },
   {
-    id: 29, category: "otros", title: "Aeropuerto Ernesto Cortissoz", 
-    description: "El principal enlace aéreo del Atlántico que conecta a Barranquilla y su área metropolitana con el mundo. Con instalaciones modernizadas, ofrece una experiencia de llegada ágil y cómoda al corazón de la región. Su nombre honra a un pionero de la aviación comercial en América, reflejando el espíritu emprendedor y la conectividad que siempre han definido a esta zona del país.", 
-    lat: 10.886536, lng: -74.776478, image: "assets/images/puntos/aeropuerto-barranquilla.webp", 
-    location: "Barranquilla, Atlántico.", hours: "24h.", price: "N/A.", 
+    id: 29, category: "otros", title: "Aeropuerto Ernesto Cortissoz",
+    description: "El principal enlace aéreo del Atlántico que conecta a Barranquilla y su área metropolitana con el mundo. Con instalaciones modernizadas, ofrece una experiencia de llegada ágil y cómoda al corazón de la región. Su nombre honra a un pionero de la aviación comercial en América, reflejando el espíritu emprendedor y la conectividad que siempre han definido a esta zona del país.",
+    lat: 10.886536, lng: -74.776478, image: "assets/images/puntos/aeropuerto-barranquilla.webp",
+    location: "Barranquilla, Atlántico.", hours: "24h.", price: "N/A.",
     tags: ["Comida autóctona"]
   },
   {
-    id: 30, eventMonth: 10, startDay: 9, endDay: 16, category: "eventos", title: "Fiestas novembrinas de Cartagena", 
-    description: "Una semana en noviembre en que Cartagena conmemora su independencia con desfiles, comparsas y música folclórica que llena cada plaza y callejón. Las Fiestas novembrinas son la celebración de la identidad africana y caribeña de la ciudad amurallada, un patrimonio vivo que la historia no ha podido contener.", 
-    lat: 10.421903, lng: -75.550075, image: "assets/images/puntos/fiestas-novembrinas-de-cartagena.webp", 
-    location: "Cartagena, Bolívar.", hours: "Noviembre.", price: "Gratuito.", 
+    id: 30, eventMonth: 10, startDay: 9, endDay: 16, category: "eventos", title: "Fiestas novembrinas de Cartagena",
+    description: "Una semana en noviembre en que Cartagena conmemora su independencia con desfiles, comparsas y música folclórica que llena cada plaza y callejón. Las Fiestas novembrinas son la celebración de la identidad africana y caribeña de la ciudad amurallada, un patrimonio vivo que la historia no ha podido contener.",
+    lat: 10.421903, lng: -75.550075, image: "assets/images/puntos/fiestas-novembrinas-de-cartagena.webp",
+    location: "Cartagena, Bolívar.", hours: "Noviembre.", price: "Gratuito.",
     tags: ["Experiencias sensoriales", "Artesanías", "Comida autóctona"]
   },
   {
-    id: 31, category: "cultura", title: "Museo del Carnaval", 
-    description: "El Carnaval de Barranquilla vive aquí los 365 días del año. Vestidos reales de reinas, secretos de las danzas tradicionales y la historia de un patrimonio oral e inmaterial de la humanidad. Recorrer el museo es entender por qué el Carnaval no es solo cuatro días de fiesta sino el ADN festivo de toda una ciudad.", 
-    lat: 10.992789, lng: -74.787797, image: "assets/images/puntos/museo-del-carnaval-de-barranquilla.webp", 
-    location: "Barranquilla, Atlántico.", hours: "Variable.", price: "Gratuito.", 
+    id: 31, category: "cultura", title: "Museo del Carnaval",
+    description: "El Carnaval de Barranquilla vive aquí los 365 días del año. Vestidos reales de reinas, secretos de las danzas tradicionales y la historia de un patrimonio oral e inmaterial de la humanidad. Recorrer el museo es entender por qué el Carnaval no es solo cuatro días de fiesta sino el ADN festivo de toda una ciudad.",
+    lat: 10.992789, lng: -74.787797, image: "assets/images/puntos/museo-del-carnaval-de-barranquilla.webp",
+    location: "Barranquilla, Atlántico.", hours: "Variable.", price: "Gratuito.",
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 32, category: "otros", title: "Aeropuerto Internacional Rafael Núñez", 
-    description: "Ubicado en el corazón de Cartagena, el Aeropuerto Internacional Rafael Núñez es mucho más que una terminal aérea; es el punto donde comienza la magia para millones de viajeros cada año. Se destaca por su ubicación privilegiada, a solo minutos del Centro Histórico y la zona turística, facilitando una transición inmediata hacia la historia y el mar. Su diseño eficiente y su conectividad internacional lo consolidan como un motor fundamental del turismo sostenible en la región.", 
-    lat: 10.446314, lng: -75.516453, image: "assets/images/puntos/aeropuerto-internacional-rafael-nunez.webp", 
-    location: "Cartagena, Bolívar.", hours: "Abierto todo el tiempo.", price: "N/A.", 
+    id: 32, category: "otros", title: "Aeropuerto Internacional Rafael Núñez",
+    description: "Ubicado en el corazón de Cartagena, el Aeropuerto Internacional Rafael Núñez es mucho más que una terminal aérea; es el punto donde comienza la magia para millones de viajeros cada año. Se destaca por su ubicación privilegiada, a solo minutos del Centro Histórico y la zona turística, facilitando una transición inmediata hacia la historia y el mar. Su diseño eficiente y su conectividad internacional lo consolidan como un motor fundamental del turismo sostenible en la región.",
+    lat: 10.446314, lng: -75.516453, image: "assets/images/puntos/aeropuerto-internacional-rafael-nunez.webp",
+    location: "Cartagena, Bolívar.", hours: "Abierto todo el tiempo.", price: "N/A.",
     tags: ["Artesanías"]
   },
   {
-    id: 33, category: "ecoturismo", title: "La Casa Voltiá", 
-    description: "Una construcción que desafía la lógica en Juan de Acosta: todo está de cabeza, la gravedad parece invertida y la fotografía creativa se convierte en juego colectivo. La Casa Voltiá es una iniciativa local que hace de la curiosidad un motor económico para la comunidad y convierte la carretera en destino.", 
-    lat: 10.834994, lng: -75.141247, image: "assets/images/puntos/la-casa-voltia.webp", 
-    location: "Juan de Acosta, Atlántico.", hours: "9:00 am - 6:00 pm", price: "Gratuito.", 
+    id: 33, category: "ecoturismo", title: "La Casa Voltiá",
+    description: "Una construcción que desafía la lógica en Juan de Acosta: todo está de cabeza, la gravedad parece invertida y la fotografía creativa se convierte en juego colectivo. La Casa Voltiá es una iniciativa local que hace de la curiosidad un motor económico para la comunidad y convierte la carretera en destino.",
+    lat: 10.834994, lng: -75.141247, image: "assets/images/puntos/la-casa-voltia.webp",
+    location: "Juan de Acosta, Atlántico.", hours: "9:00 am - 6:00 pm", price: "Gratuito.",
     tags: ["Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
-    id: 34, category: "playas", title: "Manzanillo del Mar", 
-    description: "Una comunidad de pescadores que conserva el ritmo de la vida costera sin ceder al turismo masivo. En Manzanillo del Mar, el visitante llega a un entorno donde la gente vive del mar y lo conoce profundo. La comida fresca, las caminatas por la costa y la escala íntima del lugar son consecuencia de esa vida, no un decorado.", 
-    lat: 10.515992, lng: -75.499278, image: "assets/images/puntos/manzanillo-del-mar.webp", 
-    location: "Cartagena, Bolívar.", hours: "Variable.", price: "Gratuito.", 
+    id: 34, category: "playas", title: "Manzanillo del Mar",
+    description: "Una comunidad de pescadores que conserva el ritmo de la vida costera sin ceder al turismo masivo. En Manzanillo del Mar, el visitante llega a un entorno donde la gente vive del mar y lo conoce profundo. La comida fresca, las caminatas por la costa y la escala íntima del lugar son consecuencia de esa vida, no un decorado.",
+    lat: 10.515992, lng: -75.499278, image: "assets/images/puntos/manzanillo-del-mar.webp",
+    location: "Cartagena, Bolívar.", hours: "Variable.", price: "Gratuito.",
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
-    id: 35, category: "infraestructura", title: "Viaducto Gran Manglar", 
-    description: "Un viaducto premiado internacionalmente por permitir que el ecosistema de manglar respire por debajo de la carretera. El agua fluye, las raíces crecen y las aves anidan mientras el tráfico pasa por encima. Conducir sobre él es ver que la infraestructura puede coexistir con la naturaleza sin dominarla.", 
-    lat: 10.476022, lng: -75.488756, image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp", 
-    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
+    id: 35, category: "infraestructura", title: "Viaducto Gran Manglar",
+    description: "Un viaducto premiado internacionalmente por permitir que el ecosistema de manglar respire por debajo de la carretera. El agua fluye, las raíces crecen y las aves anidan mientras el tráfico pasa por encima. Conducir sobre él es ver que la infraestructura puede coexistir con la naturaleza sin dominarla.",
+    lat: 10.476022, lng: -75.488756, image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp",
+    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
-    id: 36, category: "ecoturismo", title: "Ciénaga de la Virgen", 
-    description: "Humedal estratégico al norte de Cartagena, hogar de manglares, aves migratorias y peces que alimentan a las comunidades de sus orillas. Los recorridos en barca guiados por pescadores locales permiten entrar al ecosistema con respeto, aprendiendo de quienes conocen cada canal y cada especie por nombre.", 
-    lat: 10.460533, lng: -75.494847, image: "assets/images/puntos/cienaga-de-la-virgen.webp", 
-    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
+    id: 36, category: "ecoturismo", title: "Ciénaga de la Virgen",
+    description: "Humedal estratégico al norte de Cartagena, hogar de manglares, aves migratorias y peces que alimentan a las comunidades de sus orillas. Los recorridos en barca guiados por pescadores locales permiten entrar al ecosistema con respeto, aprendiendo de quienes conocen cada canal y cada especie por nombre.",
+    lat: 10.460533, lng: -75.494847, image: "assets/images/puntos/cienaga-de-la-virgen.webp",
+    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
-    id: 37, category: "playas", title: "Playa de la Boquilla", 
-    description: "El manglar y el mar se abrazan en La Boquilla mientras los tambores marcan el compás de una comunidad afrodescendiente que vive de los dos. Los recorridos en canoa por los túneles de manglar son guiados por locales que conocen este ecosistema desde niños. Naturaleza y cultura que no se pueden entender por separado.", 
-    lat: 10.4621, lng: -75.504458, image: "assets/images/puntos/playa-de-la-boquilla.webp", 
-    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
+    id: 37, category: "playas", title: "Playa de la Boquilla",
+    description: "El manglar y el mar se abrazan en La Boquilla mientras los tambores marcan el compás de una comunidad afrodescendiente que vive de los dos. Los recorridos en canoa por los túneles de manglar son guiados por locales que conocen este ecosistema desde niños. Naturaleza y cultura que no se pueden entender por separado.",
+    lat: 10.4621, lng: -75.504458, image: "assets/images/puntos/playa-de-la-boquilla.webp",
+    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Relax en la playa", "Comida autóctona", "Deportes náuticos"]
   },
   {
-    id: 38, eventMonth: 5, startDay: 1, endDay: 3, category: "eventos", title: "Festival Enyúcate", 
-    description: "La yuca toma el centro de Malambo para celebrar la seguridad alimentaria y la cultura campesina del Atlántico. Cocineros tradicionales, productores locales y música de gaita comparten espacio en una feria donde probar un enyucado es conectarse con la tierra y con el conocimiento agrícola que sostiene a la región.", 
-    lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/enyucate.webp", 
-    location: "Malambo, Atlántico.", hours: "Variable.", price: "Gratuito.", 
+    id: 38, eventMonth: 5, startDay: 1, endDay: 3, category: "eventos", title: "Festival Enyúcate",
+    description: "La yuca toma el centro de Malambo para celebrar la seguridad alimentaria y la cultura campesina del Atlántico. Cocineros tradicionales, productores locales y música de gaita comparten espacio en una feria donde probar un enyucado es conectarse con la tierra y con el conocimiento agrícola que sostiene a la región.",
+    lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/enyucate.webp",
+    location: "Malambo, Atlántico.", hours: "Variable.", price: "Gratuito.",
     tags: ["Comida autóctona", "Artesanías"]
   },
   {
-    id: 39, category: "ecoturismo", title: "Ciénaga del Totumo", 
-    description: "Humedal de agua dulce que coexiste con el Volcán del Totumo en Santa Catalina. Sus aguas tranquilas reflejan manglares y cielo abierto, y sus orillas son hábitat de aves y peces que los pescadores artesanales conocen bien. Los paseos en lancha muestran la escala real de un ecosistema hídrico todavía en equilibrio.", 
-    lat: 10.738397, lng: -75.260689, image: "assets/images/puntos/cienaga-totumo.webp", 
-    location: "Santa Catalina, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
+    id: 39, category: "ecoturismo", title: "Ciénaga del Totumo",
+    description: "Humedal de agua dulce que coexiste con el Volcán del Totumo en Santa Catalina. Sus aguas tranquilas reflejan manglares y cielo abierto, y sus orillas son hábitat de aves y peces que los pescadores artesanales conocen bien. Los paseos en lancha muestran la escala real de un ecosistema hídrico todavía en equilibrio.",
+    lat: 10.738397, lng: -75.260689, image: "assets/images/puntos/cienaga-totumo.webp",
+    location: "Santa Catalina, Bolívar.", hours: "Abierto.", price: "Gratuito.",
     tags: ["Avistamiento de aves", "Vistas panorámicas"]
   },
   {
-    id: 40, eventMonth: 1, startDay: 16, endDay: 16, category: "eventos", title: "Festival de la Palma Amarga", 
-    description: "En Piojó, la fibra de la palma amarga se convierte en artesanía, en techo y en identidad. El festival celebra el conocimiento ancestral de tejedores y artesanos que transforman este recurso natural en objetos que cuentan la historia del territorio. Música de viento y muestras artesanales que vinculan cultura y tierra.", 
-    lat: 10.75, lng: -75.108, image: "assets/images/puntos/Festival de la Palma Amarga.webp", 
-    location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
-    tags: ["Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
+    id: 40, eventMonth: 1, startDay: 16, endDay: 16, category: "eventos", title: "Festival de la Palma Amarga",
+    description: "En Piojó, la fibra de la palma amarga se convierte en artesanía, en techo y en identidad. El festival celebra el conocimiento ancestral de tejedores y artesanos que transforman este recurso natural en objetos que cuentan la historia del territorio. Música de viento y muestras artesanales que vinculan cultura y tierra.",
+    lat: 10.75, lng: -75.108, image: "assets/images/puntos/Festival de la Palma Amarga.webp",
+    location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
+    tags: ["Turismo cultural", "desfiles y comparsas", "música y danza", "concursos tradicionales", "gastronomía", "comercio local."]
   },
   {
-    id: 41, category: "ecoturismo", title: "Calvaduria Ecoturismo y Camping - Asociación agroecológica Nueva Generación de Piojó", 
-    description: "Pozos naturales, senderos entre montañas suaves y una asociación agroecológica que gestiona el territorio con criterio. En Calvaduria el camping, el agroturismo y la naturaleza no son productos empaquetados: son la vida cotidiana de una comunidad de Piojó que aprendió a cuidar el entorno como condición de su propio futuro.", 
-    lat: 10.751, lng: -75.109, image: "assets/images/puntos/Calvaduria Ecoturismo y Camping.webp", 
-    location: "Piojó, Atlántico.", hours: "Abierto todo el tiempo.", price: "Pasa día: adultos:$15.000 mil cop. Niños: $7.000 mil cop.", 
-    tags: ["Agroturismo","camping","pozos naturales","senderismo","rutas ecológicas","hospedaje."]
+    id: 41, category: "ecoturismo", title: "Calvaduria Ecoturismo y Camping - Asociación agroecológica Nueva Generación de Piojó",
+    description: "Pozos naturales, senderos entre montañas suaves y una asociación agroecológica que gestiona el territorio con criterio. En Calvaduria el camping, el agroturismo y la naturaleza no son productos empaquetados: son la vida cotidiana de una comunidad de Piojó que aprendió a cuidar el entorno como condición de su propio futuro.",
+    lat: 10.751, lng: -75.109, image: "assets/images/puntos/Calvaduria Ecoturismo y Camping.webp",
+    location: "Piojó, Atlántico.", hours: "Abierto todo el tiempo.", price: "Pasa día: adultos:$15.000 mil cop. Niños: $7.000 mil cop.",
+    tags: ["Agroturismo", "camping", "pozos naturales", "senderismo", "rutas ecológicas", "hospedaje."]
   },
   {
-    id: 42, category: "cultura", title: "Santuario Mariano Nuestra Señora del Carmen", 
-    description: "El único santuario mariano del Atlántico abre sus puertas los 365 días del año en Puerto Colombia. Su arquitectura tradicional conserva el estilo de una devoción que ha acompañado a la comunidad porteña por generaciones. Un espacio de fe que es también patrimonio cultural y punto de encuentro entre historia y espiritualidad caribeña.", 
-    lat: 10.988, lng: -74.959, image: "assets/images/puntos/Santuario Mariano Nuestra Señora del Carmen.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
-    tags: ["Religiosos","comunitarios y culturales."]
+    id: 42, category: "cultura", title: "Santuario Mariano Nuestra Señora del Carmen",
+    description: "El único santuario mariano del Atlántico abre sus puertas los 365 días del año en Puerto Colombia. Su arquitectura tradicional conserva el estilo de una devoción que ha acompañado a la comunidad porteña por generaciones. Un espacio de fe que es también patrimonio cultural y punto de encuentro entre historia y espiritualidad caribeña.",
+    lat: 10.988, lng: -74.959, image: "assets/images/puntos/Santuario Mariano Nuestra Señora del Carmen.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.",
+    tags: ["Religiosos", "comunitarios y culturales."]
   },
   {
-    id: 43, eventMonth: 0, startDay: 29, endDay: 31, category: "eventos", title: "Sirenato de la cumbia", 
-    description: "Desde 1996, Puerto Colombia se convierte cada año en el escenario donde la cumbia se celebra a sí misma. Tambores, flautas y pasos ancestrales renuevan el pacto de cada generación con el ritmo que define al Caribe colombiano. No es un festival de entretenimiento: es la ceremonia viva de una memoria musical.", 
-    lat: 10.989, lng: -74.955, image: "assets/images/puntos/Sirenato de la cumbia.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
-    tags: ["Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
+    id: 43, eventMonth: 0, startDay: 29, endDay: 31, category: "eventos", title: "Sirenato de la cumbia",
+    description: "Desde 1996, Puerto Colombia se convierte cada año en el escenario donde la cumbia se celebra a sí misma. Tambores, flautas y pasos ancestrales renuevan el pacto de cada generación con el ritmo que define al Caribe colombiano. No es un festival de entretenimiento: es la ceremonia viva de una memoria musical.",
+    lat: 10.989, lng: -74.955, image: "assets/images/puntos/Sirenato de la cumbia.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
+    tags: ["Concurso de reinas en distintas categorías", "presentaciones de música y danza de cumbia", "desfiles culturales", "comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
   },
   {
-    id: 44, eventMonth: 5, startDay: 1, endDay: 3, category: "eventos", title: "Festival del Mar y del Turismo", 
-    description: "Desde 2018, Puerto Colombia reúne a los municipios del Atlántico para celebrar la vocación costera del departamento. Desfiles, muestras culturales y la elección de la capitanía de los mares construyen cada año un himno colectivo al mar, al liderazgo y al orgullo de una región que vive de cara al Caribe.", 
-    lat: 10.987, lng: -74.958, image: "assets/images/puntos/Festival del Mar y del Turismo.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
-    tags: ["Desfiles","presentaciones culturales","feria gastronómica y actividades recreativas."]
+    id: 44, eventMonth: 5, startDay: 1, endDay: 3, category: "eventos", title: "Festival del Mar y del Turismo",
+    description: "Desde 2018, Puerto Colombia reúne a los municipios del Atlántico para celebrar la vocación costera del departamento. Desfiles, muestras culturales y la elección de la capitanía de los mares construyen cada año un himno colectivo al mar, al liderazgo y al orgullo de una región que vive de cara al Caribe.",
+    lat: 10.987, lng: -74.958, image: "assets/images/puntos/Festival del Mar y del Turismo.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
+    tags: ["Desfiles", "presentaciones culturales", "feria gastronómica y actividades recreativas."]
   },
   {
-    id: 45, category: "cultura", title: "Parroquia San José de Tubará", 
-    description: "Construida en 1833 sobre un antiguo asentamiento Mokaná, esta parroquia fue declarada patrimonio arquitectónico del Atlántico en 1996. Sus muros coloniales guardan la memoria de una comunidad indígena que no desapareció sino que adaptó su fe y su identidad a la historia que llegó desde afuera.", 
-    lat: 10.871, lng: -74.974, image: "assets/images/puntos/Parroquia San José de Tubará.webp", 
-    location: "Tubará, Atlántico.", hours: "Horario de eucaristías: fines de semana y festivos en la mañana y en la tarde.", price: "Gratuito.", 
-    tags: ["Celebraciones religiosas (misas","bautizos","matrimonios","confirmaciones)","atención espiritual y confesiones","actividades comunitarias y pastorales."]
+    id: 45, category: "cultura", title: "Parroquia San José de Tubará",
+    description: "Construida en 1833 sobre un antiguo asentamiento Mokaná, esta parroquia fue declarada patrimonio arquitectónico del Atlántico en 1996. Sus muros coloniales guardan la memoria de una comunidad indígena que no desapareció sino que adaptó su fe y su identidad a la historia que llegó desde afuera.",
+    lat: 10.871, lng: -74.974, image: "assets/images/puntos/Parroquia San José de Tubará.webp",
+    location: "Tubará, Atlántico.", hours: "Horario de eucaristías: fines de semana y festivos en la mañana y en la tarde.", price: "Gratuito.",
+    tags: ["Celebraciones religiosas (misas", "bautizos", "matrimonios", "confirmaciones)", "atención espiritual y confesiones", "actividades comunitarias y pastorales."]
   },
   {
-    id: 46, eventMonth: 1, startDay: 14, endDay: 15, category: "eventos", title: "Festival de la Yuca y el Totumo", 
-    description: "Más de 20 años de existencia y un origen Mokaná en el mirador de Tubará. Este festival celebra cada domingo de carnaval los cultivos y las artesanías que los pueblos originarios del Atlántico han producido por siglos. La yuca y el totumo no son solo productos: son el vínculo vivo entre la tierra y la identidad del territorio.", 
-    lat: 10.872, lng: -74.973, image: "assets/images/puntos/Festival de la Yuca y el Totumo.webp", 
-    location: "Tubará, Atlántico.", hours: "", price: "", 
+    id: 46, eventMonth: 1, startDay: 14, endDay: 15, category: "eventos", title: "Festival de la Yuca y el Totumo",
+    description: "Más de 20 años de existencia y un origen Mokaná en el mirador de Tubará. Este festival celebra cada domingo de carnaval los cultivos y las artesanías que los pueblos originarios del Atlántico han producido por siglos. La yuca y el totumo no son solo productos: son el vínculo vivo entre la tierra y la identidad del territorio.",
+    lat: 10.872, lng: -74.973, image: "assets/images/puntos/Festival de la Yuca y el Totumo.webp",
+    location: "Tubará, Atlántico.", hours: "", price: "",
     tags: []
   },
   {
-    id: 47, eventMonth: 10, startDay: 21, endDay: 23, category: "eventos", title: "Festival de la Máscara y el Bejuco", 
-    description: "La plaza de Galapa se convierte en escenario de creadores que trabajan el bejuco, la madera y el papel maché con técnicas de generación en generación. El festival no es solo exhibición: es el espacio donde los oficios artesanales de Galapa se afirman como patrimonio vivo frente a la homogeneización cultural.", 
-    lat: 10.899, lng: -74.886, image: "assets/images/puntos/Festival de la Máscara y el Bejuco.webp", 
-    location: "Galapa, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
-    tags: ["Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
+    id: 47, eventMonth: 10, startDay: 21, endDay: 23, category: "eventos", title: "Festival de la Máscara y el Bejuco",
+    description: "La plaza de Galapa se convierte en escenario de creadores que trabajan el bejuco, la madera y el papel maché con técnicas de generación en generación. El festival no es solo exhibición: es el espacio donde los oficios artesanales de Galapa se afirman como patrimonio vivo frente a la homogeneización cultural.",
+    lat: 10.899, lng: -74.886, image: "assets/images/puntos/Festival de la Máscara y el Bejuco.webp",
+    location: "Galapa, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
+    tags: ["Exhibición artesanal (bejuco", "talla en madera y papel maché)", "venta de artesanías", "talleres demostrativos", "interacción con artesanos", "presentaciones culturales."]
   },
   {
-    id: 48, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Carnaval de Galapa", 
-    description: "Ocho a diez días en que Galapa celebra su identidad con tambores, comparsas y danzas que llevan décadas narrando la historia del municipio. Cada disfraz es una memoria, cada desfile una afirmación de raíces. El Carnaval de Galapa resiste en el tiempo porque la comunidad lo construye desde adentro, no para afuera.", 
-    lat: 10.898, lng: -74.885, image: "assets/images/puntos/Carnaval de Galapa.webp", 
-    location: "Galapa, Atlántico.", hours: "El evento dura entre 8 y 10 días.", price: "Gratuito.", 
-    tags: ["Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
+    id: 48, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Carnaval de Galapa",
+    description: "Ocho a diez días en que Galapa celebra su identidad con tambores, comparsas y danzas que llevan décadas narrando la historia del municipio. Cada disfraz es una memoria, cada desfile una afirmación de raíces. El Carnaval de Galapa resiste en el tiempo porque la comunidad lo construye desde adentro, no para afuera.",
+    lat: 10.898, lng: -74.885, image: "assets/images/puntos/Carnaval de Galapa.webp",
+    location: "Galapa, Atlántico.", hours: "El evento dura entre 8 y 10 días.", price: "Gratuito.",
+    tags: ["Desfiles de comparsas y danzas tradicionales", "presentaciones folclóricas y musicales", "exhibición de disfraces típicos y personajes", "venta de artesanías y productos locales", "gastronomía típica en puestos y ferias", "actividades recreativas y familiares."]
   },
   {
-    id: 49, eventMonth: 6, startDay: 17, endDay: 19, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe", 
-    description: "Un espacio de transmisión oral donde decimeros y bailadores de Magdalena, Córdoba, Sucre y el Atlántico se encuentran en Malambo para preservar la poesía y el movimiento del Caribe. Más que competencia, el festival es un acto de salvaguardia patrimonial que pone en diálogo tradiciones que el tiempo podría silenciar.", 
-    lat: 10.862, lng: -74.774, image: "assets/images/puntos/Festival de Decimeros y Bailadores de Cumbia.webp", 
-    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
+    id: 49, eventMonth: 6, startDay: 17, endDay: 19, category: "eventos", title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe",
+    description: "Un espacio de transmisión oral donde decimeros y bailadores de Magdalena, Córdoba, Sucre y el Atlántico se encuentran en Malambo para preservar la poesía y el movimiento del Caribe. Más que competencia, el festival es un acto de salvaguardia patrimonial que pone en diálogo tradiciones que el tiempo podría silenciar.",
+    lat: 10.862, lng: -74.774, image: "assets/images/puntos/Festival de Decimeros y Bailadores de Cumbia.webp",
+    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
     tags: []
   },
   {
-    id: 50, eventMonth: 6, startDay: 17, endDay: 19, category: "eventos", title: "Festival regional de Bandas Tradicionales", 
-    description: "Porros, cumbias y fandangos interpretados por agrupaciones de viento y percusión que se reúnen en Malambo para demostrar que la música tradicional del Caribe no es pasado. El festival es encuentro y fortalecimiento: el talento local se mide y se celebra en un espacio que le da valor al patrimonio musical de la región.", 
-    lat: 10.861, lng: -74.773, image: "assets/images/puntos/Festival regional de Bandas Tradicionales.webp", 
-    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
+    id: 50, eventMonth: 6, startDay: 17, endDay: 19, category: "eventos", title: "Festival regional de Bandas Tradicionales",
+    description: "Porros, cumbias y fandangos interpretados por agrupaciones de viento y percusión que se reúnen en Malambo para demostrar que la música tradicional del Caribe no es pasado. El festival es encuentro y fortalecimiento: el talento local se mide y se celebra en un espacio que le da valor al patrimonio musical de la región.",
+    lat: 10.861, lng: -74.773, image: "assets/images/puntos/Festival regional de Bandas Tradicionales.webp",
+    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
     tags: []
   },
   {
-    id: 51, eventMonth: 6, startDay: 19, endDay: 22, category: "eventos", title: "Fiestas de Santa María Magdalena", 
-    description: "Cuatro días de procesiones, muestras folclóricas y celebraciones deportivas que reúnen a Malambo en torno a su patrona. Las fiestas de Santa María Magdalena no son solo devoción: son el momento del año en que la comunidad se reconoce a sí misma, celebra su herencia y renueva los lazos que la definen como pueblo.", 
-    lat: 10.86, lng: -74.772, image: "assets/images/puntos/Fiestas de Santa María Magdalena.webp", 
-    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
-    tags: ["Ofrece servicios de actividades culturales","eventos religiosos","presentaciones artísticas","ferias gastronómicas","competencias deportivas y espacios de recreación familiar."]
+    id: 51, eventMonth: 6, startDay: 19, endDay: 22, category: "eventos", title: "Fiestas de Santa María Magdalena",
+    description: "Cuatro días de procesiones, muestras folclóricas y celebraciones deportivas que reúnen a Malambo en torno a su patrona. Las fiestas de Santa María Magdalena no son solo devoción: son el momento del año en que la comunidad se reconoce a sí misma, celebra su herencia y renueva los lazos que la definen como pueblo.",
+    lat: 10.86, lng: -74.772, image: "assets/images/puntos/Fiestas de Santa María Magdalena.webp",
+    location: "Malambo, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
+    tags: ["Ofrece servicios de actividades culturales", "eventos religiosos", "presentaciones artísticas", "ferias gastronómicas", "competencias deportivas y espacios de recreación familiar."]
   },
   {
-    id: 52, category: "cultura", title: "Parque de La Cultura - Asociación Cultural y Artesanal Raíces de Malambo", 
-    description: "Un parque que rinde homenaje a la tradición alfarera que durante siglos ha sido el sustento y la identidad de Malambo. La Asociación Raíces gestiona este espacio como punto de encuentro entre el pasado indígena y el presente comunitario, donde el barro y las manos de los artesanos cuentan la historia que los libros no alcanzaron.", 
-    lat: 10.863, lng: -74.775, image: "assets/images/puntos/Parque de La Cultura.webp", 
-    location: "Malambo, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
-    tags: ["Zonas verdes","áreas de esparcimiento","juegos para niños."]
+    id: 52, category: "cultura", title: "Parque de La Cultura - Asociación Cultural y Artesanal Raíces de Malambo",
+    description: "Un parque que rinde homenaje a la tradición alfarera que durante siglos ha sido el sustento y la identidad de Malambo. La Asociación Raíces gestiona este espacio como punto de encuentro entre el pasado indígena y el presente comunitario, donde el barro y las manos de los artesanos cuentan la historia que los libros no alcanzaron.",
+    lat: 10.863, lng: -74.775, image: "assets/images/puntos/Parque de La Cultura.webp",
+    location: "Malambo, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.",
+    tags: ["Zonas verdes", "áreas de esparcimiento", "juegos para niños."]
   },
   {
-    id: 53, category: "ecoturismo", title: "Parque Lineal de Crespo", 
-    description: "Diseñado para frenar la erosión costera que el Caribe avanzaba sin pausa, el Parque Lineal de Crespo es hoy un corredor verde que reconcilia a Cartagena con su mar. Cada árbol plantado, cada sendero recuperado, es una respuesta activa al cambio climático desde la escala urbana. El futuro sostenible construido metro a metro.", 
-    lat: 10.439, lng: -75.522, image: "assets/images/puntos/Parque Lineal de Crespo.webp", 
-    location: "Cartagena, Bolívar.", hours: "", price: "", 
+    id: 53, category: "ecoturismo", title: "Parque Lineal de Crespo",
+    description: "Diseñado para frenar la erosión costera que el Caribe avanzaba sin pausa, el Parque Lineal de Crespo es hoy un corredor verde que reconcilia a Cartagena con su mar. Cada árbol plantado, cada sendero recuperado, es una respuesta activa al cambio climático desde la escala urbana. El futuro sostenible construido metro a metro.",
+    lat: 10.439, lng: -75.522, image: "assets/images/puntos/Parque Lineal de Crespo.webp",
+    location: "Cartagena, Bolívar.", hours: "", price: "",
     tags: []
   },
   {
-    id: 54, category: "playas", title: "Playa Marbella", 
-    description: "Espolones que desafían las corrientes del Caribe protegen esta franja de arena en el borde urbano de Cartagena. Marbella es la playa de la ciudad que no cede a las corrientes erosivas y ofrece aguas accesibles lejos del bullicio de los balnearios tradicionales. Un litoral urbano que conserva su carácter natural.", 
-    lat: 10.434, lng: -75.529, image: "assets/images/puntos/Playa Marbella.webp", 
-    location: "Cartagena, Bolívar.", hours: "", price: "", 
+    id: 54, category: "playas", title: "Playa Marbella",
+    description: "Espolones que desafían las corrientes del Caribe protegen esta franja de arena en el borde urbano de Cartagena. Marbella es la playa de la ciudad que no cede a las corrientes erosivas y ofrece aguas accesibles lejos del bullicio de los balnearios tradicionales. Un litoral urbano que conserva su carácter natural.",
+    lat: 10.434, lng: -75.529, image: "assets/images/puntos/Playa Marbella.webp",
+    location: "Cartagena, Bolívar.", hours: "", price: "",
     tags: []
   },
   {
-    id: 55, eventMonth: 10, startDay: 20, endDay: 25, category: "eventos", title: "Fiestas patronales Santa Catalina de Alejandría", 
-    description: "Fe y folclor que se fusionan durante varios días en el municipio que lleva el nombre de la patrona. Procesiones, corridas de toros y la elección de la diosa llenan las calles de una celebración donde la identidad africana y caribeña de la Costa Caribe se expresa sin filtros, con devoción y alegría a la vez.", 
-    lat: 10.605, lng: -75.253, image: "assets/images/puntos/Fiestas patronales Santa Catalina de Alejandría.webp", 
-    location: "Santa Catalina, Bolívar.", hours: "El evento dura entre 4 y 7 días.", price: "Gratuito.", 
-    tags: ["Turismo cultural","gastronomía","música y danzas tradicionales","eventos religiosos","comercio local."]
+    id: 55, eventMonth: 10, startDay: 20, endDay: 25, category: "eventos", title: "Fiestas patronales Santa Catalina de Alejandría",
+    description: "Fe y folclor que se fusionan durante varios días en el municipio que lleva el nombre de la patrona. Procesiones, corridas de toros y la elección de la diosa llenan las calles de una celebración donde la identidad africana y caribeña de la Costa Caribe se expresa sin filtros, con devoción y alegría a la vez.",
+    lat: 10.605, lng: -75.253, image: "assets/images/puntos/Fiestas patronales Santa Catalina de Alejandría.webp",
+    location: "Santa Catalina, Bolívar.", hours: "El evento dura entre 4 y 7 días.", price: "Gratuito.",
+    tags: ["Turismo cultural", "gastronomía", "música y danzas tradicionales", "eventos religiosos", "comercio local."]
   },
   {
-    id: 56, category: "cultura", title: "Museo Etnoindustrial", 
-    description: "En Galerazamba, la sal no es solo un mineral: es la historia económica y social de generaciones. El museo preserva herramientas, fotografías y testimonios que explican cómo la producción salinera marcó la vida entera de esta comunidad. Un recorrido que convierte el trabajo humano sobre el territorio en patrimonio cultural.", 
-    lat: 10.794, lng: -75.253, image: "assets/images/puntos/Museo Etnoindustrial.webp", 
-    location: "Santa Catalina, Bolívar.", hours: "10:00 a.m. - 4:00 p.m.", price: "Adultos: $7.000 mil cop. Niños (desde 5 años): $5.000 mil cop.", 
-    tags: ["Servicios culturales","recorridos guiados","exhibiciones permanentes","actividades pedagógicas y turismo histórico-patrimonial."]
+    id: 56, category: "cultura", title: "Museo Etnoindustrial",
+    description: "En Galerazamba, la sal no es solo un mineral: es la historia económica y social de generaciones. El museo preserva herramientas, fotografías y testimonios que explican cómo la producción salinera marcó la vida entera de esta comunidad. Un recorrido que convierte el trabajo humano sobre el territorio en patrimonio cultural.",
+    lat: 10.794, lng: -75.253, image: "assets/images/puntos/Museo Etnoindustrial.webp",
+    location: "Santa Catalina, Bolívar.", hours: "10:00 a.m. - 4:00 p.m.", price: "Adultos: $7.000 mil cop. Niños (desde 5 años): $5.000 mil cop.",
+    tags: ["Servicios culturales", "recorridos guiados", "exhibiciones permanentes", "actividades pedagógicas y turismo histórico-patrimonial."]
   },
   {
-    id: 57, eventMonth: 5, startDay: 10, endDay: 16, category: "eventos", title: "Fiestas patronales de San Antonio de Padua", 
-    description: "Piojó se convierte en epicentro del folclor caribeño cuando las bandas papayeras, las corralejas y la vara de premio toman sus calles. Las fiestas de San Antonio no son espectáculo para visitantes: son una celebración comunitaria que honra la tradición y reafirma la identidad de un pueblo que vive su patrimonio con intensidad.", 
-    lat: 10.749, lng: -75.107, image: "assets/images/puntos/Fiestas patronales de San Antonio de Padua.webp", 
-    location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
-    tags: ["Turismo cultural","eventos religiosos","deportes","música y danzas tradicionales","espectáculos taurinos","juegos populares","gastronomía","comercio local."]
+    id: 57, eventMonth: 5, startDay: 10, endDay: 16, category: "eventos", title: "Fiestas patronales de San Antonio de Padua",
+    description: "Piojó se convierte en epicentro del folclor caribeño cuando las bandas papayeras, las corralejas y la vara de premio toman sus calles. Las fiestas de San Antonio no son espectáculo para visitantes: son una celebración comunitaria que honra la tradición y reafirma la identidad de un pueblo que vive su patrimonio con intensidad.",
+    lat: 10.749, lng: -75.107, image: "assets/images/puntos/Fiestas patronales de San Antonio de Padua.webp",
+    location: "Piojó, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
+    tags: ["Turismo cultural", "eventos religiosos", "deportes", "música y danzas tradicionales", "espectáculos taurinos", "juegos populares", "gastronomía", "comercio local."]
   },
   {
-    id: 58, category: "playas", title: "Tambo Marina Ecohostal", 
-    description: "Frente al mar en Punta Astillero, este ecohostal propone quedarse quieto. El sonido de las olas, el acceso directo a la playa virgen y las actividades de senderismo y pesca son la agenda. Un modelo de alojamiento que cuida el entorno costero como condición de la experiencia misma: sin naturaleza sana, no hay Tambo Marina.", 
-    lat: 10.795, lng: -75.224, image: "assets/images/puntos/Tambo Marina Ecohostal.webp", 
-    location: "Piojó, Atlántico.", hours: "8:00 a.m. - 9:00 p.m.", price: "", 
-    tags: ["Hospedaje ecológico","restaurante","acceso directo a la playa","senderismo","entretenimiento nocturno y turismo sostenible."]
+    id: 58, category: "playas", title: "Tambo Marina Ecohostal",
+    description: "Frente al mar en Punta Astillero, este ecohostal propone quedarse quieto. El sonido de las olas, el acceso directo a la playa virgen y las actividades de senderismo y pesca son la agenda. Un modelo de alojamiento que cuida el entorno costero como condición de la experiencia misma: sin naturaleza sana, no hay Tambo Marina.",
+    lat: 10.795, lng: -75.224, image: "assets/images/puntos/Tambo Marina Ecohostal.webp",
+    location: "Piojó, Atlántico.", hours: "8:00 a.m. - 9:00 p.m.", price: "",
+    tags: ["Hospedaje ecológico", "restaurante", "acceso directo a la playa", "senderismo", "entretenimiento nocturno y turismo sostenible."]
   },
   {
-    id: 59, eventMonth: 9, startDay: 15, endDay: 17, category: "eventos", title: "Festival Internacional de las Tunas Corazonistas", 
-    description: "Guitarras, capas y serenatas bohemias transforman Puerto Colombia en escenario internacional. Las Tunas Corazonistas hacen de la música estudiantil un puente entre culturas: cada agrupación llega con su región grabada en el repertorio y se va llevando el Caribe colombiano en la memoria. Un festival que construye identidad con cada acorde.", 
-    lat: 10.986, lng: -74.957, image: "assets/images/puntos/Festival Internacional de las Tunas Corazonistas.webp", 
-    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.", 
-    tags: ["Presentaciones musicales en vivo","actividades culturales","intercambio artístico internacional","promoción de agrupaciones regionales y entretenimiento para el público."]
+    id: 59, eventMonth: 9, startDay: 15, endDay: 17, category: "eventos", title: "Festival Internacional de las Tunas Corazonistas",
+    description: "Guitarras, capas y serenatas bohemias transforman Puerto Colombia en escenario internacional. Las Tunas Corazonistas hacen de la música estudiantil un puente entre culturas: cada agrupación llega con su región grabada en el repertorio y se va llevando el Caribe colombiano en la memoria. Un festival que construye identidad con cada acorde.",
+    lat: 10.986, lng: -74.957, image: "assets/images/puntos/Festival Internacional de las Tunas Corazonistas.webp",
+    location: "Puerto Colombia, Atlántico.", hours: "El evento dura entre 1 y 3 días.", price: "Gratuito.",
+    tags: ["Presentaciones musicales en vivo", "actividades culturales", "intercambio artístico internacional", "promoción de agrupaciones regionales y entretenimiento para el público."]
   },
   {
-    id: 60, category: "cultura", title: "Piedra Pintada. Colectivo Caminantes por El Morro", 
-    description: "En los petroglifos de Tubará hablan los ancestros Mokaná que habitaron estas montañas siglos antes de la conquista. El Colectivo Caminantes guía los senderos que llevan a la piedra con el conocimiento de quienes viven el territorio. Visitar Piedra Pintada es entrar a la memoria viva de un pueblo que grabó su historia en la roca.", 
-    lat: 10.87, lng: -74.97, image: "assets/images/puntos/Piedra Pintada.webp", 
-    location: "Tubará, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
-    tags: ["Caminatas ecológicas","observación de petroglifos","actividades culturales y espirituales","zonas naturales para descanso."]
+    id: 60, category: "cultura", title: "Piedra Pintada. Colectivo Caminantes por El Morro",
+    description: "En los petroglifos de Tubará hablan los ancestros Mokaná que habitaron estas montañas siglos antes de la conquista. El Colectivo Caminantes guía los senderos que llevan a la piedra con el conocimiento de quienes viven el territorio. Visitar Piedra Pintada es entrar a la memoria viva de un pueblo que grabó su historia en la roca.",
+    lat: 10.87, lng: -74.97, image: "assets/images/puntos/Piedra Pintada.webp",
+    location: "Tubará, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.",
+    tags: ["Caminatas ecológicas", "observación de petroglifos", "actividades culturales y espirituales", "zonas naturales para descanso."]
   },
   {
-    id: 61, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Carnaval de Tubará", 
-    description: "Cada año las calles de Tubará se convierten en río de colores, danzas y cumbia que fluyen desde las raíces más profundas del Caribe colombiano. El Carnaval de Tubará es la celebración que renueva el vínculo entre la comunidad Mokaná y la música que la define, pasando la tradición de generación en generación con orgullo.", 
-    lat: 10.873, lng: -74.975, image: "assets/images/puntos/Carnaval de Tubará.webp", 
-    location: "Tubará, Atlántico.", hours: "", price: "", 
+    id: 61, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Carnaval de Tubará",
+    description: "Cada año las calles de Tubará se convierten en río de colores, danzas y cumbia que fluyen desde las raíces más profundas del Caribe colombiano. El Carnaval de Tubará es la celebración que renueva el vínculo entre la comunidad Mokaná y la música que la define, pasando la tradición de generación en generación con orgullo.",
+    lat: 10.873, lng: -74.975, image: "assets/images/puntos/Carnaval de Tubará.webp",
+    location: "Tubará, Atlántico.", hours: "", price: "",
     tags: []
   },
   {
-    id: 62, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Festival intermunicipal del folclore", 
-    description: "Un encuentro que reúne expresiones folclóricas de varios municipios del Atlántico para celebrar la riqueza y diversidad cultural de la región. Danzas, músicas y manifestaciones tradicionales comparten escenario en un festival que entiende el folclore no como reliquia sino como práctica viva que necesita espacio para existir.", 
-    lat: 10.897, lng: -74.884, image: "assets/images/puntos/Festival intermunicipal del folclore.webp", 
-    location: "Galapa, Atlántico.", hours: "El evento dura 1 día.", price: "Gratuito.", 
-    tags: ["Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
+    id: 62, eventMonth: 1, startDay: 14, endDay: 22, category: "eventos", title: "Festival intermunicipal del folclore",
+    description: "Un encuentro que reúne expresiones folclóricas de varios municipios del Atlántico para celebrar la riqueza y diversidad cultural de la región. Danzas, músicas y manifestaciones tradicionales comparten escenario en un festival que entiende el folclore no como reliquia sino como práctica viva que necesita espacio para existir.",
+    lat: 10.897, lng: -74.884, image: "assets/images/puntos/Festival intermunicipal del folclore.webp",
+    location: "Galapa, Atlántico.", hours: "El evento dura 1 día.", price: "Gratuito.",
+    tags: ["Desfile de comparsas y danzas folclóricas", "presentaciones musicales en vivo", "exhibición de ritmos tradicionales como cumbia y mapalé", "participación de comparsas invitadas", "venta de comidas y bebidas típicas", "venta de artesanías locales."]
   },
   {
     id: 64,
