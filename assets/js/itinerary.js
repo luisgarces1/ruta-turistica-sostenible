@@ -673,14 +673,24 @@ const ItineraryPlanner = {
             // 2. Validar categorías e intereses
             if (this.selectedInterests.size === 0) return true;
             
-            // Coincidencia directa
-            if (this.selectedInterests.has(item.category)) return true;
+            const norm = (str) => (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+            const itemCatNorm = norm(item.category);
+
+            // Coincidencia directa (normalizada sin tildes)
+            let matchesDirect = false;
+            for (const interestId of this.selectedInterests) {
+                if (norm(interestId) === itemCatNorm) {
+                    matchesDirect = true;
+                    break;
+                }
+            }
+            if (matchesDirect) return true;
 
             // Expandir búsqueda a subcategorías
             for (const interestId of this.selectedInterests) {
-                const parentCat = categories.find(c => c.id === interestId);
+                const parentCat = categories.find(c => norm(c.id) === norm(interestId));
                 if (parentCat && parentCat.subcategories) {
-                    if (parentCat.subcategories.some(sub => sub.id === item.category)) return true;
+                    if (parentCat.subcategories.some(sub => norm(sub.id) === itemCatNorm)) return true;
                 }
             }
 

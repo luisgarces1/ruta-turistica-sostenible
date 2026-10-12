@@ -219,12 +219,16 @@ function filterMarkers() {
     }
 
     allMarkers.forEach(marker => {
-        let isVisible = currentActiveFilter === 'todas' || marker.itemData.category === currentActiveFilter;
+        const normalizeCat = (cat) => (cat || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+        const activeNorm = normalizeCat(currentActiveFilter);
+        const itemCatNorm = normalizeCat(marker.itemData.category);
+
+        let isVisible = currentActiveFilter === 'todas' || itemCatNorm === activeNorm;
 
         // Soporte para selección de categoría padre (Naturaleza)
         const activeCat = categories.find(c => c.id === currentActiveFilter);
         if (activeCat && activeCat.subcategories) {
-            if (activeCat.subcategories.find(sub => sub.id === marker.itemData.category)) {
+            if (activeCat.subcategories.find(sub => normalizeCat(sub.id) === itemCatNorm)) {
                 isVisible = true;
             }
         }
