@@ -486,15 +486,15 @@ const mockData = [
   {
     id: 35,
     category: "infraestructura",
-    title: "Viaducto Gran Manglar",
-    description: "Un viaducto premiado internacionalmente por permitir que el ecosistema de manglar respire por debajo de la carretera. El agua fluye, las raíces crecen y las aves anidan mientras el tráfico pasa por encima. Conducir sobre él es ver que la infraestructura puede coexistir con la naturaleza sin dominarla.",
-    lat: 10.476022,
-    lng: -75.488756,
-    image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp",
+    title: "Viaducto de La Virgen",
+    description: "El Viaducto El Gran Manglar es una de las obras más emblemáticas de la concesión Ruta Costera 4G, diseñado como una estructura elevada que atraviesa zonas de manglar cercanas a la Ciénaga de la Virgen. Su construcción permite garantizar la conectividad del corredor vial sin afectar de manera directa este ecosistema sensible, al evitar rellenos y minimizar la intervención sobre el terreno natural. Esta infraestructura se destaca por su enfoque en la sostenibilidad ambiental, ya que protege la dinámica hídrica y la biodiversidad del manglar, permitiendo la circulación de agua y el paso de especies. Además, mejora la movilidad al ofrecer un tránsito continuo, seguro y eficiente, reduciendo tiempos de viaje y riesgos para los usuarios. En este sentido, el viaducto no solo cumple una función vial estratégica, sino que también representa una solución de ingeniería que equilibra el desarrollo de infraestructura con la conservación ambiental.",
+    lat: 10.460734,
+    lng: -75.504856,
+    image: "assets/images/puntos/viaducto de la virgen.webp",
     location: "Cartagena, Bolívar.",
-    hours: "Abierto.",
+    hours: "24/7",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Experiencias sensoriales"]
+    tags: ["Infraestructura","Corredor Vial","UF2","Ruta 90A01","PR 1+905"]
   },
   {
     id: 36,
@@ -565,7 +565,7 @@ const mockData = [
     location: "Piojó, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: ["Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
+    tags: ["Eventos y festividades","Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
   },
   {
     id: 41,
@@ -607,7 +607,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: ["Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
+    tags: ["Eventos y festividades", "Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
   },
   {
     id: 44,
@@ -623,7 +623,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: ["Desfiles","presentaciones culturales","feria gastronómica y actividades recreativas."]
+    tags: ["Eventos y festividades","Desfiles","presentaciones culturales","feria gastronómica y actividades recreativas."]
   },
   {
     id: 45,
@@ -652,7 +652,7 @@ const mockData = [
     location: "Tubará, Atlántico.",
     hours: "Todo el día y parte de la noche.",
     price: "Gratuito.",
-    tags: []
+    tags: ["Eventos y festividades"]
   },
   {
     id: 47,
@@ -668,7 +668,7 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: ["Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
+    tags: ["Eventos y festividades","Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
   },
   {
     id: 48,
@@ -684,7 +684,7 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "El evento dura entre 8 y 10 días.",
     price: "Gratuito.",
-    tags: ["Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
+    tags: ["Eventos y festividades","Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
   },
   {
     id: 49,
@@ -700,7 +700,7 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: []
+    tags: ["Eventos y festividades"]
   },
   {
     id: 50,
@@ -716,7 +716,7 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: []
+    tags: ["Eventos y festividades"]
   },
   {
     id: 51,
@@ -732,7 +732,7 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: ["Ofrece servicios de actividades culturales","eventos religiosos","presentaciones artísticas","ferias gastronómicas","competencias deportivas y espacios de recreación familiar."]
+    tags: ["Eventos y festividades", "Ofrece servicios de actividades culturales","eventos religiosos","presentaciones artísticas","ferias gastronómicas","competencias deportivas y espacios de recreación familiar."]
   },
   {
     id: 52,
@@ -758,7 +758,7 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "Permanente.",
     price: "Gratuito.",
-    tags: []
+    tags: ["Ecoturismo y naturaleza"]
   },
   {
     id: 54,
@@ -771,7 +771,7 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "Horarios establecidos por autoridades municipales.",
     price: "Gratuito.",
-    tags: []
+    tags: ["Playas y balnearios"]
   },
   {
     id: 55,
@@ -787,7 +787,7 @@ const mockData = [
     location: "Santa Catalina, Bolívar.",
     hours: "El evento dura entre 4 y 7 días.",
     price: "Gratuito.",
-    tags: ["Turismo cultural","gastronomía","música y danzas tradicionales","eventos religiosos","comercio local."]
+    tags: ["Eventos y festividades","Turismo cultural","gastronomía","música y danzas tradicionales","eventos religiosos","comercio local."]
   },
   {
     id: 56,
@@ -816,7 +816,7 @@ const mockData = [
     location: "Piojó, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: ["Turismo cultural","eventos religiosos","deportes","música y danzas tradicionales","espectáculos taurinos","juegos populares","gastronomía","comercio local."]
+    tags: ["Eventos y festividades","Turismo cultural","eventos religiosos","deportes","música y danzas tradicionales","espectáculos taurinos","juegos populares","gastronomía","comercio local."]
   },
   {
     id: 58,
@@ -845,7 +845,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "El evento dura entre 1 y 3 días.",
     price: "Gratuito.",
-    tags: ["Presentaciones musicales en vivo","actividades culturales","intercambio artístico internacional","promoción de agrupaciones regionales y entretenimiento para el público."]
+    tags: ["Eventos y festividades","Presentaciones musicales en vivo","actividades culturales","intercambio artístico internacional","promoción de agrupaciones regionales y entretenimiento para el público."]
   },
   {
     id: 60,
@@ -874,7 +874,7 @@ const mockData = [
     location: "Tubará, Atlántico.",
     hours: "Todo el día y parte de la noche.",
     price: "Gratuito.",
-    tags: []
+    tags: ["Eventos y festividades"]
   },
   {
     id: 62,
@@ -890,7 +890,7 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "El evento dura 1 día.",
     price: "Gratuito.",
-    tags: ["Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
+    tags: ["Eventos y festividades","Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
   },
   {
     id: 63,
@@ -908,8 +908,8 @@ const mockData = [
   {
     id: 64,
     category: "infraestructura",
-    title: "Paso de fauna",
-    description: "Tierra Baja Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
+    title: "Paso de fauna Tierra Baja",
+    description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 10.499121,
     lng: -75.477055,
     image: "assets/images/puntos/Paso de fauna.webp",
@@ -920,19 +920,6 @@ const mockData = [
   },
   {
     id: 65,
-    category: "infraestructura",
-    title: "Viaducto de La Virgen",
-    description: "Boquilla - Cienga de La Virgen El Viaducto El Gran Manglar es una de las obras más emblemáticas de la concesión Ruta Costera 4G, diseñado como una estructura elevada que atraviesa zonas de manglar cercanas a la Ciénaga de la Virgen. Su construcción permite garantizar la conectividad del corredor vial sin afectar de manera directa este ecosistema sensible, al evitar rellenos y minimizar la intervención sobre el terreno natural. Esta infraestructura se destaca por su enfoque en la sostenibilidad ambiental, ya que protege la dinámica hídrica y la biodiversidad del manglar, permitiendo la circulación de agua y el paso de especies. Además, mejora la movilidad al ofrecer un tránsito continuo, seguro y eficiente, reduciendo tiempos de viaje y riesgos para los usuarios. En este sentido, el viaducto no solo cumple una función vial estratégica, sino que también representa una solución de ingeniería que equilibra el desarrollo de infraestructura con la conservación ambiental.",
-    lat: 10.460734,
-    lng: -75.504856,
-    image: "assets/images/puntos/viaducto de la virgen.webp",
-    location: "Cartagena, Bolívar.",
-    hours: "24/7",
-    price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF2","Ruta 90A01","PR 1+905"]
-  },
-  {
-    id: 66,
     category: "infraestructura",
     title: "Peaje Marahuaco",
     description: "Arroyo de Piedra - Via al mar - Ruta 90A-01 Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
@@ -945,10 +932,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","UF3","Ruta 90A01","PR PR15+1100"]
   },
   {
-    id: 67,
+    id: 66,
     category: "infraestructura",
     title: "Pesaje Marahuaco",
-    description: "Arroyo de Piedra - Via al mar - Ruta 90A-02 Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
+    description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.574485,
     lng: -75.450524,
     image: "assets/images/puntos/pesaje marahuaco.webp",
@@ -958,10 +945,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR15+1100"]
   },
   {
-    id: 68,
+    id: 67,
     category: "infraestructura",
     title: "Peaje Puerto Colombia",
-    description: "Tubara - Via al Mar - Ruta 90A-01 Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
+    description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.967489,
     lng: -74.956649,
     image: "assets/images/puntos/Peaje Puerto Colombia.webp",
@@ -971,10 +958,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR93+600"]
   },
   {
-    id: 69,
+    id: 68,
     category: "infraestructura",
     title: "Blas el Teso",
-    description: "Sector Cielo Mar - Via al Mar - Ruta 90A-01 Los puentes peatonalesde Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
+    description: "Los puentes peatonalesde Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 10.458019,
     lng: -75.507907,
     image: "assets/images/puntos/blas el teso.webp",
@@ -984,10 +971,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR K1+360"]
   },
   {
-    id: 70,
+    id: 69,
     category: "infraestructura",
     title: "Peaje Papiros",
-    description: "Puerto Colombia - Via al Mar - Ruta 90A-01 Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
+    description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 11.01267,
     lng: -74.889548,
     image: "assets/images/puntos/Peaje Papiros.webp",
@@ -997,10 +984,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","UF4","Ruta 90A01","PR PR103+600"]
   },
   {
-    id: 71,
+    id: 70,
     category: "infraestructura",
     title: "Pte. U. Autónoma",
-    description: "Via al Mar - Ruta 90A-01 Los puentes peatonalesde Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
+    description: "Los puentes peatonalesde Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.004156,
     lng: -74.921221,
     image: "assets/images/puntos/Pte U Autónoma.webp",
@@ -1010,10 +997,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 100070"]
   },
   {
-    id: 72,
+    id: 71,
     category: "infraestructura",
     title: "Pte. Alkarawi",
-    description: "Via al Mar - Ruta 90A-01",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.011726,
     lng: -74.896992,
     image: "assets/images/puntos/Pte Alkarawi.webp",
@@ -1023,10 +1010,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 102900"]
   },
   {
-    id: 73,
+    id: 72,
     category: "infraestructura",
     title: "Pte. U. Atlántico",
-    description: "Via al Mar - Ruta 90A-01",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.014807,
     lng: -74.871958,
     image: "assets/images/puntos/Pte U Atlantico.webp",
@@ -1036,10 +1023,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 105760"]
   },
   {
-    id: 74,
+    id: 73,
     category: "infraestructura",
     title: "Pte. Colegio Alemán",
-    description: "Via al Mar - Ruta 90A-01",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.01618,
     lng: -74.861149,
     image: "assets/images/puntos/Pte Colegio Alemán.webp",
@@ -1049,10 +1036,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 106900"]
   },
   {
-    id: 75,
+    id: 74,
     category: "infraestructura",
     title: "Pte. U. del Norte",
-    description: "Via al Mar - Ruta 90A-01",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.016924,
     lng: -74.851545,
     image: "assets/images/puntos/Pte U del Norte.webp",
@@ -1062,10 +1049,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 108050"]
   },
   {
-    id: 76,
+    id: 75,
     category: "infraestructura",
     title: "Pesaje Papiros",
-    description: "Via al Mar - Ruta 90A-01 Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
+    description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 11.01267,
     lng: -74.889548,
     image: "assets/images/puntos/Pesaje Papiros.webp",
@@ -1075,10 +1062,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR103+600"]
   },
   {
-    id: 77,
+    id: 76,
     category: "infraestructura",
     title: "Iluminación con paneles solares",
-    description: "Via al Mar - Ruta 90A-01 Sistema de iluminación solar en la Vía al Mar entre Puerto Colombia y Barranquilla a lo largo de 9 kilómetros, compuesto por 127 paneles solares y 254 luminarias LED alimentadas con energía fotovoltaica. Este sistema, que cuenta con certificación Retilap y un diseño innovador único en el país, garantiza niveles adecuados de iluminación para una vía tipo M2, mejorando significativamente la visibilidad y seguridad de los usuarios. Además, la iluminación se consolida como una acción de valor sostenible, ya que reduce la emisión de gases de efecto invernadero al utilizar energía limpia, contribuyendo a la transición energética y descarbonización, al tiempo que asegura una iluminación uniforme y eficiente en el corredor vial.",
+    description: "Sistema de iluminación solar en la Vía al Mar entre Puerto Colombia y Barranquilla a lo largo de 9 kilómetros, compuesto por 127 paneles solares y 254 luminarias LED alimentadas con energía fotovoltaica. Este sistema, que cuenta con certificación Retilap y un diseño innovador único en el país, garantiza niveles adecuados de iluminación para una vía tipo M2, mejorando significativamente la visibilidad y seguridad de los usuarios. Además, la iluminación se consolida como una acción de valor sostenible, ya que reduce la emisión de gases de efecto invernadero al utilizar energía limpia, contribuyendo a la transición energética y descarbonización, al tiempo que asegura una iluminación uniforme y eficiente en el corredor vial.",
     lat: 10.991387,
     lng: -74.944406,
     image: "assets/images/puntos/Iluminación con paneles solares.webp",
@@ -1088,10 +1075,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR 97+000 -PR 106+000"]
   },
   {
-    id: 78,
+    id: 77,
     category: "infraestructura",
     title: "Peaje Galapa",
-    description: "Galapa - Circunvalar de la Prosperidad - Ruta AT04 Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
+    description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.886275,
     lng: -74.844509,
     image: "assets/images/puntos/Peaje Galapa.webp",
@@ -1101,10 +1088,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","UF5","Ruta 25AT04","PR K11+700"]
   },
   {
-    id: 79,
+    id: 78,
     category: "infraestructura",
-    title: "Pesaje",
-    description: "Malambo - Circunvalar de la Prosperidad - Ruta AT04 Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
+    title: "Pesaje Malambo",
+    description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.834097,
     lng: -74.8063,
     image: "assets/images/puntos/Estación Pesaje 2.webp",
@@ -1114,10 +1101,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K3+900"]
   },
   {
-    id: 80,
+    id: 79,
     category: "infraestructura",
-    title: "Pesaje",
-    description: "",
+    title: "Pesaje Malambo",
+    description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.83204,
     lng: -74.801544,
     image: "assets/images/puntos/Estación Pesaje 3.webp",
@@ -1127,10 +1114,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K3+300"]
   },
   {
-    id: 81,
+    id: 80,
     category: "infraestructura",
-    title: "Galapa",
-    description: "Galapa - Circunvalar de la Prosperidad - Ruta AT04 Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
+    title: "Puente Peatonal Galapa",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 10.912588,
     lng: -74.871901,
     image: "assets/images/puntos/galapa.webp",
@@ -1140,23 +1127,23 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K16+000"]
   },
   {
-    id: 82,
+    id: 81,
     category: "infraestructura",
     title: "Centro de Control de Operaciones-CCO",
-    description: "Galapa - Circunvalar de la Prosperidad - Ruta AT04 El Centro de Control de Operaciones (CCO) es una instalación estratégica encargada de monitorear, coordinar y gestionar en tiempo real el funcionamiento integral del corredor vial. Desde este centro se supervisa el tráfico mediante sistemas tecnológicos como cámaras, sensores y comunicaciones, permitiendo detectar incidentes, coordinar la atención de emergencias y brindar información oportuna a los usuarios. Su principal función es garantizar una operación segura y eficiente de la vía, optimizando la movilidad y reduciendo tiempos de respuesta ante eventualidades. Entre sus beneficios se destacan el fortalecimiento de la seguridad vial, la atención rápida de accidentes o contingencias, la gestión eficiente del flujo vehicular y la mejora continua en la calidad del servicio ofrecido a los usuarios.",
+    description: "El Centro de Control de Operaciones (CCO) es una instalación estratégica encargada de monitorear, coordinar y gestionar en tiempo real el funcionamiento integral del corredor vial. Desde este centro se supervisa el tráfico mediante sistemas tecnológicos como cámaras, sensores y comunicaciones, permitiendo detectar incidentes, coordinar la atención de emergencias y brindar información oportuna a los usuarios. Su principal función es garantizar una operación segura y eficiente de la vía, optimizando la movilidad y reduciendo tiempos de respuesta ante eventualidades. Entre sus beneficios se destacan el fortalecimiento de la seguridad vial, la atención rápida de accidentes o contingencias, la gestión eficiente del flujo vehicular y la mejora continua en la calidad del servicio ofrecido a los usuarios.",
     lat: 10.888349,
     lng: -74.848911,
     image: "assets/images/puntos/Centro de Control de Operaciones.webp",
-    location: "Galapa, Atlántico.",
+    location: "Galapa, Atlántico.", 
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K12+200"]
   },
   {
-    id: 83,
+    id: 82,
     category: "infraestructura",
-    title: "Paso de fauna",
-    description: "Malambo y Galapa - Circunvalar de la Prosperidad - Ruta AT04 Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
+    title: "Paso de fauna Galapa",
+    description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 10.839909,
     lng: -74.815649,
     image: "assets/images/puntos/Paso de fauna.webp",
@@ -1166,10 +1153,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 6+000 / PR 16+000"]
   },
   {
-    id: 84,
+    id: 83,
     category: "infraestructura",
     title: "Peaje Juan Mina",
-    description: "Juan Mina - Circunvalar de la Prosperidad - Ruta AT04 Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
+    description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.929208,
     lng: -74.894498,
     image: "assets/images/puntos/Peaje Juan Mina.webp",
@@ -1179,10 +1166,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","UF6","Ruta 25AT04","PR K19+300"]
   },
   {
-    id: 85,
+    id: 84,
     category: "infraestructura",
-    title: "Pesaje",
-    description: "Juan Mina - Circunvalar de la Prosperidad - Ruta AT04 Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
+    title: "Pesaje Juan Mina ",
+    description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.984274,
     lng: -74.890172,
     image: "assets/images/puntos/Estación Pesaje 4.webp",
@@ -1192,36 +1179,36 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K26+130"]
   },
   {
-    id: 86,
+    id: 85,
     category: "infraestructura",
-    title: "Pesaje",
-    description: "Galapa - Circunvalar de la Prosperidad - Ruta AT04",
+    title: "Pesaje Galapa",
+    description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.980829,
     lng: -74.890956,
     image: "assets/images/puntos/Estación Pesaje.webp",
-    location: "Barranquilla, Atlántico.",
+    location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K25+850"]
   },
   {
-    id: 87,
+    id: 86,
     category: "infraestructura",
-    title: "Área de Servicio",
-    description: "Juan Mina - Circunvalar de la Prosperidad - Ruta AT04 Las áreas de servicio son espacios complementarios dentro del corredor vial diseñados para brindar atención integral a los usuarios, ofreciendo servicios como zonas de descanso, baterías sanitarias, estaciones de combustible, puntos de alimentación y, en algunos casos, asistencia mecánica básica. Estas áreas están ubicadas estratégicamente a lo largo de la vía para facilitar paradas seguras durante los recorridos, especialmente en trayectos largos. Su implementación contribuye significativamente a la seguridad vial, ya que ayudan a reducir la fatiga del conductor, promueven pausas activas y disminuyen el riesgo de accidentes. Además, mejoran la experiencia del usuario al proporcionar comodidad, bienestar y acceso a servicios, fortaleciendo la calidad del corredor vial y su enfoque en el servicio al ciudadano.",
+    title: "Área de Servicio Malambo",
+    description: "Las áreas de servicio son espacios complementarios dentro del corredor vial diseñados para brindar atención integral a los usuarios, ofreciendo servicios como zonas de descanso, baterías sanitarias, estaciones de combustible, puntos de alimentación y, en algunos casos, asistencia mecánica básica. Estas áreas están ubicadas estratégicamente a lo largo de la vía para facilitar paradas seguras durante los recorridos, especialmente en trayectos largos. Su implementación contribuye significativamente a la seguridad vial, ya que ayudan a reducir la fatiga del conductor, promueven pausas activas y disminuyen el riesgo de accidentes. Además, mejoran la experiencia del usuario al proporcionar comodidad, bienestar y acceso a servicios, fortaleciendo la calidad del corredor vial y su enfoque en el servicio al ciudadano.",
     lat: 10.969251,
     lng: -74.898691,
     image: "assets/images/puntos/Área de Servicio.webp",
-    location: "Barranquilla, Atlántico.",
+    location: "Malambo, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K24+138"]
   },
   {
-    id: 88,
+    id: 87,
     category: "infraestructura",
     title: "Pte. U. del Atlántico",
-    description: "Barranquilla - Circunvalar de la Prosperidad - Ruta AT04 Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.008753,
     lng: -74.877264,
     image: "assets/images/puntos/Pte U Atlantico2.webp",
@@ -1231,10 +1218,10 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K29+300"]
   },
   {
-    id: 89,
+    id: 88,
     category: "infraestructura",
-    title: "San Vicente de Paul",
-    description: "Barranquilla - Circunvalar de la Prosperidad - Ruta AT05",
+    title: "Pte. San Vicente de Paul",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.030949,
     lng: -74.858066,
     image: "assets/images/puntos/San Vicente de Paul.webp",
@@ -1244,12 +1231,25 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K33+100"]
   },
   {
+    id: 89,
+    category: "infraestructura",
+    title: "Pasos de fauna",
+    description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
+    lat: 11.030688,
+    lng: -74.846314,
+    image: "assets/images/puntos/Pasos de fauna3.webp",
+    location: "Barranquilla, Atlántico.",
+    hours: "24/7",
+    price: "Gratuito.",
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+  },
+  {
     id: 90,
     category: "infraestructura",
     title: "Pasos de fauna",
-    description: "Barranquilla - Circunvalar de la Prosperidad - Ruta AT04 Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
-    lat: 11.030688,
-    lng: -74.846314,
+    description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
+    lat: 11.031165,
+    lng: -74.844496,
     image: "assets/images/puntos/Pasos de fauna3.webp",
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
@@ -1260,9 +1260,9 @@ const mockData = [
     id: 91,
     category: "infraestructura",
     title: "Pasos de fauna",
-    description: "Barranquilla - Circunvalar de la Prosperidad - Ruta AT04 Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
-    lat: 11.031165,
-    lng: -74.844496,
+    description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
+    lat: 11.032186,
+    lng: -74.84066,
     image: "assets/images/puntos/Pasos de fauna3.webp",
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
@@ -1273,9 +1273,9 @@ const mockData = [
     id: 92,
     category: "infraestructura",
     title: "Pasos de fauna",
-    description: "Barranquilla - Circunvalar de la Prosperidad - Ruta AT04 Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
-    lat: 11.032186,
-    lng: -74.84066,
+    description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
+    lat: 10.973733,
+    lng: -74.892834,
     image: "assets/images/puntos/Pasos de fauna3.webp",
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
@@ -1286,20 +1286,7 @@ const mockData = [
     id: 93,
     category: "infraestructura",
     title: "Pasos de fauna",
-    description: "Barranquilla - Circunvalar de la Prosperidad - Ruta AT04 Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
-    lat: 10.973733,
-    lng: -74.892834,
-    image: "assets/images/puntos/Pasos de fauna3.webp",
-    location: "Barranquilla, Atlántico.",
-    hours: "24/7",
-    price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
-  },
-  {
-    id: 94,
-    category: "infraestructura",
-    title: "Pasos de fauna",
-    description: "Barranquilla - Circunvalar de la Prosperidad - Ruta AT04 Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
+    description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 11.014546,
     lng: -74.876357,
     image: "assets/images/puntos/Pasos de fauna3.webp",
@@ -1309,7 +1296,7 @@ const mockData = [
     tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
   },
   {
-    id: 95,
+    id: 94,
     eventMonth: 1,
     startDay: 14,
     endDay: 17,
@@ -1325,7 +1312,7 @@ const mockData = [
     tags: ["Festividad cultural","Patrimonio Unesco","Evento masivo","Música y danza","Desfiles y comparsas"]
   },
   {
-    id: 96,
+    id: 95,
     category: "cultura",
     title: "Catedral de Cartagena",
     description: "La catedral más antigua de Colombia en tierra firme concentra en sus muros la historia religiosa y arquitectónica de Cartagena desde el siglo XVI. Cada reforma que resistió y cada daño que acumuló es parte del relato de una ciudad que construyó fe e identidad al mismo tiempo que construía sus murallas.",
@@ -1338,7 +1325,7 @@ const mockData = [
     tags: ["Patrimonio religioso","visita cultural"]
   },
   {
-    id: 97,
+    id: 96,
     category: "cultura",
     title: "Palacio de la Gobernación",
     description: "Sede del poder departamental de Bolívar y testigo arquitectónico de la vida política de Cartagena. El Palacio de la Gobernación conserva en su fachada y sus patios interiores el estilo colonial que define el centro histórico, siendo parte inseparable del patrimonio urbano que convierte a Cartagena en ciudad de memoria.",
@@ -1351,7 +1338,7 @@ const mockData = [
     tags: ["Patrimonio arquitectónico","visita institucional"]
   },
   {
-    id: 98,
+    id: 97,
     category: "cultura",
     title: "Plaza Bolívar",
     description: "El corazón del centro histórico de Cartagena donde la arquitectura colonial converge con la vida cotidiana de la ciudad. La Plaza Bolívar no es solo un espacio turístico: es el lugar donde la historia pública de Cartagena se escribe desde siempre, con la catedral, el palacio y la estatua del Libertador como testigos permanentes.",
@@ -1364,7 +1351,7 @@ const mockData = [
     tags: ["Espacio público","patrimonio histórico"]
   },
   {
-    id: 99,
+    id: 98,
     category: "cultura",
     title: "Las Bóvedas",
     description: "Construidas en el siglo XVIII como almacenes militares y luego usadas como calabozos, Las Bóvedas guardan capas de historia colonial entre sus paredes de piedra. Hoy artesanos locales ocupan estos espacios convirtiéndolos en un mercado vivo donde el patrimonio arquitectónico y la economía comunitaria comparten el mismo techo.",
@@ -1377,7 +1364,7 @@ const mockData = [
     tags: ["Patrimonio histórico","artesanías","comercio"]
   },
   {
-    id: 100,
+    id: 99,
     category: "cultura",
     title: "Museo del Oro",
     description: "La colección zenú del Museo del Oro de Cartagena revela el dominio técnico y simbólico de los orfebres precolombinos que habitaron la Costa Caribe. Cada pieza de filigrana de oro es evidencia de una civilización que dominó el metal mucho antes de que los europeos llegaran a estas costas con sus propios criterios de valor.",
@@ -1390,7 +1377,7 @@ const mockData = [
     tags: ["Museo","cultura","arqueología"]
   },
   {
-    id: 101,
+    id: 100,
     category: "cultura",
     title: "Casa del Marqués de Premio Real",
     description: "Una de las casas coloniales mejor conservadas de Cartagena, con balcones de madera y patios interiores que reproducen el modelo arquitectónico que la élite criolla construyó durante el Virreinato. Recorrerla es entender cómo se vivía el poder y la distinción social en la ciudad portuaria más importante del Caribe colonial.",
@@ -1403,7 +1390,7 @@ const mockData = [
     tags: ["Patrimonio arquitectónico colonial","visita cultural"]
   },
   {
-    id: 102,
+    id: 101,
     category: "playas",
     title: "El Laguito",
     description: "Una extensión de mar protegida por la formación natural de Bocagrande que ofrece aguas tranquilas y temperatura constante en Cartagena. El Laguito combina el paisaje del Caribe con la escala íntima de una ensenada urbana donde el baño, el paseo y la contemplación del horizonte coexisten con el perfil de la ciudad.",
@@ -1416,7 +1403,7 @@ const mockData = [
     tags: ["Playa","sector turístico","recreación"]
   },
   {
-    id: 103,
+    id: 102,
     category: "playas",
     title: "Playa Castillo Grande",
     description: "Arena blanca y aguas del Caribe con la silueta de Cartagena de fondo. Castillo Grande ofrece el litoral más accesible de la ciudad histórica, donde el mar llega con temperatura cálida y color turquesa. Un espacio costero donde el entorno natural del Caribe colombiano se vive a pocos metros del centro histórico.",
@@ -1429,7 +1416,7 @@ const mockData = [
     tags: ["Playa","recreación","natación"]
   },
   {
-    id: 104,
+    id: 103,
     category: "cultura",
     title: "Museo de las Fortificaciones",
     description: "Las murallas y castillos que defendieron a Cartagena de piratas e imperios son hoy el mayor sistema de ingeniería militar colonial del continente. El museo explica cómo se construyó esta defensa y qué significó para la ciudad. Cada piedra coralina es el resultado de una estrategia que mantuvo a Cartagena en pie durante siglos.",
@@ -1442,7 +1429,7 @@ const mockData = [
     tags: ["Museo de sitio","patrimonio militar colonial"]
   },
   {
-    id: 105,
+    id: 104,
     category: "cultura",
     title: "Museo Romántico",
     description: "Objetos cotidianos, vestidos, cartas y fotografías del siglo XIX y principios del XX que reconstruyen la vida íntima de la élite barranquillera en sus años de mayor esplendor. El Museo Romántico preserva la memoria doméstica de una época en que el comercio del río convirtió a Barranquilla en ciudad cosmopolita.",
@@ -1455,7 +1442,7 @@ const mockData = [
     tags: ["Museo histórico","patrimonio cultural urbano"]
   },
   {
-    id: 106,
+    id: 105,
     category: "cultura",
     title: "Teatro Amira de la Rosa",
     description: "El teatro más emblemático de Barranquilla lleva el nombre de una escritora caribeña y es el escenario donde la ciudad ha celebrado su vida cultural por décadas. Su arquitectura y su historia lo convierten en patrimonio urbano activo: no es solo un edificio histórico sino un espacio donde la cultura viva sigue encontrando su lugar.",
@@ -1468,7 +1455,7 @@ const mockData = [
     tags: ["Teatro","centro cultural","espectáculos"]
   },
   {
-    id: 107,
+    id: 106,
     category: "cultura",
     title: "Catedral Metropolitana María Reina",
     description: "La catedral principal de Barranquilla concentra en su interior la historia religiosa y la identidad espiritual de una ciudad que construyó su fe al mismo ritmo que construyó su vocación comercial. Su arquitectura moderna contrasta con la tradición que alberga, siendo parte inseparable del paisaje urbano del centro barranquillero.",
@@ -1481,7 +1468,7 @@ const mockData = [
     tags: ["Patrimonio religioso","visita cultural"]
   },
   {
-    id: 108,
+    id: 107,
     category: "cultura",
     title: "Estadio Metropolitano",
     description: "El Estadio Metropolitano Roberto Meléndez no es solo un recinto deportivo: es el corazón de la identidad futbolera de Barranquilla. Con capacidad para más de 50.000 personas, es escenario de la Selección Colombia y del Atlético Junior, siendo parte del imaginario colectivo de una ciudad que vive el fútbol como expresión cultural.",
@@ -1494,7 +1481,7 @@ const mockData = [
     tags: ["Estadio","deporte","eventos masivos"]
   },
   {
-    id: 109,
+    id: 108,
     category: "cultura",
     title: "Barrio El Prado",
     description: "El primer barrio planificado de Colombia conserva sus calles arboladas, sus casonas de estilo republicano y el ambiente tranquilo de una época en que Barranquilla proyectaba su prosperidad en la arquitectura. Recorrer El Prado es leer la historia de una ciudad que se pensó a sí misma con ambición y elegancia en los años veinte.",
@@ -1507,7 +1494,7 @@ const mockData = [
     tags: ["Patrimonio urbano","arquitectura republicana","turismo cultural"]
   },
   {
-    id: 110,
+    id: 109,
     category: "cultura",
     title: "Museo Antropológico y Etnológico",
     description: "Colecciones que abarcan las culturas prehispánicas y las tradiciones étnicas del Caribe colombiano. El museo ofrece una lectura profunda de la diversidad humana que habitó y habita este territorio, con piezas que permiten entender los sistemas simbólicos, los rituales y las formas de vida que precedieron y acompañan la historia oficial.",
@@ -1520,7 +1507,7 @@ const mockData = [
     tags: ["Museo universitario","arqueología","etnología"]
   },
   {
-    id: 111,
+    id: 110,
     category: "cultura",
     title: "Zoológico de Barranquilla",
     description: "El zoológico más antiguo de Colombia alberga especies de fauna nativa e internacional en un entorno verde dentro de la ciudad. Más que un paseo, es un espacio de educación ambiental donde el contacto con animales silvestres genera conciencia sobre la biodiversidad y la conservación de especies que el desarrollo urbano amenaza.",
@@ -1533,7 +1520,7 @@ const mockData = [
     tags: ["Zoológico","conservación","educación ambiental"]
   },
   {
-    id: 112,
+    id: 111,
     category: "cultura",
     title: "Castillo de Salgar",
     description: "Construido en el siglo XIX sobre la costa atlántica, el Castillo de Salgar es uno de los patrimonios históricos más singulares del departamento. Su arquitectura defensiva frente al mar cuenta la historia de una época en que el litoral del Atlántico era frontera entre el comercio y la inseguridad, entre el orden y lo desconocido.",
@@ -1546,7 +1533,7 @@ const mockData = [
     tags: ["Centro de eventos","patrimonio histórico","recreación"]
   },
   {
-    id: 113,
+    id: 112,
     category: "cultura",
     title: "Biblioteca Piloto del Caribe",
     description: "Centro de la memoria escrita del Caribe colombiano, la Biblioteca Piloto preserva colecciones documentales, archivos históricos y fondos especiales que hacen de este espacio un referente cultural ineludible. Más que repositorio, es un lugar vivo donde la investigación, la lectura y el acceso al conocimiento regional tienen casa propia.",
@@ -1559,7 +1546,7 @@ const mockData = [
     tags: ["Biblioteca pública","centro cultural","archivo regional"]
   },
   {
-    id: 114,
+    id: 113,
     category: "ecoturismo",
     title: "Parque Isla Salamanca",
     description: "Una franja de tierra entre el mar Caribe y la Ciénaga Grande de Santa Marta que alberga uno de los ecosistemas de manglar más extensos y biodiversos de Colombia. El Parque Isla Salamanca es corredor biológico, refugio de aves migratorias y zona de reproducción de especies que dependen del equilibrio entre el agua salada y la dulce.",
@@ -1572,7 +1559,7 @@ const mockData = [
     tags: ["Parque natural","ecoturismo","avistamiento de fauna"]
   },
   {
-    id: 115,
+    id: 114,
     category: "ecoturismo",
     title: "Jardín Botánico",
     description: "Una colección de flora nativa e introducida que convierte un espacio de Barranquilla en laboratorio vivo de la biodiversidad vegetal del Caribe. Los senderos del Jardín Botánico permiten identificar especies, entender sus relaciones ecológicas y apreciar la riqueza de un territorio donde la vegetación tropical es también historia y cultura.",
@@ -1585,7 +1572,7 @@ const mockData = [
     tags: ["Reserva urbana","ecoturismo","educación ambiental"]
   },
   {
-    id: 116,
+    id: 115,
     category: "cultura",
     title: "Iglesia San Roque",
     description: "Una de las iglesias más antiguas de Barranquilla, levantada en el barrio de San Roque donde la devoción popular y la arquitectura colonial conviven con la vida del mercado público. La iglesia es testigo de la historia social del centro barranquillero y punto de referencia de la religiosidad popular que define al Caribe urbano.",
@@ -1598,7 +1585,7 @@ const mockData = [
     tags: ["Patrimonio religioso","visita cultural"]
   },
   {
-    id: 117,
+    id: 116,
     category: "cultura",
     title: "Plaza de la Intendencia Fluvial",
     description: "Un espacio histórico junto al río Magdalena que evoca la época en que Barranquilla era el principal puerto fluvial del país. La Plaza de la Intendencia Fluvial recuerda el tiempo en que el río era la arteria principal del comercio nacional y esta ciudad era la puerta de entrada de la modernidad al interior de Colombia.",
@@ -1611,7 +1598,7 @@ const mockData = [
     tags: ["Patrimonio histórico","espacio público"]
   },
   {
-    id: 118,
+    id: 117,
     category: "cultura",
     title: "Museo de Arte Moderno",
     description: "El MAMB es el espacio donde el arte contemporáneo del Caribe colombiano y de América Latina dialoga con el mundo. Su colección permanente y sus exposiciones temporales presentan obras que cuestionan, celebran y reinterpretan la identidad cultural de una región que ha producido artistas de alcance internacional desde sus propias raíces.",
@@ -1624,7 +1611,7 @@ const mockData = [
     tags: ["Museo de arte","exposiciones","cultura contemporánea"]
   },
   {
-    id: 119,
+    id: 118,
     category: "cultura",
     title: "Estatua del Joe Arroyo",
     description: "Joe Arroyo inmortalizado en bronce en el corazón de Barranquilla. La estatua es el reconocimiento de una ciudad a quien llevó su ritmo al mundo: la salsa, el porro y la fusión caribeña en una voz que se convirtió en patrimonio sonoro. Visitarla es recordar que la cultura popular es también la historia más honesta de un pueblo.",
@@ -1637,7 +1624,7 @@ const mockData = [
     tags: ["Monumento","patrimonio cultural","espacio público"]
   },
   {
-    id: 120,
+    id: 119,
     category: "cultura",
     title: "Museo Mapuka",
     description: "Colecciones arqueológicas, etnográficas y de historia natural que hacen del Museo Mapuka el espacio donde Barranquilla cuenta sus capas más profundas. Desde los vestigios precolombinos hasta las expresiones culturales contemporáneas, el museo traza un recorrido que muestra la complejidad de una ciudad construida sobre múltiples historias.",
@@ -1650,7 +1637,7 @@ const mockData = [
     tags: ["Museo arqueológico","pueblos Karib","educación cultural"]
   },
   {
-    id: 121,
+    id: 120,
     category: "cultura",
     title: "Plaza Principal de Puerto Colombia",
     description: "El centro de la vida social de Puerto Colombia desde siempre. La plaza principal concentra la arquitectura histórica del municipio, la iglesia, los kioscos y el ritmo cotidiano de un pueblo costero que conserva su escala humana. Un espacio donde la historia del puerto más importante del Atlántico se vive en la conversación diaria.",
@@ -1663,7 +1650,7 @@ const mockData = [
     tags: ["Espacio público","patrimonio urbano","turismo"]
   },
   {
-    id: 122,
+    id: 121,
     category: "cultura",
     title: "Taller del Rey Momo",
     description: "Aquí se fabrican los disfraces, las caretas y los muñecos que dan vida al Carnaval de Barranquilla. El taller del Rey Momo es el espacio donde artesanos populares transforman cartón, tela y pintura en personajes que durante cuatro días son el alma de la fiesta. Un oficio comunitario que el turismo puede visitar, no solo presenciar.",
@@ -1676,7 +1663,7 @@ const mockData = [
     tags: ["Taller artesanal","turismo cultural","patrimonio del Carnaval"]
   },
   {
-    id: 123,
+    id: 122,
     category: "playas",
     title: "Bocas de Cenizas",
     description: "Donde el Magdalena entrega al Caribe el agua que recorrió todo el país. En Bocas de Cenizas el río y el mar se encuentran visiblemente: dos colores, dos temperaturas, dos mundos que se mezclan en un fenómeno geológico e hidrológico único. Un punto de la geografía colombiana donde la escala del territorio se vuelve tangible.",
@@ -1689,7 +1676,7 @@ const mockData = [
     tags: ["Atractivo natural","turismo fluvial","observación paisajística"]
   },
   {
-    id: 124,
+    id: 123,
     category: "cultura",
     title: "Estatua de Shakira",
     description: "Un homenaje de Barranquilla a su hija más universal. La estatua de Shakira frente al estadio celebra a una artista que llevó el Caribe colombiano al mundo sin dejar de nombrarlo. Para la ciudad, el monumento es también un acto de reconocimiento: la cultura popular barranquillera tiene dimensión global y la ciudad lo sabe.",
@@ -1702,7 +1689,7 @@ const mockData = [
     tags: ["Monumento","patrimonio cultural","espacio público"]
   },
   {
-    id: 125,
+    id: 124,
     category: "cultura",
     title: "Castillo de San Felipe",
     description: "La fortaleza militar más grande construida por España en América. El Castillo de San Felipe de Barajas en Cartagena es una obra de ingeniería del siglo XVII diseñada para resistir cualquier ataque. Sus túneles, rampas y bastiones cuentan la historia de un imperio que protegió su joya del Caribe con todo lo que tenía.",
@@ -1715,7 +1702,7 @@ const mockData = [
     tags: ["Fortaleza colonial","museo","patrimonio Unesco"]
   },
   {
-    id: 126,
+    id: 125,
     category: "cultura",
     title: "Monumento Torre del Reloj",
     description: "La puerta de entrada al centro histórico de Cartagena desde el siglo XVII. La Torre del Reloj marcó durante siglos el límite entre la ciudad amurallada y el mundo exterior. Hoy es el umbral simbólico por donde millones de visitantes ingresan a un patrimonio de la humanidad que comenzó a construirse hace más de cuatro siglos.",
@@ -1728,7 +1715,7 @@ const mockData = [
     tags: ["Monumento histórico","patrimonio","espacio público"]
   },
   {
-    id: 127,
+    id: 126,
     category: "cultura",
     title: "Santuario de San Pedro Claver",
     description: "El jesuita que dedicó su vida a los africanos esclavizados que llegaban por el puerto de Cartagena tiene aquí su santuario. San Pedro Claver no es solo un santo colonial: es la memoria de una resistencia moral en medio de una de las épocas más oscuras de la historia americana, preservada en piedra en el corazón de la ciudad.",
@@ -1741,7 +1728,7 @@ const mockData = [
     tags: ["Patrimonio religioso","museo","visita cultural"]
   },
   {
-    id: 128,
+    id: 127,
     category: "cultura",
     title: "Iglesia de Santo Domingo",
     description: "La iglesia más antigua de Cartagena guarda en sus bóvedas y columnas las marcas del tiempo y de los terremotos que intentaron derribarla. Construida por los dominicos en el siglo XVI, Santo Domingo sobrevivió a todo y hoy preside la plaza más concurrida del centro histórico como testigo inmóvil de cinco siglos de historia caribeña.",
