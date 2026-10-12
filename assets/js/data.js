@@ -911,8 +911,8 @@ const mockData = [
     image: "assets/images/puntos/catedral_de_cartagena.webp",
     location: "Cartagena, Bolívar.",
     hours: "7:00 a.m. – 12:00 m. / 3:00 p.m. – 6:00 p.m.",
-    price: "Patrimonio religioso / visita cultural",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio religioso","visita cultural"]
   },
   {
     id: 97,
@@ -924,8 +924,8 @@ const mockData = [
     image: "assets/images/puntos/palacio_de_la_gobernación.webp",
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 12:00 m. / 2:00 p.m. – 5:00 p.m.",
-    price: "Patrimonio arquitectónico / visita institucional",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio arquitectónico","visita institucional"]
   },
   {
     id: 98,
@@ -937,8 +937,8 @@ const mockData = [
     image: "",
     location: "Cartagena, Bolívar.",
     hours: "24 horas (espacio abierto)",
-    price: "Espacio público / patrimonio histórico",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Espacio público","patrimonio histórico"]
   },
   {
     id: 99,
@@ -950,8 +950,8 @@ const mockData = [
     image: "assets/images/puntos/las_bóvedas.webp",
     location: "Cartagena, Bolívar.",
     hours: "9:00 a.m. – 6:00 p.m.",
-    price: "Patrimonio histórico / artesanías / comercio",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio histórico","artesanías","comercio"]
   },
   {
     id: 100,
@@ -963,8 +963,8 @@ const mockData = [
     image: "assets/images/puntos/museo_del_oro.webp",
     location: "Cartagena, Bolívar.",
     hours: "10:00 a.m. – 5:00 p.m. / Domingo 10:00 a.m. – 1:00 p.m.",
-    price: "Museo / cultura / arqueología",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Museo","cultura","arqueología"]
   },
   {
     id: 101,
@@ -976,8 +976,8 @@ const mockData = [
     image: "assets/images/puntos/casa_del_marqués_de_premio_real.webp",
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 5:00 p.m.",
-    price: "Patrimonio arquitectónico colonial / visita cultural",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio arquitectónico colonial","visita cultural"]
   },
   {
     id: 102,
@@ -989,8 +989,8 @@ const mockData = [
     image: "assets/images/puntos/el_laguito.webp",
     location: "Cartagena, Bolívar.",
     hours: "Espacio abierto",
-    price: "Playa / sector turístico / recreación",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Playa","sector turístico","recreación"]
   },
   {
     id: 103,
@@ -1002,8 +1002,8 @@ const mockData = [
     image: "assets/images/puntos/playa_castillo_grande.webp",
     location: "Cartagena, Bolívar.",
     hours: "Espacio abierto",
-    price: "Playa / recreación / natación",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Playa","recreación","natación"]
   },
   {
     id: 104,
@@ -1015,8 +1015,8 @@ const mockData = [
     image: "assets/images/puntos/museo_de_las_fortificaciones.webp",
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 6:00 p.m.",
-    price: "Museo de sitio / patrimonio militar colonial",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Museo de sitio","patrimonio militar colonial"]
   },
   {
     id: 105,
@@ -1028,8 +1028,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 12:00 m. / 2:00 p.m. – 5:30 p.m.",
-    price: "Museo histórico / patrimonio cultural urbano",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Museo histórico","patrimonio cultural urbano"]
   },
   {
     id: 106,
@@ -1041,8 +1041,8 @@ const mockData = [
     image: "assets/images/puntos/teatro_amira_de_la_rosa.webp",
     location: "Barranquilla, Atlántico.",
     hours: "Variable según cartelera",
-    price: "Teatro / centro cultural / espectáculos",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Teatro","centro cultural","espectáculos"]
   },
   {
     id: 107,
@@ -1054,8 +1054,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "",
-    price: "Patrimonio religioso / visita cultural",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio religioso","visita cultural"]
   },
   {
     id: 108,
@@ -1067,8 +1067,8 @@ const mockData = [
     image: "assets/images/puntos/estadio_metropolitano.webp",
     location: "Barranquilla, Atlántico.",
     hours: "Variable según evento",
-    price: "Estadio / deporte / eventos masivos",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Estadio","deporte","eventos masivos"]
   },
   {
     id: 109,
@@ -1080,8 +1080,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "Espacio abierto (recorrido exterior)",
-    price: "Patrimonio urbano / arquitectura republicana / turismo cultural",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio urbano","arquitectura republicana","turismo cultural"]
   },
   {
     id: 110,
@@ -1093,8 +1093,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 12:00 m. / 2:00 p.m. – 5:00 p.m.",
-    price: "Museo universitario / arqueología / etnología",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Museo universitario","arqueología","etnología"]
   },
   {
     id: 111,
@@ -1106,8 +1106,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 5:00 p.m.",
-    price: "Zoológico / conservación / educación ambiental",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Zoológico","conservación","educación ambiental"]
   },
   {
     id: 112,
@@ -1119,8 +1119,8 @@ const mockData = [
     image: "assets/images/puntos/castillo_de_salgar.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "9:00 a.m. – 6:00 p.m.",
-    price: "Centro de eventos / patrimonio histórico / recreación",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Centro de eventos","patrimonio histórico","recreación"]
   },
   {
     id: 113,
@@ -1132,8 +1132,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 8:00 p.m. / Sábados 8:00 a.m. – 4:00 p.m.",
-    price: "Biblioteca pública / centro cultural / archivo regional",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Biblioteca pública","centro cultural","archivo regional"]
   },
   {
     id: 114,
@@ -1145,8 +1145,8 @@ const mockData = [
     image: "assets/images/puntos/parque_isla_salamanca.webp",
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 4:00 p.m.",
-    price: "Parque natural / ecoturismo / avistamiento de fauna",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Parque natural","ecoturismo","avistamiento de fauna"]
   },
   {
     id: 115,
@@ -1158,8 +1158,8 @@ const mockData = [
     image: "assets/images/puntos/jardín_botánico.webp",
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 5:00 p.m.",
-    price: "Reserva urbana / ecoturismo / educación ambiental",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Reserva urbana","ecoturismo","educación ambiental"]
   },
   {
     id: 116,
@@ -1171,8 +1171,8 @@ const mockData = [
     image: "assets/images/puntos/iglesia_san_roque.webp",
     location: "Barranquilla, Atlántico.",
     hours: "",
-    price: "Patrimonio religioso / visita cultural",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio religioso","visita cultural"]
   },
   {
     id: 117,
@@ -1184,8 +1184,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "Espacio abierto",
-    price: "Patrimonio histórico / espacio público",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio histórico","espacio público"]
   },
   {
     id: 118,
@@ -1197,8 +1197,8 @@ const mockData = [
     image: "assets/images/puntos/museo_de_arte_moderno.webp",
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 1:00 p.m. / 3:00 p.m. – 7:00 p.m.",
-    price: "Museo de arte / exposiciones / cultura contemporánea",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Museo de arte","exposiciones","cultura contemporánea"]
   },
   {
     id: 119,
@@ -1210,8 +1210,8 @@ const mockData = [
     image: "assets/images/puntos/estatua_del_joe_arroyo.webp",
     location: "Barranquilla, Atlántico.",
     hours: "Espacio abierto",
-    price: "Monumento / patrimonio cultural / espacio público",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Monumento","patrimonio cultural","espacio público"]
   },
   {
     id: 120,
@@ -1223,8 +1223,8 @@ const mockData = [
     image: "assets/images/puntos/museo_mapuka.webp",
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 5:00 p.m.",
-    price: "Museo arqueológico / pueblos Karib / educación cultural",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Museo arqueológico","pueblos Karib","educación cultural"]
   },
   {
     id: 121,
@@ -1236,8 +1236,8 @@ const mockData = [
     image: "",
     location: "Puerto Colombia, Atlántico.",
     hours: "Espacio abierto",
-    price: "Espacio público / patrimonio urbano / turismo",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Espacio público","patrimonio urbano","turismo"]
   },
   {
     id: 122,
@@ -1249,8 +1249,8 @@ const mockData = [
     image: "",
     location: "Galapa, Atlántico.",
     hours: "9:00 a.m. – 5:00 p.m. (previa cita)",
-    price: "Taller artesanal / turismo cultural / patrimonio del Carnaval",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Taller artesanal","turismo cultural","patrimonio del Carnaval"]
   },
   {
     id: 123,
@@ -1262,8 +1262,8 @@ const mockData = [
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "Espacio natural abierto",
-    price: "Atractivo natural / turismo fluvial / observación paisajística",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Atractivo natural","turismo fluvial","observación paisajística"]
   },
   {
     id: 124,
@@ -1275,8 +1275,8 @@ const mockData = [
     image: "assets/images/puntos/estatua_shakira.png",
     location: "Barranquilla, Atlántico.",
     hours: "Espacio abierto",
-    price: "Monumento / patrimonio cultural / espacio público",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Monumento","patrimonio cultural","espacio público"]
   },
   {
     id: 125,
@@ -1288,8 +1288,8 @@ const mockData = [
     image: "assets/images/puntos/castillo_de_san_felipe.png",
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 6:00 p.m.",
-    price: "Fortaleza colonial / museo / patrimonio Unesco",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Fortaleza colonial","museo","patrimonio Unesco"]
   },
   {
     id: 126,
@@ -1301,8 +1301,8 @@ const mockData = [
     image: "assets/images/puntos/monumento_torre_del_reloj.png",
     location: "Cartagena, Bolívar.",
     hours: "Espacio abierto (exterior 24h)",
-    price: "Monumento histórico / patrimonio / espacio público",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Monumento histórico","patrimonio","espacio público"]
   },
   {
     id: 127,
@@ -1314,8 +1314,8 @@ const mockData = [
     image: "assets/images/puntos/santuario_san_pedro_claver.png",
     location: "Cartagena, Bolívar.",
     hours: "",
-    price: "Patrimonio religioso / museo / visita cultural",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio religioso","museo","visita cultural"]
   },
   {
     id: 128,
@@ -1327,8 +1327,8 @@ const mockData = [
     image: "assets/images/puntos/iglesia_santo_domingo.png",
     location: "Cartagena, Bolívar.",
     hours: "",
-    price: "Patrimonio religioso / visita cultural / siglo XVI",
-    tags: []
+    price: "Gratuito.",
+    tags: ["Patrimonio religioso","visita cultural","siglo XVI"]
   },
 ];
 
