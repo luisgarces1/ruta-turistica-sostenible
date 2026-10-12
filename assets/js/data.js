@@ -413,7 +413,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24h.",
     price: "N/A.",
-    tags: ["Comida autóctona"]
+    tags: ["Servicios (aeropuertos)"]
   },
   {
     id: 30,
@@ -455,7 +455,7 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "Abierto todo el tiempo.",
     price: "N/A.",
-    tags: ["Artesanías"]
+    tags: ["Servicios (aeropuertos)"]
   },
   {
     id: 33,
@@ -487,7 +487,7 @@ const mockData = [
     id: 35,
     category: "infraestructura",
     title: "Viaducto de La Virgen",
-    description: "El Viaducto El Gran Manglar es una de las obras más emblemáticas de la concesión Ruta Costera 4G, diseñado como una estructura elevada que atraviesa zonas de manglar cercanas a la Ciénaga de la Virgen. Su construcción permite garantizar la conectividad del corredor vial sin afectar de manera directa este ecosistema sensible, al evitar rellenos y minimizar la intervención sobre el terreno natural. Esta infraestructura se destaca por su enfoque en la sostenibilidad ambiental, ya que protege la dinámica hídrica y la biodiversidad del manglar, permitiendo la circulación de agua y el paso de especies. Además, mejora la movilidad al ofrecer un tránsito continuo, seguro y eficiente, reduciendo tiempos de viaje y riesgos para los usuarios. En este sentido, el viaducto no solo cumple una función vial estratégica, sino que también representa una solución de ingeniería que equilibra el desarrollo de infraestructura con la conservación ambiental.",
+    description: "Boquilla - Ciénaga de La Virgen El Viaducto El Gran Manglar es una de las obras más emblemáticas de la concesión Ruta Costera 4G, diseñado como una estructura elevada que atraviesa zonas de manglar cercanas a la Ciénaga de la Virgen. Su construcción permite garantizar la conectividad del corredor vial sin afectar de manera directa este ecosistema sensible, al evitar rellenos y minimizar la intervención sobre el terreno natural. Esta infraestructura se destaca por su enfoque en la sostenibilidad ambiental, ya que protege la dinámica hídrica y la biodiversidad del manglar, permitiendo la circulación de agua y el paso de especies. Además, mejora la movilidad al ofrecer un tránsito continuo, seguro y eficiente, reduciendo tiempos de viaje y riesgos para los usuarios. En este sentido, el viaducto no solo cumple una función vial estratégica, sino que también representa una solución de ingeniería que equilibra el desarrollo de infraestructura con la conservación ambiental.",
     lat: 10.460734,
     lng: -75.504856,
     image: "assets/images/puntos/viaducto de la virgen.webp",
@@ -960,8 +960,8 @@ const mockData = [
   {
     id: 68,
     category: "infraestructura",
-    title: "Blas el Teso",
-    description: "Los puentes peatonalesde Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
+    title: "Pte. Blas el Teso",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 10.458019,
     lng: -75.507907,
     image: "assets/images/puntos/blas el teso.webp",
@@ -987,7 +987,7 @@ const mockData = [
     id: 70,
     category: "infraestructura",
     title: "Pte. U. Autónoma",
-    description: "Los puentes peatonalesde Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
+    description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.004156,
     lng: -74.921221,
     image: "assets/images/puntos/Pte U Autónoma.webp",
