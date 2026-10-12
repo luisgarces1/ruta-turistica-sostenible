@@ -477,7 +477,7 @@ const mockData = [
     lat: 10.445444,
     lng: -75.52369,
     image: "assets/images/puntos/Parque lineal  de Crespo.webp",
-    location: "Cartagena, Atlántico.",
+    location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 0+000"]
@@ -490,7 +490,7 @@ const mockData = [
     lat: 10.499121,
     lng: -75.477055,
     image: "assets/images/puntos/Paso de fauna.webp",
-    location: "Cartagena, Atlántico.",
+    location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR PR 7+020"]
@@ -503,7 +503,7 @@ const mockData = [
     lat: 10.460734,
     lng: -75.504856,
     image: "assets/images/puntos/viaducto de la virgen.webp",
-    location: "Cartagena, Atlántico.",
+    location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "UF2", "Ruta 90A01", "PR 1+905"]
@@ -516,7 +516,7 @@ const mockData = [
     lat: 10.574485,
     lng: -75.450524,
     image: "assets/images/puntos/Peaje Marahuaco.webp",
-    location: "Cartagena, Atlántico.",
+    location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "UF3", "Ruta 90A01", "PR PR15+1100"]
@@ -529,7 +529,7 @@ const mockData = [
     lat: 10.574485,
     lng: -75.450524,
     image: "assets/images/puntos/pesaje marahuaco.webp",
-    location: "Cartagena, Atlántico.",
+    location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR PR15+1100"]
@@ -542,7 +542,7 @@ const mockData = [
     lat: 10.967489,
     lng: -74.956649,
     image: "assets/images/puntos/Peaje Puerto Colombia.webp",
-    location: "Cartagena, Atlántico.",
+    location: "Tubará, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR PR93+600"]
@@ -555,7 +555,7 @@ const mockData = [
     lat: 10.458019,
     lng: -75.507907,
     image: "assets/images/puntos/blas el teso.webp",
-    location: "Cartagena, Atlántico.",
+    location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
     tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR K1+360"]
