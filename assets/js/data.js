@@ -81,175 +81,175 @@ const mockData = [
     id: 7, category: "gastronomia", title: "Centro gastronómico Muelle 1888", 
     description: "Una arquitectura que rinde tributo a las olas inmigrantes que llegaron por este puerto. Los sabores locales e internacionales conviven aquí con la historia del lugar, invitando a comer despacio, a mirar el mar y a entender cómo la mesa caribeña es también un archivo de memorias y encuentros.", 
     lat: 10.989444, lng: -74.958611, image: "assets/images/puntos/foto-principal-m.1888.webp", 
-    location: "Puerto Colombia.", hours: "Variable.", price: "Gratuito.", 
+    location: "Puerto Colombia, Atlántico.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Comida autóctona", "Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 8, category: "cultura", title: "Ventana de Sueños", 
     description: "Estructura de cristal que al caer la noche transforma la costa de Puerto Colombia en un faro de colores. Es un monumento a los inmigrantes que llegaron sin certezas y construyeron identidad. Su reflejo sobre el mar convierte cada visita en un encuentro entre la historia humana y el presente festivo del Atlántico.", 
     lat: 11.001667, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-v.s.webp", 
-    location: "Puerto Colombia.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 9, category: "cultura", title: "Antigua estación del Ferrocarril", 
     description: "Inaugurada en 1871, sus muros de ladrillo guardan el eco de los trenes que conectaron el interior del país con el mar. Hoy convertida en centro cultural, la estación invita a recorrer la era ferroviaria que cambió la economía colombiana y dejó en Puerto Colombia una huella arquitectónica todavía vigente.", 
     lat: 10.988611, lng: -74.959444, image: "assets/images/puntos/foto-principal-para-la-pagina-ef.webp", 
-    location: "Puerto Colombia.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Puerto Colombia, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 10, category: "playas", title: "Playas de Puerto Colombia", 
     description: "El mar llega aquí con fuerza moderada y temperatura cálida todo el año. La proximidad del muelle histórico crea un paisaje donde el agua y la arquitectura se entrelazan sin competir. Playas abiertas, brisa del Caribe y una costa que combina el descanso natural con la escala humana del balneario clásico.", 
     lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.p.webp", 
-    location: "Puerto Colombia.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
+    location: "Puerto Colombia, Atlántico.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 11, category: "playas", title: "Playa de Santa Verónica", 
     description: "El viento constante de Juan de Acosta convierte a Santa Verónica en un punto privilegiado del litoral atlántico. Sus corrientes suaves y el agua clara la hacen ideal para iniciarse en deportes de viento. Frente al océano, los restaurantes de pescado frito completan un entorno donde el mar dicta el ritmo.", 
     lat: 10.88038, lng: -75.08297, image: "assets/images/puntos/fotografia-para-la-pagina-p.s.webp", 
-    location: "Juan de Acosta.", hours: "7:00 a.m. - 9:00 p.m.", price: "Gratuito.", 
+    location: "Juan de Acosta, Atlántico.", hours: "7:00 a.m. - 9:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona", "Vistas panorámicas"]
   },
   {
     id: 12, category: "nauticos", title: "Salinas del Rey", 
     description: "Las condiciones de viento y oleaje de Juan de Acosta generan aquí uno de los escenarios de kitesurf más exigentes del mundo. Pero antes de la adrenalina está el paisaje: agua que cambia de tono según la hora y la sal que brilla bajo el sol caribeño. Un accidente geográfico convertido en destino de alto rendimiento.", 
     lat: 10.871944, lng: -75.095556, image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp", 
-    location: "Juan de Acosta.", hours: "9:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
+    location: "Juan de Acosta, Atlántico.", hours: "9:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Deportes náuticos", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 13, eventMonth: 0, startDay: 30, endDay: 31, category: "cultura", title: "Festival del Millo", 
     description: "La flauta de millo sale a las calles de Juan de Acosta cada año para recordar el origen agrícola de este municipio. El baile, la música y los platos derivados del grano tejen una celebración donde la herencia campesina del Caribe no es pasado sino identidad activa que se renueva con cada edición.", 
     lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp", 
-    location: "Juan de Acosta.", hours: "Anual.", price: "Gratuito.", 
+    location: "Juan de Acosta, Atlántico.", hours: "Anual.", price: "Gratuito.", 
     tags: ["Comida autóctona", "Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 14, category: "gastronomia", title: "Parador El Sombrero Vueltiao", 
     description: "Una parada en la vía que es mucho más que descanso. El sombrero vueltiao gigante marca un punto donde artesanos y productores locales exhiben y venden su trabajo. Aquí la carretera se convierte en mercado vivo: comida típica, artesanías auténticas y el orgullo de quienes hacen de su oficio una identidad.", 
     lat: 10.8805, lng: -75.0711, image: "assets/images/puntos/foto-principal-s.v.webp", 
-    location: "Juan de Acosta.", hours: "Variable.", price: "Gratuito.", 
+    location: "Juan de Acosta, Atlántico.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Artesanías", "Comida autóctona", "Vistas panorámicas"]
   },
   {
     id: 15, category: "playas", title: "Playa de Puerto Velero", 
     description: "La ensenada natural de Puerto Velero protege sus aguas del oleaje abierto, creando una calma que pocas playas del Caribe colombiano ofrecen. El entorno de manglares y la profundidad gradual la hacen refugio ideal para la vela y los deportes náuticos suaves en un ecosistema costero todavía bien conservado.", 
     lat: 10.947222, lng: -75.036944, image: "assets/images/puntos/foto-principal-para-la-pagina-p.v.webp", 
-    location: "Tubará.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
+    location: "Tubará, Atlántico.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Deportes náuticos", "Comida autóctona"]
   },
   {
     id: 16, category: "cultura", title: "Museo Arqueológico de Galapa", 
     description: "Las cerámicas y piezas que custodian estas salas no son solo objetos: son los vestigios de los Mokaná y las culturas que habitaron este territorio antes de la conquista. Recorrer el museo es reconocer en cada pieza la continuidad de un pueblo cuya historia no empezó en 1492 sino siglos antes.", 
     lat: 10.899722, lng: -74.886111, image: "assets/images/puntos/foto-principal-m.g.webp", 
-    location: "Galapa.", hours: "Variable.", price: "Gratuito.", 
+    location: "Galapa, Atlántico.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 17, category: "ecoturismo", title: "Mariposario Butterfly Caribe", 
     description: "Cientos de especies de mariposas viven y se reproducen en este jardín controlado en Galapa. Más que un atractivo visual, el mariposario educa sobre el papel crítico de los polinizadores en los ecosistemas tropicales. Una experiencia que pone al visitante en contacto directo con la fragilidad y la belleza de la vida natural.", 
     lat: 10.875833, lng: -74.930833, image: "assets/images/puntos/foto-principal-m.a.webp", 
-    location: "Galapa.", hours: "9:30 a.m. - 2:30 p.m.", price: "Adultos: $25.000.", 
+    location: "Galapa, Atlántico.", hours: "9:30 a.m. - 2:30 p.m.", price: "Adultos: $25.000.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
     id: 18, category: "ecoturismo", title: "Parque Biotemático Megua", 
     description: "32 hectáreas de senderos, granjas interactivas y zonas de conservación en las afueras de Galapa. Megua es un aula viva donde se aprende sobre suelos, plantas nativas y ciclos naturales mientras se camina entre animales de la región. El contacto directo con los procesos del campo es el centro de la experiencia.", 
     lat: 10.848611, lng: -74.896667, image: "assets/images/puntos/foto-principal-b.m.webp", 
-    location: "Galapa.", hours: "9:00 a.m. - 5:00 p.m.", price: "Adultos: $22.000.", 
+    location: "Galapa, Atlántico.", hours: "9:00 a.m. - 5:00 p.m.", price: "Adultos: $22.000.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 19, category: "cultura", title: "Museo Carlos Arturo Valdez", 
     description: "Una colección privada donada a la comunidad de Malambo que preserva objetos de la vida cotidiana de la etnia Mokaná y vestigios del desarrollo histórico de este municipio a orillas del río. Cada pieza habla de una época y de una gente que construyó identidad en el cruce entre el agua y la tierra.", 
     lat: 10.861667, lng: -74.773611, image: "assets/images/puntos/foto-principal-para-la-pagina-m.a.webp", 
-    location: "Malambo.", hours: "8:00 a.m. - 12:00 p.m.", price: "Gratuito.", 
+    location: "Malambo, Atlántico.", hours: "8:00 a.m. - 12:00 p.m.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 20, category: "cultura", title: "Ventana al Mundo", 
     description: "Placas de vidrio multicolor que se elevan en Barranquilla como símbolo de una ciudad que mira hacia afuera sin perder su raíz caribeña. El monumento más fotografiado del Atlántico es también una declaración de identidad: una ciudad que celebra su apertura al mundo desde la orilla del río que la define.", 
     lat: 11.0325, lng: -74.831389, image: "assets/images/puntos/foto-principal-para-la-pagina-v.m.webp", 
-    location: "Barranquilla.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Barranquilla, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 21, category: "cultura", title: "Ventana de Campeones", 
     description: "La Aleta de Tiburón no es solo homenaje al Junior de Barranquilla: es la materialización del vínculo entre una ciudad y su equipo. Cristal y acero que brillan con los colores de una pasión colectiva que trasciende el estadio y se instala en la rotonda de la Vía 40 como monumento a la identidad festiva barranquillera.", 
     lat: 10.998319, lng: -74.772767, image: "assets/images/puntos/aleta-de-tiburon.webp", 
-    location: "Barranquilla.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Barranquilla, Atlántico.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 22, category: "cultura", title: "Gran Malecón del Río", 
     description: "Barranquilla le devolvió kilómetros de orilla al Magdalena y creó el espacio público más visitado del país. El Malecón no es solo un paseo: es la prueba de que una ciudad puede reconectarse con el río que la fundó. Cada sendero recuperado, cada zona verde, es territorio que dejó de darle la espalda al agua.", 
     lat: 11.020017, lng: -74.793225, image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp", 
-    location: "Barranquilla.", hours: "5:00 a.m - 11:00 p.m.", price: "Gratuito.", 
+    location: "Barranquilla, Atlántico.", hours: "5:00 a.m - 11:00 p.m.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Comida autóctona", "Relax en la playa"]
   },
   {
     id: 23, category: "nauticos", title: "Playas de Puerto Mocho", 
     description: "Donde el Magdalena y el mar Caribe se encuentran en Bocas de Cenizas, Puerto Mocho ofrece un fenómeno natural único: dos cuerpos de agua con colores y temperaturas distintas que se mezclan ante tus ojos. El tren turístico y los servicios renovados hacen accesible este ecosistema de desembocadura sin alterarlo.", 
     lat: 11.045556, lng: -74.828889, image: "assets/images/puntos/mocho.webp", 
-    location: "Barranquilla.", hours: "Variable.", price: "Gratuito.", 
+    location: "Barranquilla, Atlántico.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas", "Deportes náuticos"]
   },
   {
     id: 24, category: "ecoturismo", title: "Ecoparque Ciénaga de Mallorquín", 
     description: "Pasarelas de madera sobre el agua que llevan al corazón del manglar sin dejar huella. La Ciénaga de Mallorquín es el pulmón verde de Barranquilla: un humedal costero en proceso de recuperación ecológica donde el avistamiento de aves y el silencio del ecosistema son la experiencia en sí misma.", 
     lat: 11.028, lng: -74.778, image: "assets/images/puntos/ecoparque-mallorquin.webp", 
-    location: "Barranquilla.", hours: "6:00 a.m - 6:00 p.m.", price: "Gratuito.", 
+    location: "Barranquilla, Atlántico.", hours: "6:00 a.m - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 25, category: "ecoturismo", title: "Salinas de Galerazamba", 
     description: "El color rosa del agua en Galerazamba no es un filtro: es el resultado de una microalga que prospera en la alta concentración de sal. Un fenómeno geológico y biológico que convierte este paisaje en algo casi irreal. Las salinas son también historia minera viva y sustento económico de la comunidad de Santa Catalina.", 
     lat: 10.794167, lng: -75.253333, image: "assets/images/puntos/foto-principal-s.g.webp", 
-    location: "Santa Catalina.", hours: "Variable.", price: "Gratuito.", 
+    location: "Santa Catalina, Bolívar.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 26, category: "playas", title: "Playas del Country", 
     description: "Oleaje moderado, servicios de calidad y una ubicación cercana a las zonas residenciales de Puerto Colombia. Las playas del Country ofrecen condiciones naturales propicias para los deportes náuticos suaves en un litoral bien conservado donde el mar caribeño llega con temperatura cálida y color intenso.", 
     lat: 11.001111, lng: -74.952778, image: "assets/images/puntos/foto-principal-para-la-pagina-p.s.webp", 
-    location: "Puerto Colombia.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
+    location: "Puerto Colombia, Atlántico.", hours: "7:00 a.m. - 4:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 27, category: "playas", title: "Playa de Caño Dulce", 
     description: "Poca profundidad, olas suaves y un entorno costero que conserva su naturalidad. Caño Dulce, en Tubará, es la playa que el Caribe ofrece a las familias que buscan baño tranquilo, comida de mar fresca y un litoral sin aglomeración. El entorno natural conservado es su mayor atractivo y su rasgo más frágil.", 
     lat: 10.939722, lng: -75.027778, image: "assets/images/puntos/foto-principal-para-la-pagina-c.d.webp", 
-    location: "Tubará.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
+    location: "Tubará, Atlántico.", hours: "8:00 a.m. - 6:00 p.m.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona"]
   },
   {
     id: 28, category: "ecoturismo", title: "Parque Mirador Tubará", 
     description: "Desde lo más alto de Tubará, una vista de 360 grados revela la geografía completa del Atlántico: el Mar Caribe, las montañas del departamento y el relieve ondulado del territorio Mokaná. El viento que siempre sopla aquí es el mismo que ha moldeado este paisaje durante siglos. Un mirador que muestra el territorio tal como es.", 
     lat: 10.871111, lng: -74.974444, image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp", 
-    location: "Tubará.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
+    location: "Tubará, Atlántico.", hours: "Abierto todo el tiempo.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales", "Avistamiento de aves"]
   },
   {
     id: 29, category: "otros", title: "Aeropuerto Ernesto Cortissoz", 
     description: "El principal enlace aéreo del Atlántico que conecta a Barranquilla y su área metropolitana con el mundo. Con instalaciones modernizadas, ofrece una experiencia de llegada ágil y cómoda al corazón de la región. Su nombre honra a un pionero de la aviación comercial en América, reflejando el espíritu emprendedor y la conectividad que siempre han definido a esta zona del país.", 
     lat: 10.886536, lng: -74.776478, image: "assets/images/puntos/aeropuerto-barranquilla.webp", 
-    location: "Barranquilla.", hours: "24h.", price: "N/A.", 
+    location: "Barranquilla, Atlántico.", hours: "24h.", price: "N/A.", 
     tags: ["Comida autóctona"]
   },
   {
     id: 30, eventMonth: 10, startDay: 9, endDay: 16, category: "eventos", title: "Fiestas novembrinas de Cartagena", 
     description: "Una semana en noviembre en que Cartagena conmemora su independencia con desfiles, comparsas y música folclórica que llena cada plaza y callejón. Las Fiestas novembrinas son la celebración de la identidad africana y caribeña de la ciudad amurallada, un patrimonio vivo que la historia no ha podido contener.", 
     lat: 10.421903, lng: -75.550075, image: "assets/images/puntos/fiestas-novembrinas-de-cartagena.webp", 
-    location: "Cartagena.", hours: "Noviembre.", price: "Gratuito.", 
+    location: "Cartagena, Bolívar.", hours: "Noviembre.", price: "Gratuito.", 
     tags: ["Experiencias sensoriales", "Artesanías", "Comida autóctona"]
   },
   {
     id: 31, category: "cultura", title: "Museo del Carnaval", 
     description: "El Carnaval de Barranquilla vive aquí los 365 días del año. Vestidos reales de reinas, secretos de las danzas tradicionales y la historia de un patrimonio oral e inmaterial de la humanidad. Recorrer el museo es entender por qué el Carnaval no es solo cuatro días de fiesta sino el ADN festivo de toda una ciudad.", 
     lat: 10.992789, lng: -74.787797, image: "assets/images/puntos/museo-del-carnaval-de-barranquilla.webp", 
-    location: "Barranquilla.", hours: "Variable.", price: "Gratuito.", 
+    location: "Barranquilla, Atlántico.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
@@ -263,49 +263,49 @@ const mockData = [
     id: 33, category: "ecoturismo", title: "La Casa Voltiá", 
     description: "Una construcción que desafía la lógica en Juan de Acosta: todo está de cabeza, la gravedad parece invertida y la fotografía creativa se convierte en juego colectivo. La Casa Voltiá es una iniciativa local que hace de la curiosidad un motor económico para la comunidad y convierte la carretera en destino.", 
     lat: 10.834994, lng: -75.141247, image: "assets/images/puntos/la-casa-voltia.webp", 
-    location: "Juan de Acosta.", hours: "9:00 am - 6:00 pm", price: "Gratuito.", 
+    location: "Juan de Acosta, Atlántico.", hours: "9:00 am - 6:00 pm", price: "Gratuito.", 
     tags: ["Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 34, category: "playas", title: "Manzanillo del Mar", 
     description: "Una comunidad de pescadores que conserva el ritmo de la vida costera sin ceder al turismo masivo. En Manzanillo del Mar, el visitante llega a un entorno donde la gente vive del mar y lo conoce profundo. La comida fresca, las caminatas por la costa y la escala íntima del lugar son consecuencia de esa vida, no un decorado.", 
     lat: 10.515992, lng: -75.499278, image: "assets/images/puntos/manzanillo-del-mar.webp", 
-    location: "Cartagena.", hours: "Variable.", price: "Gratuito.", 
+    location: "Cartagena, Bolívar.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
     id: 35, category: "infraestructura", title: "Viaducto Gran Manglar", 
     description: "Un viaducto premiado internacionalmente por permitir que el ecosistema de manglar respire por debajo de la carretera. El agua fluye, las raíces crecen y las aves anidan mientras el tráfico pasa por encima. Conducir sobre él es ver que la infraestructura puede coexistir con la naturaleza sin dominarla.", 
     lat: 10.476022, lng: -75.488756, image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp", 
-    location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 36, category: "ecoturismo", title: "Ciénaga de la Virgen", 
     description: "Humedal estratégico al norte de Cartagena, hogar de manglares, aves migratorias y peces que alimentan a las comunidades de sus orillas. Los recorridos en barca guiados por pescadores locales permiten entrar al ecosistema con respeto, aprendiendo de quienes conocen cada canal y cada especie por nombre.", 
     lat: 10.460533, lng: -75.494847, image: "assets/images/puntos/cienaga-de-la-virgen.webp", 
-    location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
     id: 37, category: "playas", title: "Playa de la Boquilla", 
     description: "El manglar y el mar se abrazan en La Boquilla mientras los tambores marcan el compás de una comunidad afrodescendiente que vive de los dos. Los recorridos en canoa por los túneles de manglar son guiados por locales que conocen este ecosistema desde niños. Naturaleza y cultura que no se pueden entender por separado.", 
     lat: 10.4621, lng: -75.504458, image: "assets/images/puntos/playa-de-la-boquilla.webp", 
-    location: "Cartagena.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Cartagena, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Relax en la playa", "Comida autóctona", "Deportes náuticos"]
   },
   {
     id: 38, eventMonth: 5, startDay: 1, endDay: 3, category: "eventos", title: "Festival Enyúcate", 
     description: "La yuca toma el centro de Malambo para celebrar la seguridad alimentaria y la cultura campesina del Atlántico. Cocineros tradicionales, productores locales y música de gaita comparten espacio en una feria donde probar un enyucado es conectarse con la tierra y con el conocimiento agrícola que sostiene a la región.", 
     lat: 10.830311, lng: -75.031867, image: "assets/images/puntos/enyucate.webp", 
-    location: "Malambo.", hours: "Variable.", price: "Gratuito.", 
+    location: "Malambo, Atlántico.", hours: "Variable.", price: "Gratuito.", 
     tags: ["Comida autóctona", "Artesanías"]
   },
   {
     id: 39, category: "ecoturismo", title: "Ciénaga del Totumo", 
     description: "Humedal de agua dulce que coexiste con el Volcán del Totumo en Santa Catalina. Sus aguas tranquilas reflejan manglares y cielo abierto, y sus orillas son hábitat de aves y peces que los pescadores artesanales conocen bien. Los paseos en lancha muestran la escala real de un ecosistema hídrico todavía en equilibrio.", 
     lat: 10.738397, lng: -75.260689, image: "assets/images/puntos/cienaga-totumo.webp", 
-    location: "Santa Catalina.", hours: "Abierto.", price: "Gratuito.", 
+    location: "Santa Catalina, Bolívar.", hours: "Abierto.", price: "Gratuito.", 
     tags: ["Avistamiento de aves", "Vistas panorámicas"]
   },
   {
