@@ -45,7 +45,7 @@ const mockData = [
     image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp",
     location: "Santa Catalina, Bolívar.",
     hours: "6:00 a.m. - 6:00 p.m.",
-    price: "Adultos: $20.000 mil cop.",
+    price: "Adultos: $20.000 COP.",
     tags: ["Relax en la playa","Experiencias sensoriales","Comida autóctona"]
   },
   {
@@ -84,7 +84,7 @@ const mockData = [
     image: "assets/images/puntos/foto-principal-l.v.webp",
     location: "Piojó, Atlántico.",
     hours: "7:00 a.m. - 6:00 p.m.",
-    price: "Adultos: $8.000 mil cop.",
+    price: "Adultos: $8.000 COP.",
     tags: ["Avistamiento de aves","Vistas panorámicas","Experiencias sensoriales"]
   },
   {
@@ -157,8 +157,8 @@ const mockData = [
     category: "playas",
     title: "Playas de Puerto Colombia",
     description: "El mar llega aquí con fuerza moderada y temperatura cálida todo el año. La proximidad del muelle histórico crea un paisaje donde el agua y la arquitectura se entrelazan sin competir. Playas abiertas, brisa del Caribe y una costa que combina el descanso natural con la escala humana del balneario clásico.",
-    lat: 11.001111,
-    lng: -74.952778,
+    lat: 10.987799,
+    lng: -74.961316,
     image: "assets/images/puntos/foto-principal-para-la-pagina-p.p.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "7:00 a.m. - 4:00 p.m.",
@@ -199,8 +199,8 @@ const mockData = [
     category: "eventos",
     title: "Festival del Millo",
     description: "La flauta de millo sale a las calles de Juan de Acosta cada año para recordar el origen agrícola de este municipio. El baile, la música y los platos derivados del grano tejen una celebración donde la herencia campesina del Caribe no es pasado sino identidad activa que se renueva con cada edición.",
-    lat: 10.830311,
-    lng: -75.031867,
+    lat: 10.829092,
+    lng: -75.035858,
     image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp",
     location: "Juan de Acosta, Atlántico.",
     hours: "Anual.",
@@ -368,8 +368,8 @@ const mockData = [
     category: "playas",
     title: "Playas del Country",
     description: "Oleaje moderado, servicios de calidad y una ubicación cercana a las zonas residenciales de Puerto Colombia. Las playas del Country ofrecen condiciones naturales propicias para los deportes náuticos suaves en un litoral bien conservado donde el mar caribeño llega con temperatura cálida y color intenso.",
-    lat: 11.001111,
-    lng: -74.952778,
+    lat: 11.037398,
+    lng: -74.92391,
     image: "assets/images/puntos/foto-principal-para-la-pagina-p.s.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "7:00 a.m. - 4:00 p.m.",
@@ -530,8 +530,8 @@ const mockData = [
     category: "eventos",
     title: "Festival Enyúcate",
     description: "La yuca toma el centro de Malambo para celebrar la seguridad alimentaria y la cultura campesina del Atlántico. Cocineros tradicionales, productores locales y música de gaita comparten espacio en una feria donde probar un enyucado es conectarse con la tierra y con el conocimiento agrícola que sostiene a la región.",
-    lat: 10.830311,
-    lng: -75.031867,
+    lat: 10.85985,
+    lng: -74.83733,
     image: "assets/images/puntos/enyucate.webp",
     location: "Malambo, Atlántico.",
     hours: "Variable.",
@@ -577,7 +577,7 @@ const mockData = [
     image: "assets/images/puntos/Calvaduria Ecoturismo y Camping.webp",
     location: "Piojó, Atlántico.",
     hours: "Abierto todo el tiempo.",
-    price: "Pasa día: adultos:$15.000 mil cop. Niños: $7.000 mil cop.",
+    price: "Pasa día: adultos:$15.000 COP. Niños: $7.000 COP.",
     tags: ["Agroturismo","camping","pozos naturales","senderismo","rutas ecológicas","hospedaje."]
   },
   {
@@ -799,7 +799,7 @@ const mockData = [
     image: "assets/images/puntos/Museo Etnoindustrial.webp",
     location: "Santa Catalina, Bolívar.",
     hours: "10:00 a.m. - 4:00 p.m.",
-    price: "Adultos: $7.000 mil cop. Niños (desde 5 años): $5.000 mil cop.",
+    price: "Adultos: $7.000 COP. Niños (desde 5 años): $5.000 COP.",
     tags: ["Servicios culturales","recorridos guiados","exhibiciones permanentes","actividades pedagógicas y turismo histórico-patrimonial."]
   },
   {
@@ -883,12 +883,12 @@ const mockData = [
     endDay: 22,
     category: "eventos",
     title: "Festival intermunicipal del folclore",
-    description: "Un encuentro que reúne expresiones folclóricas de varios municipios del Atlántico para celebrar la riqueza y diversidad cultural de la región. Danzas, músicas y manifestaciones tradicionales comparten escenario en un festival que entiende el folclore no como reliquia sino como práctica viva que necesita espacio para existir.",
+    description: "Un encuentro que reúne expresiones folclóricas de varios municipios del Atlántico para celebrar la riqueza y diversidad cultural de la región. Danzas, músicas y manifestaciones tradicionales comparten escenario en un festival que entiende el folclore no como reliquia sino como práctica viva que necesita espacio para existir, del 14 al 22 de febrero.",
     lat: 10.897,
     lng: -74.884,
     image: "assets/images/puntos/Festival intermunicipal del folclore.webp",
     location: "Galapa, Atlántico.",
-    hours: "El evento dura 1 día.",
+    hours: "según el evento.",
     price: "Gratuito.",
     tags: ["Eventos y festividades","Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
   },
@@ -916,20 +916,20 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR 7+020"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 7+020"]
   },
   {
     id: 65,
     category: "infraestructura",
     title: "Peaje Marahuaco",
-    description: "Arroyo de Piedra - Via al mar - Ruta 90A-01 Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
+    description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.574485,
     lng: -75.450524,
     image: "assets/images/puntos/Peaje Marahuaco.webp",
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF3","Ruta 90A01","PR PR15+1100"]
+    tags: ["Infraestructura","Corredor Vial","UF3","Ruta 90A01","PR 15+1100"]
   },
   {
     id: 66,
@@ -942,7 +942,7 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR15+1100"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 15+1100"]
   },
   {
     id: 67,
@@ -955,7 +955,7 @@ const mockData = [
     location: "Tubará, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR93+600"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 93+600"]
   },
   {
     id: 68,
@@ -968,20 +968,20 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR K1+360"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 1+360"]
   },
   {
     id: 69,
     category: "infraestructura",
     title: "Peaje Papiros",
     description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
-    lat: 11.01267,
-    lng: -74.889548,
+    lat: 11.0126704,
+    lng: -74.8895484,
     image: "assets/images/puntos/Peaje Papiros.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF4","Ruta 90A01","PR PR103+600"]
+    tags: ["Infraestructura","Corredor Vial","UF4","Ruta 90A01","PR 103+600"]
   },
   {
     id: 70,
@@ -994,7 +994,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 100070"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 100+070"]
   },
   {
     id: 71,
@@ -1007,7 +1007,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 102900"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 102+900"]
   },
   {
     id: 72,
@@ -1020,7 +1020,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 105760"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 105+760"]
   },
   {
     id: 73,
@@ -1033,7 +1033,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 106900"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 106+900"]
   },
   {
     id: 74,
@@ -1046,7 +1046,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 108050"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 108+050"]
   },
   {
     id: 75,
@@ -1059,7 +1059,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR103+600"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 103+600"]
   },
   {
     id: 76,
@@ -1072,7 +1072,7 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR PR 97+000 -PR 106+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 97+000 - PR 106+000"]
   },
   {
     id: 77,
@@ -1085,7 +1085,7 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF5","Ruta 25AT04","PR K11+700"]
+    tags: ["Infraestructura","Corredor Vial","UF5","Ruta 25AT04","PR 11+700"]
   },
   {
     id: 78,
@@ -1098,7 +1098,7 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K3+900"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 3+900"]
   },
   {
     id: 79,
@@ -1111,7 +1111,7 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K3+300"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 3+300"]
   },
   {
     id: 80,
@@ -1124,7 +1124,7 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K16+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 16+000"]
   },
   {
     id: 81,
@@ -1137,7 +1137,7 @@ const mockData = [
     location: "Galapa, Atlántico.", 
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K12+200"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 12+200"]
   },
   {
     id: 82,
@@ -1150,7 +1150,7 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 6+000 / PR 16+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 6+000 / PR 16+000"]
   },
   {
     id: 83,
@@ -1163,7 +1163,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF6","Ruta 25AT04","PR K19+300"]
+    tags: ["Infraestructura","Corredor Vial","UF6","Ruta 25AT04","PR 19+300"]
   },
   {
     id: 84,
@@ -1176,7 +1176,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K26+130"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 26+130"]
   },
   {
     id: 85,
@@ -1189,7 +1189,7 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K25+850"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 25+850"]
   },
   {
     id: 86,
@@ -1202,7 +1202,7 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K24+138"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 24+138"]
   },
   {
     id: 87,
@@ -1215,7 +1215,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K29+300"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 29+300"]
   },
   {
     id: 88,
@@ -1228,7 +1228,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR K33+100"]
+    tags: ["Infraestructura","Corredor Vial","Ruta AT05"]
   },
   {
     id: 89,
@@ -1241,7 +1241,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
   },
   {
     id: 90,
@@ -1254,7 +1254,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
   },
   {
     id: 91,
@@ -1267,7 +1267,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
   },
   {
     id: 92,
@@ -1280,7 +1280,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
   },
   {
     id: 93,
@@ -1293,7 +1293,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
   },
   {
     id: 94,
@@ -1327,7 +1327,7 @@ const mockData = [
   {
     id: 96,
     category: "cultura",
-    title: "Palacio de la Gobernación",
+    title: "Palacio de la Gobernación de Bolívar",
     description: "Sede del poder departamental de Bolívar y testigo arquitectónico de la vida política de Cartagena. El Palacio de la Gobernación conserva en su fachada y sus patios interiores el estilo colonial que define el centro histórico, siendo parte inseparable del patrimonio urbano que convierte a Cartagena en ciudad de memoria.",
     lat: 10.4238769,
     lng: -75.5505382,
@@ -1459,8 +1459,8 @@ const mockData = [
     category: "cultura",
     title: "Catedral Metropolitana María Reina",
     description: "La catedral principal de Barranquilla concentra en su interior la historia religiosa y la identidad espiritual de una ciudad que construyó su fe al mismo ritmo que construyó su vocación comercial. Su arquitectura moderna contrasta con la tradición que alberga, siendo parte inseparable del paisaje urbano del centro barranquillero.",
-    lat: 10.9882416,
-    lng: -74.7926504,
+    lat: 10.9895,
+    lng: -74.7937,
     image: "",
     location: "Barranquilla, Atlántico.",
     hours: "Sujeto a horarios de los oficios religiosos.",
