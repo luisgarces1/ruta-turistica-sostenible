@@ -29,7 +29,7 @@ const categories = [
   },
   { id: "eventos", label: "Festividades y eventos", icon: "🎉", color: "bg-fuchsia-500" },
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
-  { id: "gastronomia", label: "Placeres gastronómicos", icon: "🥘", color: "bg-orange-500" },
+  { id: "gastronomía", label: "Placeres gastronómicos", icon: "🥘", color: "bg-orange-500" },
   { id: "infraestructura", label: "Infraestructura del corredor vial", icon: "🛣️", color: "bg-blue-600" },
   { id: "otros", label: "Aeropuertos", icon: "✈️", color: "bg-indigo-400" }
 ];
@@ -78,7 +78,7 @@ const mockData = [
     tags: ["Vistas panorámicas", "Artesanías", "Comida autóctona"]
   },
   {
-    id: 7, category: "gastronomia", title: "Centro gastronómico Muelle 1888", 
+    id: 7, category: "gastronomía", title: "Centro gastronómico Muelle 1888", 
     description: "Una arquitectura que rinde tributo a las olas inmigrantes que llegaron por este puerto. Los sabores locales e internacionales conviven aquí con la historia del lugar, invitando a comer despacio, a mirar el mar y a entender cómo la mesa caribeña es también un archivo de memorias y encuentros.", 
     lat: 10.989444, lng: -74.958611, image: "assets/images/puntos/foto-principal-m.1888.webp", 
     location: "Puerto Colombia, Atlántico.", hours: "Variable.", price: "Gratuito.", 
@@ -127,7 +127,7 @@ const mockData = [
     tags: ["Comida autóctona", "Artesanías", "Experiencias sensoriales"]
   },
   {
-    id: 14, category: "gastronomia", title: "Parador El Sombrero Vueltiao", 
+    id: 14, category: "gastronomía", title: "Parador El Sombrero Vueltiao", 
     description: "Una parada en la vía que es mucho más que descanso. El sombrero vueltiao gigante marca un punto donde artesanos y productores locales exhiben y venden su trabajo. Aquí la carretera se convierte en mercado vivo: comida típica, artesanías auténticas y el orgullo de quienes hacen de su oficio una identidad.", 
     lat: 10.8805, lng: -75.0711, image: "assets/images/puntos/foto-principal-s.v.webp", 
     location: "Juan de Acosta, Atlántico.", hours: "Variable.", price: "Gratuito.", 
