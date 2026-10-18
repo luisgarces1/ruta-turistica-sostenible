@@ -1344,7 +1344,7 @@ const mockData = [
     description: "El corazón del centro histórico de Cartagena donde la arquitectura colonial converge con la vida cotidiana de la ciudad. La Plaza Bolívar no es solo un espacio turístico: es el lugar donde la historia pública de Cartagena se escribe desde siempre, con la catedral, el palacio y la estatua del Libertador como testigos permanentes.",
     lat: 10.42325,
     lng: -75.55122222222222,
-    image: "",
+    image: "assets/images/puntos/IID95 Imagen plaza de Bolivar.webp",
     location: "Cartagena, Bolívar.",
     hours: "24 horas (espacio abierto)",
     price: "Gratuito.",
