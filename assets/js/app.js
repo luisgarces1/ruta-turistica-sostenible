@@ -128,13 +128,15 @@ function updateFilterUI() {
 
 // 2. Custom Icons
 function getMarkerIcon(categoryStr) {
-    let catData = categories.find(c => c.id === categoryStr);
+    const norm = (str) => (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    const targetNorm = norm(categoryStr);
+    let catData = categories.find(c => norm(c.id) === targetNorm);
     
     // Buscar en subcategorías si no está en el nivel principal
     if (!catData) {
         categories.forEach(parent => {
             if (parent.subcategories) {
-                const sub = parent.subcategories.find(s => s.id === categoryStr);
+                const sub = parent.subcategories.find(s => norm(s.id) === targetNorm);
                 if (sub) catData = sub;
             }
         });
@@ -248,11 +250,13 @@ function filterMarkers() {
 
 // 4. Side Panel Logic
 function openSidePanel(data) {
-    let categoryData = categories.find(c => c.id === data.category);
+    const norm = (str) => (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    const targetNorm = norm(data.category);
+    let categoryData = categories.find(c => norm(c.id) === targetNorm);
     if (!categoryData) {
         categories.forEach(parent => {
             if (parent.subcategories) {
-                const sub = parent.subcategories.find(s => s.id === data.category);
+                const sub = parent.subcategories.find(s => norm(s.id) === targetNorm);
                 if (sub) categoryData = sub;
             }
         });
@@ -2634,11 +2638,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper to find category info
     const getCategoryInfo = (catId) => {
-        let catData = categories.find(c => c.id === catId);
+        const norm = (str) => (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+        const targetNorm = norm(catId);
+        let catData = categories.find(c => norm(c.id) === targetNorm);
         if (!catData) {
             categories.forEach(parent => {
                 if (parent.subcategories) {
-                    const sub = parent.subcategories.find(s => s.id === catId);
+                    const sub = parent.subcategories.find(s => norm(s.id) === targetNorm);
                     if (sub) catData = sub;
                 }
             });
