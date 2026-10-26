@@ -2660,17 +2660,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Filter mockData
         const matches = mockData.filter(item => {
+            const catInfo = getCategoryInfo(item.category);
             const normalizedTitle = item.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const normalizedDesc = item.description.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const normalizedLoc = item.location.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const normalizedTags = item.tags ? item.tags.map(t => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).join(' ') : '';
-            const normalizedCat = item.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const normalizedCatId = (item.category || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const normalizedCatLabel = (catInfo?.label || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             return normalizedTitle.includes(query) || 
                    normalizedDesc.includes(query) || 
                    normalizedLoc.includes(query) || 
                    normalizedTags.includes(query) ||
-                   normalizedCat.includes(query);
+                   normalizedCatId.includes(query) ||
+                   normalizedCatLabel.includes(query);
         });
 
         // Render matches
