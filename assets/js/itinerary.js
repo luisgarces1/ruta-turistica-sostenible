@@ -496,14 +496,27 @@ const ItineraryPlanner = {
             // Show loading animation
             document.getElementById('step-6').classList.add('hidden');
             document.getElementById('itinerary-loading').classList.remove('hidden');
-            
-            setTimeout(() => {
-                this.generate(diffDays);
-                
-                // Hide loading screen, close overlay, show view
-                document.getElementById('itinerary-loading').classList.add('hidden');
-                this.close();
-            }, 1800);
+
+            // Usamos dos rAF + setTimeout para que:
+            // 1. El browser pinte la pantalla de carga antes de hacer el trabajo pesado.
+            // 2. Si generate() falla, la pantalla de carga siempre desaparece (try-catch).
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        const loadingEl = document.getElementById('itinerary-loading');
+                        try {
+                            this.generate(diffDays);
+                        } catch (err) {
+                            console.error('Error al generar itinerario:', err);
+                            this.showCustomAlert('Error al generar', 'Ocurrió un problema al crear tu itinerario. Por favor inténtalo de nuevo.');
+                        } finally {
+                            // Siempre ocultar la pantalla de carga y cerrar el overlay
+                            if (loadingEl) loadingEl.classList.add('hidden');
+                            this.close();
+                        }
+                    }, 400); // 400ms es suficiente para que la animación se vea en móvil
+                });
+            });
         });
     },
 
@@ -772,7 +785,8 @@ const ItineraryPlanner = {
         this.renderItinerarySidebar();
         this.updateMapForDay(1);
         if (window.showView) window.showView('itinerary');
-        this.showEmailMethodModal();
+        // El modal de correo se lanza con retardo para no solapar la transición de vista
+        // (el manejador del clic ya lo llama desde afuera si corresponde)
     },
 
     renderItinerarySidebar() {
