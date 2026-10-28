@@ -363,7 +363,11 @@ html {
 
 /* --- Print Styles --- */
 @media print {
-    header, footer, aside, .print\:hidden, button, .pill-actions, .icon-links, #close-itinerary, #itinerary-overlay, #save-success-toast, #load-success-toast, #itinerary-email-modal, #itinerary-custom-alert {
+    header, footer, aside, .print\:hidden, button, .pill-actions, .icon-links,
+    #close-itinerary, #itinerary-overlay, #save-success-toast, #load-success-toast,
+    #itinerary-email-modal, #itinerary-custom-alert, #main-map-view, #routes-selection-view,
+    #municipios-selection-view, #municipio-detail-view, #existentes-selection-view,
+    #mobile-menu, #mobile-menu-overlay, #google_translate_element, .leaflet-container {
         display: none !important;
     }
     
@@ -374,6 +378,13 @@ html {
         height: auto !important;
         overflow: visible !important;
         position: static !important;
+    }
+
+    /* Evitar que gradientes con URLs de imágenes WebP cuelguen el Print Spooler de Android */
+    div, section, header {
+        background-image: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
     }
 
     * {
@@ -397,3 +408,4 @@ html {
         page-break-inside: avoid;
     }
 }
+

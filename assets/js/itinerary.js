@@ -1584,8 +1584,8 @@ const ItineraryPlanner = {
                         <button onclick="ItineraryPlanner.copyItineraryToClipboard()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-copy text-[#14b8a6]"></i> Copiar Guía
                         </button>
-                        <button onclick="window.print()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
-                            <i class="fa-solid fa-file-pdf text-[#FF6900]"></i> Imprimir / Guardar PDF
+                        <button onclick="ItineraryPlanner.downloadPDF()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
+                            <i class="fa-solid fa-file-pdf text-[#FF6900]"></i> Descargar PDF
                         </button>
                         <button onclick="ItineraryPlanner.open()" class="text-xs font-black text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-wand-magic-sparkles"></i> Planificar otro viaje
@@ -1778,16 +1778,16 @@ const ItineraryPlanner = {
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
                             <span class="w-6 h-6 rounded-full bg-[#FF6900] text-white flex items-center justify-center text-xs font-black">1</span>
-                            <h4 class="text-xs font-black text-[#003087] uppercase tracking-widest">Guarda la guía en PDF</h4>
+                            <h4 class="text-xs font-black text-[#003087] uppercase tracking-widest">Descarga tu guía en PDF</h4>
                         </div>
                         
                         <div class="bg-orange-50/50 border border-[#FF6900]/10 rounded-2xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                             <div class="flex-1 space-y-0.5">
-                                <p class="text-xs font-bold text-gray-700">Generar archivo PDF</p>
-                                <p class="text-[10px] text-gray-500 font-medium leading-relaxed">Se abrirá el diálogo de impresión del sistema. Selecciona la opción <strong>"Guardar como PDF"</strong> en la lista de impresoras.</p>
+                                <p class="text-xs font-bold text-gray-700">Descargar PDF directamente</p>
+                                <p class="text-[10px] text-gray-500 font-medium leading-relaxed">El PDF se genera y descarga <strong>al instante</strong> en tu dispositivo, sin abrir el diálogo de impresión. ¡Funciona en celular y computador!</p>
                             </div>
                             <button id="email-opt-pdf" class="bg-[#FF6900] hover:bg-[#e05c00] text-white text-xs font-black px-4 py-3 rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 shrink-0">
-                                <i class="fa-solid fa-file-pdf"></i> Guardar PDF
+                                <i class="fa-solid fa-file-pdf"></i> Descargar PDF
                             </button>
                         </div>
                     </div>
@@ -1873,7 +1873,8 @@ const ItineraryPlanner = {
 
         // PDF Action
         modal.querySelector('#email-opt-pdf').addEventListener('click', () => {
-            window.print();
+            closeModal();
+            setTimeout(() => this.downloadPDF(), 350);
         });
 
         // Gmail Action
@@ -1939,6 +1940,151 @@ const ItineraryPlanner = {
         document.body.appendChild(mailtoLink);
         mailtoLink.click();
         document.body.removeChild(mailtoLink);
+    },
+
+    /**
+     * Genera y descarga un PDF del itinerario usando jsPDF.
+     * Funciona en computador Y en celular (Android / iOS) sin usar window.print()
+     * que causaba que el celular se "quedara pensando".
+     */
+    downloadPDF() {
+        if (!this.fullItinerary) return;
+
+        // Verificar que jsPDF está cargado
+        if (typeof window.jspdf === 'undefined' && typeof jsPDF === 'undefined') {
+            // Fallback: si jsPDF no cargó, usar window.print
+            window.print();
+            return;
+        }
+
+        const { jsPDF } = window.jspdf || { jsPDF: window.jsPDF };
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+        const pageW = doc.internal.pageSize.getWidth();
+        const pageH = doc.internal.pageSize.getHeight();
+        const margin = 15;
+        const contentW = pageW - margin * 2;
+        let y = margin;
+
+        const checkNewPage = (needed = 10) => {
+            if (y + needed > pageH - margin) {
+                doc.addPage();
+                y = margin;
+            }
+        };
+
+        // ─── ENCABEZADO ───────────────────────────────────────────────────────
+        doc.setFillColor(0, 48, 135);   // #003087
+        doc.rect(0, 0, pageW, 28, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.text('RUTA TURÍSTICA SOSTENIBLE', margin, 12);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Guía de Viaje Personalizada', margin, 20);
+        y = 35;
+
+        // ─── RESUMEN DEL VIAJE ────────────────────────────────────────────────
+        const numDays = Object.keys(this.fullItinerary).length;
+        doc.setFillColor(248, 250, 252);  // bg-[#f8fafc]
+        doc.roundedRect(margin, y, contentW, 28, 3, 3, 'F');
+        doc.setTextColor(0, 48, 135);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        const colW = contentW / 4;
+        const labels = ['Ciudad Origen', 'Compañía', 'Presupuesto', 'Duración'];
+        const values = [this.startCity || '—', this.selectedCompanion || '—', this.selectedBudget || '—', `${numDays} día${numDays !== 1 ? 's' : ''}` ];
+        labels.forEach((lbl, i) => {
+            const cx = margin + i * colW + colW / 2;
+            doc.setTextColor(120, 120, 140);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(7);
+            doc.text(lbl.toUpperCase(), cx, y + 9, { align: 'center' });
+            doc.setTextColor(0, 48, 135);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(9);
+            doc.text(values[i], cx, y + 18, { align: 'center' });
+        });
+        y += 34;
+
+        // ─── DÍAS ─────────────────────────────────────────────────────────────
+        for (let i = 1; i <= numDays; i++) {
+            const stops = this.fullItinerary[i] || [];
+            const date = new Date(this.startDate);
+            date.setDate(date.getDate() + (i - 1));
+            const dayLabel = date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+            checkNewPage(20);
+
+            // Cabecera del día
+            doc.setFillColor(255, 105, 0);  // #FF6900
+            doc.roundedRect(margin, y, contentW, 10, 2, 2, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`DÍA ${i}  ·  ${dayLabel.toUpperCase()}`, margin + 3, y + 7);
+            y += 14;
+
+            if (stops.length === 0) {
+                checkNewPage(8);
+                doc.setTextColor(160, 160, 160);
+                doc.setFont('helvetica', 'italic');
+                doc.setFontSize(8);
+                doc.text('Sin paradas programadas.', margin + 4, y + 5);
+                y += 10;
+            } else {
+                stops.forEach((stop, idx) => {
+                    checkNewPage(22);
+                    // Tarjeta de parada
+                    doc.setFillColor(255, 255, 255);
+                    doc.setDrawColor(229, 231, 235);
+                    doc.roundedRect(margin, y, contentW, 18, 2, 2, 'FD');
+
+                    // Número de parada
+                    doc.setFillColor(0, 48, 135);
+                    doc.circle(margin + 5, y + 9, 4, 'F');
+                    doc.setTextColor(255, 255, 255);
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(7);
+                    doc.text(String(idx + 1), margin + 5, y + 11, { align: 'center' });
+
+                    // Nombre del lugar
+                    doc.setTextColor(0, 48, 135);
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(9);
+                    const title = doc.splitTextToSize(stop.title || 'Sin nombre', contentW - 22);
+                    doc.text(title[0], margin + 12, y + 8);
+
+                    // Ubicación
+                    doc.setTextColor(100, 116, 139);
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(7);
+                    const loc = (stop.location || '').split(',')[0];
+                    doc.text(`📍 ${loc}`, margin + 12, y + 14);
+
+                    y += 21;
+                });
+            }
+            y += 4;
+        }
+
+        // ─── PIE DE PÁGINA en todas las páginas ───────────────────────────────
+        const totalPages = doc.internal.getNumberOfPages();
+        for (let p = 1; p <= totalPages; p++) {
+            doc.setPage(p);
+            doc.setFillColor(0, 48, 135);
+            doc.rect(0, pageH - 10, pageW, 10, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(7);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Ruta Turística Sostenible · rutaturisticasostenible@gmail.com', margin, pageH - 3);
+            doc.text(`Página ${p} / ${totalPages}`, pageW - margin, pageH - 3, { align: 'right' });
+        }
+
+        // ─── DESCARGA ─────────────────────────────────────────────────────────
+        const fileName = `itinerario-ruta-sostenible-${numDays}dias.pdf`;
+        doc.save(fileName);
     },
 
     copyItineraryToClipboard() {
