@@ -153,30 +153,6 @@ const ItineraryPlanner = {
 
                     <div class="pt-4 flex justify-center gap-3">
                         <button id="back-to-step-4" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
-                        <button id="next-to-step-6" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- STEP 6: Confirm & Send -->
-                <div id="step-6" class="space-y-6 hidden animate-fade-in w-full px-4 max-w-md mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿A dónde te enviamos la guía?</h2>
-                    <p class="text-blue-100/80 text-sm font-medium">Ingresa tu correo para recibir el itinerario detallado y tenerlo siempre a mano</p>
-                    
-                    <div class="space-y-4">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <i class="fa-solid fa-envelope text-gray-400 text-base"></i>
-                            </div>
-                            <input type="email" id="itinerary-email-input" placeholder="correo@ejemplo.com" class="block w-full pl-12 pr-4 py-4 bg-white border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#FF6900] transition-all font-bold text-gray-800 placeholder:text-gray-400 text-sm shadow-xl">
-                        </div>
-                        <div class="flex items-center justify-center gap-2.5 text-xs text-blue-100/90 font-medium">
-                            <input type="checkbox" id="itinerary-privacy-check" checked class="rounded border-white/20 text-[#003087] focus:ring-0 w-4 h-4 cursor-pointer">
-                            <label for="itinerary-privacy-check" class="cursor-pointer select-none">Acepto recibir la guía y políticas de privacidad</label>
-                        </div>
-                    </div>
-
-                    <div class="pt-6 flex justify-center gap-3">
-                        <button id="back-to-step-5" class="border border-white/20 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all text-xs">Atrás</button>
                         <button id="generate-itinerary" class="bg-white text-[#003087] px-8 py-3 rounded-full font-black uppercase tracking-widest shadow-2xl hover:scale-105 transition-all text-sm flex items-center gap-2">
                             <span>Crear mi guía</span>
                             <i class="fa-solid fa-wand-magic-sparkles text-xs text-[#FF6900]"></i>
@@ -193,7 +169,7 @@ const ItineraryPlanner = {
                         </div>
                     </div>
                     <h3 class="text-xl font-bold uppercase tracking-wider text-white">Diseñando tu viaje...</h3>
-                    <p class="text-blue-100/70 text-xs max-w-xs">Buscando paradas ideales y enviando la guía a tu correo electrónico.</p>
+                    <p class="text-blue-100/70 text-xs max-w-xs">Buscando las paradas ideales para tu recorrido por el corredor vial.</p>
                 </div>
             </div>
         `;
@@ -398,7 +374,7 @@ const ItineraryPlanner = {
             document.getElementById('step-4').classList.remove('hidden');
         });
 
-        document.getElementById('next-to-step-6').addEventListener('click', () => {
+        document.getElementById('generate-itinerary').addEventListener('click', () => {
             if (!this.startDate || !this.endDate) {
                 alert('Por favor selecciona un rango de fechas en el calendario');
                 return;
@@ -461,35 +437,6 @@ const ItineraryPlanner = {
                 }
             }
 
-            document.getElementById('step-5').classList.add('hidden');
-            document.getElementById('step-6').classList.remove('hidden');
-        });
-
-        document.getElementById('back-to-step-5').addEventListener('click', () => {
-            document.getElementById('step-6').classList.add('hidden');
-            document.getElementById('step-5').classList.remove('hidden');
-        });
-
-        document.getElementById('generate-itinerary').addEventListener('click', () => {
-            const emailInput = document.getElementById('itinerary-email-input');
-            const privacyCheck = document.getElementById('itinerary-privacy-check');
-            
-            const email = emailInput ? emailInput.value.trim() : '';
-            
-            // Simple email validation regex
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
-                alert('Por favor ingresa un correo electrónico válido.');
-                return;
-            }
-            
-            if (privacyCheck && !privacyCheck.checked) {
-                alert('Debes aceptar las políticas de privacidad.');
-                return;
-            }
-            
-            this.userEmail = email;
-
             const diffDays = Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24)) + 1;
             if (diffDays > 100) { 
                 ItineraryPlanner.showCustomAlert('Ruta demasiado larga', 'Soporta hasta 100 días.'); 
@@ -497,7 +444,7 @@ const ItineraryPlanner = {
             }
             
             // Show loading animation
-            document.getElementById('step-6').classList.add('hidden');
+            document.getElementById('step-5').classList.add('hidden');
             document.getElementById('itinerary-loading').classList.remove('hidden');
 
             // Usamos dos rAF + setTimeout para que:
@@ -507,10 +454,8 @@ const ItineraryPlanner = {
                 requestAnimationFrame(() => {
                     setTimeout(() => {
                         const loadingEl = document.getElementById('itinerary-loading');
-                        let generatedOk = false;
                         try {
                             this.generate(diffDays);
-                            generatedOk = Boolean(this.fullItinerary);
                         } catch (err) {
                             console.error('Error al generar itinerario:', err);
                             this.showCustomAlert('Error al generar', 'Ocurrió un problema al crear tu itinerario. Por favor inténtalo de nuevo.');
@@ -518,12 +463,6 @@ const ItineraryPlanner = {
                             // Siempre ocultar la pantalla de carga y cerrar el overlay
                             if (loadingEl) loadingEl.classList.add('hidden');
                             this.close();
-                        }
-
-                        if (generatedOk) {
-                            setTimeout(() => {
-                                this.showEmailMethodModal();
-                            }, 350);
                         }
                     }, 400); // 400ms es suficiente para que la animación se vea en móvil
                 });
@@ -620,14 +559,11 @@ const ItineraryPlanner = {
             }
         });
         
-        const emailInput = document.getElementById('itinerary-email-input');
-        if (emailInput) emailInput.value = '';
-        
         if (this.flatpickrInstance) this.flatpickrInstance.clear();
         this.startDate = null; this.endDate = null;
         
         // Hide all steps and show step 1
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 5; i++) {
             const stepEl = document.getElementById(`step-${i}`);
             if (stepEl) {
                 if (i === 1) stepEl.classList.remove('hidden');
@@ -1628,7 +1564,7 @@ const ItineraryPlanner = {
             <!-- MAIN CONTAINER -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8 print:py-0 print:px-0">
                 
-                <!-- EMAIL SUCCESS BANNER -->
+                <!-- SUCCESS BANNER -->
                 <div class="bg-emerald-50 border border-emerald-200 rounded-3xl p-5 md:p-6 flex items-start gap-4 shadow-sm animate-fade-in print:hidden">
                     <div class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-check text-emerald-600 text-lg"></i>
@@ -1636,7 +1572,7 @@ const ItineraryPlanner = {
                     <div class="text-left space-y-1">
                         <h4 class="text-sm font-black text-[#047857] uppercase tracking-wider">¡Guía de viaje generada con éxito!</h4>
                         <p class="text-xs text-[#065f46] font-medium leading-relaxed">
-                            Hemos guardado tu itinerario para <strong>${this.userEmail}</strong>. Si la ventana de opciones de envío no se abrió automáticamente, presiona el botón **"Enviar por Correo"** o **"Copiar Guía"** para enviarla a tu cuenta o compartirla manualmente.
+                            Tu ruta ha quedado guardada automáticamente en este dispositivo. Puedes explorarla en el <strong>Mapa Interactivo</strong> o <strong>Descargar el PDF</strong> para llevarla contigo.
                         </p>
                     </div>
                 </div>
@@ -1652,14 +1588,11 @@ const ItineraryPlanner = {
                         <button onclick="window.showView('map')" class="text-xs font-black text-white bg-[#003087] hover:bg-[#002266] px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-map-location-dot"></i> Ver en Mapa Interactivo
                         </button>
-                        <button onclick="ItineraryPlanner.showEmailMethodModal()" class="text-xs font-black text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
-                            <i class="fa-solid fa-envelope text-[#0099FF]"></i> Enviar por Correo
+                        <button onclick="ItineraryPlanner.downloadPDF()" class="text-xs font-black text-white bg-[#FF6900] hover:bg-[#e05c00] px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-md hover:-translate-y-0.5 active:scale-95">
+                            <i class="fa-solid fa-file-pdf"></i> Descargar PDF
                         </button>
                         <button onclick="ItineraryPlanner.copyItineraryToClipboard()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-copy text-[#14b8a6]"></i> Copiar Guía
-                        </button>
-                        <button onclick="ItineraryPlanner.downloadPDF()" class="text-xs font-black text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
-                            <i class="fa-solid fa-file-pdf text-[#FF6900]"></i> Descargar PDF
                         </button>
                         <button onclick="ItineraryPlanner.open()" class="text-xs font-black text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm hover:-translate-y-0.5 active:scale-95">
                             <i class="fa-solid fa-wand-magic-sparkles"></i> Planificar otro viaje
