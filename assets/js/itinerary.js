@@ -28,12 +28,12 @@ const ItineraryPlanner = {
     createOverlay() {
         const overlay = document.createElement('div');
         overlay.id = 'itinerary-overlay';
-        overlay.className = 'fixed inset-0 z-[200] transform translate-y-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center p-6 text-white text-center sm:overflow-y-auto bg-cover bg-center bg-no-repeat pointer-events-none';
+        overlay.className = 'fixed inset-0 z-[200] transform translate-y-full transition-transform duration-500 ease-in-out flex flex-col items-center justify-center p-6 pt-20 pb-10 text-white text-center overflow-y-auto bg-cover bg-center bg-no-repeat pointer-events-none';
         overlay.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp")';
         
         overlay.innerHTML = `
-            <button id="close-itinerary" class="absolute top-8 right-8 text-white hover:scale-110 transition-transform">
-                <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            <button id="close-itinerary" class="absolute top-20 right-6 md:top-8 md:right-8 text-white hover:scale-110 transition-transform bg-black/30 p-2 rounded-full">
+                <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
             <div class="max-w-2xl w-full space-y-6 py-6 transition-all">
@@ -214,6 +214,9 @@ const ItineraryPlanner = {
                 if (selectedDates.length === 2) {
                     this.startDate = selectedDates[0];
                     this.endDate = selectedDates[1];
+                } else if (selectedDates.length === 1) {
+                    this.startDate = selectedDates[0];
+                    this.endDate = selectedDates[0];
                 }
             },
             onDayCreate: (dObj, dStr, fp, dayElem) => {
@@ -504,8 +507,10 @@ const ItineraryPlanner = {
                 requestAnimationFrame(() => {
                     setTimeout(() => {
                         const loadingEl = document.getElementById('itinerary-loading');
+                        let generatedOk = false;
                         try {
                             this.generate(diffDays);
+                            generatedOk = Boolean(this.fullItinerary);
                         } catch (err) {
                             console.error('Error al generar itinerario:', err);
                             this.showCustomAlert('Error al generar', 'Ocurrió un problema al crear tu itinerario. Por favor inténtalo de nuevo.');
@@ -513,6 +518,12 @@ const ItineraryPlanner = {
                             // Siempre ocultar la pantalla de carga y cerrar el overlay
                             if (loadingEl) loadingEl.classList.add('hidden');
                             this.close();
+                        }
+
+                        if (generatedOk) {
+                            setTimeout(() => {
+                                this.showEmailMethodModal();
+                            }, 350);
                         }
                     }, 400); // 400ms es suficiente para que la animación se vea en móvil
                 });
@@ -782,15 +793,32 @@ const ItineraryPlanner = {
         this.currentDayView = 1;
         this.activeStopIndex = 0;
         this.renderFullItineraryPage();
-        this.renderItinerarySidebar();
-        this.updateMapForDay(1);
         if (window.showView) window.showView('itinerary');
-        // El modal de correo se lanza con retardo para no solapar la transición de vista
-        // (el manejador del clic ya lo llama desde afuera si corresponde)
+
+        try {
+            this.renderItinerarySidebar();
+            this.updateMapForDay(1);
+        } catch (mapErr) {
+            console.warn('Error no crítico al sincronizar mapa en segundo plano:', mapErr);
+        }
+
+        // Autoguardar ruta generada para que esté disponible en el celular
+        try {
+            const dataToSave = {
+                startCity: this.startCity,
+                startDate: this.startDate ? this.startDate.toISOString() : null,
+                endDate: this.endDate ? this.endDate.toISOString() : null,
+                fullItinerary: this.fullItinerary,
+                savedAt: new Date().toISOString()
+            };
+            localStorage.setItem('saved_itinerary', JSON.stringify(dataToSave));
+            if (window.checkSavedRouteUI) window.checkSavedRouteUI();
+        } catch (_) {}
     },
 
     renderItinerarySidebar() {
         const filterContainer = document.getElementById('filter-container');
+        if (!filterContainer || !this.fullItinerary) return;
         const numDays = Object.keys(this.fullItinerary).length;
         let tabsHtml = '';
         for (let i = 1; i <= numDays; i++) {
@@ -798,17 +826,18 @@ const ItineraryPlanner = {
         }
 
         const items = this.fullItinerary[this.currentDayView] || [];
-        const date = new Date(this.startDate);
+        const baseDate = this.startDate instanceof Date && !isNaN(this.startDate) ? this.startDate : new Date();
+        const date = new Date(baseDate);
         date.setDate(date.getDate() + (this.currentDayView - 1));
 
         filterContainer.innerHTML = `
-            <div class="space-y-6">
+            <div class="space-y-4">
                 <!-- Upper Action Panel -->
-                <div class="flex items-center justify-between border-b pb-4 border-gray-100">
+                <div class="flex items-center justify-between border-b pb-3 border-gray-100">
                     <button onclick="ItineraryPlanner.resetToMainMap(true)" class="text-[11px] font-black text-gray-500 hover:text-[#003087] flex items-center gap-2 group transition-all px-3 py-1.5 rounded-full border border-gray-200 hover:border-[#003087]/20 hover:bg-blue-50/50">
                         <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> SALIR
                     </button>
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-1.5">
                         <button id="save-itinerary-btn" onclick="ItineraryPlanner.saveCurrentItinerary()" class="text-[11px] font-black text-emerald-700 bg-emerald-50 hover:bg-emerald-600 hover:text-white border border-emerald-200 hover:border-emerald-600 px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
                             <i class="fa-solid fa-floppy-disk text-[10px]"></i> Guardar
                         </button>
@@ -816,6 +845,16 @@ const ItineraryPlanner = {
                             <i class="fa-solid fa-location-dot text-[9px] text-[#FF6900]"></i> ${this.startCity}
                         </span>
                     </div>
+                </div>
+
+                <!-- Quick Mobile/Desktop Actions: Download PDF & View Full Guide -->
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="ItineraryPlanner.downloadPDF()" class="bg-[#FF6900] hover:bg-[#e05c00] text-white text-[10px] font-black uppercase tracking-wider py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all active:scale-95">
+                        <i class="fa-solid fa-file-pdf"></i> Descargar PDF
+                    </button>
+                    <button onclick="ItineraryPlanner.renderFullItineraryPage(); if(window.showView) window.showView('itinerary');" class="bg-[#003087] hover:bg-[#002266] text-white text-[10px] font-black uppercase tracking-wider py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all active:scale-95">
+                        <i class="fa-solid fa-list-check"></i> Ver Guía
+                    </button>
                 </div>
 
                 <!-- Day Tabs Container -->
@@ -978,7 +1017,17 @@ const ItineraryPlanner = {
         const pointsToRoute = points.slice(0, activeIndex + 1);
 
         if (pointsToRoute.length > 0) {
-            map.flyToBounds(markerGroup.getBounds(), { padding: [100, 100], duration: 1.5 });
+            if (window.safeFlyToBounds) {
+                window.safeFlyToBounds(markerGroup.getBounds(), { padding: [80, 80], duration: 1.2 });
+            } else {
+                try {
+                    const mainMapView = document.getElementById('main-map-view');
+                    if (mainMapView && !mainMapView.classList.contains('hidden')) {
+                        map.invalidateSize();
+                        map.flyToBounds(markerGroup.getBounds(), { padding: [40, 40], duration: 1.2 });
+                    }
+                } catch (_) {}
+            }
             
             // Track active request to prevent race conditions
             this.activeRouteFetchDay = day;
@@ -1174,18 +1223,20 @@ const ItineraryPlanner = {
         if (!saved) return false;
         try {
             const data = JSON.parse(saved);
-            this.startCity = data.startCity;
-            this.startDate = data.startDate ? new Date(data.startDate) : null;
-            this.endDate = data.endDate ? new Date(data.endDate) : null;
+            this.startCity = data.startCity || 'Cartagena';
+            this.startDate = data.startDate ? new Date(data.startDate) : new Date();
+            this.endDate = data.endDate ? new Date(data.endDate) : new Date();
             this.fullItinerary = data.fullItinerary;
             this.currentDayView = 1;
+            this.activeStopIndex = 0;
 
-            // Render and update
+            // Go to map view first so Leaflet container is visible before updating bounds
+            if (window.showView) window.showView('map');
+
+            // Render full page & sidebar and update map
+            this.renderFullItineraryPage();
             this.renderItinerarySidebar();
             this.updateMapForDay(1);
-
-            // Go to map view
-            if (window.showView) window.showView('map');
 
             // Close initial planner overlay if open
             this.close();
@@ -1265,6 +1316,7 @@ const ItineraryPlanner = {
         list[targetIdx] = temp;
 
         this.renderItinerarySidebar();
+        this.renderFullItineraryPage();
         this.updateMapForDay(day);
     },
 
@@ -1276,6 +1328,7 @@ const ItineraryPlanner = {
         list.splice(index, 1);
 
         this.renderItinerarySidebar();
+        this.renderFullItineraryPage();
         this.updateMapForDay(day);
     },
 
@@ -1336,6 +1389,7 @@ const ItineraryPlanner = {
 
         this.fullItinerary[day][index] = newPoint;
         this.renderItinerarySidebar();
+        this.renderFullItineraryPage();
         this.updateMapForDay(day);
     },
 
@@ -1365,6 +1419,7 @@ const ItineraryPlanner = {
         }
 
         const diffDays = Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24)) + 1;
+        this.close();
         this.generate(diffDays);
 
         if (window.showView) window.showView('map');
@@ -1372,11 +1427,16 @@ const ItineraryPlanner = {
 
     renderFullItineraryPage() {
         const container = document.getElementById('itinerary-view');
-        if (!container) return;
+        if (!container || !this.fullItinerary) return;
+
+        const safeStart = this.startDate instanceof Date && !isNaN(this.startDate) ? this.startDate : new Date();
+        const safeEnd = this.endDate instanceof Date && !isNaN(this.endDate) ? this.endDate : safeStart;
+        this.startDate = safeStart;
+        this.endDate = safeEnd;
 
         const numDays = Object.keys(this.fullItinerary).length;
-        const dateStartStr = this.startDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-        const dateEndStr = this.endDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+        const dateStartStr = safeStart.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+        const dateEndStr = safeEnd.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
         
         // Build Day Selectors HTML
         let dayTabsHtml = '';
@@ -1885,10 +1945,10 @@ const ItineraryPlanner = {
             if (e.target === modal) closeModal();
         });
 
-        // PDF Action
+        // PDF Action (ejecutar sincrónicamente dentro del click para no perder el gesto del usuario en celulares)
         modal.querySelector('#email-opt-pdf').addEventListener('click', () => {
+            this.downloadPDF();
             closeModal();
-            setTimeout(() => this.downloadPDF(), 350);
         });
 
         // Gmail Action
@@ -1962,143 +2022,243 @@ const ItineraryPlanner = {
      * que causaba que el celular se "quedara pensando".
      */
     downloadPDF() {
-        if (!this.fullItinerary) return;
+        if (!this.fullItinerary) {
+            this.showCustomAlert('Sin ruta activa', 'Primero genera o carga una ruta para poder descargar el PDF.');
+            return;
+        }
 
         // Verificar que jsPDF está cargado
         if (typeof window.jspdf === 'undefined' && typeof jsPDF === 'undefined') {
-            // Fallback: si jsPDF no cargó, usar window.print
             window.print();
             return;
         }
 
-        const { jsPDF } = window.jspdf || { jsPDF: window.jsPDF };
-        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        try {
+            const { jsPDF } = window.jspdf || { jsPDF: window.jsPDF };
+            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
-        const pageW = doc.internal.pageSize.getWidth();
-        const pageH = doc.internal.pageSize.getHeight();
-        const margin = 15;
-        const contentW = pageW - margin * 2;
-        let y = margin;
+            // Limpia emojis o caracteres fuera de Latin-1 que jsPDF Helvetica no soporta
+            const cleanText = (str) => String(str || '')
+                .replace(/[\u2013\u2014]/g, '-')
+                .replace(/[^\x20-\xFF]/g, '')
+                .trim();
 
-        const checkNewPage = (needed = 10) => {
-            if (y + needed > pageH - margin) {
-                doc.addPage();
-                y = margin;
-            }
-        };
+            const pageW = doc.internal.pageSize.getWidth();
+            const pageH = doc.internal.pageSize.getHeight();
+            const margin = 15;
+            const contentW = pageW - margin * 2;
+            let y = margin;
 
-        // ─── ENCABEZADO ───────────────────────────────────────────────────────
-        doc.setFillColor(0, 48, 135);   // #003087
-        doc.rect(0, 0, pageW, 28, 'F');
-        doc.setTextColor(255, 255, 255);
-        doc.setFontSize(16);
-        doc.setFont('helvetica', 'bold');
-        doc.text('RUTA TURÍSTICA SOSTENIBLE', margin, 12);
-        doc.setFontSize(9);
-        doc.setFont('helvetica', 'normal');
-        doc.text('Guía de Viaje Personalizada', margin, 20);
-        y = 35;
+            const checkNewPage = (needed = 10) => {
+                if (y + needed > pageH - margin - 12) {
+                    doc.addPage();
+                    y = margin;
+                }
+            };
 
-        // ─── RESUMEN DEL VIAJE ────────────────────────────────────────────────
-        const numDays = Object.keys(this.fullItinerary).length;
-        doc.setFillColor(248, 250, 252);  // bg-[#f8fafc]
-        doc.roundedRect(margin, y, contentW, 28, 3, 3, 'F');
-        doc.setTextColor(0, 48, 135);
-        doc.setFontSize(9);
-        doc.setFont('helvetica', 'bold');
-        const colW = contentW / 4;
-        const labels = ['Ciudad Origen', 'Compañía', 'Presupuesto', 'Duración'];
-        const values = [this.startCity || '—', this.selectedCompanion || '—', this.selectedBudget || '—', `${numDays} día${numDays !== 1 ? 's' : ''}` ];
-        labels.forEach((lbl, i) => {
-            const cx = margin + i * colW + colW / 2;
-            doc.setTextColor(120, 120, 140);
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(7);
-            doc.text(lbl.toUpperCase(), cx, y + 9, { align: 'center' });
-            doc.setTextColor(0, 48, 135);
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(9);
-            doc.text(values[i], cx, y + 18, { align: 'center' });
-        });
-        y += 34;
-
-        // ─── DÍAS ─────────────────────────────────────────────────────────────
-        for (let i = 1; i <= numDays; i++) {
-            const stops = this.fullItinerary[i] || [];
-            const date = new Date(this.startDate);
-            date.setDate(date.getDate() + (i - 1));
-            const dayLabel = date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-
-            checkNewPage(20);
-
-            // Cabecera del día
-            doc.setFillColor(255, 105, 0);  // #FF6900
-            doc.roundedRect(margin, y, contentW, 10, 2, 2, 'F');
+            // ─── ENCABEZADO ───────────────────────────────────────────────────────
+            doc.setFillColor(0, 48, 135);   // #003087
+            doc.rect(0, 0, pageW, 28, 'F');
             doc.setTextColor(255, 255, 255);
-            doc.setFontSize(9);
+            doc.setFontSize(16);
             doc.setFont('helvetica', 'bold');
-            doc.text(`DÍA ${i}  ·  ${dayLabel.toUpperCase()}`, margin + 3, y + 7);
-            y += 14;
+            doc.text(cleanText('RUTA TURÍSTICA SOSTENIBLE'), margin, 12);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.text(cleanText('Guía de Viaje Personalizada · Cartagena - Barranquilla'), margin, 20);
+            y = 35;
 
-            if (stops.length === 0) {
-                checkNewPage(8);
-                doc.setTextColor(160, 160, 160);
-                doc.setFont('helvetica', 'italic');
-                doc.setFontSize(8);
-                doc.text('Sin paradas programadas.', margin + 4, y + 5);
-                y += 10;
-            } else {
-                stops.forEach((stop, idx) => {
-                    checkNewPage(22);
-                    // Tarjeta de parada
-                    doc.setFillColor(255, 255, 255);
-                    doc.setDrawColor(229, 231, 235);
-                    doc.roundedRect(margin, y, contentW, 18, 2, 2, 'FD');
+            // ─── RESUMEN DEL VIAJE ────────────────────────────────────────────────
+            const numDays = Object.keys(this.fullItinerary).length;
+            doc.setFillColor(248, 250, 252);
+            doc.roundedRect(margin, y, contentW, 26, 3, 3, 'F');
+            const colW = contentW / 4;
+            const labels = ['Ciudad Origen', 'Compañía', 'Presupuesto', 'Duración'];
+            const values = [
+                cleanText(this.startCity || '-'),
+                cleanText(this.selectedCompanion || '-'),
+                cleanText(this.selectedBudget || '-'),
+                cleanText(`${numDays} día${numDays !== 1 ? 's' : ''}`)
+            ];
+            labels.forEach((lbl, i) => {
+                const cx = margin + i * colW + colW / 2;
+                doc.setTextColor(120, 120, 140);
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(7);
+                doc.text(cleanText(lbl.toUpperCase()), cx, y + 9, { align: 'center' });
+                doc.setTextColor(0, 48, 135);
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(9);
+                doc.text(values[i], cx, y + 18, { align: 'center' });
+            });
+            y += 32;
 
-                    // Número de parada
-                    doc.setFillColor(0, 48, 135);
-                    doc.circle(margin + 5, y + 9, 4, 'F');
-                    doc.setTextColor(255, 255, 255);
-                    doc.setFont('helvetica', 'bold');
-                    doc.setFontSize(7);
-                    doc.text(String(idx + 1), margin + 5, y + 11, { align: 'center' });
+            // ─── DÍAS ─────────────────────────────────────────────────────────────
+            const baseDate = this.startDate instanceof Date && !isNaN(this.startDate) ? this.startDate : new Date();
+            for (let i = 1; i <= numDays; i++) {
+                const stops = this.fullItinerary[i] || [];
+                const date = new Date(baseDate);
+                date.setDate(date.getDate() + (i - 1));
+                const dayLabel = date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-                    // Nombre del lugar
-                    doc.setTextColor(0, 48, 135);
-                    doc.setFont('helvetica', 'bold');
-                    doc.setFontSize(9);
-                    const title = doc.splitTextToSize(stop.title || 'Sin nombre', contentW - 22);
-                    doc.text(title[0], margin + 12, y + 8);
+                checkNewPage(22);
 
-                    // Ubicación
-                    doc.setTextColor(100, 116, 139);
-                    doc.setFont('helvetica', 'normal');
-                    doc.setFontSize(7);
-                    const loc = (stop.location || '').split(',')[0];
-                    doc.text(`📍 ${loc}`, margin + 12, y + 14);
+                // Cabecera del día
+                doc.setFillColor(255, 105, 0);  // #FF6900
+                doc.roundedRect(margin, y, contentW, 10, 2, 2, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'bold');
+                doc.text(cleanText(`DÍA ${i}  -  ${dayLabel.toUpperCase()}`), margin + 4, y + 6.8);
+                y += 13;
 
-                    y += 21;
-                });
+                if (stops.length === 0) {
+                    checkNewPage(10);
+                    doc.setTextColor(160, 160, 160);
+                    doc.setFont('helvetica', 'italic');
+                    doc.setFontSize(8);
+                    doc.text('Sin paradas programadas.', margin + 4, y + 5);
+                    y += 10;
+                } else {
+                    stops.forEach((stop, idx) => {
+                        checkNewPage(24);
+                        // Tarjeta de parada
+                        doc.setFillColor(255, 255, 255);
+                        doc.setDrawColor(220, 225, 232);
+                        doc.roundedRect(margin, y, contentW, 20, 2, 2, 'FD');
+
+                        // Número de parada
+                        doc.setFillColor(0, 48, 135);
+                        doc.circle(margin + 6, y + 10, 4, 'F');
+                        doc.setTextColor(255, 255, 255);
+                        doc.setFont('helvetica', 'bold');
+                        doc.setFontSize(7.5);
+                        doc.text(String(idx + 1), margin + 6, y + 11.5, { align: 'center' });
+
+                        // Nombre del lugar
+                        doc.setTextColor(0, 48, 135);
+                        doc.setFont('helvetica', 'bold');
+                        doc.setFontSize(9.5);
+                        const titleLines = doc.splitTextToSize(cleanText(stop.title || 'Sin nombre'), contentW - 20);
+                        doc.text(titleLines[0], margin + 13, y + 7.5);
+
+                        // Ubicación y horario/ingreso
+                        doc.setTextColor(90, 105, 125);
+                        doc.setFont('helvetica', 'normal');
+                        doc.setFontSize(7.5);
+                        const loc = cleanText((stop.location || '').split(',')[0]);
+                        const hours = cleanText(stop.hours || 'Abierto');
+                        const price = cleanText(stop.price || 'Consultar');
+                        doc.text(`Ubicación: ${loc}   |   Horario: ${hours}   |   Ingreso: ${price}`, margin + 13, y + 14.5);
+
+                        y += 23;
+                    });
+                }
+                y += 4;
             }
-            y += 4;
+
+            // ─── PIE DE PÁGINA en todas las páginas ───────────────────────────────
+            const totalPages = doc.internal.getNumberOfPages();
+            for (let p = 1; p <= totalPages; p++) {
+                doc.setPage(p);
+                doc.setFillColor(0, 48, 135);
+                doc.rect(0, pageH - 10, pageW, 10, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(7);
+                doc.setFont('helvetica', 'normal');
+                doc.text(cleanText('Ruta Turística Sostenible - rutaturisticasostenible@gmail.com'), margin, pageH - 3.5);
+                doc.text(cleanText(`Página ${p} / ${totalPages}`), pageW - margin, pageH - 3.5, { align: 'right' });
+            }
+
+            // ─── DESCARGA COMPATIBLE CON CELULAR Y ESCRITORIO ─────────────────────
+            const fileName = `itinerario-ruta-sostenible-${numDays}dias.pdf`;
+            const pdfBlob = doc.output('blob');
+            const blobUrl = URL.createObjectURL(pdfBlob);
+
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            link.download = fileName;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => {
+                if (link.parentNode) link.parentNode.removeChild(link);
+            }, 1500);
+
+            this._showPdfDownloadToast(pdfBlob, blobUrl, fileName);
+        } catch (err) {
+            console.error('Error al generar PDF:', err);
+            this.showCustomAlert('Error al descargar PDF', 'No se pudo generar el archivo PDF. Intenta nuevamente.');
+        }
+    },
+
+    _showPdfDownloadToast(pdfBlob, blobUrl, fileName) {
+        const existing = document.getElementById('pdf-download-toast');
+        if (existing) existing.remove();
+
+        const canShareFile = Boolean(
+            navigator.canShare &&
+            typeof File !== 'undefined' &&
+            navigator.canShare({ files: [new File([pdfBlob], fileName, { type: 'application/pdf' })] })
+        );
+
+        const toast = document.createElement('div');
+        toast.id = 'pdf-download-toast';
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            max-width: 380px;
+            width: calc(100% - 32px);
+        `;
+        toast.innerHTML = `
+            <div style="background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.22); overflow: hidden; border: 1px solid #e5e7eb;">
+                <div style="background: linear-gradient(135deg, #003087, #00184E); padding: 14px 18px; display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 36px; height: 36px; background: rgba(255,105,0,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-solid fa-file-pdf" style="color: #FF6900; font-size: 16px;"></i>
+                    </div>
+                    <div style="text-align: left; flex: 1;">
+                        <p style="color: white; font-weight: 900; font-size: 13px; margin: 0;">¡Guía PDF generada!</p>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 11px; margin: 2px 0 0;">Si tu celular no abrió la descarga, ábrela o compártela aquí:</p>
+                    </div>
+                    <button onclick="document.getElementById('pdf-download-toast').remove()" style="background: rgba(255,255,255,0.15); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; color: white; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-xmark" style="font-size: 12px;"></i>
+                    </button>
+                </div>
+                <div style="padding: 12px 16px; display: flex; gap: 8px; background: #f8fafc;">
+                    <a href="${blobUrl}" target="_blank" rel="noopener" style="flex: 1; background: #003087; color: white; text-decoration: none; border-radius: 12px; padding: 10px; font-size: 11px; font-weight: 900; text-align: center; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="fa-solid fa-eye"></i> Abrir PDF
+                    </a>
+                    ${canShareFile ? `
+                    <button id="share-pdf-native-btn" style="flex: 1; background: #FF6900; color: white; border: none; border-radius: 12px; padding: 10px; font-size: 11px; font-weight: 900; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="fa-solid fa-share-nodes"></i> Compartir
+                    </button>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+        document.body.appendChild(toast);
+
+        const shareBtn = toast.querySelector('#share-pdf-native-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', async () => {
+                try {
+                    const file = new File([pdfBlob], fileName, { type: 'application/pdf' });
+                    await navigator.share({
+                        title: 'Guía de Viaje - Ruta Turística Sostenible',
+                        text: 'Mi itinerario personalizado de la Ruta Turística Sostenible.',
+                        files: [file]
+                    });
+                } catch (_) {}
+            });
         }
 
-        // ─── PIE DE PÁGINA en todas las páginas ───────────────────────────────
-        const totalPages = doc.internal.getNumberOfPages();
-        for (let p = 1; p <= totalPages; p++) {
-            doc.setPage(p);
-            doc.setFillColor(0, 48, 135);
-            doc.rect(0, pageH - 10, pageW, 10, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(7);
-            doc.setFont('helvetica', 'normal');
-            doc.text('Ruta Turística Sostenible · rutaturisticasostenible@gmail.com', margin, pageH - 3);
-            doc.text(`Página ${p} / ${totalPages}`, pageW - margin, pageH - 3, { align: 'right' });
-        }
-
-        // ─── DESCARGA ─────────────────────────────────────────────────────────
-        const fileName = `itinerario-ruta-sostenible-${numDays}dias.pdf`;
-        doc.save(fileName);
+        setTimeout(() => {
+            const el = document.getElementById('pdf-download-toast');
+            if (el) el.remove();
+        }, 12000);
     },
 
     copyItineraryToClipboard() {

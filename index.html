@@ -784,9 +784,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- App JS -->
-    <script src="assets/js/data.js?v=6.0"></script>
-    <script src="assets/js/itinerary.js?v=6.0"></script>
-    <script src="assets/js/app.js?v=6.0"></script>
+    <script src="assets/js/data.js?v=7.0"></script>
+    <script src="assets/js/itinerary.js?v=7.0"></script>
+    <script src="assets/js/app.js?v=7.0"></script>
 
     <!-- Initialize Swiper -->
     <script>
@@ -911,6 +911,27 @@
                 if (dRutas) dRutas.classList.remove('active');
                 if (mMapa) mMapa.classList.add('active');
                 if (mRutas) mRutas.classList.remove('active');
+
+                // Recalcular dimensiones de Leaflet al volver a mostrar el contenedor
+                if (typeof map !== 'undefined' && map.invalidateSize) {
+                    requestAnimationFrame(() => {
+                        map.invalidateSize();
+                        setTimeout(() => {
+                            map.invalidateSize();
+                            if (window._pendingMapBounds) {
+                                const pending = window._pendingMapBounds;
+                                window._pendingMapBounds = null;
+                                if (window.safeFlyToBounds) {
+                                    window.safeFlyToBounds(pending.bounds, pending.options);
+                                }
+                            } else if (typeof markerGroup !== 'undefined' && markerGroup.getBounds && markerGroup.getBounds().isValid()) {
+                                if (window.safeFlyToBounds) {
+                                    window.safeFlyToBounds(markerGroup.getBounds(), { padding: [60, 60], duration: 0.8 });
+                                }
+                            }
+                        }, 150);
+                    });
+                }
             } else {
                 if (dMapa) dMapa.classList.remove('active');
                 if (dRutas) dRutas.classList.add('active');

@@ -7,8 +7,53 @@ const map = L.map('map', {
     minZoom: 8, // Prevent zooming out worldwide
     scrollWheelZoom: false, // Prevent zoom during page scrolling
     tap: false, // Recommended for modern touch devices
-    dragging: !L.Browser.mobile // Disable dragging on mobile to allow page scroll
+    dragging: true // Enable dragging on mobile so users can interact with routes
 }).setView([11.0, -74.8], 9);
+
+/**
+ * Helper seguro para ajustar el mapa a unos límites (bounds) sin fallar
+ * cuando #main-map-view está oculto (display: none) o en pantallas móviles.
+ */
+window.safeFlyToBounds = function(bounds, options = {}) {
+    const mainMapView = document.getElementById('main-map-view');
+    const isMapHidden = mainMapView && mainMapView.classList.contains('hidden');
+
+    if (isMapHidden) {
+        // Guardar para aplicar apenas se muestre la vista del mapa
+        window._pendingMapBounds = { bounds, options };
+        return;
+    }
+
+    try {
+        map.invalidateSize();
+        if (!bounds || typeof bounds.isValid !== 'function' || !bounds.isValid()) return;
+
+        const isMobile = window.innerWidth < 768;
+        const defaultPad = isMobile ? [35, 35] : [80, 80];
+        const rawPad = options.padding || defaultPad;
+        const safePad = isMobile ? [Math.min(rawPad[0], 40), Math.min(rawPad[1], 40)] : rawPad;
+
+        const size = map.getSize();
+        if (!size || size.x <= safePad[0] * 2 || size.y <= safePad[1] * 2) {
+            map.fitBounds(bounds, { padding: [20, 20], maxZoom: options.maxZoom || 13 });
+            return;
+        }
+
+        map.flyToBounds(bounds, {
+            ...options,
+            padding: safePad,
+            maxZoom: options.maxZoom || 13,
+            duration: options.duration || 1.2
+        });
+    } catch (err) {
+        console.warn('Fallback en safeFlyToBounds:', err);
+        try {
+            if (bounds && bounds.isValid && bounds.isValid()) {
+                map.fitBounds(bounds, { padding: [20, 20], maxZoom: 13 });
+            }
+        } catch (_) {}
+    }
+};
 
 // Fix blank tile issue if Flex layout renders slightly after DOM
 setTimeout(() => { map.invalidateSize(); }, 300);
@@ -244,7 +289,7 @@ function filterMarkers() {
 
     // Fit bounds appropriately with constraints
     if (Object.keys(markerGroup._layers).length > 0) {
-        map.flyToBounds(markerGroup.getBounds(), { padding: [80, 80], maxZoom: 11.5, duration: 1.2 });
+        window.safeFlyToBounds(markerGroup.getBounds(), { padding: [80, 80], maxZoom: 11.5, duration: 1.2 });
     }
 }
 
@@ -756,7 +801,7 @@ window.showMunicipioPointsOnMap = function(muniId) {
 
     if (Object.keys(markerGroup._layers).length > 0) {
         setTimeout(() => {
-            map.flyToBounds(markerGroup.getBounds(), { padding: [80, 80], maxZoom: 12, duration: 1.5 });
+            window.safeFlyToBounds(markerGroup.getBounds(), { padding: [80, 80], maxZoom: 12, duration: 1.5 });
         }, 500);
     }
 }
@@ -885,7 +930,7 @@ window.showRoutePointsOnMap = function(routeId) {
             });
         
         setTimeout(() => {
-            map.flyToBounds(markerGroup.getBounds(), { padding: [100, 100], duration: 1.5 });
+            window.safeFlyToBounds(markerGroup.getBounds(), { padding: [100, 100], duration: 1.5 });
         }, 500);
     }
 
