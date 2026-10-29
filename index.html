@@ -806,13 +806,16 @@
             `).join('');
         }
 
-        // Init Swiper
-        var swiper = new Swiper(".mySwiper", {
-            loop: true,
-            pagination: { el: ".swiper-pagination", clickable: true },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            autoplay: { delay: 4000, disableOnInteraction: false },
-        });
+        // Init Swiper safely (no bloquea la navegación si falla el CDN con mala señal)
+        var swiper = null;
+        if (typeof Swiper !== 'undefined') {
+            swiper = new Swiper(".mySwiper", {
+                loop: true,
+                pagination: { el: ".swiper-pagination", clickable: true },
+                navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+                autoplay: { delay: 4000, disableOnInteraction: false },
+            });
+        }
 
         // Mobile Menu Logic
         const openMenuBtn = document.getElementById('open-menu');
@@ -1115,11 +1118,20 @@
 
         // Initialize with Map view active
         showView('map');
+
+        // Registrar Service Worker para soporte con poca o nula señal (modo carretera / iPhone & Android)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch((err) => {
+                    console.warn('Service Worker no pudo registrarse:', err);
+                });
+            });
+        }
     </script>
     
-    <!-- Hidden Google Translate Element -->
+    <!-- Hidden Google Translate Element (async defer para no bloquear la carga cuando hay poca señal) -->
     <div id="google_translate_element" class="hidden"></div>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 </body>
 
 </html>
