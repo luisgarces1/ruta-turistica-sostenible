@@ -58,7 +58,7 @@ const ItineraryPlanner = {
                 <div id="step-2" class="space-y-6 hidden animate-fade-in">
                     <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">¿Qué te interesa?</h2>
                     <div class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto">
-                        ${categories.filter(c => c.id !== 'todas' && c.id !== 'otros').map(cat => `
+                        ${categories.filter(c => c.id !== 'todas' && c.id !== 'otros' && c.id !== 'infraestructura').map(cat => `
                             <button class="interest-tag px-4 py-2 rounded-full border border-white/20 hover:border-white hover:bg-white/10 transition-all font-bold text-sm" data-value="${cat.id}">${cat.label}</button>
                         `).join('')}
                     </div>
@@ -630,27 +630,28 @@ const ItineraryPlanner = {
                 if (!overlaps) return false;
             }
 
-            // 2. Validar categorías e intereses
+            // Excluir infraestructura vial y aeropuertos de los puntos turísticos de itinerario
+            if (item.category === 'infraestructura' || item.category === 'otros') return false;
+
+            // 2. Validar categorías e intereses (soporte multi-categoría)
             if (this.selectedInterests.size === 0) return true;
             
             const norm = (str) => (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-            const itemCatNorm = norm(item.category);
+            const rawCats = (item.categories && item.categories.length) ? item.categories : [item.category];
+            const itemCatsNorm = rawCats.map(norm);
 
             // Coincidencia directa (normalizada sin tildes)
-            let matchesDirect = false;
             for (const interestId of this.selectedInterests) {
-                if (norm(interestId) === itemCatNorm) {
-                    matchesDirect = true;
-                    break;
+                if (itemCatsNorm.includes(norm(interestId))) {
+                    return true;
                 }
             }
-            if (matchesDirect) return true;
 
-            // Expandir búsqueda a subcategorías
+            // Expandir búsqueda a subcategorías (ej. naturaleza -> ecoturismo, aves)
             for (const interestId of this.selectedInterests) {
                 const parentCat = categories.find(c => norm(c.id) === norm(interestId));
                 if (parentCat && parentCat.subcategories) {
-                    if (parentCat.subcategories.some(sub => norm(sub.id) === itemCatNorm)) return true;
+                    if (parentCat.subcategories.some(sub => itemCatsNorm.includes(norm(sub.id)))) return true;
                 }
             }
 

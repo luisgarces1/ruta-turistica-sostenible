@@ -268,19 +268,31 @@ function filterMarkers() {
     allMarkers.forEach(marker => {
         const normalizeCat = (cat) => (cat || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
         const activeNorm = normalizeCat(currentActiveFilter);
-        const itemCatNorm = normalizeCat(marker.itemData.category);
+        const rawCats = (marker.itemData.categories && marker.itemData.categories.length)
+            ? marker.itemData.categories
+            : [marker.itemData.category];
+        const itemCatsNorm = rawCats.map(normalizeCat);
 
-        let isVisible = currentActiveFilter === 'todas' || itemCatNorm === activeNorm;
+        let isVisible = currentActiveFilter === 'todas' || itemCatsNorm.includes(activeNorm);
+        let matchedCatId = marker.itemData.category;
 
-        // Soporte para selección de categoría padre (Naturaleza)
+        if (currentActiveFilter !== 'todas' && itemCatsNorm.includes(activeNorm)) {
+            const idx = itemCatsNorm.indexOf(activeNorm);
+            if (idx !== -1) matchedCatId = rawCats[idx];
+        }
+
+        // Soporte para selección de categoría padre (Naturaleza -> ecoturismo / aves)
         const activeCat = categories.find(c => c.id === currentActiveFilter);
         if (activeCat && activeCat.subcategories) {
-            if (activeCat.subcategories.find(sub => normalizeCat(sub.id) === itemCatNorm)) {
+            const matchedSub = activeCat.subcategories.find(sub => itemCatsNorm.includes(normalizeCat(sub.id)));
+            if (matchedSub) {
                 isVisible = true;
+                matchedCatId = matchedSub.id;
             }
         }
 
         if (isVisible) {
+            marker.setIcon(getMarkerIcon(matchedCatId));
             if (!markerGroup.hasLayer(marker)) markerGroup.addLayer(marker);
         } else {
             if (markerGroup.hasLayer(marker)) markerGroup.removeLayer(marker);
@@ -294,18 +306,28 @@ function filterMarkers() {
 }
 
 // 4. Side Panel Logic
-function openSidePanel(data) {
+function resolveCategoryData(catId) {
     const norm = (str) => (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-    const targetNorm = norm(data.category);
-    let categoryData = categories.find(c => norm(c.id) === targetNorm);
-    if (!categoryData) {
+    const targetNorm = norm(catId);
+    let found = categories.find(c => norm(c.id) === targetNorm);
+    if (!found) {
         categories.forEach(parent => {
             if (parent.subcategories) {
                 const sub = parent.subcategories.find(s => norm(s.id) === targetNorm);
-                if (sub) categoryData = sub;
+                if (sub) found = sub;
             }
         });
     }
+    return found;
+}
+
+function openSidePanel(data) {
+    const rawCats = (data.categories && data.categories.length) ? data.categories : [data.category];
+    const allCatObjects = rawCats.map(resolveCategoryData).filter(Boolean);
+    const categoryData = allCatObjects[0] || resolveCategoryData(data.category);
+    const categoriesLabelText = allCatObjects.length > 0
+        ? allCatObjects.map(c => c.label).join(' • ')
+        : (data.category || '').toUpperCase();
 
     sidePanel.innerHTML = `
         <!-- Image Header (Fast Reveal + Skeleton) -->
@@ -324,10 +346,12 @@ function openSidePanel(data) {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <div class="absolute bottom-6 left-6 z-[50]">
-                <span class="px-3 py-1.5 ${categoryData?.color || 'bg-gray-800'} text-white text-[9px] font-black uppercase tracking-[0.1em] rounded-full shadow-2xl border border-white/40 backdrop-blur-md flex items-center gap-2 w-fit">
-                    ${categoryData?.icon || ''} ${categoryData?.label || 'Categoría'}
-                </span>
+            <div class="absolute bottom-5 left-5 right-5 z-[50] flex flex-wrap gap-1.5">
+                ${(allCatObjects.length ? allCatObjects : [categoryData]).map(catObj => `
+                    <span class="px-2.5 py-1 ${catObj?.color || 'bg-gray-800'} text-white text-[9px] font-black uppercase tracking-[0.08em] rounded-full shadow-2xl border border-white/40 backdrop-blur-md flex items-center gap-1.5 w-fit">
+                        ${catObj?.icon || ''} ${catObj?.label || 'Categoría'}
+                    </span>
+                `).join('')}
             </div>
         </div>
 
@@ -335,7 +359,7 @@ function openSidePanel(data) {
             <div class="px-5 md:px-6 py-4 flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-4">
                 <!-- 1. Title Section -->
                 <div class="space-y-0">
-                    <p class="text-hierarchy-subtitle text-[9px] mb-[-2px]">${data.location.split(',')[0]} / ${data.category.toUpperCase()}</p>
+                    <p class="text-hierarchy-subtitle text-[9px] mb-[-2px]">${data.location.split(',')[0]} / ${categoriesLabelText.toUpperCase()}</p>
                     <h2 class="text-hierarchy-title text-lg md:text-xl leading-tight">${data.title}</h2>
                 </div>
 
@@ -393,6 +417,12 @@ function openSidePanel(data) {
                 <div id="poi-description-text" class="glass-card rounded-xl p-3 text-[12px] md:text-[13px] text-gray-700 leading-tight font-medium italic">
                     ${data.description}
                 </div>
+
+                ${data.tags && data.tags.length ? `
+                <!-- 6. Tags / Experiencias -->
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                    ${data.tags.map(tag => `<span class="px-2.5 py-1 bg-blue-50/90 text-[#003087] border border-blue-100 rounded-full text-[10px] font-bold tracking-tight">#${tag}</span>`).join('')}
+                </div>` : ''}
             </div>
     `;
 
@@ -667,6 +697,24 @@ function renderMunicipiosGrid() {
     });
 }
 
+function pointBelongsToMunicipio(point, muni) {
+    if (muni.pointsIds.includes(point.id)) return true;
+    if (point.category === 'infraestructura' || point.category === 'otros') return false;
+    const norm = (str) => (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const loc = norm(point.location);
+    const muniKeywords = {
+        'puerto-colombia': ['puerto colombia', 'salgar', 'sabanilla'],
+        'tubara': ['tubara', 'guaimaral', 'palmarito', 'playa mendoza', 'puerto caiman', 'turipana', 'bajo ostion'],
+        'juan-de-acosta': ['juan de acosta', 'santa veronica', 'bocatocino', 'chorrera', 'san jose de saco'],
+        'piojo': ['piojo', 'hibacharo', 'aguas vivas'],
+        'santa-catalina': ['santa catalina', 'galerazamba', 'lomita arena', 'colorado'],
+        'cartagena': ['cartagena', 'baru', 'la boquilla', 'tierra bomba', 'punta canoa', 'manzanillo', 'arroyo de piedra', 'arroyo grande', 'pontezuela'],
+        'barranquilla': ['barranquilla']
+    };
+    const keywords = muniKeywords[muni.id] || [norm(muni.name)];
+    return keywords.some(kw => loc.includes(kw));
+}
+
 function showMunicipioDetail(muniId) {
     const muni = municipiosData.find(m => m.id === muniId);
     if (!muni) return;
@@ -677,8 +725,8 @@ function showMunicipioDetail(muniId) {
     // Set municipality context
     activeMunicipalityContext = muniId;
     
-    // Get points for this municipality
-    const muniPoints = mockData.filter(p => muni.pointsIds.includes(p.id));
+    // Get points for this municipality (both explicit IDs and new points matching location)
+    const muniPoints = mockData.filter(p => pointBelongsToMunicipio(p, muni));
 
     content.innerHTML = `
         <div class="relative h-[40vh] md:h-[50vh] w-full">
@@ -792,7 +840,7 @@ window.showMunicipioPointsOnMap = function(muniId) {
 
     // Filtrar marcadores para mostrar solo los de este municipio
     allMarkers.forEach(marker => {
-        if (muni.pointsIds.includes(marker.itemData.id)) {
+        if (pointBelongsToMunicipio(marker.itemData, muni)) {
             if (!markerGroup.hasLayer(marker)) markerGroup.addLayer(marker);
         } else {
             if (markerGroup.hasLayer(marker)) markerGroup.removeLayer(marker);
@@ -2711,20 +2759,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Filter mockData
         const matches = mockData.filter(item => {
-            const catInfo = getCategoryInfo(item.category);
+            const rawCats = (item.categories && item.categories.length) ? item.categories : [item.category];
+            const catInfos = rawCats.map(getCategoryInfo);
             const normalizedTitle = item.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const normalizedDesc = item.description.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const normalizedLoc = item.location.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const normalizedTags = item.tags ? item.tags.map(t => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).join(' ') : '';
-            const normalizedCatId = (item.category || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            const normalizedCatLabel = (catInfo?.label || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const normalizedCatIds = rawCats.map(c => (c || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).join(' ');
+            const normalizedCatLabels = catInfos.map(ci => (ci?.label || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")).join(' ');
 
             return normalizedTitle.includes(query) || 
                    normalizedDesc.includes(query) || 
                    normalizedLoc.includes(query) || 
                    normalizedTags.includes(query) ||
-                   normalizedCatId.includes(query) ||
-                   normalizedCatLabel.includes(query);
+                   normalizedCatIds.includes(query) ||
+                   normalizedCatLabels.includes(query);
         });
 
         // Render matches

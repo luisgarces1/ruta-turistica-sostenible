@@ -5,78 +5,82 @@
  * Este archivo contiene toda la información de los puntos turísticos y las 
  * categorías que se muestran en el mapa interactivo y en el planificador de rutas.
  * 
- * ¿CÓMO AGREGAR UN NUEVO PUNTO?
- * 1. Ve al final del arreglo `mockData`.
- * 2. Copia la estructura de un punto existente y pégala al final (separada por coma).
- * 3. Asegúrate de que el 'id' sea único y el 'category' coincida con uno de 'categories'.
- * 4. Las coordenadas (lat, lng) se sacan de Google Maps.
+ * SOPORTE MULTI-CATEGORÍA:
+ * Cada punto cuenta con:
+ * - `category`: categoría principal (para el ícono primario del pin).
+ * - `categories`: arreglo con todas las categorías en las que debe aparecer al filtrar.
  */
 
 // 1. CONFIGURACIÓN DE CATEGORÍAS (Filtros del panel izquierdo)
-// Si agregas una nueva categoría aquí, aparecerá automáticamente en el menú y en "Rutas".
 const categories = [
   { id: "todas", label: "Ver todos", icon: "📍", color: "bg-slate-800" },
+  { id: "playas", label: "Playas y deportes náuticos", icon: "🏖️", color: "bg-cyan-500" },
   {
     id: "naturaleza",
     label: "Turismo de naturaleza",
     icon: "🌿",
     color: "bg-emerald-600",
     subcategories: [
-      { id: "playas", label: "Playas y costas", icon: "🏖️", color: "bg-cyan-500" },
       { id: "ecoturismo", label: "Parques y reservas", icon: "🏞️", color: "bg-green-600" },
-      { id: "nauticos", label: "Deportes náuticos", icon: "🌊", color: "bg-sky-500" },
+      { id: "aves", label: "Avistamiento de aves", icon: "🦜", color: "bg-teal-600" }
     ]
   },
-  { id: "eventos", label: "Festividades y eventos", icon: "🎉", color: "bg-fuchsia-500" },
   { id: "cultura", label: "Cultura, artes y patrimonio", icon: "🏛️", color: "bg-purple-500" },
   { id: "gastronomía", label: "Placeres gastronómicos", icon: "🥘", color: "bg-orange-500" },
-  { id: "infraestructura", label: "Infraestructura del corredor vial", icon: "🛣️", color: "bg-blue-600" },
-  { id: "otros", label: "Aeropuertos", icon: "✈️", color: "bg-indigo-400" }
+  { id: "eventos", label: "Festividades y eventos", icon: "🎉", color: "bg-fuchsia-500" },
+  { id: "comunitario", label: "Turismo comunitario", icon: "🤝", color: "bg-amber-600" },
+  { id: "paradores", label: "Paradores turísticos", icon: "🏪", color: "bg-rose-500" },
+  { id: "otros", label: "Aeropuertos", icon: "✈️", color: "bg-indigo-400" },
+  { id: "infraestructura", label: "Infraestructura del corredor vial", icon: "🛣️", color: "bg-blue-600" }
 ];
 
 const mockData = [
   {
     id: 1,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Volcán del Totumo",
-    description: "Un cono volcánico de 15 metros que emerge entre la ciénaga y el mar. Su lodo medicinal nace de procesos geológicos únicos en el Caribe: gases que burbujean desde las profundidades y minerales que relajan el cuerpo mientras flotas en su densa superficie tibia. Un fenómeno natural vivo..",
+    description: "Un cono volcánico de 15 metros que emerge entre la ciénaga y el mar. Su lodo medicinal nace de procesos geológicos únicos en el Caribe: gases que burbujean desde las profundidades y minerales que relajan el cuerpo mientras flotas en su densa superficie tibia. Un fenómeno natural vivo.",
     lat: 10.744444,
     lng: -75.241389,
     image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp",
     location: "Santa Catalina, Bolívar.",
     hours: "6:00 a.m. - 6:00 p.m.",
     price: "Adultos: $20.000 COP.",
-    tags: ["Relax en la playa","Experiencias sensoriales","Comida autóctona"]
+    tags: ["Relax en la playa", "Experiencias sensoriales", "Comida autóctona"]
   },
   {
     id: 2,
     category: "playas",
+    categories: ["playas"],
     title: "Playas de Loma Arena",
-    description: "Arena dorada que avanza sin interrupciones hasta donde el ojo alcanza. En Loma Arena el Caribe llega tranquilo y el paisaje permanece sin intervención: sin estructuras, sin bullicio. Solo el oleaje, el cielo abierto y la línea de palmeras que marca el límite entre la tierra y el mar.",
+    description: "Arena dorada que avanza sin interrupciones hasta donde el ojo alcanza. En Loma Arena el Caribe llega tranquilo y el paisaje permanece sin intervención: sin estructuras, sin bullicio. Solo el oleaje, el cielo abierto y la línea de palmeras que marca el límite entre la tierra y el mar. Bandera de seguridad según Santa Catalina y capitanía de Puerto de Cartagena.",
     lat: 10.731697,
     lng: -75.272444,
     image: "assets/images/puntos/foto-principal-l.a.webp",
     location: "Santa Catalina, Bolívar.",
     hours: "Abierto todo el tiempo.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Deportes náuticos","Vistas panorámicas"]
+    tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
   },
   {
     id: 3,
     category: "playas",
+    categories: ["playas", "aves"],
     title: "Playas de Punta Astilleros",
-    description: "Donde la costa del Atlántico se conserva en su estado más puro. Playas vírgenes rodeadas de vegetación nativa, con brisa constante y acceso a senderos ecológicos que siguen la orilla. Un entorno costero que no ha cedido a la infraestructura y por eso sigue siendo refugio de aves y paisaje auténtico.",
-    lat: 10.795,
-    lng: -75.224444,
+    description: "Donde la costa del Atlántico se conserva en su estado más puro. Playas vírgenes rodeadas de vegetación nativa, con brisa constante y acceso a senderos ecológicos que siguen la orilla. Un entorno costero que no ha cedido a la infraestructura y por eso sigue siendo refugio de aves y paisaje auténtico. Bandera de seguridad diaria por salvavidas municipales (Piojó).",
+    lat: 10.7954,
+    lng: -75.2248,
     image: "assets/images/puntos/foto-principal-pa.webp",
     location: "Piojó, Atlántico.",
     hours: "9:00 a.m. - Final del día.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Vistas panorámicas","Artesanías"]
+    tags: ["Relax en la playa", "Vistas panorámicas", "Artesanías", "Avistamiento de aves"]
   },
   {
     id: 4,
     category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
     title: "Cerro la Vieja",
     description: "La cima del Atlántico guarda bosque seco tropical, fauna sorprendente y una panorámica que abarca la línea costera y el relieve ondulado del departamento. Cada paso hacia la cumbre atraviesa microhábitats distintos. Subir es una inmersión en la biodiversidad del Caribe, no solo un esfuerzo físico.",
     lat: 10.733333,
@@ -85,11 +89,12 @@ const mockData = [
     location: "Piojó, Atlántico.",
     hours: "7:00 a.m. - 6:00 p.m.",
     price: "Adultos: $8.000 COP.",
-    tags: ["Avistamiento de aves","Vistas panorámicas","Experiencias sensoriales"]
+    tags: ["Avistamiento de aves", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 5,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Caribe Aventura",
     description: "Un parque que usa la naturaleza del Caribe como escenario principal. Toboganes, piscinas y atracciones acuáticas están integrados en un entorno donde el agua, la vegetación y el paisaje regional son los protagonistas. Una experiencia que conecta la diversión familiar con la identidad natural del territorio.",
     lat: 10.765278,
@@ -98,24 +103,26 @@ const mockData = [
     location: "Piojó, Atlántico.",
     hours: "9:00 a.m. - 4:30 p.m.",
     price: "Variable.",
-    tags: ["Experiencias sensoriales","Deportes náuticos"]
+    tags: ["Experiencias sensoriales", "Deportes náuticos"]
   },
   {
     id: 6,
     category: "cultura",
+    categories: ["cultura"],
     title: "Muelle de Puerto Colombia",
-    description: "El muelle más largo de Colombia  en su época hoy camina sobre el mar como testigo de una era que transformó al país. Sus pilotes de concreto sostienen una historia de vapores, mercancías y viajeros que llegaron al Caribe. Caminar sobre él es recorrer la memoria del comercio y la apertura de una nación.",
+    description: "El muelle más largo de Colombia en su época hoy camina sobre el mar como testigo de una era que transformó al país. Sus pilotes de concreto sostienen una historia de vapores, mercancías y viajeros que llegaron al Caribe. Caminar sobre él es recorrer la memoria del comercio y la apertura de una nación.",
     lat: 10.988333,
-    lng: -74.959444,
+    lng: -74.9602,
     image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "Abierto todo el tiempo.",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Artesanías","Comida autóctona"]
+    tags: ["Vistas panorámicas", "Artesanías", "Comida autóctona"]
   },
   {
     id: 7,
     category: "gastronomía",
+    categories: ["gastronomía"],
     title: "Centro gastronómico Muelle 1888",
     description: "Una arquitectura que rinde tributo a las olas inmigrantes que llegaron por este puerto. Los sabores locales e internacionales conviven aquí con la historia del lugar, invitando a comer despacio, a mirar el mar y a entender cómo la mesa caribeña es también un archivo de memorias y encuentros.",
     lat: 10.989444,
@@ -124,72 +131,77 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "Variable.",
     price: "Gratuito.",
-    tags: ["Comida autóctona","Relax en la playa","Vistas panorámicas"]
+    tags: ["Comida autóctona", "Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 8,
     category: "cultura",
+    categories: ["cultura"],
     title: "Ventana de Sueños",
     description: "Estructura de cristal que al caer la noche transforma la costa de Puerto Colombia en un faro de colores. Es un monumento a los inmigrantes que llegaron sin certezas y construyeron identidad. Su reflejo sobre el mar convierte cada visita en un encuentro entre la historia humana y el presente festivo del Atlántico.",
-    lat: 11.001667,
-    lng: -74.952778,
+    lat: 11.0019,
+    lng: -74.9525,
     image: "assets/images/puntos/foto-principal-para-la-pagina-v.s.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "Abierto.",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Experiencias sensoriales"]
+    tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 9,
     category: "cultura",
+    categories: ["cultura"],
     title: "Antigua estación del Ferrocarril",
     description: "Inaugurada en 1871, sus muros de ladrillo guardan el eco de los trenes que conectaron el interior del país con el mar. Hoy convertida en centro cultural, la estación invita a recorrer la era ferroviaria que cambió la economía colombiana y dejó en Puerto Colombia una huella arquitectónica todavía vigente.",
-    lat: 10.988611,
+    lat: 10.98885,
     lng: -74.959444,
     image: "assets/images/puntos/foto-principal-para-la-pagina-ef.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "Abierto.",
     price: "Gratuito.",
-    tags: ["Artesanías","Experiencias sensoriales"]
+    tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 10,
     category: "playas",
+    categories: ["playas", "gastronomía"],
     title: "Playas de Puerto Colombia",
-    description: "El mar llega aquí con fuerza moderada y temperatura cálida todo el año. La proximidad del muelle histórico crea un paisaje donde el agua y la arquitectura se entrelazan sin competir. Playas abiertas, brisa del Caribe y una costa que combina el descanso natural con la escala humana del balneario clásico.",
+    description: "El mar llega aquí con fuerza moderada y temperatura cálida todo el año. La proximidad del muelle histórico crea un paisaje donde el agua y la arquitectura se entrelazan sin competir. Playas abiertas, brisa del Caribe y una costa que combina el descanso natural con la escala humana del balneario clásico. Bandera de seguridad diaria por salvavidas municipales (Puerto Colombia).",
     lat: 10.987799,
     lng: -74.961316,
     image: "assets/images/puntos/foto-principal-para-la-pagina-p.p.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "7:00 a.m. - 4:00 p.m.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Vistas panorámicas"]
+    tags: ["Relax en la playa", "Vistas panorámicas", "Placeres gastronómicos"]
   },
   {
     id: 11,
     category: "playas",
+    categories: ["playas", "gastronomía"],
     title: "Playa de Santa Verónica",
-    description: "El viento constante de Juan de Acosta convierte a Santa Verónica en un punto privilegiado del litoral atlántico. Sus corrientes suaves y el agua clara la hacen ideal para iniciarse en deportes de viento. Frente al océano, los restaurantes de pescado frito completan un entorno donde el mar dicta el ritmo.",
+    description: "El viento constante de Juan de Acosta convierte a Santa Verónica en un punto privilegiado del litoral atlántico. Sus corrientes suaves y el agua clara la hacen ideal para iniciarse en deportes de viento. Frente al océano, los restaurantes de pescado frito completan un entorno donde el mar dicta el ritmo. Bandera de seguridad diaria por salvavidas municipales (Juan de Acosta).",
     lat: 10.88038,
     lng: -75.08297,
     image: "assets/images/puntos/fotografia-para-la-pagina-p.s.webp",
     location: "Juan de Acosta, Atlántico.",
     hours: "7:00 a.m. - 9:00 p.m.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Comida autóctona","Vistas panorámicas"]
+    tags: ["Relax en la playa", "Comida autóctona", "Vistas panorámicas"]
   },
   {
     id: 12,
-    category: "nauticos",
+    category: "playas",
+    categories: ["playas"],
     title: "Salinas del Rey",
-    description: "Las condiciones de viento y oleaje de Juan de Acosta generan aquí uno de los escenarios de kitesurf más exigentes del mundo. Pero antes de la adrenalina está el paisaje: agua que cambia de tono según la hora y la sal que brilla bajo el sol caribeño. Un accidente geográfico convertido en destino de alto rendimiento.",
+    description: "Las condiciones de viento y oleaje de Juan de Acosta generan aquí uno de los escenarios de kitesurf más exigentes del mundo. Pero antes de la adrenalina está el paisaje: agua que cambia de tono según la hora y la sal que brilla bajo el sol caribeño. Un accidente geográfico convertido en destino de alto rendimiento. Bandera de seguridad diaria por autoridades municipales (Juan de Acosta).",
     lat: 10.871944,
     lng: -75.095556,
     image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp",
     location: "Juan de Acosta, Atlántico.",
     hours: "9:00 a.m. - 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Deportes náuticos","Vistas panorámicas","Experiencias sensoriales"]
+    tags: ["Deportes náuticos", "Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 13,
@@ -197,19 +209,21 @@ const mockData = [
     startDay: 30,
     endDay: 31,
     category: "eventos",
+    categories: ["eventos", "gastronomía"],
     title: "Festival del Millo",
     description: "La flauta de millo sale a las calles de Juan de Acosta cada año para recordar el origen agrícola de este municipio. El baile, la música y los platos derivados del grano tejen una celebración donde la herencia campesina del Caribe no es pasado sino identidad activa que se renueva con cada edición.",
     lat: 10.829092,
     lng: -75.035858,
     image: "assets/images/puntos/fotografia-para-la-pagina-f.m.webp",
     location: "Juan de Acosta, Atlántico.",
-    hours: "Anual.",
+    hours: "Anual (30–31 de enero).",
     price: "Gratuito.",
-    tags: ["Comida autóctona","Artesanías","Experiencias sensoriales"]
+    tags: ["Comida autóctona", "Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 14,
     category: "gastronomía",
+    categories: ["gastronomía", "paradores"],
     title: "Parador El Sombrero Vueltiao",
     description: "Una parada en la vía que es mucho más que descanso. El sombrero vueltiao gigante marca un punto donde artesanos y productores locales exhiben y venden su trabajo. Aquí la carretera se convierte en mercado vivo: comida típica, artesanías auténticas y el orgullo de quienes hacen de su oficio una identidad.",
     lat: 10.8805,
@@ -218,24 +232,26 @@ const mockData = [
     location: "Juan de Acosta, Atlántico.",
     hours: "Variable.",
     price: "Gratuito.",
-    tags: ["Artesanías","Comida autóctona","Vistas panorámicas"]
+    tags: ["Artesanías", "Comida autóctona", "Vistas panorámicas"]
   },
   {
     id: 15,
     category: "playas",
+    categories: ["playas"],
     title: "Playa de Puerto Velero",
-    description: "La ensenada natural de Puerto Velero protege sus aguas del oleaje abierto, creando una calma que pocas playas del Caribe colombiano ofrecen. El entorno de manglares y la profundidad gradual la hacen refugio ideal para la vela y los deportes náuticos suaves en un ecosistema costero todavía bien conservado.",
+    description: "La ensenada natural de Puerto Velero protege sus aguas del oleaje abierto, creando una calma que pocas playas del Caribe colombiano ofrecen. El entorno de manglares y la profundidad gradual la hacen refugio ideal para la vela y los deportes náuticos suaves en un ecosistema costero todavía bien conservado. Cuenta con un complejo náutico (https://www.marinapuertovelero.co/). Bandera de seguridad diaria por salvavidas municipales (Tubará).",
     lat: 10.947222,
     lng: -75.036944,
     image: "assets/images/puntos/foto-principal-para-la-pagina-p.v.webp",
     location: "Tubará, Atlántico.",
     hours: "8:00 a.m. - 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Deportes náuticos","Comida autóctona"]
+    tags: ["Relax en la playa", "Deportes náuticos", "Comida autóctona"]
   },
   {
     id: 16,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo Arqueológico de Galapa",
     description: "Las cerámicas y piezas que custodian estas salas no son solo objetos: son los vestigios de los Mokaná y las culturas que habitaron este territorio antes de la conquista. Recorrer el museo es reconocer en cada pieza la continuidad de un pueblo cuya historia no empezó en 1492 sino siglos antes.",
     lat: 10.899722,
@@ -244,11 +260,12 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "Variable.",
     price: "Gratuito.",
-    tags: ["Artesanías","Experiencias sensoriales"]
+    tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 17,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Mariposario Butterfly Caribe",
     description: "Cientos de especies de mariposas viven y se reproducen en este jardín controlado en Galapa. Más que un atractivo visual, el mariposario educa sobre el papel crítico de los polinizadores en los ecosistemas tropicales. Una experiencia que pone al visitante en contacto directo con la fragilidad y la belleza de la vida natural.",
     lat: 10.875833,
@@ -257,11 +274,12 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "9:30 a.m. - 2:30 p.m.",
     price: "Adultos: $25.000.",
-    tags: ["Avistamiento de aves","Experiencias sensoriales"]
+    tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
     id: 18,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Parque Biotemático Megua",
     description: "32 hectáreas de senderos, granjas interactivas y zonas de conservación en las afueras de Galapa. Megua es un aula viva donde se aprende sobre suelos, plantas nativas y ciclos naturales mientras se camina entre animales de la región. El contacto directo con los procesos del campo es el centro de la experiencia.",
     lat: 10.848611,
@@ -270,11 +288,12 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "9:00 a.m. - 5:00 p.m.",
     price: "Adultos: $22.000.",
-    tags: ["Avistamiento de aves","Experiencias sensoriales","Vistas panorámicas"]
+    tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 19,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo Carlos Arturo Valdez",
     description: "Una colección privada donada a la comunidad de Malambo que preserva objetos de la vida cotidiana de la etnia Mokaná y vestigios del desarrollo histórico de este municipio a orillas del río. Cada pieza habla de una época y de una gente que construyó identidad en el cruce entre el agua y la tierra.",
     lat: 10.861667,
@@ -283,11 +302,12 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "8:00 a.m. - 12:00 p.m.",
     price: "Gratuito.",
-    tags: ["Artesanías","Experiencias sensoriales"]
+    tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 20,
     category: "cultura",
+    categories: ["cultura"],
     title: "Ventana al Mundo",
     description: "Placas de vidrio multicolor que se elevan en Barranquilla como símbolo de una ciudad que mira hacia afuera sin perder su raíz caribeña. El monumento más fotografiado del Atlántico es también una declaración de identidad: una ciudad que celebra su apertura al mundo desde la orilla del río que la define.",
     lat: 11.0325,
@@ -296,11 +316,12 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "Abierto.",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Experiencias sensoriales"]
+    tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 21,
     category: "cultura",
+    categories: ["cultura"],
     title: "Ventana de Campeones",
     description: "La Aleta de Tiburón no es solo homenaje al Junior de Barranquilla: es la materialización del vínculo entre una ciudad y su equipo. Cristal y acero que brillan con los colores de una pasión colectiva que trasciende el estadio y se instala en la rotonda de la Vía 40 como monumento a la identidad festiva barranquillera.",
     lat: 10.998319,
@@ -309,102 +330,110 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "Abierto.",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Experiencias sensoriales"]
+    tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 22,
     category: "cultura",
+    categories: ["cultura", "gastronomía"],
     title: "Gran Malecón del Río",
     description: "Barranquilla le devolvió kilómetros de orilla al Magdalena y creó el espacio público más visitado del país. El Malecón no es solo un paseo: es la prueba de que una ciudad puede reconectarse con el río que la fundó. Cada sendero recuperado, cada zona verde, es territorio que dejó de darle la espalda al agua.",
     lat: 11.020017,
     lng: -74.793225,
     image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "5:00 a.m - 11:00 p.m.",
+    hours: "5:00 a.m. - 11:00 p.m.",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Comida autóctona","Relax en la playa"]
+    tags: ["Vistas panorámicas", "Comida autóctona", "Relax en la playa"]
   },
   {
     id: 23,
-    category: "nauticos",
+    category: "playas",
+    categories: ["playas"],
     title: "Playas de Puerto Mocho",
-    description: "Donde el Magdalena y el mar Caribe se encuentran en Bocas de Cenizas, Puerto Mocho ofrece un fenómeno natural único: dos cuerpos de agua con colores y temperaturas distintas que se mezclan ante tus ojos. El tren turístico y los servicios renovados hacen accesible este ecosistema de desembocadura sin alterarlo.",
+    description: "Donde el Magdalena y el mar Caribe se encuentran en Bocas de Cenizas, Puerto Mocho ofrece un fenómeno natural único: dos cuerpos de agua con colores y temperaturas distintas que se mezclan ante tus ojos. El tren turístico y los servicios renovados hacen accesible este ecosistema de desembocadura sin alterarlo. Bandera de seguridad diaria por autoridades municipales (Alcaldía de Barranquilla).",
     lat: 11.045556,
     lng: -74.828889,
     image: "assets/images/puntos/mocho.webp",
     location: "Barranquilla, Atlántico.",
     hours: "Variable.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Vistas panorámicas","Deportes náuticos"]
+    tags: ["Relax en la playa", "Vistas panorámicas", "Deportes náuticos"]
   },
   {
     id: 24,
     category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
     title: "Ecoparque Ciénaga de Mallorquín",
     description: "Pasarelas de madera sobre el agua que llevan al corazón del manglar sin dejar huella. La Ciénaga de Mallorquín es el pulmón verde de Barranquilla: un humedal costero en proceso de recuperación ecológica donde el avistamiento de aves y el silencio del ecosistema son la experiencia en sí misma.",
     lat: 11.028,
     lng: -74.778,
     image: "assets/images/puntos/ecoparque-mallorquin.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "6:00 a.m - 6:00 p.m.",
+    hours: "6:00 a.m. - 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Avistamiento de aves","Experiencias sensoriales","Vistas panorámicas"]
+    tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas"]
   },
   {
     id: 25,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Salinas de Galerazamba",
-    description: "El color rosa del agua en Galerazamba no es un filtro: es el resultado de una microalga que prospera en la alta concentración de sal. Un fenómeno geológico y biológico que convierte este paisaje en algo casi irreal. Las salinas son también historia minera viva y sustento económico de la comunidad de Santa Catalina.",
-    lat: 10.794167,
-    lng: -75.253333,
+    description: "El color rosa del agua en Galerazamba no es un filtro: es el resultado de una micro alga que prospera en la alta concentración de sal. Un fenómeno geológico y biológico que convierte este paisaje en algo casi irreal. Las salinas son también historia minera viva y sustento económico de la comunidad de Santa Catalina.",
+    lat: 10.7948,
+    lng: -75.2538,
     image: "assets/images/puntos/foto-principal-s.g.webp",
     location: "Santa Catalina, Bolívar.",
     hours: "Variable.",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Experiencias sensoriales"]
+    tags: ["Vistas panorámicas", "Experiencias sensoriales"]
   },
   {
     id: 26,
     category: "playas",
+    categories: ["playas"],
     title: "Playas del Country",
-    description: "Oleaje moderado, servicios de calidad y una ubicación cercana a las zonas residenciales de Puerto Colombia. Las playas del Country ofrecen condiciones naturales propicias para los deportes náuticos suaves en un litoral bien conservado donde el mar caribeño llega con temperatura cálida y color intenso.",
+    description: "Oleaje moderado, servicios de calidad y una ubicación cercana a las zonas residenciales de Puerto Colombia. Las playas del Country ofrecen condiciones naturales propicias para los deportes náuticos suaves en un litoral bien conservado donde el mar caribeño llega con temperatura cálida y color intenso. Bandera de seguridad diaria por salvavidas municipales (Puerto Colombia).",
     lat: 11.037398,
     lng: -74.92391,
     image: "assets/images/puntos/foto-principal-para-la-pagina-p.s.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "7:00 a.m. - 4:00 p.m.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Vistas panorámicas"]
+    tags: ["Relax en la playa", "Vistas panorámicas"]
   },
   {
     id: 27,
     category: "playas",
+    categories: ["playas", "gastronomía"],
     title: "Playa de Caño Dulce",
-    description: "Poca profundidad, olas suaves y un entorno costero que conserva su naturalidad. Caño Dulce, en Tubará, es la playa que el Caribe ofrece a las familias que buscan baño tranquilo, comida de mar fresca y un litoral sin aglomeración. El entorno natural conservado es su mayor atractivo y su rasgo más frágil.",
+    description: "Poca profundidad, olas suaves y un entorno costero que conserva su naturalidad. Caño Dulce, en Tubará, es la playa que el Caribe ofrece a las familias que buscan baño tranquilo, comida de mar fresca y un litoral sin aglomeración. El entorno natural conservado es su mayor atractivo y su rasgo más frágil. Bandera de seguridad diaria por salvavidas municipales (Tubará).",
     lat: 10.939722,
     lng: -75.027778,
     image: "assets/images/puntos/foto-principal-para-la-pagina-c.d.webp",
     location: "Tubará, Atlántico.",
     hours: "8:00 a.m. - 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Comida autóctona"]
+    tags: ["Relax en la playa", "Comida autóctona"]
   },
   {
     id: 28,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Parque Mirador Tubará",
     description: "Desde lo más alto de Tubará, una vista de 360 grados revela la geografía completa del Atlántico: el Mar Caribe, las montañas del departamento y el relieve ondulado del territorio Mokaná. El viento que siempre sopla aquí es el mismo que ha moldeado este paisaje durante siglos. Un mirador que muestra el territorio tal como es.",
-    lat: 10.871111,
-    lng: -74.974444,
+    lat: 10.8716,
+    lng: -74.9748,
     image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp",
     location: "Tubará, Atlántico.",
     hours: "Abierto todo el tiempo.",
     price: "Gratuito.",
-    tags: ["Vistas panorámicas","Experiencias sensoriales","Avistamiento de aves"]
+    tags: ["Vistas panorámicas", "Experiencias sensoriales", "Avistamiento de aves"]
   },
   {
     id: 29,
     category: "otros",
+    categories: ["otros"],
     title: "Aeropuerto Ernesto Cortissoz",
     description: "El principal enlace aéreo del Atlántico que conecta a Barranquilla y su área metropolitana con el mundo. Con instalaciones modernizadas, ofrece una experiencia de llegada ágil y cómoda al corazón de la región. Su nombre honra a un pionero de la aviación comercial en América, reflejando el espíritu emprendedor y la conectividad que siempre han definido a esta zona del país.",
     lat: 10.886536,
@@ -421,19 +450,21 @@ const mockData = [
     startDay: 9,
     endDay: 16,
     category: "eventos",
+    categories: ["eventos"],
     title: "Fiestas novembrinas de Cartagena",
     description: "Una semana en noviembre en que Cartagena conmemora su independencia con desfiles, comparsas y música folclórica que llena cada plaza y callejón. Las Fiestas novembrinas son la celebración de la identidad africana y caribeña de la ciudad amurallada, un patrimonio vivo que la historia no ha podido contener.",
     lat: 10.421903,
     lng: -75.550075,
     image: "assets/images/puntos/fiestas-novembrinas-de-cartagena.webp",
     location: "Cartagena, Bolívar.",
-    hours: "Noviembre.",
+    hours: "Noviembre (9–16 de noviembre).",
     price: "Gratuito.",
-    tags: ["Experiencias sensoriales","Artesanías","Comida autóctona"]
+    tags: ["Experiencias sensoriales", "Artesanías", "Comida autóctona"]
   },
   {
     id: 31,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo del Carnaval",
     description: "El Carnaval de Barranquilla vive aquí los 365 días del año. Vestidos reales de reinas, secretos de las danzas tradicionales y la historia de un patrimonio oral e inmaterial de la humanidad. Recorrer el museo es entender por qué el Carnaval no es solo cuatro días de fiesta sino el ADN festivo de toda una ciudad.",
     lat: 10.992789,
@@ -442,11 +473,12 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "Variable.",
     price: "Gratuito.",
-    tags: ["Artesanías","Experiencias sensoriales"]
+    tags: ["Artesanías", "Experiencias sensoriales"]
   },
   {
     id: 32,
     category: "otros",
+    categories: ["otros"],
     title: "Aeropuerto Internacional Rafael Núñez",
     description: "Ubicado en el corazón de Cartagena, el Aeropuerto Internacional Rafael Núñez es mucho más que una terminal aérea; es el punto donde comienza la magia para millones de viajeros cada año. Se destaca por su ubicación privilegiada, a solo minutos del Centro Histórico y la zona turística, facilitando una transición inmediata hacia la historia y el mar. Su diseño eficiente y su conectividad internacional lo consolidan como un motor fundamental del turismo sostenible en la región.",
     lat: 10.446314,
@@ -459,46 +491,50 @@ const mockData = [
   },
   {
     id: 33,
-    category: "ecoturismo",
+    category: "paradores",
+    categories: ["gastronomía", "paradores"],
     title: "La Casa Voltiá",
     description: "Una construcción que desafía la lógica en Juan de Acosta: todo está de cabeza, la gravedad parece invertida y la fotografía creativa se convierte en juego colectivo. La Casa Voltiá es una iniciativa local que hace de la curiosidad un motor económico para la comunidad y convierte la carretera en destino.",
     lat: 10.834994,
     lng: -75.141247,
     image: "assets/images/puntos/la-casa-voltia.webp",
     location: "Juan de Acosta, Atlántico.",
-    hours: "9:00 am - 6:00 pm",
+    hours: "9:00 a.m. - 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Experiencias sensoriales","Vistas panorámicas"]
+    tags: ["Experiencias sensoriales", "Gastronomía", "Vistas panorámicas"]
   },
   {
     id: 34,
     category: "playas",
+    categories: ["playas", "gastronomía", "aves"],
     title: "Manzanillo del Mar",
-    description: "Una comunidad de pescadores que conserva el ritmo de la vida costera sin ceder al turismo masivo. En Manzanillo del Mar, el visitante llega a un entorno donde la gente vive del mar y lo conoce profundo. La comida fresca, las caminatas por la costa y la escala íntima del lugar son consecuencia de esa vida, no un decorado.",
+    description: "Una comunidad de pescadores que conserva el ritmo de la vida costera sin ceder al turismo masivo. En Manzanillo del Mar, el visitante llega a un entorno donde la gente vive del mar y lo conoce profundo. La comida fresca, las caminatas por la costa y la escala íntima del lugar son consecuencia de esa vida, no un decorado. Sitio del Global Big Day en Bolívar. Bandera de seguridad diaria por salvavidas municipales (Distrito de Cartagena).",
     lat: 10.515992,
     lng: -75.499278,
     image: "assets/images/puntos/manzanillo-del-mar.webp",
     location: "Cartagena, Bolívar.",
     hours: "Variable.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Deportes náuticos","Vistas panorámicas"]
+    tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas", "Avistamiento de aves", "Comida autóctona"]
   },
   {
     id: 35,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Viaducto de La Virgen",
-    description: "Boquilla - Ciénaga de La Virgen El Viaducto El Gran Manglar es una de las obras más emblemáticas de la concesión Ruta Costera 4G, diseñado como una estructura elevada que atraviesa zonas de manglar cercanas a la Ciénaga de la Virgen. Su construcción permite garantizar la conectividad del corredor vial sin afectar de manera directa este ecosistema sensible, al evitar rellenos y minimizar la intervención sobre el terreno natural. Esta infraestructura se destaca por su enfoque en la sostenibilidad ambiental, ya que protege la dinámica hídrica y la biodiversidad del manglar, permitiendo la circulación de agua y el paso de especies. Además, mejora la movilidad al ofrecer un tránsito continuo, seguro y eficiente, reduciendo tiempos de viaje y riesgos para los usuarios. En este sentido, el viaducto no solo cumple una función vial estratégica, sino que también representa una solución de ingeniería que equilibra el desarrollo de infraestructura con la conservación ambiental.",
+    description: "Boquilla - Ciénaga de La Virgen. El Viaducto El Gran Manglar es una de las obras más emblemáticas de la concesión Ruta Costera 4G, diseñado como una estructura elevada que atraviesa zonas de manglar cercanas a la Ciénaga de la Virgen. Su construcción permite garantizar la conectividad del corredor vial sin afectar de manera directa este ecosistema sensible, al evitar rellenos y minimizar la intervención sobre el terreno natural. Esta infraestructura se destaca por su enfoque en la sostenibilidad ambiental, ya que protege la dinámica hídrica y la biodiversidad del manglar, permitiendo la circulación de agua y el paso de especies. Además, mejora la movilidad al ofrecer un tránsito continuo, seguro y eficiente, reduciendo tiempos de viaje y riesgos para los usuarios. En este sentido, el viaducto no solo cumple una función vial estratégica, sino que también representa una solución de ingeniería que equilibra el desarrollo de infraestructura con la conservación ambiental.",
     lat: 10.460734,
     lng: -75.504856,
     image: "assets/images/puntos/viaducto de la virgen.webp",
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF2","Ruta 90A01","PR 1+905"]
+    tags: ["Infraestructura", "Corredor Vial", "UF2", "Ruta 90A01", "PR 1+905"]
   },
   {
     id: 36,
     category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
     title: "Ciénaga de la Virgen",
     description: "Humedal estratégico al norte de Cartagena, hogar de manglares, aves migratorias y peces que alimentan a las comunidades de sus orillas. Los recorridos en barca guiados por pescadores locales permiten entrar al ecosistema con respeto, aprendiendo de quienes conocen cada canal y cada especie por nombre.",
     lat: 10.460533,
@@ -507,20 +543,21 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "Abierto.",
     price: "Gratuito.",
-    tags: ["Avistamiento de aves","Experiencias sensoriales"]
+    tags: ["Avistamiento de aves", "Experiencias sensoriales"]
   },
   {
     id: 37,
     category: "playas",
+    categories: ["playas"],
     title: "Playa de la Boquilla",
-    description: "El manglar y el mar se abrazan en La Boquilla mientras los tambores marcan el compás de una comunidad afrodescendiente que vive de los dos. Los recorridos en canoa por los túneles de manglar son guiados por locales que conocen este ecosistema desde niños. Naturaleza y cultura que no se pueden entender por separado.",
+    description: "El manglar y el mar se abrazan en La Boquilla mientras los tambores marcan el compás de una comunidad afrodescendiente que vive de los dos. Los recorridos en canoa por los túneles de manglar son guiados por locales que conocen este ecosistema desde niños. Naturaleza y cultura que no se pueden entender por separado. Playa bandera Azul.",
     lat: 10.4621,
     lng: -75.504458,
     image: "assets/images/puntos/playa-de-la-boquilla.webp",
     location: "Cartagena, Bolívar.",
     hours: "Abierto.",
     price: "Gratuito.",
-    tags: ["Relax en la playa","Comida autóctona","Deportes náuticos"]
+    tags: ["Relax en la playa", "Comida autóctona", "Deportes náuticos"]
   },
   {
     id: 38,
@@ -528,19 +565,21 @@ const mockData = [
     startDay: 1,
     endDay: 3,
     category: "eventos",
+    categories: ["eventos", "gastronomía"],
     title: "Festival Enyúcate",
     description: "La yuca toma el centro de Malambo para celebrar la seguridad alimentaria y la cultura campesina del Atlántico. Cocineros tradicionales, productores locales y música de gaita comparten espacio en una feria donde probar un enyucado es conectarse con la tierra y con el conocimiento agrícola que sostiene a la región.",
     lat: 10.85985,
     lng: -74.83733,
     image: "assets/images/puntos/enyucate.webp",
     location: "Malambo, Atlántico.",
-    hours: "Variable.",
+    hours: "Variable (1–3 de junio).",
     price: "Gratuito.",
-    tags: ["Comida autóctona","Artesanías"]
+    tags: ["Comida autóctona", "Artesanías"]
   },
   {
     id: 39,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Ciénaga del Totumo",
     description: "Humedal de agua dulce que coexiste con el Volcán del Totumo en Santa Catalina. Sus aguas tranquilas reflejan manglares y cielo abierto, y sus orillas son hábitat de aves y peces que los pescadores artesanales conocen bien. Los paseos en lancha muestran la escala real de un ecosistema hídrico todavía en equilibrio.",
     lat: 10.738397,
@@ -549,7 +588,7 @@ const mockData = [
     location: "Santa Catalina, Bolívar.",
     hours: "Abierto.",
     price: "Gratuito.",
-    tags: ["Avistamiento de aves","Vistas panorámicas"]
+    tags: ["Avistamiento de aves", "Vistas panorámicas"]
   },
   {
     id: 40,
@@ -557,19 +596,21 @@ const mockData = [
     startDay: 16,
     endDay: 16,
     category: "eventos",
+    categories: ["eventos"],
     title: "Festival de la Palma Amarga",
     description: "En Piojó, la fibra de la palma amarga se convierte en artesanía, en techo y en identidad. El festival celebra el conocimiento ancestral de tejedores y artesanos que transforman este recurso natural en objetos que cuentan la historia del territorio. Música de viento y muestras artesanales que vinculan cultura y tierra.",
     lat: 10.75,
     lng: -75.108,
     image: "assets/images/puntos/Festival de la Palma Amarga.webp",
     location: "Piojó, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (16 de febrero).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Turismo cultural","desfiles y comparsas","música y danza","concursos tradicionales","gastronomía","comercio local."]
+    tags: ["Eventos y festividades", "Turismo cultural", "Desfiles y comparsas", "Música y danza", "Concursos tradicionales", "Gastronomía", "Comercio local"]
   },
   {
     id: 41,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Calvaduria Ecoturismo y Camping - Asociación agroecológica Nueva Generación de Piojó",
     description: "Pozos naturales, senderos entre montañas suaves y una asociación agroecológica que gestiona el territorio con criterio. En Calvaduria el camping, el agroturismo y la naturaleza no son productos empaquetados: son la vida cotidiana de una comunidad de Piojó que aprendió a cuidar el entorno como condición de su propio futuro.",
     lat: 10.751,
@@ -577,21 +618,22 @@ const mockData = [
     image: "assets/images/puntos/Calvaduria Ecoturismo y Camping.webp",
     location: "Piojó, Atlántico.",
     hours: "Abierto todo el tiempo.",
-    price: "Pasa día: adultos:$15.000 COP. Niños: $7.000 COP.",
-    tags: ["Agroturismo","camping","pozos naturales","senderismo","rutas ecológicas","hospedaje."]
+    price: "Pasa día: adultos: $15.000 COP. Niños: $7.000 COP.",
+    tags: ["Agroturismo", "Camping", "Pozos naturales", "Senderismo", "Rutas ecológicas", "Hospedaje"]
   },
   {
     id: 42,
     category: "cultura",
+    categories: ["cultura"],
     title: "Santuario Mariano Nuestra Señora del Carmen",
     description: "El único santuario mariano del Atlántico abre sus puertas los 365 días del año en Puerto Colombia. Su arquitectura tradicional conserva el estilo de una devoción que ha acompañado a la comunidad porteña por generaciones. Un espacio de fe que es también patrimonio cultural y punto de encuentro entre historia y espiritualidad caribeña.",
-    lat: 10.988,
-    lng: -74.959,
+    lat: 10.98795,
+    lng: -74.95885,
     image: "assets/images/puntos/Santuario Mariano Nuestra Señora del Carmen.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "Abierto todo el tiempo.",
     price: "Gratuito.",
-    tags: ["Religiosos","comunitarios y culturales."]
+    tags: ["Religiosos", "Comunitarios y culturales"]
   },
   {
     id: 43,
@@ -599,15 +641,16 @@ const mockData = [
     startDay: 29,
     endDay: 31,
     category: "eventos",
+    categories: ["eventos"],
     title: "Sirenato de la cumbia",
     description: "Desde 1996, Puerto Colombia se convierte cada año en el escenario donde la cumbia se celebra a sí misma. Tambores, flautas y pasos ancestrales renuevan el pacto de cada generación con el ritmo que define al Caribe colombiano. No es un festival de entretenimiento: es la ceremonia viva de una memoria musical.",
     lat: 10.989,
     lng: -74.955,
     image: "assets/images/puntos/Sirenato de la cumbia.webp",
     location: "Puerto Colombia, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (29–31 de enero).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades", "Concurso de reinas en distintas categorías","presentaciones de música y danza de cumbia","desfiles culturales","comparsas y actividades turísticas que promueven el patrimonio del Caribe Colombiano."]
+    tags: ["Eventos y festividades", "Concurso de reinas", "Música y danza de cumbia", "Desfiles culturales", "Comparsas"]
   },
   {
     id: 44,
@@ -615,28 +658,30 @@ const mockData = [
     startDay: 1,
     endDay: 3,
     category: "eventos",
+    categories: ["eventos"],
     title: "Festival del Mar y del Turismo",
     description: "Desde 2018, Puerto Colombia reúne a los municipios del Atlántico para celebrar la vocación costera del departamento. Desfiles, muestras culturales y la elección de la capitanía de los mares construyen cada año un himno colectivo al mar, al liderazgo y al orgullo de una región que vive de cara al Caribe.",
     lat: 10.987,
     lng: -74.958,
     image: "assets/images/puntos/Festival del Mar y del Turismo.webp",
     location: "Puerto Colombia, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (1–3 de junio).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Desfiles","presentaciones culturales","feria gastronómica y actividades recreativas."]
+    tags: ["Eventos y festividades", "Desfiles", "Presentaciones culturales", "Feria gastronómica", "Actividades recreativas"]
   },
   {
     id: 45,
     category: "cultura",
+    categories: ["cultura"],
     title: "Parroquia San José de Tubará",
     description: "Construida en 1833 sobre un antiguo asentamiento Mokaná, esta parroquia fue declarada patrimonio arquitectónico del Atlántico en 1996. Sus muros coloniales guardan la memoria de una comunidad indígena que no desapareció sino que adaptó su fe y su identidad a la historia que llegó desde afuera.",
-    lat: 10.871,
-    lng: -74.974,
+    lat: 10.8708,
+    lng: -74.9738,
     image: "assets/images/puntos/Parroquia San José de Tubará.webp",
     location: "Tubará, Atlántico.",
     hours: "Horario de eucaristías: fines de semana y festivos en la mañana y en la tarde.",
     price: "Gratuito.",
-    tags: ["Celebraciones religiosas (misas","bautizos","matrimonios","confirmaciones)","atención espiritual y confesiones","actividades comunitarias y pastorales."]
+    tags: ["Celebraciones religiosas", "Atención espiritual", "Actividades comunitarias y pastorales"]
   },
   {
     id: 46,
@@ -644,15 +689,16 @@ const mockData = [
     startDay: 14,
     endDay: 15,
     category: "eventos",
+    categories: ["eventos", "gastronomía"],
     title: "Festival de la Yuca y el Totumo",
     description: "Más de 20 años de existencia y un origen Mokaná en el mirador de Tubará. Este festival celebra cada domingo de carnaval los cultivos y las artesanías que los pueblos originarios del Atlántico han producido por siglos. La yuca y el totumo no son solo productos: son el vínculo vivo entre la tierra y la identidad del territorio.",
     lat: 10.872,
     lng: -74.973,
     image: "assets/images/puntos/Festival de la Yuca y el Totumo.webp",
     location: "Tubará, Atlántico.",
-    hours: "Todo el día y parte de la noche.",
+    hours: "Todo el día y parte de la noche (14–15 de febrero).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades"]
+    tags: ["Eventos y festividades", "Placeres gastronómicos", "Tradición Mokaná"]
   },
   {
     id: 47,
@@ -660,15 +706,16 @@ const mockData = [
     startDay: 21,
     endDay: 23,
     category: "eventos",
+    categories: ["eventos"],
     title: "Festival de la Máscara y el Bejuco",
     description: "La plaza de Galapa se convierte en escenario de creadores que trabajan el bejuco, la madera y el papel maché con técnicas de generación en generación. El festival no es solo exhibición: es el espacio donde los oficios artesanales de Galapa se afirman como patrimonio vivo frente a la homogeneización cultural.",
     lat: 10.899,
     lng: -74.886,
     image: "assets/images/puntos/Festival de la Máscara y el Bejuco.webp",
     location: "Galapa, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (21–23 de noviembre).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Exhibición artesanal (bejuco","talla en madera y papel maché)","venta de artesanías","talleres demostrativos","interacción con artesanos","presentaciones culturales."]
+    tags: ["Eventos y festividades", "Exhibición artesanal", "Venta de artesanías", "Talleres demostrativos", "Presentaciones culturales"]
   },
   {
     id: 48,
@@ -676,15 +723,16 @@ const mockData = [
     startDay: 14,
     endDay: 22,
     category: "eventos",
+    categories: ["eventos"],
     title: "Carnaval de Galapa",
     description: "Ocho a diez días en que Galapa celebra su identidad con tambores, comparsas y danzas que llevan décadas narrando la historia del municipio. Cada disfraz es una memoria, cada desfile una afirmación de raíces. El Carnaval de Galapa resiste en el tiempo porque la comunidad lo construye desde adentro, no para afuera.",
     lat: 10.898,
     lng: -74.885,
     image: "assets/images/puntos/Carnaval de Galapa.webp",
     location: "Galapa, Atlántico.",
-    hours: "El evento dura entre 8 y 10 días.",
+    hours: "El evento dura entre 8 y 10 días (14–22 de febrero).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Desfiles de comparsas y danzas tradicionales","presentaciones folclóricas y musicales","exhibición de disfraces típicos y personajes","venta de artesanías y productos locales","gastronomía típica en puestos y ferias","actividades recreativas y familiares."]
+    tags: ["Eventos y festividades", "Desfiles de comparsas", "Danzas tradicionales", "Artesanías", "Gastronomía típica"]
   },
   {
     id: 49,
@@ -692,15 +740,16 @@ const mockData = [
     startDay: 17,
     endDay: 19,
     category: "eventos",
+    categories: ["eventos"],
     title: "Festival de Decimeros y Bailadores de Cumbia de la Región Caribe",
     description: "Un espacio de transmisión oral donde decimeros y bailadores de Magdalena, Córdoba, Sucre y el Atlántico se encuentran en Malambo para preservar la poesía y el movimiento del Caribe. Más que competencia, el festival es un acto de salvaguardia patrimonial que pone en diálogo tradiciones que el tiempo podría silenciar.",
     lat: 10.862,
     lng: -74.774,
     image: "assets/images/puntos/Festival de Decimeros y Bailadores de Cumbia.webp",
     location: "Malambo, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (17–19 de julio).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades"]
+    tags: ["Eventos y festividades", "Décima y cumbia", "Patrimonio oral"]
   },
   {
     id: 50,
@@ -708,15 +757,16 @@ const mockData = [
     startDay: 17,
     endDay: 19,
     category: "eventos",
+    categories: ["eventos"],
     title: "Festival regional de Bandas Tradicionales",
     description: "Porros, cumbias y fandangos interpretados por agrupaciones de viento y percusión que se reúnen en Malambo para demostrar que la música tradicional del Caribe no es pasado. El festival es encuentro y fortalecimiento: el talento local se mide y se celebra en un espacio que le da valor al patrimonio musical de la región.",
     lat: 10.861,
     lng: -74.773,
     image: "assets/images/puntos/Festival regional de Bandas Tradicionales.webp",
     location: "Malambo, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (17–19 de julio).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades"]
+    tags: ["Eventos y festividades", "Bandas tradicionales", "Porros y cumbias"]
   },
   {
     id: 51,
@@ -724,32 +774,35 @@ const mockData = [
     startDay: 19,
     endDay: 22,
     category: "eventos",
+    categories: ["eventos"],
     title: "Fiestas de Santa María Magdalena",
     description: "Cuatro días de procesiones, muestras folclóricas y celebraciones deportivas que reúnen a Malambo en torno a su patrona. Las fiestas de Santa María Magdalena no son solo devoción: son el momento del año en que la comunidad se reconoce a sí misma, celebra su herencia y renueva los lazos que la definen como pueblo.",
     lat: 10.86,
     lng: -74.772,
     image: "assets/images/puntos/Fiestas de Santa María Magdalena.webp",
     location: "Malambo, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (19–22 de julio).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades", "Ofrece servicios de actividades culturales","eventos religiosos","presentaciones artísticas","ferias gastronómicas","competencias deportivas y espacios de recreación familiar."]
+    tags: ["Eventos y festividades", "Actividades culturales", "Eventos religiosos", "Ferias gastronómicas", "Recreación familiar"]
   },
   {
     id: 52,
     category: "cultura",
+    categories: ["cultura"],
     title: "Parque de La Cultura - Asociación Cultural y Artesanal Raíces de Malambo",
-    description: "Un parque que rinde homenaje a la tradición alfarera que durante siglos ha sido el sustento y la identidad de Malambo. La Asociación Raíces gestiona este espacio como punto de encuentro entre el pasado indígena y el presente comunitario, donde el barro y las manos de los artesanos cuentan la historia que los libros no alcanzaron.",
+    description: "Un parque que rinde homenaje a la tradición alfarera que durante siglos ha sido el sustento y la identidad de Malambo. La Asociación Raíces gestiona este espacio como punto de encuentro entre el pasado indígena y el presente comunitario, donde el barro y las manos de los artesanos cuentan la historia que los libros no alcanzaron. Artesanías y recorridos hacen parte de la experiencia.",
     lat: 10.863,
     lng: -74.775,
     image: "assets/images/puntos/Parque de La Cultura.webp",
     location: "Malambo, Atlántico.",
     hours: "Abierto todo el tiempo.",
     price: "Gratuito.",
-    tags: ["Zonas verdes","áreas de esparcimiento","juegos para niños."]
+    tags: ["Zonas verdes", "Áreas de esparcimiento", "Juegos para niños", "Artesanías"]
   },
   {
     id: 53,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Parque Lineal de Crespo",
     description: "Diseñado para frenar la erosión costera que el Caribe avanzaba sin pausa, el Parque Lineal de Crespo es hoy un corredor verde que reconcilia a Cartagena con su mar. Cada árbol plantado, cada sendero recuperado, es una respuesta activa al cambio climático desde la escala urbana. El futuro sostenible construido metro a metro.",
     lat: 10.439,
@@ -763,8 +816,9 @@ const mockData = [
   {
     id: 54,
     category: "playas",
+    categories: ["playas"],
     title: "Playa Marbella",
-    description: "Espolones que desafían las corrientes del Caribe protegen esta franja de arena en el borde urbano de Cartagena. Marbella es la playa de la ciudad que no cede a las corrientes erosivas y ofrece aguas accesibles lejos del bullicio de los balnearios tradicionales. Un litoral urbano que conserva su carácter natural.",
+    description: "Espolones que desafían las corrientes del Caribe protegen esta franja de arena en el borde urbano de Cartagena. Marbella es la playa de la ciudad que no cede a las corrientes erosivas y ofrece aguas accesibles lejos del bullicio de los balnearios tradicionales. Un litoral urbano que conserva su carácter natural. Bandera de seguridad diaria por salvavidas municipales (Distrito de Cartagena).",
     lat: 10.434,
     lng: -75.529,
     image: "assets/images/puntos/Playa Marbella.webp",
@@ -779,28 +833,30 @@ const mockData = [
     startDay: 20,
     endDay: 25,
     category: "eventos",
+    categories: ["eventos"],
     title: "Fiestas patronales Santa Catalina de Alejandría",
     description: "Fe y folclor que se fusionan durante varios días en el municipio que lleva el nombre de la patrona. Procesiones, corridas de toros y la elección de la diosa llenan las calles de una celebración donde la identidad africana y caribeña de la Costa Caribe se expresa sin filtros, con devoción y alegría a la vez.",
     lat: 10.605,
     lng: -75.253,
     image: "assets/images/puntos/Fiestas patronales Santa Catalina de Alejandría.webp",
     location: "Santa Catalina, Bolívar.",
-    hours: "El evento dura entre 4 y 7 días.",
+    hours: "El evento dura entre 4 y 7 días (20–25 de noviembre).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Turismo cultural","gastronomía","música y danzas tradicionales","eventos religiosos","comercio local."]
+    tags: ["Eventos y festividades", "Turismo cultural", "Gastronomía", "Música y danzas tradicionales", "Eventos religiosos", "Comercio local"]
   },
   {
     id: 56,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo Etnoindustrial",
     description: "En Galerazamba, la sal no es solo un mineral: es la historia económica y social de generaciones. El museo preserva herramientas, fotografías y testimonios que explican cómo la producción salinera marcó la vida entera de esta comunidad. Un recorrido que convierte el trabajo humano sobre el territorio en patrimonio cultural.",
-    lat: 10.794,
-    lng: -75.253,
+    lat: 10.7936,
+    lng: -75.2526,
     image: "assets/images/puntos/Museo Etnoindustrial.webp",
     location: "Santa Catalina, Bolívar.",
     hours: "10:00 a.m. - 4:00 p.m.",
     price: "Adultos: $7.000 COP. Niños (desde 5 años): $5.000 COP.",
-    tags: ["Servicios culturales","recorridos guiados","exhibiciones permanentes","actividades pedagógicas y turismo histórico-patrimonial."]
+    tags: ["Servicios culturales", "Recorridos guiados", "Exhibiciones permanentes", "Actividades pedagógicas", "Turismo histórico-patrimonial"]
   },
   {
     id: 57,
@@ -808,28 +864,30 @@ const mockData = [
     startDay: 10,
     endDay: 16,
     category: "eventos",
+    categories: ["eventos"],
     title: "Fiestas patronales de San Antonio de Padua",
     description: "Piojó se convierte en epicentro del folclor caribeño cuando las bandas papayeras, las corralejas y la vara de premio toman sus calles. Las fiestas de San Antonio no son espectáculo para visitantes: son una celebración comunitaria que honra la tradición y reafirma la identidad de un pueblo que vive su patrimonio con intensidad.",
     lat: 10.749,
     lng: -75.107,
     image: "assets/images/puntos/Fiestas patronales de San Antonio de Padua.webp",
     location: "Piojó, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (10–16 de junio).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Turismo cultural","eventos religiosos","deportes","música y danzas tradicionales","espectáculos taurinos","juegos populares","gastronomía","comercio local."]
+    tags: ["Eventos y festividades", "Turismo cultural", "Eventos religiosos", "Deportes", "Música y danzas tradicionales", "Gastronomía", "Comercio local"]
   },
   {
     id: 58,
     category: "playas",
+    categories: ["playas"],
     title: "Tambo Marina Ecohostal",
-    description: "Frente al mar en Punta Astillero, este ecohostal propone quedarse quieto. El sonido de las olas, el acceso directo a la playa virgen y las actividades de senderismo y pesca son la agenda. Un modelo de alojamiento que cuida el entorno costero como condición de la experiencia misma: sin naturaleza sana, no hay Tambo Marina.",
-    lat: 10.795,
-    lng: -75.224,
+    description: "Frente al mar en Punta Astillero, este ecohostal propone quedarse quieto. El sonido de las olas, el acceso directo a la playa virgen y las actividades de senderismo y pesca son la agenda. Un modelo de alojamiento que cuida el entorno costero como condición de la experiencia misma: sin naturaleza sana, no hay Tambo Marina. Bandera de seguridad diaria por salvavidas municipales (Piojó).",
+    lat: 10.7945,
+    lng: -75.2236,
     image: "assets/images/puntos/Tambo Marina Ecohostal.webp",
     location: "Piojó, Atlántico.",
     hours: "8:00 a.m. - 9:00 p.m.",
-    price: "tarifas varían según la temporada, el número de huéspedes y el tipo de habitación.",
-    tags: ["Hospedaje ecológico","restaurante","acceso directo a la playa","senderismo","entretenimiento nocturno y turismo sostenible."]
+    price: "Tarifas varían según la temporada, el número de huéspedes y el tipo de habitación.",
+    tags: ["Hospedaje ecológico", "Restaurante", "Acceso directo a la playa", "Senderismo", "Entretenimiento nocturno", "Turismo sostenible"]
   },
   {
     id: 59,
@@ -837,19 +895,21 @@ const mockData = [
     startDay: 15,
     endDay: 17,
     category: "eventos",
+    categories: ["eventos"],
     title: "Festival Internacional de las Tunas Corazonistas",
     description: "Guitarras, capas y serenatas bohemias transforman Puerto Colombia en escenario internacional. Las Tunas Corazonistas hacen de la música estudiantil un puente entre culturas: cada agrupación llega con su región grabada en el repertorio y se va llevando el Caribe colombiano en la memoria. Un festival que construye identidad con cada acorde.",
     lat: 10.986,
     lng: -74.957,
     image: "assets/images/puntos/Festival Internacional de las Tunas Corazonistas.webp",
     location: "Puerto Colombia, Atlántico.",
-    hours: "El evento dura entre 1 y 3 días.",
+    hours: "El evento dura entre 1 y 3 días (15–17 de octubre).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Presentaciones musicales en vivo","actividades culturales","intercambio artístico internacional","promoción de agrupaciones regionales y entretenimiento para el público."]
+    tags: ["Eventos y festividades", "Presentaciones musicales en vivo", "Actividades culturales", "Intercambio artístico internacional"]
   },
   {
     id: 60,
     category: "cultura",
+    categories: ["cultura"],
     title: "Piedra Pintada. Colectivo Caminantes por El Morro",
     description: "En los petroglifos de Tubará hablan los ancestros Mokaná que habitaron estas montañas siglos antes de la conquista. El Colectivo Caminantes guía los senderos que llevan a la piedra con el conocimiento de quienes viven el territorio. Visitar Piedra Pintada es entrar a la memoria viva de un pueblo que grabó su historia en la roca.",
     lat: 10.87,
@@ -858,7 +918,7 @@ const mockData = [
     location: "Tubará, Atlántico.",
     hours: "Abierto todo el tiempo.",
     price: "Gratuito.",
-    tags: ["Caminatas ecológicas","observación de petroglifos","actividades culturales y espirituales","zonas naturales para descanso."]
+    tags: ["Caminatas ecológicas", "Observación de petroglifos", "Actividades culturales y espirituales", "Zonas naturales para descanso"]
   },
   {
     id: 61,
@@ -866,13 +926,14 @@ const mockData = [
     startDay: 14,
     endDay: 22,
     category: "eventos",
+    categories: ["eventos"],
     title: "Carnaval de Tubará",
     description: "Cada año las calles de Tubará se convierten en río de colores, danzas y cumbia que fluyen desde las raíces más profundas del Caribe colombiano. El Carnaval de Tubará es la celebración que renueva el vínculo entre la comunidad Mokaná y la música que la define, pasando la tradición de generación en generación con orgullo.",
     lat: 10.873,
     lng: -74.975,
     image: "assets/images/puntos/Carnaval de Tubará.webp",
     location: "Tubará, Atlántico.",
-    hours: "Todo el día y parte de la noche.",
+    hours: "Todo el día y parte de la noche (14–22 de febrero).",
     price: "Gratuito.",
     tags: ["Eventos y festividades"]
   },
@@ -882,32 +943,35 @@ const mockData = [
     startDay: 14,
     endDay: 22,
     category: "eventos",
+    categories: ["eventos"],
     title: "Festival intermunicipal del folclore",
     description: "Un encuentro que reúne expresiones folclóricas de varios municipios del Atlántico para celebrar la riqueza y diversidad cultural de la región. Danzas, músicas y manifestaciones tradicionales comparten escenario en un festival que entiende el folclore no como reliquia sino como práctica viva que necesita espacio para existir, del 14 al 22 de febrero.",
     lat: 10.897,
     lng: -74.884,
     image: "assets/images/puntos/Festival intermunicipal del folclore.webp",
     location: "Galapa, Atlántico.",
-    hours: "según el evento.",
+    hours: "Según el evento (14–22 de febrero).",
     price: "Gratuito.",
-    tags: ["Eventos y festividades","Desfile de comparsas y danzas folclóricas","presentaciones musicales en vivo","exhibición de ritmos tradicionales como cumbia y mapalé","participación de comparsas invitadas","venta de comidas y bebidas típicas","venta de artesanías locales."]
+    tags: ["Eventos y festividades", "Desfile de comparsas y danzas folclóricas", "Presentaciones musicales en vivo", "Cumbia y mapalé", "Gastronomía y artesanías"]
   },
   {
     id: 63,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Túnel de Crespo",
-    description: "Barrio Crespo - inicio del proyecto vial El Túnel de Crespo, es una moderna infraestructura vial de 1 kilómetro de longitud (con una longitud sumergida/túnel de unos 600 metros) que forma parte del Anillo Vial de Cartagena de Indias. Este túnel de cuatro carriles (dos por sentido) conecta la zona hotelera del norte con el centro histórico",
+    description: "Barrio Crespo - inicio del proyecto vial El Túnel de Crespo, es una moderna infraestructura vial de 1 kilómetro de longitud (con una longitud sumergida/túnel de unos 600 metros) que forma parte del Anillo Vial de Cartagena de Indias. Este túnel de cuatro carriles (dos por sentido) conecta la zona hotelera del norte con el centro histórico.",
     lat: 10.445444,
     lng: -75.52369,
     image: "assets/images/puntos/Parque lineal  de Crespo.webp",
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 0+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 0+000"]
   },
   {
     id: 64,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Paso de fauna Tierra Baja",
     description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 10.499121,
@@ -916,11 +980,12 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 7+020"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 7+020"]
   },
   {
     id: 65,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Peaje Marahuaco",
     description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.574485,
@@ -929,24 +994,26 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF3","Ruta 90A01","PR 15+1100"]
+    tags: ["Infraestructura", "Corredor Vial", "UF3", "Ruta 90A01", "PR 15+1100"]
   },
   {
     id: 66,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Pesaje Marahuaco",
     description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
-    lat: 10.574485,
-    lng: -75.450524,
+    lat: 10.5752,
+    lng: -75.4501,
     image: "assets/images/puntos/pesaje marahuaco.webp",
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 15+1100"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 15+1100"]
   },
   {
     id: 67,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Peaje Puerto Colombia",
     description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.967489,
@@ -955,12 +1022,13 @@ const mockData = [
     location: "Tubará, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 93+600"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 93+600"]
   },
   {
     id: 68,
     category: "infraestructura",
-    title: "Pte. Blas el Teso",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal Blas el Teso",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 10.458019,
     lng: -75.507907,
@@ -968,11 +1036,12 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 1+360"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 1+360"]
   },
   {
     id: 69,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Peaje Papiros",
     description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 11.0126704,
@@ -981,12 +1050,13 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF4","Ruta 90A01","PR 103+600"]
+    tags: ["Infraestructura", "Corredor Vial", "UF4", "Ruta 90A01", "PR 103+600"]
   },
   {
     id: 70,
     category: "infraestructura",
-    title: "Pte. U. Autónoma",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal Universidad Autónoma",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.004156,
     lng: -74.921221,
@@ -994,12 +1064,13 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 100+070"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 100+070"]
   },
   {
     id: 71,
     category: "infraestructura",
-    title: "Pte. Alkarawi",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal Alkarawi",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.011726,
     lng: -74.896992,
@@ -1007,12 +1078,13 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 102+900"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 102+900"]
   },
   {
     id: 72,
     category: "infraestructura",
-    title: "Pte. U. Atlántico",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal Universidad del Atlántico (Vía al Mar)",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.014807,
     lng: -74.871958,
@@ -1020,12 +1092,13 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 105+760"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 105+760"]
   },
   {
     id: 73,
     category: "infraestructura",
-    title: "Pte. Colegio Alemán",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal Colegio Alemán",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.01618,
     lng: -74.861149,
@@ -1033,12 +1106,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 106+900"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 106+900"]
   },
   {
     id: 74,
     category: "infraestructura",
-    title: "Pte. U. del Norte",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal Universidad del Norte",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.016924,
     lng: -74.851545,
@@ -1046,24 +1120,26 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 108+050"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 108+050"]
   },
   {
     id: 75,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Pesaje Papiros",
     description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
-    lat: 11.01267,
-    lng: -74.889548,
+    lat: 11.0131,
+    lng: -74.8888,
     image: "assets/images/puntos/Pesaje Papiros.webp",
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 103+600"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 103+600"]
   },
   {
     id: 76,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Iluminación con paneles solares",
     description: "Sistema de iluminación solar en la Vía al Mar entre Puerto Colombia y Barranquilla a lo largo de 9 kilómetros, compuesto por 127 paneles solares y 254 luminarias LED alimentadas con energía fotovoltaica. Este sistema, que cuenta con certificación Retilap y un diseño innovador único en el país, garantiza niveles adecuados de iluminación para una vía tipo M2, mejorando significativamente la visibilidad y seguridad de los usuarios. Además, la iluminación se consolida como una acción de valor sostenible, ya que reduce la emisión de gases de efecto invernadero al utilizar energía limpia, contribuyendo a la transición energética y descarbonización, al tiempo que asegura una iluminación uniforme y eficiente en el corredor vial.",
     lat: 10.991387,
@@ -1072,11 +1148,12 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 90A01","PR 97+000 - PR 106+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 90A01", "PR 97+000 - PR 106+000"]
   },
   {
     id: 77,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Peaje Galapa",
     description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.886275,
@@ -1085,12 +1162,13 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF5","Ruta 25AT04","PR 11+700"]
+    tags: ["Infraestructura", "Corredor Vial", "UF5", "Ruta 25AT04", "PR 11+700"]
   },
   {
     id: 78,
     category: "infraestructura",
-    title: "Pesaje Malambo",
+    categories: ["infraestructura"],
+    title: "Pesaje Malambo (PR 3+900)",
     description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.834097,
     lng: -74.8063,
@@ -1098,12 +1176,13 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 3+900"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 3+900"]
   },
   {
     id: 79,
     category: "infraestructura",
-    title: "Pesaje Malambo",
+    categories: ["infraestructura"],
+    title: "Pesaje Malambo (PR 3+300)",
     description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.83204,
     lng: -74.801544,
@@ -1111,11 +1190,12 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 3+300"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 3+300"]
   },
   {
     id: 80,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Puente Peatonal Galapa",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 10.912588,
@@ -1124,24 +1204,26 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 16+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 16+000"]
   },
   {
     id: 81,
     category: "infraestructura",
-    title: "Centro de Control de Operaciones-CCO",
+    categories: ["infraestructura"],
+    title: "Centro de Control de Operaciones - CCO",
     description: "El Centro de Control de Operaciones (CCO) es una instalación estratégica encargada de monitorear, coordinar y gestionar en tiempo real el funcionamiento integral del corredor vial. Desde este centro se supervisa el tráfico mediante sistemas tecnológicos como cámaras, sensores y comunicaciones, permitiendo detectar incidentes, coordinar la atención de emergencias y brindar información oportuna a los usuarios. Su principal función es garantizar una operación segura y eficiente de la vía, optimizando la movilidad y reduciendo tiempos de respuesta ante eventualidades. Entre sus beneficios se destacan el fortalecimiento de la seguridad vial, la atención rápida de accidentes o contingencias, la gestión eficiente del flujo vehicular y la mejora continua en la calidad del servicio ofrecido a los usuarios.",
     lat: 10.888349,
     lng: -74.848911,
     image: "assets/images/puntos/Centro de Control de Operaciones.webp",
-    location: "Galapa, Atlántico.", 
+    location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 12+200"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 12+200"]
   },
   {
     id: 82,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Paso de fauna Galapa",
     description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 10.839909,
@@ -1150,11 +1232,12 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 6+000 / PR 16+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 6+000 / PR 16+000"]
   },
   {
     id: 83,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Peaje Juan Mina",
     description: "Las estaciones de peaje son infraestructuras destinadas al recaudo de tarifas por el uso de la vía, las cuales garantizan la sostenibilidad financiera del proyecto bajo el modelo de concesión 4G. Estas instalaciones están ubicadas en puntos estratégicos del corredor y cuentan con carriles operativos, cabinas de cobro y sistemas tecnológicos de control. Su principal beneficio radica en que aseguran los recursos necesarios para la construcción, operación y mantenimiento de la infraestructura, contribuyen a mantener altos niveles de servicio, facilitan la atención de emergencias y promueven una movilidad más eficiente y segura para los usuarios.",
     lat: 10.929208,
@@ -1163,12 +1246,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","UF6","Ruta 25AT04","PR 19+300"]
+    tags: ["Infraestructura", "Corredor Vial", "UF6", "Ruta 25AT04", "PR 19+300"]
   },
   {
     id: 84,
     category: "infraestructura",
-    title: "Pesaje Juan Mina ",
+    categories: ["infraestructura"],
+    title: "Pesaje Juan Mina",
     description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.984274,
     lng: -74.890172,
@@ -1176,11 +1260,12 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 26+130"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 26+130"]
   },
   {
     id: 85,
     category: "infraestructura",
+    categories: ["infraestructura"],
     title: "Pesaje Galapa",
     description: "Las estaciones de pesaje son infraestructuras técnicas diseñadas para controlar y verificar el peso de los vehículos de carga mediante básculas y zonas de inspección especializadas, asegurando el cumplimiento de la normatividad vigente. Estas estaciones generan beneficios clave como la protección de la vía al prevenir el deterioro prematuro por sobrecarga, la reducción de costos de mantenimiento a largo plazo, el fortalecimiento de la seguridad vial al disminuir riesgos asociados a cargas excesivas y la promoción de prácticas responsables en el transporte de mercancías.",
     lat: 10.980829,
@@ -1189,11 +1274,12 @@ const mockData = [
     location: "Galapa, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 25+850"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 25+850"]
   },
   {
     id: 86,
     category: "infraestructura",
+    categories: ["infraestructura", "paradores"],
     title: "Área de Servicio Malambo",
     description: "Las áreas de servicio son espacios complementarios dentro del corredor vial diseñados para brindar atención integral a los usuarios, ofreciendo servicios como zonas de descanso, baterías sanitarias, estaciones de combustible, puntos de alimentación y, en algunos casos, asistencia mecánica básica. Estas áreas están ubicadas estratégicamente a lo largo de la vía para facilitar paradas seguras durante los recorridos, especialmente en trayectos largos. Su implementación contribuye significativamente a la seguridad vial, ya que ayudan a reducir la fatiga del conductor, promueven pausas activas y disminuyen el riesgo de accidentes. Además, mejoran la experiencia del usuario al proporcionar comodidad, bienestar y acceso a servicios, fortaleciendo la calidad del corredor vial y su enfoque en el servicio al ciudadano.",
     lat: 10.969251,
@@ -1202,12 +1288,13 @@ const mockData = [
     location: "Malambo, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 24+138"]
+    tags: ["Infraestructura", "Corredor Vial", "Parador turístico", "Ruta 25AT04", "PR 24+138"]
   },
   {
     id: 87,
     category: "infraestructura",
-    title: "Pte. U. del Atlántico",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal Universidad del Atlántico (Circunvalar)",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.008753,
     lng: -74.877264,
@@ -1215,12 +1302,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 29+300"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 29+300"]
   },
   {
     id: 88,
     category: "infraestructura",
-    title: "Pte. San Vicente de Paul",
+    categories: ["infraestructura"],
+    title: "Puente Peatonal San Vicente de Paul",
     description: "Los puentes peatonales de Ruta Costera son estructuras elevadas diseñadas para permitir el cruce seguro de personas sobre vías de alto tráfico, separando el tránsito peatonal del vehicular. Ubicados estratégicamente en zonas de alta afluencia como universidades, colegios y áreas residenciales, reducen significativamente el riesgo de accidentes, organizan la movilidad y facilitan el acceso seguro a servicios e instituciones, convirtiéndose en elementos clave para la seguridad vial y la protección de la comunidad.",
     lat: 11.030949,
     lng: -74.858066,
@@ -1228,12 +1316,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta AT05"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta AT05"]
   },
   {
     id: 89,
     category: "infraestructura",
-    title: "Pasos de fauna",
+    categories: ["infraestructura"],
+    title: "Pasos de fauna (PR 35+400)",
     description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 11.030688,
     lng: -74.846314,
@@ -1241,12 +1330,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 35+400"]
   },
   {
     id: 90,
     category: "infraestructura",
-    title: "Pasos de fauna",
+    categories: ["infraestructura"],
+    title: "Pasos de fauna (PR 35+600)",
     description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 11.031165,
     lng: -74.844496,
@@ -1254,12 +1344,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 35+600"]
   },
   {
     id: 91,
     category: "infraestructura",
-    title: "Pasos de fauna",
+    categories: ["infraestructura"],
+    title: "Pasos de fauna (PR 36+040)",
     description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 11.032186,
     lng: -74.84066,
@@ -1267,12 +1358,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 36+040"]
   },
   {
     id: 92,
     category: "infraestructura",
-    title: "Pasos de fauna",
+    categories: ["infraestructura"],
+    title: "Pasos de fauna (PR 26+000)",
     description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 10.973733,
     lng: -74.892834,
@@ -1280,12 +1372,13 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 26+000"]
   },
   {
     id: 93,
     category: "infraestructura",
-    title: "Pasos de fauna",
+    categories: ["infraestructura"],
+    title: "Pasos de fauna (PR 31+000)",
     description: "Los pasos de fauna son estructuras diseñadas para permitir el cruce seguro de animales a través de las vías, ubicadas en zonas de tránsito natural de especies. Su implementación favorece la conservación de la biodiversidad al mantener la conectividad de los ecosistemas, reducir los atropellamientos de fauna y disminuir riesgos para los usuarios de la vía, contribuyendo a un equilibrio entre el desarrollo vial y la protección ambiental.",
     lat: 11.014546,
     lng: -74.876357,
@@ -1293,7 +1386,7 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "24/7",
     price: "Gratuito.",
-    tags: ["Infraestructura","Corredor Vial","Ruta 25AT04","PR 35+400 / PR 35+600 / PR 36+040 / PR 26+000 / PR 31+000"]
+    tags: ["Infraestructura", "Corredor Vial", "Ruta 25AT04", "PR 31+000"]
   },
   {
     id: 94,
@@ -1301,19 +1394,21 @@ const mockData = [
     startDay: 14,
     endDay: 17,
     category: "eventos",
+    categories: ["eventos"],
     title: "Carnaval de Barranquilla",
     description: "Cuatro días que concentran siglos de mezcla cultural africana, indígena y europea en las calles de Barranquilla. Patrimonio Oral e Inmaterial de la Humanidad declarado por la UNESCO, el Carnaval no se visita: se vive. Cada danza, cada disfraz y cada tambor es la expresión colectiva de una identidad que el río y el mar construyeron juntos.",
     lat: 10.9967,
     lng: -74.8181,
     image: "assets/images/puntos/carnaval de barranquilla.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "4 días oficiales previos al Miércoles de Ceniza (2026: 14 al 17 de febrero)",
+    hours: "4 días oficiales previos al Miércoles de Ceniza (14–17 de febrero).",
     price: "Gratuito.",
-    tags: ["Festividad cultural","Patrimonio Unesco","Evento masivo","Música y danza","Desfiles y comparsas"]
+    tags: ["Festividad cultural", "Patrimonio Unesco", "Evento masivo", "Música y danza", "Desfiles y comparsas"]
   },
   {
     id: 95,
     category: "cultura",
+    categories: ["cultura"],
     title: "Catedral de Cartagena",
     description: "La catedral más antigua de Colombia en tierra firme concentra en sus muros la historia religiosa y arquitectónica de Cartagena desde el siglo XVI. Cada reforma que resistió y cada daño que acumuló es parte del relato de una ciudad que construyó fe e identidad al mismo tiempo que construía sus murallas.",
     lat: 10.4238769,
@@ -1322,37 +1417,40 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "7:00 a.m. – 12:00 m. / 3:00 p.m. – 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Patrimonio religioso","visita cultural"]
+    tags: ["Patrimonio religioso", "Visita cultural"]
   },
   {
     id: 96,
     category: "cultura",
+    categories: ["cultura"],
     title: "Palacio de la Gobernación de Bolívar",
     description: "Sede del poder departamental de Bolívar y testigo arquitectónico de la vida política de Cartagena. El Palacio de la Gobernación conserva en su fachada y sus patios interiores el estilo colonial que define el centro histórico, siendo parte inseparable del patrimonio urbano que convierte a Cartagena en ciudad de memoria.",
-    lat: 10.4238769,
-    lng: -75.5505382,
+    lat: 10.42352,
+    lng: -75.55095,
     image: "assets/images/puntos/palacio_de_la_gobernación.webp",
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 12:00 m. / 2:00 p.m. – 5:00 p.m.",
     price: "Gratuito.",
-    tags: ["Patrimonio arquitectónico","visita institucional"]
+    tags: ["Patrimonio arquitectónico", "Visita institucional"]
   },
   {
     id: 97,
     category: "cultura",
+    categories: ["cultura"],
     title: "Plaza Bolívar",
     description: "El corazón del centro histórico de Cartagena donde la arquitectura colonial converge con la vida cotidiana de la ciudad. La Plaza Bolívar no es solo un espacio turístico: es el lugar donde la historia pública de Cartagena se escribe desde siempre, con la catedral, el palacio y la estatua del Libertador como testigos permanentes.",
     lat: 10.42325,
-    lng: -75.55122222222222,
+    lng: -75.5512222,
     image: "assets/images/puntos/IID95 Imagen plaza de Bolivar.webp",
     location: "Cartagena, Bolívar.",
-    hours: "24 horas (espacio abierto)",
+    hours: "24 horas (espacio abierto).",
     price: "Gratuito.",
-    tags: ["Espacio público","patrimonio histórico"]
+    tags: ["Espacio público", "Patrimonio histórico"]
   },
   {
     id: 98,
     category: "cultura",
+    categories: ["cultura"],
     title: "Las Bóvedas",
     description: "Construidas en el siglo XVIII como almacenes militares y luego usadas como calabozos, Las Bóvedas guardan capas de historia colonial entre sus paredes de piedra. Hoy artesanos locales ocupan estos espacios convirtiéndolos en un mercado vivo donde el patrimonio arquitectónico y la economía comunitaria comparten el mismo techo.",
     lat: 10.4286,
@@ -1361,11 +1459,12 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "9:00 a.m. – 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Patrimonio histórico","artesanías","comercio"]
+    tags: ["Patrimonio histórico", "Artesanías", "Comercio"]
   },
   {
     id: 99,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo del Oro",
     description: "La colección zenú del Museo del Oro de Cartagena revela el dominio técnico y simbólico de los orfebres precolombinos que habitaron la Costa Caribe. Cada pieza de filigrana de oro es evidencia de una civilización que dominó el metal mucho antes de que los europeos llegaran a estas costas con sus propios criterios de valor.",
     lat: 10.4231612,
@@ -1374,11 +1473,12 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "10:00 a.m. – 5:00 p.m. / Domingo 10:00 a.m. – 1:00 p.m.",
     price: "Gratuito.",
-    tags: ["Museo","cultura","arqueología"]
+    tags: ["Museo", "Cultura", "Arqueología"]
   },
   {
     id: 100,
     category: "cultura",
+    categories: ["cultura"],
     title: "Casa del Marqués de Premio Real",
     description: "Una de las casas coloniales mejor conservadas de Cartagena, con balcones de madera y patios interiores que reproducen el modelo arquitectónico que la élite criolla construyó durante el Virreinato. Recorrerla es entender cómo se vivía el poder y la distinción social en la ciudad portuaria más importante del Caribe colonial.",
     lat: 10.4222922,
@@ -1387,37 +1487,40 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 5:00 p.m.",
     price: "Gratuito.",
-    tags: ["Patrimonio arquitectónico colonial","visita cultural"]
+    tags: ["Patrimonio arquitectónico colonial", "Visita cultural"]
   },
   {
     id: 101,
     category: "playas",
+    categories: ["playas"],
     title: "El Laguito",
-    description: "Una extensión de mar protegida por la formación natural de Bocagrande que ofrece aguas tranquilas y temperatura constante en Cartagena. El Laguito combina el paisaje del Caribe con la escala íntima de una ensenada urbana donde el baño, el paseo y la contemplación del horizonte coexisten con el perfil de la ciudad.",
+    description: "Una extensión de mar protegida por la formación natural de Bocagrande que ofrece aguas tranquilas y temperatura constante en Cartagena. El Laguito combina el paisaje del Caribe con la escala íntima de una ensenada urbana donde el baño, el paseo y la contemplación del horizonte coexisten con el perfil de la ciudad. Bandera de seguridad diaria por salvavidas municipales (Distrito de Cartagena).",
     lat: 10.3975509,
     lng: -75.5626241,
     image: "assets/images/puntos/el_laguito.webp",
     location: "Cartagena, Bolívar.",
-    hours: "Espacio abierto",
+    hours: "Espacio abierto.",
     price: "Gratuito.",
-    tags: ["Playa","sector turístico","recreación"]
+    tags: ["Playa", "Sector turístico", "Recreación"]
   },
   {
     id: 102,
     category: "playas",
-    title: "Playa Castillo Grande",
-    description: "Arena blanca y aguas del Caribe con la silueta de Cartagena de fondo. Castillo Grande ofrece el litoral más accesible de la ciudad histórica, donde el mar llega con temperatura cálida y color turquesa. Un espacio costero donde el entorno natural del Caribe colombiano se vive a pocos metros del centro histórico.",
+    categories: ["playas"],
+    title: "Playa Boca Grande",
+    description: "Arena blanca y aguas del Caribe con la silueta de Cartagena de fondo. Castillo Grande y Bocagrande ofrecen el litoral más accesible de la ciudad histórica, donde el mar llega con temperatura cálida y color turquesa. Un espacio costero donde el entorno natural del Caribe colombiano se vive a pocos metros del centro histórico. Bandera de seguridad diaria por salvavidas municipales (Distrito de Cartagena).",
     lat: 10.3955111,
     lng: -75.5549756,
     image: "assets/images/puntos/playa_castillo_grande.webp",
     location: "Cartagena, Bolívar.",
-    hours: "Espacio abierto",
+    hours: "Espacio abierto.",
     price: "Gratuito.",
-    tags: ["Playa","recreación","natación"]
+    tags: ["Playa", "Recreación", "Natación"]
   },
   {
     id: 103,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo de las Fortificaciones",
     description: "Las murallas y castillos que defendieron a Cartagena de piratas e imperios son hoy el mayor sistema de ingeniería militar colonial del continente. El museo explica cómo se construyó esta defensa y qué significó para la ciudad. Cada piedra coralina es el resultado de una estrategia que mantuvo a Cartagena en pie durante siglos.",
     lat: 10.4307269,
@@ -1426,11 +1529,12 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 6:00 p.m.",
     price: "Tarifa adultos: $7.000 COP, Tarifa niños (menores de 12 años): $4.000 COP.",
-    tags: ["Museo de sitio","patrimonio militar colonial"]
+    tags: ["Museo de sitio", "Patrimonio militar colonial"]
   },
   {
     id: 104,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo Romántico",
     description: "Objetos cotidianos, vestidos, cartas y fotografías del siglo XIX y principios del XX que reconstruyen la vida íntima de la élite barranquillera en sus años de mayor esplendor. El Museo Romántico preserva la memoria doméstica de una época en que el comercio del río convirtió a Barranquilla en ciudad cosmopolita.",
     lat: 10.9949113,
@@ -1439,63 +1543,68 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 12:00 m. / 2:00 p.m. – 5:30 p.m.",
     price: "Gratuito.",
-    tags: ["Museo histórico","patrimonio cultural urbano"]
+    tags: ["Museo histórico", "Patrimonio cultural urbano"]
   },
   {
     id: 105,
     category: "cultura",
+    categories: ["cultura"],
     title: "Teatro Amira de la Rosa",
     description: "El teatro más emblemático de Barranquilla lleva el nombre de una escritora caribeña y es el escenario donde la ciudad ha celebrado su vida cultural por décadas. Su arquitectura y su historia lo convierten en patrimonio urbano activo: no es solo un edificio histórico sino un espacio donde la cultura viva sigue encontrando su lugar.",
     lat: 10.9932289,
     lng: -74.7897284,
     image: "assets/images/puntos/teatro_amira_de_la_rosa.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "Variable según cartelera",
-    price: "varía según el tipo de evento.",
-    tags: ["Teatro","centro cultural","espectáculos"]
+    hours: "Variable según cartelera.",
+    price: "Varía según el tipo de evento.",
+    tags: ["Teatro", "Centro cultural", "Espectáculos"]
   },
   {
     id: 106,
     category: "cultura",
+    categories: ["cultura"],
     title: "Catedral Metropolitana María Reina",
     description: "La catedral principal de Barranquilla concentra en su interior la historia religiosa y la identidad espiritual de una ciudad que construyó su fe al mismo ritmo que construyó su vocación comercial. Su arquitectura moderna contrasta con la tradición que alberga, siendo parte inseparable del paisaje urbano del centro barranquillero.",
     lat: 10.9895,
     lng: -74.7937,
-    image: " assets/images/puntos/ID104 Catedral metropolitana de Barranquilla.webp",
+    image: "assets/images/puntos/ID104 Catedral metropolitana de Barranquilla.webp",
     location: "Barranquilla, Atlántico.",
     hours: "Sujeto a horarios de los oficios religiosos.",
     price: "Gratuito.",
-    tags: ["Patrimonio religioso","visita cultural"]
+    tags: ["Patrimonio religioso", "Visita cultural"]
   },
   {
     id: 107,
     category: "cultura",
+    categories: ["cultura"],
     title: "Estadio Metropolitano",
     description: "El Estadio Metropolitano Roberto Meléndez no es solo un recinto deportivo: es el corazón de la identidad futbolera de Barranquilla. Con capacidad para más de 50.000 personas, es escenario de la Selección Colombia y del Atlético Junior, siendo parte del imaginario colectivo de una ciudad que vive el fútbol como expresión cultural.",
     lat: 10.9272935,
     lng: -74.8032621,
     image: "assets/images/puntos/estadio_metropolitano.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "Variable según evento",
-    price: "varía según el tipo de evento.",
-    tags: ["Estadio","deporte","eventos masivos"]
+    hours: "Variable según evento.",
+    price: "Varía según el tipo de evento.",
+    tags: ["Estadio", "Deporte", "Eventos masivos"]
   },
   {
     id: 108,
     category: "cultura",
+    categories: ["cultura"],
     title: "Barrio El Prado",
     description: "El primer barrio planificado de Colombia conserva sus calles arboladas, sus casonas de estilo republicano y el ambiente tranquilo de una época en que Barranquilla proyectaba su prosperidad en la arquitectura. Recorrer El Prado es leer la historia de una ciudad que se pensó a sí misma con ambición y elegancia en los años veinte.",
     lat: 10.9982874,
     lng: -74.8008951,
     image: "assets/images/puntos/ID106 Barrio el Prado.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "Espacio abierto (recorrido exterior)",
+    hours: "Espacio abierto (recorrido exterior).",
     price: "Gratuito.",
-    tags: ["Patrimonio urbano","arquitectura republicana","turismo cultural"]
+    tags: ["Patrimonio urbano", "Arquitectura republicana", "Turismo cultural"]
   },
   {
     id: 109,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo Antropológico y Etnológico",
     description: "Colecciones que abarcan las culturas prehispánicas y las tradiciones étnicas del Caribe colombiano. El museo ofrece una lectura profunda de la diversidad humana que habitó y habita este territorio, con piezas que permiten entender los sistemas simbólicos, los rituales y las formas de vida que precedieron y acompañan la historia oficial.",
     lat: 10.9967659,
@@ -1504,11 +1613,12 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 12:00 m. / 2:00 p.m. – 5:00 p.m.",
     price: "Gratuito.",
-    tags: ["Museo universitario","arqueología","etnología"]
+    tags: ["Museo universitario", "Arqueología", "Etnología"]
   },
   {
     id: 110,
     category: "cultura",
+    categories: ["cultura"],
     title: "Zoológico de Barranquilla",
     description: "El zoológico más antiguo de Colombia alberga especies de fauna nativa e internacional en un entorno verde dentro de la ciudad. Más que un paseo, es un espacio de educación ambiental donde el contacto con animales silvestres genera conciencia sobre la biodiversidad y la conservación de especies que el desarrollo urbano amenaza.",
     lat: 11.0109951,
@@ -1517,11 +1627,12 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 5:00 p.m.",
     price: "Adultos y público general: $42.900 COP. Niños: $36.900 COP.",
-    tags: ["Zoológico","conservación","educación ambiental"]
+    tags: ["Zoológico", "Conservación", "Educación ambiental"]
   },
   {
     id: 111,
     category: "cultura",
+    categories: ["cultura"],
     title: "Castillo de Salgar",
     description: "Construido en el siglo XIX sobre la costa atlántica, el Castillo de Salgar es uno de los patrimonios históricos más singulares del departamento. Su arquitectura defensiva frente al mar cuenta la historia de una época en que el litoral del Atlántico era frontera entre el comercio y la inseguridad, entre el orden y lo desconocido.",
     lat: 11.0182381,
@@ -1530,24 +1641,26 @@ const mockData = [
     location: "Puerto Colombia, Atlántico.",
     hours: "9:00 a.m. – 6:00 p.m.",
     price: "Gratuito.",
-    tags: ["Centro de eventos","patrimonio histórico","recreación"]
+    tags: ["Centro de eventos", "Patrimonio histórico", "Recreación"]
   },
   {
     id: 112,
     category: "cultura",
+    categories: ["cultura"],
     title: "Biblioteca Piloto del Caribe",
     description: "Centro de la memoria escrita del Caribe colombiano, la Biblioteca Piloto preserva colecciones documentales, archivos históricos y fondos especiales que hacen de este espacio un referente cultural ineludible. Más que repositorio, es un lugar vivo donde la investigación, la lectura y el acceso al conocimiento regional tienen casa propia.",
     lat: 10.9884559,
     lng: -74.7788765,
-    image: "assets/images/puntos/ID109 Biblioteca Piloto del Caribe.webp",
+    image: "assets/images/puntos/ID110 Biblioteca piloto del caribe.webp",
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 8:00 p.m. / Sábados 8:00 a.m. – 4:00 p.m.",
     price: "Gratuito.",
-    tags: ["Biblioteca pública","centro cultural","archivo regional"]
+    tags: ["Biblioteca pública", "Centro cultural", "Archivo regional"]
   },
   {
     id: 113,
     category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
     title: "Parque Isla Salamanca",
     description: "Una franja de tierra entre el mar Caribe y la Ciénaga Grande de Santa Marta que alberga uno de los ecosistemas de manglar más extensos y biodiversos de Colombia. El Parque Isla Salamanca es corredor biológico, refugio de aves migratorias y zona de reproducción de especies que dependen del equilibrio entre el agua salada y la dulce.",
     lat: 11.0487593,
@@ -1555,12 +1668,13 @@ const mockData = [
     image: "assets/images/puntos/parque_isla_salamanca.webp",
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 4:00 p.m.",
-    price: "Nacionales o extranjeros residentes en Colombia (de 6 a 25 años): $19.000 COP, Adultos nacionales o extranjeros residentes en Colombia (mayores de 25 años): $28.000 COP. Extranjeros no residentes en Colombia: $80.000 COP. Menores de 6 años: Entrada gratuita.",
-    tags: ["Parque natural","ecoturismo","avistamiento de fauna"]
+    price: "Nacionales o extranjeros residentes (6 a 25 años): $19.000 COP. Adultos mayores de 25 años: $28.000 COP. Extranjeros no residentes: $80.000 COP. Menores de 6 años: Gratuito.",
+    tags: ["Parque natural", "Ecoturismo", "Avistamiento de fauna", "Avistamiento de aves"]
   },
   {
     id: 114,
     category: "ecoturismo",
+    categories: ["ecoturismo"],
     title: "Jardín Botánico",
     description: "Una colección de flora nativa e introducida que convierte un espacio de Barranquilla en laboratorio vivo de la biodiversidad vegetal del Caribe. Los senderos del Jardín Botánico permiten identificar especies, entender sus relaciones ecológicas y apreciar la riqueza de un territorio donde la vegetación tropical es también historia y cultura.",
     lat: 10.9512537,
@@ -1569,11 +1683,12 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 5:00 p.m.",
     price: "Gratuito.",
-    tags: ["Reserva urbana","ecoturismo","educación ambiental"]
+    tags: ["Reserva urbana", "Ecoturismo", "Educación ambiental"]
   },
   {
     id: 115,
     category: "cultura",
+    categories: ["cultura"],
     title: "Iglesia San Roque",
     description: "Una de las iglesias más antiguas de Barranquilla, levantada en el barrio de San Roque donde la devoción popular y la arquitectura colonial conviven con la vida del mercado público. La iglesia es testigo de la historia social del centro barranquillero y punto de referencia de la religiosidad popular que define al Caribe urbano.",
     lat: 10.9753664,
@@ -1582,24 +1697,26 @@ const mockData = [
     location: "Barranquilla, Atlántico.",
     hours: "Sujeto a horarios de los oficios religiosos.",
     price: "Gratuito.",
-    tags: ["Patrimonio religioso","visita cultural"]
+    tags: ["Patrimonio religioso", "Visita cultural"]
   },
   {
     id: 116,
     category: "cultura",
+    categories: ["cultura"],
     title: "Plaza de la Intendencia Fluvial",
     description: "Un espacio histórico junto al río Magdalena que evoca la época en que Barranquilla era el principal puerto fluvial del país. La Plaza de la Intendencia Fluvial recuerda el tiempo en que el río era la arteria principal del comercio nacional y esta ciudad era la puerta de entrada de la modernidad al interior de Colombia.",
     lat: 10.9861341,
     lng: -74.7780901,
-    image: "assets/images/puntos/ID110 Plaza de la intendencia fluvial.webp",
+    image: "assets/images/puntos/ID114Plaza de la Intendencia Fluvi.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "Espacio abierto",
+    hours: "Espacio abierto.",
     price: "Gratuito.",
-    tags: ["Patrimonio histórico","espacio público"]
+    tags: ["Patrimonio histórico", "Espacio público"]
   },
   {
     id: 117,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo de Arte Moderno",
     description: "El MAMB es el espacio donde el arte contemporáneo del Caribe colombiano y de América Latina dialoga con el mundo. Su colección permanente y sus exposiciones temporales presentan obras que cuestionan, celebran y reinterpretan la identidad cultural de una región que ha producido artistas de alcance internacional desde sus propias raíces.",
     lat: 11.0036548,
@@ -1607,25 +1724,27 @@ const mockData = [
     image: "assets/images/puntos/museo_de_arte_moderno.webp",
     location: "Barranquilla, Atlántico.",
     hours: "9:00 a.m. – 1:00 p.m. / 3:00 p.m. – 7:00 p.m.",
-    price: "funciona bajo la modalidad de donación voluntaria desde $10.000 COP.",
-    tags: ["Museo de arte","exposiciones","cultura contemporánea"]
+    price: "Donación voluntaria desde $10.000 COP.",
+    tags: ["Museo de arte", "Exposiciones", "Cultura contemporánea"]
   },
   {
     id: 118,
     category: "cultura",
+    categories: ["cultura"],
     title: "Estatua del Joe Arroyo",
     description: "Joe Arroyo inmortalizado en bronce en el corazón de Barranquilla. La estatua es el reconocimiento de una ciudad a quien llevó su ritmo al mundo: la salsa, el porro y la fusión caribeña en una voz que se convirtió en patrimonio sonoro. Visitarla es recordar que la cultura popular es también la historia más honesta de un pueblo.",
     lat: 10.9947728,
     lng: -74.8061694,
     image: "assets/images/puntos/estatua_del_joe_arroyo.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "Espacio abierto",
+    hours: "Espacio abierto.",
     price: "Gratuito.",
-    tags: ["Monumento","patrimonio cultural","espacio público"]
+    tags: ["Monumento", "Patrimonio cultural", "Espacio público"]
   },
   {
     id: 119,
     category: "cultura",
+    categories: ["cultura"],
     title: "Museo Mapuka",
     description: "Colecciones arqueológicas, etnográficas y de historia natural que hacen del Museo Mapuka el espacio donde Barranquilla cuenta sus capas más profundas. Desde los vestigios precolombinos hasta las expresiones culturales contemporáneas, el museo traza un recorrido que muestra la complejidad de una ciudad construida sobre múltiples historias.",
     lat: 11.02022,
@@ -1633,64 +1752,69 @@ const mockData = [
     image: "assets/images/puntos/museo_mapuka.webp",
     location: "Barranquilla, Atlántico.",
     hours: "8:00 a.m. – 5:00 p.m.",
-    price: "Adulto nacional: $10.000 COP. Adulto extranjero: $20.000 COP. Egresados de Uninorte: $6.000 COP. Bachilleres, estudiantes universitarios, adultos mayores y niños (a partir de 8 años): $5.000 COP.",
-    tags: ["Museo arqueológico","pueblos Karib","educación cultural"]
+    price: "Adulto nacional: $10.000 COP. Adulto extranjero: $20.000 COP. Egresados de Uninorte: $6.000 COP. Estudiantes, adultos mayores y niños: $5.000 COP.",
+    tags: ["Museo arqueológico", "Pueblos Karib", "Educación cultural"]
   },
   {
     id: 120,
     category: "cultura",
+    categories: ["cultura"],
     title: "Plaza Principal de Puerto Colombia",
     description: "El centro de la vida social de Puerto Colombia desde siempre. La plaza principal concentra la arquitectura histórica del municipio, la iglesia, los kioscos y el ritmo cotidiano de un pueblo costero que conserva su escala humana. Un espacio donde la historia del puerto más importante del Atlántico se vive en la conversación diaria.",
     lat: 10.988422,
     lng: -74.9595477,
     image: "assets/images/puntos/ID118Plaza Principal de Puerto Colombia.webp",
     location: "Puerto Colombia, Atlántico.",
-    hours: "Espacio abierto",
+    hours: "Espacio abierto.",
     price: "Gratuito.",
-    tags: ["Espacio público","patrimonio urbano","turismo"]
+    tags: ["Espacio público", "Patrimonio urbano", "Turismo"]
   },
   {
     id: 121,
     category: "cultura",
+    categories: ["cultura"],
     title: "Taller del Rey Momo",
     description: "Aquí se fabrican los disfraces, las caretas y los muñecos que dan vida al Carnaval de Barranquilla. El taller del Rey Momo es el espacio donde artesanos populares transforman cartón, tela y pintura en personajes que durante cuatro días son el alma de la fiesta. Un oficio comunitario que el turismo puede visitar, no solo presenciar.",
     lat: 10.8989,
     lng: -74.8838,
     image: "assets/images/puntos/ID119 Taller del Rey Momo.webp",
     location: "Galapa, Atlántico.",
-    hours: "9:00 a.m. – 5:00 p.m. (previa cita)",
+    hours: "9:00 a.m. – 5:00 p.m. (previa cita).",
     price: "Gratuito.",
-    tags: ["Taller artesanal","turismo cultural","patrimonio del Carnaval"]
+    tags: ["Taller artesanal", "Turismo cultural", "Patrimonio del Carnaval"]
   },
   {
     id: 122,
     category: "playas",
+    categories: ["playas"],
     title: "Bocas de Cenizas",
-    description: "Donde el Magdalena entrega al Caribe el agua que recorrió todo el país. En Bocas de Cenizas el río y el mar se encuentran visiblemente: dos colores, dos temperaturas, dos mundos que se mezclan en un fenómeno geológico e hidrológico único. Un punto de la geografía colombiana donde la escala del territorio se vuelve tangible.",
+    description: "Donde el Magdalena entrega al Caribe el agua que recorrió todo el país. En Bocas de Cenizas el río y el mar se encuentran visiblemente: dos colores, dos temperaturas, dos mundos que se mezclan en un fenómeno geológico e hidrológico único. Un punto de la geografía colombiana donde la escala del territorio se vuelve tangible. Bandera de seguridad diaria por autoridades municipales (Alcaldía de Barranquilla).",
     lat: 11.1063345,
     lng: -74.8572919,
     image: "assets/images/puntos/bocas de ceniza.webp",
     location: "Barranquilla, Atlántico.",
-    hours: "Espacio natural abierto",
+    hours: "Espacio natural abierto.",
     price: "Gratuito.",
-    tags: ["Atractivo natural","turismo fluvial","observación paisajística"]
+    tags: ["Atractivo natural", "Turismo fluvial", "Observación paisajística"]
   },
   {
     id: 123,
     category: "cultura",
+    categories: ["cultura"],
     title: "Estatua de Shakira",
     description: "Un homenaje de Barranquilla a su hija más universal. La estatua de Shakira frente al estadio celebra a una artista que llevó el Caribe colombiano al mundo sin dejar de nombrarlo. Para la ciudad, el monumento es también un acto de reconocimiento: la cultura popular barranquillera tiene dimensión global y la ciudad lo sabe.",
     lat: 11.0099574,
     lng: -74.7820282,
     image: "assets/images/puntos/estatua_shakira.png",
     location: "Barranquilla, Atlántico.",
-    hours: "Espacio abierto",
+    hours: "Espacio abierto.",
     price: "Gratuito.",
-    tags: ["Monumento","patrimonio cultural","espacio público"]
+    tags: ["Monumento", "Patrimonio cultural", "Espacio público"]
   },
   {
     id: 124,
     category: "cultura",
+    categories: ["cultura"],
     title: "Castillo de San Felipe",
     description: "La fortaleza militar más grande construida por España en América. El Castillo de San Felipe de Barajas en Cartagena es una obra de ingeniería del siglo XVII diseñada para resistir cualquier ataque. Sus túneles, rampas y bastiones cuentan la historia de un imperio que protegió su joya del Caribe con todo lo que tenía.",
     lat: 10.4220285,
@@ -1698,25 +1822,27 @@ const mockData = [
     image: "assets/images/puntos/castillo_de_san_felipe.png",
     location: "Cartagena, Bolívar.",
     hours: "8:00 a.m. – 6:00 p.m.",
-    price: "Tarifa plena (extranjeros y adultos generales): $38.000 COP. Tarifa para nacionales: $ 33.000 COP. Tarifa reducida (menores de 6 a 13 años, estudiantes y docentes): $16.000 COP. Programa Educativo ¡Vive tu Patrimonio!: $32.000 COP.",
-    tags: ["Fortaleza colonial","museo","patrimonio Unesco"]
+    price: "Tarifa plena: $38.000 COP. Nacionales: $33.000 COP. Tarifa reducida (6 a 13 años, estudiantes y docentes): $16.000 COP.",
+    tags: ["Fortaleza colonial", "Museo", "Patrimonio Unesco"]
   },
   {
     id: 125,
     category: "cultura",
+    categories: ["cultura"],
     title: "Monumento Torre del Reloj",
     description: "La puerta de entrada al centro histórico de Cartagena desde el siglo XVII. La Torre del Reloj marcó durante siglos el límite entre la ciudad amurallada y el mundo exterior. Hoy es el umbral simbólico por donde millones de visitantes ingresan a un patrimonio de la humanidad que comenzó a construirse hace más de cuatro siglos.",
     lat: 10.4228085,
     lng: -75.5495241,
     image: "assets/images/puntos/monumento_torre_del_reloj.png",
     location: "Cartagena, Bolívar.",
-    hours: "Espacio abierto (exterior 24h)",
+    hours: "Espacio abierto (exterior 24h).",
     price: "Gratuito.",
-    tags: ["Monumento histórico","patrimonio","espacio público"]
+    tags: ["Monumento histórico", "Patrimonio", "Espacio público"]
   },
   {
     id: 126,
     category: "cultura",
+    categories: ["cultura"],
     title: "Santuario de San Pedro Claver",
     description: "El jesuita que dedicó su vida a los africanos esclavizados que llegaban por el puerto de Cartagena tiene aquí su santuario. San Pedro Claver no es solo un santo colonial: es la memoria de una resistencia moral en medio de una de las épocas más oscuras de la historia americana, preservada en piedra en el corazón de la ciudad.",
     lat: 10.4217512,
@@ -1724,12 +1850,13 @@ const mockData = [
     image: "assets/images/puntos/santuario_san_pedro_claver.png",
     location: "Cartagena, Bolívar.",
     hours: "Sujeto a horarios de los oficios religiosos.",
-    price: "Adultos nacionales: 21.000 COP. Niños, estudiantes y mayores de 60 años (nacionales): 13.000 COP. Adultos internacionales: 30.000 COP. Niños, estudiantes y mayores de 60 años (internacionales): 22.000 COP. Cartageneros (desde febrero de 2026): 8.000 COP para adultos y 5.000 COP para niños de 6 a 17 años. Entrada gratis: Niños menores de 6 años.",
-    tags: ["Patrimonio religioso","museo","visita cultural"]
+    price: "Adultos nacionales: $21.000 COP. Estudiantes/mayores: $13.000 COP. Internacionales: $30.000 COP. Cartageneros: $8.000 COP.",
+    tags: ["Patrimonio religioso", "Museo", "Visita cultural"]
   },
   {
     id: 127,
     category: "cultura",
+    categories: ["cultura"],
     title: "Iglesia de Santo Domingo",
     description: "La iglesia más antigua de Cartagena guarda en sus bóvedas y columnas las marcas del tiempo y de los terremotos que intentaron derribarla. Construida por los dominicos en el siglo XVI, Santo Domingo sobrevivió a todo y hoy preside la plaza más concurrida del centro histórico como testigo inmóvil de cinco siglos de historia caribeña.",
     lat: 10.4243142,
@@ -1738,7 +1865,385 @@ const mockData = [
     location: "Cartagena, Bolívar.",
     hours: "Sujeto a horarios de los oficios religiosos.",
     price: "Gratuito.",
-    tags: ["Patrimonio religioso","visita cultural","siglo XVI"]
+    tags: ["Patrimonio religioso", "Visita cultural", "Siglo XVI"]
+  },
+  {
+    id: 128,
+    category: "paradores",
+    categories: ["paradores", "gastronomía"],
+    title: "Parador Gastronómico Sostenible de Lomita Arena",
+    description: "En la frontera entre Atlántico y Bolívar, sobre la Vía al Mar, los puestos de Lomita Arena llevan años ofreciendo arepa de huevo, carimañola y arepa dulce a quienes recorren la costa. El nuevo parador les da cocinas comunitarias a gas, terrazas, baños, zonas verdes y senderos, y convierte a sus comerciantes en concesionarios de sus propios espacios. Una parada para comer frito caribeño hecho por la comunidad, camino del Volcán del Totumo y las playas de Loma Arena.",
+    lat: 10.7423,
+    lng: -75.2504,
+    image: "assets/images/puntos/parador-lomita-arena.webp",
+    location: "Santa Catalina, Bolívar (sector Zarabanda, Vía al Mar).",
+    hours: "Apertura prevista a finales de 2026.",
+    price: "Variable según el puesto.",
+    tags: ["Comida autóctona", "Experiencias sensoriales", "Parador turístico"]
+  },
+  {
+    id: 129,
+    category: "comunitario",
+    categories: ["comunitario", "playas", "gastronomía", "aves"],
+    title: "Asociación Ecoturística Lomarenatour",
+    description: "A orillas de la Ciénaga del Totumo, la Asociación Ecoturística Lomarenatour recibe a los visitantes en su muelle artesanal y en el estadero campestre Rincón del Totumo. Desde allí parten los paseos en lancha por la ciénaga hacia el Volcán del Totumo y la bahía La Redonda, guiados por gente de Lomita Arena que conoce cada recodo del agua. Productos y servicios: Paseos en lancha por la Ciénaga del Totumo, visita al Volcán del Totumo y a la bahía La Redonda, estadero campestre Rincón del Totumo y muelle artesanal.",
+    lat: 10.739161,
+    lng: -75.256883,
+    image: "assets/images/puntos/lomarenatour.jpg",
+    location: "Santa Catalina, Bolívar.",
+    hours: "Servicio todo el día.",
+    price: "Consultar según recorrido.",
+    tags: ["Paseos en lancha", "Ciénaga del Totumo", "Estadero campestre", "Avistamiento de aves", "Turismo comunitario"]
+  },
+  {
+    id: 130,
+    category: "comunitario",
+    categories: ["comunitario", "playas", "aves"],
+    title: "Rhizotour – Asociación ecoturística",
+    description: "Rhizotour es una asociación ecoturística de Santa Catalina dedicada a la educación ambiental y al aprovechamiento sostenible de los ecosistemas estratégicos de la zona. Ofrece rutas de avistamiento de aves, paseos en lancha, senderismo y turismo rural, con la conservación como hilo conductor de cada recorrido. Productos y servicios: Rutas turísticas, avistamiento de aves, paseos en lancha y senderismo, turismo rural.",
+    lat: 10.6053,
+    lng: -75.2911,
+    image: "assets/images/puntos/rhizotour.jpg",
+    location: "Santa Catalina, Bolívar.",
+    hours: "8:00 a.m. - 12:00 m. y 2:00 p.m. - 6:00 p.m.",
+    price: "Consultar según recorrido.",
+    tags: ["Rutas turísticas", "Avistamiento de aves", "Paseos en lancha", "Senderismo", "Turismo rural"]
+  },
+  {
+    id: 131,
+    category: "comunitario",
+    categories: ["comunitario", "playas", "aves"],
+    title: "ASOPEZLOMA – Asociación de Pescadores Artesanales Afrodescendientes",
+    description: "Pescadores artesanales afrodescendientes de la Ciénaga del Totumo que convirtieron su oficio en una forma de cuidar el territorio. Enseñan las prácticas tradicionales de pesca, guían recorridos por las ciénagas de La Redonda y del Totumo para avistar aves y sembrar mangle, y ofrecen transporte y equipos para buceo y deportes acuáticos.",
+    lat: 10.7312897,
+    lng: -75.2642877,
+    image: "assets/images/puntos/asopezloma.jpg",
+    location: "Santa Catalina, Bolívar.",
+    hours: "7:00 a.m. - 12:00 m. y 1:00 p.m. - 4:00 p.m.",
+    price: "Consultar según actividad.",
+    tags: ["Pesca recreativa", "Avistamiento de aves", "Siembra de mangle", "Buceo y deportes acuáticos"]
+  },
+  {
+    id: 132,
+    category: "comunitario",
+    categories: ["comunitario", "gastronomía"],
+    title: "ANMUCIPIO – Asociación Municipal de Mujeres Campesinas, Negras e Indígenas de Piojó",
+    description: "Mujeres campesinas, negras e indígenas de Piojó que se organizaron para fortalecer el bienestar de sus integrantes y de sus familias. Su oferta reúne la cocina ancestral con productos del campo, artesanías, transformación de materias primas, guianza ecoturística y talleres de gastronomía para otras mujeres del territorio.",
+    lat: 10.748627,
+    lng: -75.107979,
+    image: "assets/images/puntos/anmucipio.jpg",
+    location: "Piojó, Atlántico.",
+    hours: "8:00 a.m. - 4:00 p.m., según demanda; sábados, domingos, festivos y ferias.",
+    price: "Segun producto o recorrido.",
+    tags: ["Cocina ancestral", "Artesanías", "Ecoturismo y guianza", "Talleres de gastronomía"]
+  },
+  {
+    id: 133,
+    category: "comunitario",
+    categories: ["comunitario", "ecoturismo"],
+    title: "Fundación Palma Piojonera (FUNPALPI)",
+    description: "En el casco urbano de Piojó, la Fundación Palma Piojonera desarrolla un eco-camping con carpas y hospedaje ancestral bajo techo. El espacio se proyecta como un aula viva que recrea zonas históricas y naturales, donde los visitantes participan en talleres culturales, oficios tradicionales y ecología urbana.",
+    lat: 10.747213,
+    lng: -75.10717,
+    image: "assets/images/puntos/palma-piojonera.jpg",
+    location: "Piojó, Atlántico.",
+    hours: "8:00 a.m. - 8:00 p.m.",
+    price: "Consultar hospedaje y talleres.",
+    tags: ["Eco-camping urbano", "Hospedaje ancestral", "Talleres culturales", "Oficios tradicionales", "Ecología urbana"]
+  },
+  {
+    id: 134,
+    category: "comunitario",
+    categories: ["comunitario", "aves"],
+    title: "Asoguacharacas – Asociación de Campesinos de Hibácharo y Cerrito",
+    description: "En Hibácharo, corregimiento de Piojó, 34 familias campesinas cuidan 609 hectáreas de bosque seco tropical en la OMEC Las Guacharacas, vecina de la Reserva El Palomar y del Cerro La Vieja. Su vivero comunitario produce más de 50 especies nativas, y sus cuatro senderos permiten conocer algunas de las más de 130 especies de aves registradas, junto con la gastronomía ancestral, la apicultura y las artesanías del bosque.",
+    lat: 10.822814,
+    lng: -75.148119,
+    image: "assets/images/puntos/asoguacharacas.jpg",
+    location: "Piojó, Atlántico (Corregimiento de Hibácharo).",
+    hours: "24/7 (agendar la visita con anticipación).",
+    price: "Por reserva previa.",
+    tags: ["Avistamiento de aves", "Senderos de ecoturismo", "Gastronomía ancestral", "Vivero comunitario", "Apicultura y artesanías"]
+  },
+  {
+    id: 135,
+    category: "comunitario",
+    categories: ["comunitario", "cultura"],
+    title: "Asociación de Confeccionistas de Juan de Acosta",
+    description: "Confeccionistas de Juan de Acosta que ponen su oficio al servicio de vecinos y visitantes. En su taller ofrecen asesoría textil y confección, y trabajan por dar a conocer el potencial del municipio a quienes llegan a la zona.",
+    lat: 10.8304124,
+    lng: -75.0371398,
+    image: "assets/images/puntos/Confeccionistas de Juan de Acosta.jpg",
+    location: "Juan de Acosta, Atlántico.",
+    hours: "7:00 a.m. - 5:00 p.m.",
+    price: "Según prenda o servicio.",
+    tags: ["Asesoría textil", "Confección", "Cultura y oficios", "Turismo comunitario"]
+  },
+  {
+    id: 136,
+    category: "comunitario",
+    categories: ["comunitario", "gastronomía"],
+    title: "Asociación Mujeres Ancla",
+    description: "Mujeres de Puerto Colombia organizadas alrededor del mar que rodea su municipio. Su principal objetivo es crear una escuela de piezas artesanales elaboradas con frutos del mar, junto con una oferta de comida típica.",
+    lat: 10.743,
+    lng: -75.2498,
+    image: "assets/images/puntos/Mujeres de Puerto Colombia.jpg",
+    location: "Puerto Colombia, Atlántico / Lomita Arena.",
+    hours: "Horario de oficina.",
+    price: "Según plato o artesanía.",
+    tags: ["Piezas artesanales con frutos del mar", "Comida típica", "Turismo comunitario"]
+  },
+  {
+    id: 137,
+    category: "comunitario",
+    categories: ["comunitario", "gastronomía"],
+    title: "ANUC Malambo – Asociación de Usuarios Campesinos de Malambo",
+    description: "Organización agropecuaria campesina de Malambo, parte de la Asociación Nacional de Usuarios Campesinos. Sus asociados cultivan yuca, guandul, limoncillo, flor de Jamaica, frutas y plantas medicinales.",
+    lat: 10.859514,
+    lng: -74.773667,
+    image: "assets/images/puntos/anuc-malambo.jpg",
+    location: "Malambo, Atlántico.",
+    hours: "7:00 a.m. - 6:00 p.m.",
+    price: "Según producto.",
+    tags: ["Cultivos de yuca y guandul", "Limoncillo y flor de Jamaica", "Frutas y plantas medicinales", "Turismo comunitario"]
+  },
+  {
+    id: 138,
+    category: "comunitario",
+    categories: ["comunitario", "gastronomía"],
+    title: "Fundación César Miranda Pérez",
+    description: "La Fundación César Miranda Pérez crea programas de turismo, gastronomía, cultura y desarrollo productivo con mujeres cabeza de hogar, niños y adultos mayores de Malambo, para visibilizar sus costumbres y saberes. Organiza el Festival Enyúcate en la primera semana de junio y ofrece durante todo el año una ruta turística, gastronómica y rural concertada con cada grupo.",
+    lat: 10.86055,
+    lng: -74.83675,
+    image: "assets/images/puntos/fundacion-cesar-miranda.jpg",
+    location: "Malambo, Atlántico.",
+    hours: "8:00 a.m. - 6:00 p.m.",
+    price: "Por concertación.",
+    tags: ["Festival Enyúcate", "Ruta turística, gastronómica y rural", "Saberes tradicionales"]
+  },
+  {
+    id: 139,
+    category: "comunitario",
+    categories: ["comunitario"],
+    title: "REDETUR – Red Departamental de Turismo Rural del Atlántico",
+    description: "La Red Departamental de Turismo Rural del Atlántico articula a los prestadores de servicios turísticos del departamento para fortalecer sus negocios y promover un turismo sostenible, responsable e innovador. Ofrece promoción turística, ruedas de negocios, capacitación, participación en ferias y diseño de productos y rutas turísticas.",
+    lat: 10.94007,
+    lng: -75.0056,
+    image: "assets/images/puntos/Red Departamental de Turismo.jpg",
+    location: "Atlántico (Corredor Turístico).",
+    hours: "8:00 a.m. - 5:00 p.m.",
+    price: "Consultar servicios.",
+    tags: ["Articulación empresarial", "Promoción turística", "Ruedas de negocios", "Diseño de productos y rutas turísticas"]
+  },
+  {
+    id: 140,
+    category: "comunitario",
+    categories: ["comunitario", "gastronomía", "ecoturismo"],
+    title: "ASUCGA – Asociación de Usuarios Campesinos Afro El Gavilán",
+    description: "En Arroyo Grande, corregimiento de Cartagena, 36 familias campesinas transforman lo que cultivan en pulpas, jugos, bolis, yogures, tortas y helados que abastecen la red agroalimentaria de Bolívar. Su ruta turística parte de las letras del pueblo y pasa por la parcela Villa Noha, el mirador de La Casona y las ciénagas de Las Ventas y del Medio, hasta llegar al bosque seco tropical de Barranquito.",
+    lat: 10.661705,
+    lng: -75.34212,
+    image: "assets/images/puntos/gavilan.jpg",
+    location: "Cartagena, Bolívar (Corregimiento Arroyo Grande).",
+    hours: "7:00 a.m. - 5:00 p.m.",
+    price: "Según producto o recorrido.",
+    tags: ["Productos a base de frutas", "Yogures, tortas y helados", "Ruta por estaciones naturales", "Bosque seco tropical Barranquito"]
+  },
+  {
+    id: 141,
+    category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
+    title: "Reserva Ecológica Los Charcones. Fundación Los Charcones",
+    description: "En el bosque seco de Piojó, a unos 46 km de Barranquilla por la vía costera, Los Charcones guarda pozos de agua dulce que brotan de la tierra y bajan desde el Cerro La Vieja. Un sendero de siete estaciones parte a un kilómetro del pueblo y llega al mirador Vista El Tucán, donde los tucanes se dejan ver a cualquier hora, junto a monos aulladores y la memoria del territorio Mokaná. Es la primera reserva natural de la sociedad civil del Atlántico registrada ante Parques Nacionales Naturales.",
+    lat: 10.755,
+    lng: -75.112,
+    image: "assets/images/puntos/reserva-los-charcones.webp",
+    location: "Piojó, Atlántico.",
+    hours: "Por solicitud de los grupos.",
+    price: "Por confirmar.",
+    tags: ["Avistamiento de aves", "Experiencias sensoriales", "Vistas panorámicas", "Senderismo", "Pozos naturales"]
+  },
+  {
+    id: 142,
+    category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
+    title: "Reserva El Palomar",
+    description: "En la serranía de Piojó, El Palomar protege uno de los relictos de bosque seco tropical que la Gobernación del Atlántico identificó como sitios clave para el avistamiento de aves del departamento. Limita con la OMEC Las Guacharacas, cuyas familias campesinas guían recorridos por senderos donde se han registrado más de 130 especies de aves.",
+    lat: 10.898611,
+    lng: -75.127778,
+    image: "assets/images/puntos/Reserva El Palomar.jpg",
+    location: "Piojó, Atlántico.",
+    hours: "Visitas con guía local.",
+    price: "Por confirmar.",
+    tags: ["Avistamiento de aves", "Vistas panorámicas", "Experiencias sensoriales"]
+  },
+  {
+    id: 143,
+    category: "playas",
+    categories: ["playas"],
+    title: "Playa de Sabanilla",
+    description: "Sabanilla es una de las playas que forman los 18 kilómetros de costa de Puerto Colombia sobre el mar Caribe. La Gobernación del Atlántico la incluye en la zona de deportes náuticos donde se practican windsurf, canotaje, paddle y surf, y la Dimar la registra entre las playas del departamento con concesiones para servicios turísticos. Bandera de seguridad diaria por autoridades municipales (Puerto Colombia).",
+    lat: 11.0211,
+    lng: -74.8789,
+    image: "assets/images/puntos/Playa de Sabanilla.jpg",
+    location: "Puerto Colombia, Atlántico.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Relax en la playa", "Deportes náuticos", "Vistas panorámicas"]
+  },
+  {
+    id: 144,
+    category: "playas",
+    categories: ["playas", "gastronomía"],
+    title: "Playa de Miramar",
+    description: "Playa urbana de Puerto Colombia, en el extremo del Malecón, junto al faro Ventana de Sueños (70 m, el más alto de Latinoamérica). Hace parte del circuito turístico Malecón del Mar de la Gobernación del Atlántico, con la Plaza, el Muelle 1888, el Mercado Sazón Atlántico y las playas Pescadores y Manglar. Cuenta con zona gastronómica con tres cocinas y kioscos tipo bohío frente al mar, canchas de fútbol, tenis y vóley playa, módulos biosaludables, skatepark y bodega para la Liga de Surf del Atlántico, senderos, plaza cultural, la escultura La Nadadora (10 m, de Elsa Marina Losada), baños, duchas, enfermería y parqueadero. Punto de referencia del surf y el longboard en el municipio. Bandera de seguridad diaria por autoridades municipales.",
+    lat: 11.0011,
+    lng: -74.9534,
+    image: "assets/images/puntos/playa miramar.jpg",
+    location: "Puerto Colombia, Atlántico (Sector Miramar).",
+    hours: "Uso de playa y baño: 7:00 a. m. a 4:00 p. m., de lunes a domingo (Decreto Municipal 0059 de 2025).",
+    price: "Acceso gratuito (playa pública). Restaurantes, parqueadero y alquiler de equipos con costo aparte.",
+    tags: ["Sol y playa", "Surf y longboard", "Skatepark", "Gastronomía local frente al mar", "Arte público", "Malecón del Mar"]
+  },
+  {
+    id: 145,
+    category: "playas",
+    categories: ["playas"],
+    title: "Playa de Pradomar",
+    description: "Playa urbana de Puerto Colombia, en el sector del Castillo de Salgar, donde la Ruta de Turismo Náutico del Atlántico ubica actividades de paddle, surf, paddle surf, body board y kayak. La Dimar la registra entre las playas del departamento con concesiones para servicios turísticos. Bandera de seguridad diaria por autoridades municipales (Puerto Colombia).",
+    lat: 11.0132,
+    lng: -74.8978,
+    image: "assets/images/puntos/Playa de Pradomar.jpg",
+    location: "Puerto Colombia, Atlántico.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Deportes náuticos", "Relax en la playa"]
+  },
+  {
+    id: 146,
+    category: "aves",
+    categories: ["aves", "ecoturismo"],
+    title: "Aviario Nacional de Colombia",
+    description: "Parque ecológico de la Fundación Aviario Nacional de Colombia (entidad sin ánimo de lucro), en la isla de Barú, a unos 50 minutos de Cartagena. Hoy alberga más de 2.000 aves de cerca de 200 especies, entre nativas, endémicas, exóticas y amenazadas; casi el 80 % llegaron rescatadas del tráfico ilegal. Es un «aviario de inmersión»: un sendero de 1,7 km en casi 8 hectáreas recorre 22 ambientes que recrean tres ecosistemas de Colombia (selva húmeda tropical, litoral y desierto). Desarrolla programas de conservación y reproducción de especies amenazadas, como el paujil piquiazul, el flamenco rosado y el águila harpía.",
+    lat: 10.2147,
+    lng: -75.5847,
+    image: "assets/images/puntos/Aviario.jpg",
+    location: "Cartagena, Isla Barú, Bolívar.",
+    hours: "Lunes a domingo, 9:00 a. m. a 5:00 p. m. Último ingreso: 4:00 p. m. Presentación «Aves al vuelo»: 11:30 a. m. y 3:30 p. m.",
+    price: "Adulto nacional $50.000; niño o estudiante nacional $40.000; adulto extranjero $90.000; niño o estudiante extranjero $65.000.",
+    tags: ["Avistamiento y fotografía de aves", "Recorrido por 22 ambientes", "Presentación Aves al vuelo", "Educación ambiental y conservación"]
+  },
+  {
+    id: 147,
+    category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
+    title: "Ensenada de Amansaguapos",
+    description: "Este paraje natural destaca por sus playas vírgenes, manglares y la calma de sus aguas costeras. Históricamente, los lugareños asocian su peculiar nombre a mitos locales de la región. Al estar ubicado a solo unos 4.5 kilómetros al sur de Galerazamba, forma parte de un circuito turístico mágico rodeado por el Mar Rosado (Salinas de Galerazamba) y el Volcán del Totumo.",
+    lat: 10.748333,
+    lng: -75.253611,
+    image: "assets/images/puntos/Ensenada de Amansaguapos.jpg",
+    location: "Santa Catalina, Bolívar.",
+    hours: "Visitas con guía local.",
+    price: "Por confirmar.",
+    tags: ["Avistamiento de aves", "Playas vírgenes", "Manglares"]
+  },
+  {
+    id: 148,
+    category: "ecoturismo",
+    categories: ["ecoturismo", "aves"],
+    title: "Ciénaga de Juan Polo",
+    description: "La Ciénaga de Juan Polo es una laguna costera estratégicamente ubicada al norte de Cartagena de Indias, en el corregimiento de La Boquilla. Este cuerpo de agua forma parte integral de un complejo lagunar mayor interconectado directamente con la Ciénaga de la Virgen y el Mar Caribe. Es un humedal vital y un refugio de gran valor ecológico reconocido internacionalmente como sitio de conteo del Global Big Day por albergar una inmensa riqueza de aves acuáticas y migratorias.",
+    lat: 10.5103,
+    lng: -75.4853,
+    image: "assets/images/puntos/Cienaga de Juan Polo.jpg",
+    location: "Cartagena, Bolívar.",
+    hours: "Visitas con guía local.",
+    price: "Por confirmar.",
+    tags: ["Avistamiento de aves", "Global Big Day", "Humedal costero"]
+  },
+  {
+    id: 149,
+    category: "playas",
+    categories: ["playas"],
+    title: "Playa de Tubará (Palmarito)",
+    description: "La playa del municipio de Tubará, en el sector de Palmarito, hace parte de la zona de deportes náuticos de la Vía al Mar, donde se practican windsurf, canotaje, paddle, surf y kitesurf. La Dimar la registra entre las playas del Atlántico con concesiones para servicios turísticos. Bandera de seguridad diaria por autoridades municipales (Tubará).",
+    lat: 10.9701,
+    lng: -74.9818,
+    image: "assets/images/puntos/Playa de Tubará.jpg",
+    location: "Tubará, Atlántico.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Relax en la playa", "Deportes náuticos"]
+  },
+  {
+    id: 150,
+    category: "playas",
+    categories: ["playas"],
+    title: "Playa Mendoza",
+    description: "Playa de Tubará sobre la Vía al Mar, marcada por un antiguo acantilado que el INVEMAR registra en su estudio de la zona costera del Atlántico. Hace parte de la zona de deportes náuticos del departamento y de las playas con concesiones turísticas de la Dimar. Bandera de seguridad diaria por autoridades municipales (Tubará).",
+    lat: 10.9022,
+    lng: -75.0415,
+    image: "assets/images/puntos/Playa Mendoza.jpg",
+    location: "Tubará, Atlántico.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Relax en la playa", "Vistas panorámicas", "Deportes náuticos"]
+  },
+  {
+    id: 151,
+    category: "playas",
+    categories: ["playas"],
+    title: "Playa de Puerto Caimán",
+    description: "La Playa de Puerto Caimán, ubicada en el municipio de Tubará, Atlántico, es un paraje costero ideal si buscas total tranquilidad y contacto con la naturaleza. Se encuentra sobre la Autopista al Mar (Km 82-83), a solo unos 25 o 30 minutos de Barranquilla, situada estratégicamente entre los balnearios de Playa Mendoza y Caño Dulce. Bandera de seguridad diaria por autoridades municipales (Tubará).",
+    lat: 10.9141,
+    lng: -75.0304,
+    image: "assets/images/puntos/Playa de Puerto Caimán.jpg",
+    location: "Tubará, Atlántico.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Relax en la playa"]
+  },
+  {
+    id: 152,
+    category: "playas",
+    categories: ["playas"],
+    title: "Playa de Turipaná",
+    description: "Playa de Tubará vecina de Puerto Velero. La Gobernación del Atlántico la incluye en la zona de deportes náuticos de la Vía al Mar: windsurf, canotaje, paddle, surf y kitesurf. Ampliamente conocida en la región por albergar el famoso Centro Recreacional Turipaná de Comfamiliar. Bandera de seguridad diaria por autoridades municipales (Tubará).",
+    lat: 10.9855,
+    lng: -74.9781,
+    image: "assets/images/puntos/Playa de Turipaná.jpg",
+    location: "Tubará, Atlántico.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Relax en la playa", "Deportes náuticos"]
+  },
+  {
+    id: 153,
+    category: "playas",
+    categories: ["playas", "aves"],
+    title: "Playa de Bocatocino",
+    description: "La Playa de Bocatocino (también conocida como Boca de Tocino) es una de las playas más exóticas y vírgenes del departamento del Atlántico, ubicada en el municipio de Juan de Acosta, muy cerca de los límites con Tubará y a unos 45 a 50 minutos de Barranquilla saliendo por la Vía al Mar. A diferencia de los balnearios urbanizados, Bocatocino destaca por su imponente paisaje donde el mar Caribe se encuentra directamente con dunas de arena y vegetación de bosque seco, ofreciendo un ambiente completamente rústico, místico y libre de turismo masivo. Bandera de seguridad diaria por autoridades municipales (Juan de Acosta).",
+    lat: 10.9388,
+    lng: -75.0569,
+    image: "assets/images/puntos/Playa de Bocatocino.jpg",
+    location: "Juan de Acosta, Atlántico.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Relax en la playa", "Avistamiento de aves", "Vistas panorámicas"]
+  },
+  {
+    id: 154,
+    category: "playas",
+    categories: ["playas"],
+    title: "Playa de Cielo Mar",
+    description: "La Playa de Cielo Mar (estrechamente conectada con las playas de La Boquilla y el sector conocido como Playa Azul) se encuentra en la zona norte de Cartagena de Indias, Colombia. Es una de las franjas costeras de mayor crecimiento y exclusividad en la ciudad, combinando modernos edificios de apartamentos con un litoral amplio y un ambiente sustancialmente más relajado. Bandera de seguridad diaria por autoridades municipales (Cartagena).",
+    lat: 10.4535,
+    lng: -75.5125,
+    image: "assets/images/puntos/Playa de Cielo Mar.jpg",
+    location: "Cartagena, Bolívar.",
+    hours: "Acceso público; servicios según concesión.",
+    price: "Gratuito (playa pública); casetas y servicios con costo.",
+    tags: ["Relax en la playa", "Vistas panorámicas"]
   }
 ];
 
@@ -1786,4 +2291,3 @@ const rutasExistentes = [
     pointsIds: [6, 9, 19, 20, 21, 22, 31, 42, 45]
   }
 ];
-
