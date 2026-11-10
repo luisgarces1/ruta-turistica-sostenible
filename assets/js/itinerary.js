@@ -1,4 +1,11 @@
-// l:/PORYECTOS DE PAGINAS/juan3/ruta-turistica-sostenible/mapa-interactivo/assets/js/itinerary.js
+/**
+ * ============================================================================
+ * PLANIFICADOR INTELIGENTE DE ITINERARIOS - RUTA TURÍSTICA SOSTENIBLE
+ * ============================================================================
+ * Gestiona el asistente paso a paso para crear rutas personalizadas entre
+ * Cartagena y Barranquilla, cálculo de tiempos de desplazamiento, integración
+ * con el calendario de festividades, guardado local y exportación a PDF.
+ */
 
 const ItineraryPlanner = {
     selectedInterests: new Set(),
@@ -12,7 +19,6 @@ const ItineraryPlanner = {
     selectedCompanion: 'En Pareja',
     selectedBudget: 'Moderado',
     selectedPace: 'Moderado',
-    userEmail: '',
 
     // Coordenadas aproximadas de centros de ciudades
     cityCoords: {
@@ -522,7 +528,6 @@ const ItineraryPlanner = {
         this.selectedCompanion = 'En Pareja';
         this.selectedBudget = 'Moderado';
         this.selectedPace = 'Moderado';
-        this.userEmail = '';
         
         document.querySelectorAll('.interest-tag').forEach(el => {
             el.classList.remove('bg-white', 'text-[#003087]', 'border-white');

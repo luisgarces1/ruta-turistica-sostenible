@@ -1,7 +1,12 @@
 /**
- * Inicialización del Mapa Leaflet
- * Configura la vista inicial, límites de zoom y controles personalizados.
+ * ============================================================================
+ * CONTROLADOR PRINCIPAL Y MAPA INTERACTIVO - RUTA TURÍSTICA SOSTENIBLE
+ * ============================================================================
+ * Inicializa el mapa Leaflet, renderiza marcadores con soporte multi-categoría,
+ * controla el panel lateral de detalle con audioguía (TTS), el buscador
+ * predictivo, los trazados viales y las vistas por municipio y rutas sugeridas.
  */
+
 const map = L.map('map', {
     zoomControl: false, // Customizing zoom position
     minZoom: 8, // Prevent zooming out worldwide

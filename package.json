@@ -1,4 +1,8 @@
 {
+  "name": "ruta-turistica-sostenible",
+  "version": "2.1.0",
+  "private": true,
+  "description": "Plataforma web interactiva y planificador de rutas para el corredor vial Cartagena - Barranquilla (Ruta Costera).",
   "scripts": {
     "build:css": "npx -y tailwindcss@3 -i assets/css/input.css -o assets/css/tailwind.min.css --config tailwind.config.js --minify"
   },
