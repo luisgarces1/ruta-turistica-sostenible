@@ -616,10 +616,9 @@
         <!-- Cuerpo del Footer (#003087) -->
         <div class="rc-footer-body">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <!-- Mapa del sitio (4 Columnas del Figma) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12">
-                    <!-- Columna 1: Marca y redes -->
-                    <div class="lg:col-span-4 flex flex-col items-start space-y-5">
+                    <!-- Columna 1: Marca y Accesos Directos -->
+                    <div class="lg:col-span-4 flex flex-col items-start space-y-4">
                         <a href="https://www.rutacostera.co/" target="_blank" rel="noopener noreferrer" class="inline-block">
                             <img alt="Ruta Costera | ISA Vías" class="h-12 md:h-14 w-auto"
                                 src="https://res.cloudinary.com/doj2ayyy9/image/upload/RUTA-COSTERA-logotipo-blanco-sobre-azul-RGB_zxhs9l.svg" />
@@ -628,100 +627,86 @@
                             <span class="font-normal">Ruta Costera</span><br />
                             <strong class="font-bold text-white">Concesión de ISA VÍAS en Colombia</strong>
                         </p>
-                        <div class="pt-1 space-y-2.5">
-                            <p class="text-xs font-bold uppercase tracking-wider text-white/80">Redes sociales</p>
-                            <div class="flex items-center gap-2.5 flex-wrap">
-                                <a href="https://www.linkedin.com/company/ruta-costera-isa/" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="https://www.facebook.com/RutaCosteraCaba/" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.instagram.com/rutacostera_/" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="https://x.com/RutaCostera_" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="X"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.youtube.com/@rutacostera_" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <div class="pt-1 flex flex-col gap-2.5 w-full max-w-[240px]">
+                            <a href="https://www.rutacostera.co/proveedores/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-xs font-bold text-white transition-all">
+                                <i class="fas fa-truck text-[#0099ff]"></i>
+                                <span>Proveedores</span>
+                            </a>
+                            <a href="https://www.rutacostera.co/quienes-somos/linea-etica/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-xs font-bold text-white transition-all">
+                                <i class="fas fa-balance-scale text-[#0099ff]"></i>
+                                <span>Línea Ética</span>
+                            </a>
+                            <a href="https://www.rutacostera.co/comunidad/notificaciones-por-aviso/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-xs font-bold text-white transition-all">
+                                <i class="fas fa-file-alt text-[#0099ff]"></i>
+                                <span>Notificaciones por aviso</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Columna 2: Sede Administrativa y Atención al Usuario -->
+                    <div class="lg:col-span-3 space-y-6">
+                        <div>
+                            <h4 class="rc-footer-title">Sede administrativa</h4>
+                            <p class="text-sm text-white/85 leading-relaxed">
+                                Carrera 24 No. 1A – 24 Oficina 1702<br />
+                                Edificio BC Empresarial, Puerto Colombia<br />
+                                <strong class="text-white">Tel:</strong> 321 973 8494
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="rc-footer-title">Atención al usuario</h4>
+                            <p class="text-sm text-white/85 leading-relaxed">
+                                Área de Servicio Juan Mina – K25+200<br />
+                                Circunvalar de la Prosperidad<br />
+                                <strong class="text-white">Tel:</strong> 321 226 5650
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Columna 3: Atención a Emergencias y Más sobre nosotros -->
+                    <div class="lg:col-span-3 space-y-6">
+                        <div>
+                            <h4 class="rc-footer-title">Atención a emergencias</h4>
+                            <p class="text-base font-bold text-white">311 480 3629</p>
+                            <p class="text-base font-bold text-white">018000 977330</p>
+                        </div>
+                        <div>
+                            <h4 class="rc-footer-title">Más sobre nosotros</h4>
+                            <div class="rc-footer-list">
+                                <a href="https://www.rutacostera.co/peajes/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                                    <span>Peajes</span>
+                                </a>
+                                <a href="https://www.rutacostera.co/conoce-la-ruta/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                                    <span>Mapa de la ruta</span>
+                                </a>
+                                <a href="https://www.rutacostera.co/trabaja-con-nosotros/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                                    <span>Trabaja con nosotros</span>
+                                </a>
+                                <a href="https://www.rutacostera.co/quienes-somos/isa/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                                    <span>Sobre ISA</span>
+                                </a>
+                                <a href="https://www.rutacostera.co/contacto/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                                    <span>Contáctanos</span>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Columna 2: Navegación -->
+                    <!-- Columna 4: Redes Sociales -->
                     <div class="lg:col-span-2">
-                        <h4 class="rc-footer-title">Navegación</h4>
-                        <div class="rc-footer-list">
-                            <a href="https://www.rutacostera.co/quienes-somos/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Conócenos</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/conoce-la-ruta/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Nuestra Ruta</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/servicios-en-la-via/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Servicios</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/sostenibilidad/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Sostenibilidad</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/peajes/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Tarifas de peajes</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Columna 3: Contacto -->
-                    <div class="lg:col-span-3">
-                        <h4 class="rc-footer-title">Contacto</h4>
-                        <div class="rc-footer-list">
-                            <a href="https://www.rutacostera.co/contacto/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Línea de emergencia</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/contacto/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Contáctanos</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/trabaja-con-nosotros/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Nuestra Gente</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/proveedores/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Gestión con proveedores</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/comunidad/notificaciones-por-aviso/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Notificaciones por Aviso</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Columna 4: Enlaces externos -->
-                    <div class="lg:col-span-3">
-                        <h4 class="rc-footer-title">Enlaces externos</h4>
-                        <div class="rc-footer-list">
-                            <a href="https://www.rutacostera.co/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>SIGG</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>SGI</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Sevenet</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>HI - HUB Digital</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Mesa de servicios TI</span>
-                            </a>
-                            <a href="https://www.rutacostera.co/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                                <span>Correo corporativo</span>
-                            </a>
+                        <h4 class="rc-footer-title">Redes sociales</h4>
+                        <div class="flex items-center gap-2.5 flex-wrap">
+                            <a href="https://www.linkedin.com/company/ruta-costera-isa/" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/RutaCosteraCaba/" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/rutacostera_/" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://x.com/RutaCostera_" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="X"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.youtube.com/@rutacostera_" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.waze.com/" target="_blank" rel="noopener noreferrer" class="rc-social-icon" aria-label="Waze"><i class="fab fa-waze"></i></a>
                         </div>
                     </div>
                 </div>
