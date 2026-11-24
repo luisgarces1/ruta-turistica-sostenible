@@ -600,7 +600,7 @@ const municipiosData = [
         name: "Puerto Colombia",
         image: "assets/images/puntos/foto-principal-para-la-pagina-m.p.webp",
         description: "Un municipio cargado de historia, hogar del muelle por donde entró el progreso al país. Ofrece una mezcla única de patrimonio arquitectónico y playas encantadoras.",
-        pointsIds: [6, 7, 8, 9, 10, 26, 42, 43, 44, 59],
+        pointsIds: [6, 7, 8, 9, 10, 25, 41, 42, 43, 58],
         routes: {
             fromBAQ: "A solo 15 minutos de Barranquilla por la Vía al Mar o la Autopista Norte.",
             fromCTG: "Toma la Vía al Mar hacia Barranquilla; Puerto Colombia está justo antes de llegar a la ciudad, a unos 90 minutos de Cartagena."
@@ -611,7 +611,7 @@ const municipiosData = [
         name: "Tubará",
         image: "assets/images/puntos/foto-principal-para-la-pagina-m.t.webp",
         description: "Tierra de ancestros Mokaná, donde las montañas se encuentran con el mar. Ofrece miradores espectaculares y playas tranquilas como Puerto Velero.",
-        pointsIds: [15, 27, 28, 45, 46, 60, 61],
+        pointsIds: [15, 26, 27, 44, 45, 59, 60],
         routes: {
             fromBAQ: "A unos 30-40 minutos por la Vía al Mar hacia el sur.",
             fromCTG: "Aproximadamente a 1 hora y 15 minutos por la Vía al Mar hacia el norte."
@@ -622,7 +622,7 @@ const municipiosData = [
         name: "Juan de Acosta",
         image: "assets/images/puntos/fotografia-para-la-pagina-d.n.webp",
         description: "Famoso por sus vientos constantes ideales para el Kitesurf en Salinas del Rey y la tranquilidad de sus playas como Santa Verónica.",
-        pointsIds: [11, 12, 13, 14, 33],
+        pointsIds: [11, 12, 13, 14, 32],
         routes: {
             fromBAQ: "A unos 45 minutos por la Vía al Mar.",
             fromCTG: "A unos 60 minutos por la Vía al Mar."
@@ -633,7 +633,7 @@ const municipiosData = [
         name: "Piojó",
         image: "assets/images/puntos/foto-principal-l.v.webp",
         description: "El punto más alto del Atlántico, un destino de naturaleza pura, bosques secos y vistas panorámicas inigualables desde el Cerro La Vieja.",
-        pointsIds: [3, 4, 5, 40, 41, 57, 58],
+        pointsIds: [3, 4, 5, 39, 40, 56, 57],
         routes: {
             fromBAQ: "A 1 hora por la Vía al Mar, tomando el desvío hacia el interior.",
             fromCTG: "A unos 50 minutos por la Vía al Mar, entrando por la vía a Piojó."
@@ -644,7 +644,7 @@ const municipiosData = [
         name: "Santa Catalina",
         image: "assets/images/puntos/fotografia-para-la-pagina-vt.webp",
         description: "Hogar del famoso Volcán del Totumo y las Salinas de Galerazamba (Mar Rosado). Un encuentro mágico entre la geología y el mar.",
-        pointsIds: [1, 2, 25, 39, 55, 56],
+        pointsIds: [1, 2, 24, 38, 54, 55],
         routes: {
             fromBAQ: "A unos 50-60 minutos por la Vía al Mar hacia el sur.",
             fromCTG: "A unos 40-50 minutos por la Vía al Mar hacia el norte."
@@ -655,7 +655,7 @@ const municipiosData = [
         name: "Cartagena",
         image: "assets/images/puntos/puente-del-viaducto-el-gran-manglar.webp",
         description: "La joya de la corona, una ciudad amurallada que respira historia colonial en cada esquina, rodeada de lagunas, manglares y playas modernas.",
-        pointsIds: [30, 32, 34, 35, 36, 37, 53, 54],
+        pointsIds: [29, 31, 33, 34, 35, 36, 52, 53],
         routes: {
             fromBAQ: "Toma la Vía al Mar hacia el suroeste durante aproximadamente 1 hora y 45 minutos.",
             fromCTG: "Estás en el punto de partida. Explora el Centro Histórico, Manga y el nuevo Viaducto."
@@ -666,7 +666,7 @@ const municipiosData = [
         name: "Barranquilla",
         image: "assets/images/puntos/foto-principal-para-la-pagina-g.m.webp",
         description: "Conocida como la 'Puerta de Oro de Colombia', es una ciudad vibrante donde el río Magdalena se une con el mar Caribe. Cuna de cultura, música y progreso.",
-        pointsIds: [20, 21, 22, 23, 24, 29, 31],
+        pointsIds: [20, 21, 22, 23, 28, 30, 120],
         routes: {
             fromBAQ: "Estás en el punto de partida. Comienza explorando el Gran Malecón del Río y la Ciénaga de Mallorquín.",
             fromCTG: "Toma la Vía al Mar hacia el noreste durante aproximadamente 1 hora y 45 minutos (110-120 km) cruzando el Viaducto El Gran Manglar."
