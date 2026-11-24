@@ -6,7 +6,7 @@
  * 3. Cuadrículas del mapa (Esri ArcGIS) e imágenes: Cache con respaldo de red para moverse por el mapa sin señal.
  */
 
-const APP_CACHE = 'ruta-app-v9.0';
+const APP_CACHE = 'ruta-app-v9.1';
 const CDN_CACHE = 'ruta-cdn-v1.0';
 const TILES_CACHE = 'ruta-tiles-v1.0';
 
@@ -14,9 +14,10 @@ const CORE_ASSETS = [
     './',
     './index.html',
     './assets/css/tailwind.min.css',
-    './assets/js/data.js?v=9.0',
-    './assets/js/itinerary.js?v=9.0',
-    './assets/js/app.js?v=9.0'
+    './assets/images/logo-ruta-costera.svg',
+    './assets/js/data.js?v=9.1',
+    './assets/js/itinerary.js?v=9.1',
+    './assets/js/app.js?v=9.1'
 ];
 
 const CDN_ASSETS = [
