@@ -443,14 +443,14 @@
                 </div>
 
                 <!-- Carousel Section Card -->
-                <section class="bg-white rounded-2xl shadow-lg p-2 overflow-hidden border border-gray-100">
+                <section class="bg-white rounded-2xl shadow-lg p-3 md:p-4 overflow-hidden border border-gray-100">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper" id="swiper-wrapper-dynamic">
                             <!-- Slides dynamically populated from mockData -->
                         </div>
-                        <div class="swiper-button-next !w-10 !h-10 !bg-white/20 !rounded-full !after:text-sm hover:!bg-white/40 transition-colors"></div>
-                        <div class="swiper-button-prev !w-10 !h-10 !bg-white/20 !rounded-full !after:text-sm hover:!bg-white/40 transition-colors"></div>
-                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next !w-10 !h-10 !bg-[#003087]/80 !text-white !rounded-full after:!text-xs hover:!bg-[#003087] shadow-lg transition-all"></div>
+                        <div class="swiper-button-prev !w-10 !h-10 !bg-[#003087]/80 !text-white !rounded-full after:!text-xs hover:!bg-[#003087] shadow-lg transition-all"></div>
+                        <div class="swiper-pagination !bottom-1"></div>
                     </div>
                 </section>
             </div>
@@ -733,9 +733,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- App JS -->
-    <script src="assets/js/data.js?v=8.9"></script>
-    <script src="assets/js/itinerary.js?v=8.9"></script>
-    <script src="assets/js/app.js?v=8.9"></script>
+    <script src="assets/js/data.js?v=9.0"></script>
+    <script src="assets/js/itinerary.js?v=9.0"></script>
+    <script src="assets/js/app.js?v=9.0"></script>
 
     <!-- Initialize Swiper -->
     <script>
@@ -746,20 +746,41 @@
             const allowedIds = [44, 59, 57, 23, 47, 55, 51, 39, 61, 9, 14, 13, 22, 18, 17, 43, 50, 41, 40];
             const carouselItems = mockData.filter(item => allowedIds.includes(item.id));
             
-            // Render slides
+            // Render slides (proporción fotográfica natural 3:2 en escritorio sin estirar la imagen)
             swiperWrapper.innerHTML = carouselItems.map(item => `
-                <div class="swiper-slide cursor-pointer" onclick="if(window.showView) { window.showView('map'); }">
-                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
-                    <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm font-bold backdrop-blur-sm">${item.title}</div>
+                <div class="swiper-slide cursor-pointer group relative overflow-hidden rounded-2xl" onclick="if(window.showPointOnMap) { window.showPointOnMap(${item.id}, false); } else if(window.showView) { window.showView('map'); }">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent rounded-2xl pointer-events-none"></div>
+                    <div class="absolute bottom-3 left-3.5 right-3.5 flex items-end justify-between gap-2 pointer-events-none">
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-bold uppercase tracking-wider text-[#0099ff] truncate">${(item.location || '').split(',')[0]}</p>
+                            <h4 class="text-white text-sm font-extrabold leading-snug truncate drop-shadow">${item.title}</h4>
+                        </div>
+                        <span class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xs shrink-0 group-hover:bg-[#ff6b00] transition-colors">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // Init Swiper safely (no bloquea la navegación si falla el CDN con mala señal)
+        // Init Swiper safely (1 imagen en celular, 2 en tablet y 3 tarjetas nítidas sin estirar en computador)
         var swiper = null;
         if (typeof Swiper !== 'undefined') {
             swiper = new Swiper(".mySwiper", {
                 loop: true,
+                slidesPerView: 1,
+                spaceBetween: 12,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 14
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 16
+                    }
+                },
                 pagination: { el: ".swiper-pagination", clickable: true },
                 navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
                 autoplay: { delay: 4000, disableOnInteraction: false },

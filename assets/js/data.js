@@ -3378,6 +3378,212 @@ const mockData = [
       "Ruta 90A02",
       "PR 47+000"
     ]
+  },
+  {
+    "id": 157,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "ecoturismo",
+      "aves",
+      "gastronomía"
+    ],
+    "title": "Corporación Arroyo Grande Tours (Arroyo Grande)",
+    "description": "En el corregimiento de Arroyo Grande, en la zona rural de Cartagena, mujeres y hombres de la comunidad que se formaron juntos en un curso del SENA crearon esta operadora de turismo rural. Su experiencia gira en torno a la ciénaga de Las Ventas y a los lugares ancestrales del pueblo: las ciénagas del Medio y Rojas, la plaza y la iglesia. Se recorre en bicicleta, se navega en canoa y se termina en la mesa, con la cocina y los dulces típicos del corregimiento. Productos y servicios: Bienvenida con cóctel y reseña histórica del corregimiento. Bici-tour hasta la ciénaga de Las Ventas y paseo en canoa. Pesca ancestral, avistamiento de aves y mirador. Gastronomía ancestral, presentación típica y dulces tradicionales.",
+    "lat": 10.656264,
+    "lng": -75.34799,
+    "image": "assets/images/puntos/arroyo-grande-tours-1.webp",
+    "location": "Cartagena, Bolívar (Corregimiento Arroyo Grande).",
+    "hours": "Con reserva previa: fines de semana, festividades y temporada alta. Consultar disponibilidad con la organización.",
+    "price": "Consultar según recorrido.",
+    "tags": [
+      "Bici-tour y paseo en canoa",
+      "Pesca ancestral",
+      "Avistamiento de aves",
+      "Gastronomía ancestral y dulces tradicionales",
+      "Turismo comunitario"
+    ]
+  },
+  {
+    "id": 158,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "playas",
+      "aves"
+    ],
+    "title": "Asociación Cultura y Turismo Alternativo Playa Bella",
+    "description": "A 30 minutos de Cartagena, en Arroyo de Piedra, pescadores y campesinos nativos se unieron para cuidar el territorio que sostiene a sus familias: el manglar, la laguna, los morros y la playa. Proponen un ecoturismo al aire libre, en un paisaje rico en pescado, camarones y cangrejos, con la vista de los morros, las montañas y las cangrejeras. Productos y servicios: Ecoturismo y turismo rural al aire libre. Avistamiento de aves y peces en la laguna. Visita al mirador, la cantera, la playa y las cangrejeras. Gastronomía, cultura, deporte y alojamiento.",
+    "lat": 10.608251,
+    "lng": -75.447242,
+    "image": "assets/images/puntos/playa-bella-1.webp",
+    "location": "Cartagena, Bolívar (Corregimiento Arroyo de Piedra).",
+    "hours": "Todo el año, con reserva previa.",
+    "price": "Consultar con la organización.",
+    "tags": [
+      "Ecoturismo y turismo rural",
+      "Avistamiento de aves y peces",
+      "Visita al mirador, playa y cangrejeras",
+      "Gastronomía, cultura y alojamiento"
+    ]
+  },
+  {
+    "id": 159,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "ecoturismo",
+      "aves"
+    ],
+    "title": "Consejo Comunitario de Villa Gloria",
+    "description": "En la vereda Villa Gloria, al fondo del corregimiento de La Boquilla, la comunidad vive entre el mar y la ciénaga de Juan Polo. Un grupo de mujeres del Consejo Comunitario, junto con la asociación de pescadores, guía recorridos en canoa por el manglar y trabaja en su restauración con un vivero propio. No es el tour habitual: el visitante comparte la vida cotidiana de la comunidad. Productos y servicios: Tour en canoa por la ciénaga de Juan Polo. Restauración y siembra de mangle; visita al vivero. Avistamiento de aves. Caminata por el camino ancestral y la playa.",
+    "lat": 10.49598,
+    "lng": -75.496367,
+    "image": "assets/images/puntos/villa-gloria-1.webp",
+    "location": "Cartagena, Bolívar (Vereda Villa Gloria, La Boquilla).",
+    "hours": "Todo el año; recorridos de 3 a 4 horas. Consultar horario con la organización.",
+    "price": "Consultar con la organización.",
+    "tags": [
+      "Tour en canoa por ciénaga de Juan Polo",
+      "Restauración y siembra de mangle",
+      "Avistamiento de aves",
+      "Caminata por camino ancestral y playa"
+    ]
+  },
+  {
+    "id": 160,
+    "eventMonth": 10,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "eventos",
+      "cultura"
+    ],
+    "title": "Fundación Cultural La Tierra del Cóndor",
+    "description": "Juan de Acosta es tierra con corazón vallenato. La Fundación Cultural La Tierra del Cóndor organiza cada noviembre el Festival Vallenato Cóndor Legendario, tres días de música en homenaje a la canción «El cóndor legendario», de Ángel Alfonso Molino, hijo del municipio. En 2026 llega a su versión 27 y sigue abriendo espacio a los jóvenes que heredan el folclor. Productos y servicios: Festival Vallenato Cóndor Legendario (tres días en noviembre). Concursos de música vallenata. Nuevos talentos del folclor. Recorrido por el pueblo de Juan de Acosta.",
+    "lat": 10.830173,
+    "lng": -75.031777,
+    "image": "assets/images/puntos/tierra-del-condor-1.webp",
+    "location": "Juan de Acosta, Atlántico.",
+    "hours": "Tres días en noviembre (fechas por confirmar cada año).",
+    "price": "Consultar programación del festival.",
+    "tags": [
+      "Festival Vallenato Cóndor Legendario",
+      "Concursos de música vallenata",
+      "Nuevos talentos del folclor",
+      "Recorrido por Juan de Acosta"
+    ]
+  },
+  {
+    "id": 161,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "cultura"
+    ],
+    "title": "Fundación Puerto Colombia",
+    "description": "Junto al muelle, la antigua estación del ferrocarril de Puerto Colombia, inaugurada en 1871 como parte del segundo ferrocarril del país, es hoy un centro de memoria cultural e histórica. Desde allí la Fundación Puerto Colombia cuenta la historia del municipio, ligada a la modernidad y a la migración, prepara la apertura del Museo de la Memoria y mantiene una programación permanente de arte. Productos y servicios: Recorridos históricos por la estación del ferrocarril. Exposiciones de arte y artesanías. Talleres de artes. Encuentros comunitarios y eventos culturales.",
+    "lat": 10.988184,
+    "lng": -74.959125,
+    "image": "assets/images/puntos/fundacion-puerto-colombia-1.webp",
+    "location": "Puerto Colombia, Atlántico.",
+    "hours": "Lunes a domingo.",
+    "price": "Acceso gratuito / Consultar talleres.",
+    "tags": [
+      "Recorridos históricos estación del ferrocarril",
+      "Exposiciones de arte y artesanías",
+      "Talleres de artes",
+      "Encuentros comunitarios y eventos culturales"
+    ]
+  },
+  {
+    "id": 162,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "cultura",
+      "gastronomía"
+    ],
+    "title": "ASOCODERPI – Asociación Comité para el Desarrollo y Reconstrucción de Piojó",
+    "description": "Durante años, los pozos de agua de manantial abastecieron a Piojó, el pueblo más alto del Atlántico. ASOCODERPI quiere salvaguardarlos y darles un nuevo uso social como circuito turístico cultural por el casco urbano, con guía profesional, la cocina de las matronas, artesanías locales y el clima fresco del pueblo. Productos y servicios: Recorrido cultural por los pozos artesanales de Piojó. Guía profesional certificado. Gastronomía de matronas y artesanías locales. Vistas y tranquilidad del pueblo.",
+    "lat": 10.748094,
+    "lng": -75.108008,
+    "image": "assets/images/puntos/asocoderpi-1.webp",
+    "location": "Piojó, Atlántico.",
+    "hours": "Todo el año; recorridos de medio día. Consultar horario con la organización.",
+    "price": "Consultar con la organización.",
+    "tags": [
+      "Recorrido cultural por pozos artesanales",
+      "Guía profesional certificado",
+      "Gastronomía de matronas y artesanías locales",
+      "Vistas y tranquilidad del pueblo"
+    ]
+  },
+  {
+    "id": 163,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "gastronomía"
+    ],
+    "title": "Asociación Delicias de Chorrera",
+    "description": "En Chorrera, corregimiento de Juan de Acosta, la yuca es uno de los cultivos que identifican a la comunidad. Hace ocho años nació aquí una asociación para dar empleo a los agricultores: hoy elabora rosquitas de almidón de yuca y queso, artesanales, 100 % naturales y sin gluten, que se venden en la región Caribe y en otras ciudades del país. El visitante conoce la planta y participa en la elaboración. Productos y servicios: Visita a la planta productora. Elaborar, hornear, pesar y empacar rosquitas. Rosquitas naturales y picantes recién horneadas. Rosquitas personalizadas para bodas, cumpleaños y eventos.",
+    "lat": 10.799934,
+    "lng": -75.011237,
+    "image": "assets/images/puntos/delicias-de-chorrera-1.webp",
+    "location": "Juan de Acosta, Atlántico (Corregimiento de Chorrera).",
+    "hours": "Todo el año; visitas de menos de 1 hora para grupos de hasta 6 personas. Consultar horario con la organización.",
+    "price": "Según producto o taller.",
+    "tags": [
+      "Visita a la planta productora",
+      "Elaboración de rosquitas de yuca y queso",
+      "Rosquitas naturales y picantes recién horneadas",
+      "Turismo comunitario"
+    ]
+  },
+  {
+    "id": 164,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "gastronomía"
+    ],
+    "title": "ASOMUPENLO (Santa Catalina)",
+    "description": "En Santa Catalina, esta asociación comunitaria ofrece a los visitantes la comida típica de la región, preparada y servida por la propia comunidad, con el buen trato como su principal garantía. Recibe a familias y grupos grandes. Productos y servicios: Platos típicos de la cocina de la región. Atención para grupos (hasta 150 personas) y familias.",
+    "lat": 10.605006,
+    "lng": -75.288508,
+    "image": "assets/images/puntos/asomupenlo-1.webp",
+    "location": "Santa Catalina, Bolívar.",
+    "hours": "Todo el año, fines de semana. Consultar horario con la organización.",
+    "price": "Según plato o menú para grupos.",
+    "tags": [
+      "Platos típicos de la cocina de la región",
+      "Atención para grupos y familias",
+      "Turismo comunitario"
+    ]
+  },
+  {
+    "id": 165,
+    "category": "comunitario",
+    "categories": [
+      "comunitario",
+      "cultura"
+    ],
+    "title": "Fundación Pueblo Santo – Centro Holístico",
+    "description": "Sobre la Vía al Mar, en Tubará, con vista al mar, a la laguna de Balboa y a Puerto Colombia, Pueblo Santo (Aaramko Jor) honra la memoria de los pueblos mokaná. Desde 2014 es un centro holístico y artístico: un sitio para el silencio, libre de alcohol y drogas, con talleres de arte y cultura ancestral, meditación, retiros, comida vegetariana y hospedaje. Cada agosto recibe el Festival de Música Medicina del Caribe. Productos y servicios: Retiros, meditación y talleres de bienestar. Exposición permanente de arte, escultura y muralismo. Talleres de arte y artesanía. Comida vegetariana y hospedaje. Festival de Música Medicina del Caribe.",
+    "lat": 10.9685,
+    "lng": -74.993834,
+    "image": "assets/images/puntos/pueblo-santo-1.webp",
+    "location": "Tubará, Atlántico (Vía al Mar).",
+    "hours": "Todo el año, con reserva; fines de semana y fechas especiales.",
+    "price": "Consultar talleres, hospedaje y retiros.",
+    "tags": [
+      "Retiros, meditación y talleres de bienestar",
+      "Exposición permanente de arte y muralismo",
+      "Talleres de arte y artesanía",
+      "Comida vegetariana y hospedaje",
+      "Festival de Música Medicina del Caribe"
+    ]
   }
 ];
 
